@@ -1,4 +1,7 @@
 import { fetchText } from './http.js';
+import { installResilientDns } from './dns.js';
+
+installResilientDns();
 
 export interface SearchResult {
   title: string;

@@ -6,6 +6,7 @@ import { resolveMany } from './enrich/sec-entity.js';
 import { discoverFromWeb } from './discovery/web.js';
 import { serperUsage } from './lib/serper.js';
 import { discoverUk, familyControlCell } from './discovery/companies-house.js';
+import { consolidate } from './classify/consolidate.js';
 
 const command = process.argv[2];
 
@@ -133,6 +134,47 @@ async function discoverUkCmd() {
   console.log(`\nwrote ${companies.length} UK companies to data/candidates-uk.json`);
 }
 
+async function classifyCmd() {
+  const firms = consolidate();
+  console.log(`consolidated pool: ${firms.length} distinct firms\n`);
+
+  const multi = firms.filter((f) => f.channels.size >= 2);
+  console.log(`surfaced by 2+ independent channels: ${multi.length}`);
+
+  const byType = new Map<string, number>();
+  for (const f of firms) byType.set(f.classification.type, (byType.get(f.classification.type) ?? 0) + 1);
+  console.log('\nclassification:');
+  for (const [t, n] of [...byType].sort((a, b) => b[1] - a[1])) console.log(`  ${String(n).padStart(5)}  ${t}`);
+
+  const qualifying = firms.filter((f) => f.classification.qualifies);
+  console.log(`\nqualifying for the dataset: ${qualifying.length}`);
+
+  const ruleCount = new Map<string, number>();
+  for (const f of qualifying) for (const r of f.classification.rulesMatched) ruleCount.set(r, (ruleCount.get(r) ?? 0) + 1);
+  console.log('rules that qualified them:');
+  for (const [r, n] of [...ruleCount].sort((a, b) => b[1] - a[1])) console.log(`  ${String(n).padStart(5)}  ${r}`);
+
+  const withPhone = qualifying.filter((f) => f.phone).length;
+  const withPrincipal = qualifying.filter((f) => f.principalName).length;
+  console.log(`\ncontact coverage in qualifying set:`);
+  console.log(`  with a phone number:   ${withPhone}/${qualifying.length}`);
+  console.log(`  with a named principal: ${withPrincipal}/${qualifying.length}`);
+
+  const countries = new Map<string, number>();
+  for (const f of qualifying) countries.set(f.country || 'unknown', (countries.get(f.country || 'unknown') ?? 0) + 1);
+  console.log('\ncountries represented:');
+  for (const [c, n] of [...countries].sort((a, b) => b[1] - a[1]).slice(0, 12)) console.log(`  ${String(n).padStart(4)}  ${c}`);
+
+  console.log('\n=== sample of qualifying firms ===');
+  for (const f of qualifying.slice(0, 20)) {
+    console.log(`  ${f.name.slice(0, 44).padEnd(46)}${f.classification.type.padEnd(24)}conf ${f.classification.confidence.toFixed(2)}  [${f.classification.rulesMatched.join(',')}]`);
+    if (f.principalName) console.log(`      principal: ${f.principalName}${f.phone ? '  tel ' + f.phone : ''}`);
+  }
+
+  writeFileSync('data/consolidated.json', JSON.stringify(firms.map((f) => ({ ...f, channels: [...f.channels] })), null, 2));
+  console.log(`\nwrote ${firms.length} firms to data/consolidated.json`);
+}
+
 switch (command) {
   case 'discover':
     await discover();
@@ -145,6 +187,9 @@ switch (command) {
     break;
   case 'uk':
     await discoverUkCmd();
+    break;
+  case 'classify':
+    await classifyCmd();
     break;
   default:
     console.error(`unknown command: ${command ?? '(none)'}`);

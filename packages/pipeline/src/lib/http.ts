@@ -1,4 +1,7 @@
 import pLimit from 'p-limit';
+import { installResilientDns } from './dns.js';
+
+installResilientDns();
 
 /**
  * SEC asks for a declared contact in the User-Agent and rate limits at 10 req/s.
@@ -68,6 +71,7 @@ export async function fetchText(url: string, opts: FetchOptions = {}): Promise<s
       } catch (err) {
         lastErr = err;
         if (err instanceof Error && err.message.includes('SEC rejected')) throw err;
+        // ENOTFOUND / EAI_AGAIN are transient here - the resolver is flaky, not the host.
       } finally {
         clearTimeout(timer);
       }

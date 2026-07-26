@@ -14,7 +14,7 @@
  * the record is dropped before it reaches the pool.
  */
 import type { Discovery, DiscoveryChannel } from '@fo/core';
-import { generateJson } from '../lib/llm.js';
+import { extractJson } from '../lib/llm.js';
 import { fetchPageText, search, type SearchResult } from '../lib/serper.js';
 
 export interface WebCandidate {
@@ -169,7 +169,7 @@ async function extractFromPage(result: SearchResult, channel: DiscoveryChannel):
 
   let extracted: ExtractionResult;
   try {
-    extracted = await generateJson<ExtractionResult>(prompt(pageText, result.link), EXTRACTION_SCHEMA);
+    extracted = await extractJson<ExtractionResult>(prompt(pageText, result.link), EXTRACTION_SCHEMA);
   } catch {
     return [];
   }
