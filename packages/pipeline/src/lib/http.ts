@@ -8,9 +8,16 @@ const SEC_USER_AGENT = process.env.SEC_USER_AGENT ?? 'fo-intel research (contact
 
 const limiters = new Map<string, ReturnType<typeof pLimit>>();
 
+/** Companies House allows 600 requests per 5 minutes; the rest are courtesy limits. */
+function concurrencyFor(host: string) {
+  if (host.endsWith('sec.gov')) return 4;
+  if (host.includes('company-information.service.gov.uk')) return 2;
+  return 8;
+}
+
 function limiterFor(host: string) {
   if (!limiters.has(host)) {
-    limiters.set(host, pLimit(host.endsWith('sec.gov') ? 4 : 8));
+    limiters.set(host, pLimit(concurrencyFor(host)));
   }
   return limiters.get(host)!;
 }

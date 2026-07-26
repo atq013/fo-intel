@@ -5,6 +5,7 @@ import { searchFullText } from './discovery/sec-fulltext.js';
 import { resolveMany } from './enrich/sec-entity.js';
 import { discoverFromWeb } from './discovery/web.js';
 import { serperUsage } from './lib/serper.js';
+import { discoverUk, familyControlCell } from './discovery/companies-house.js';
 
 const command = process.argv[2];
 
@@ -101,6 +102,37 @@ async function discoverWeb() {
   console.log(`\nwrote ${candidates.length} candidates to data/candidates-web.json`);
 }
 
+async function discoverUkCmd() {
+  console.log('UK Companies House: SIC-filtered search + officers + PSC\n');
+  const companies = await discoverUk();
+
+  const withPsc = companies.filter((c) => c.psc.length > 0);
+  const familyControlled = companies.filter((c) => c.sharedSurnames.length > 0);
+
+  const qualifying = familyControlled.filter((c) => c.hasSubstance);
+
+  console.log(`\ncompanies found:                    ${companies.length}`);
+  console.log(`  with PSC on record:               ${withPsc.length}`);
+  console.log(`  family-surname control confirmed: ${familyControlled.length}`);
+  console.log(`  ...and passing the substance test: ${qualifying.length}\n`);
+
+  const rejected = familyControlled.filter((c) => !c.hasSubstance);
+  const reasons = new Map<string, number>();
+  for (const c of rejected) reasons.set(c.substanceNote, (reasons.get(c.substanceNote) ?? 0) + 1);
+  console.log('rejected for lack of substance:');
+  for (const [why, n] of [...reasons].sort((a, b) => b[1] - a[1])) console.log(`  ${String(n).padStart(4)}  ${why}`);
+
+  console.log('\n=== qualifying: named family, named entity, filed accounts ===');
+  for (const c of qualifying.slice(0, 25)) {
+    const cell = familyControlCell(c);
+    console.log(`  ${c.name.slice(0, 44).padEnd(46)}${(c.city || c.region).slice(0, 16).padEnd(18)}inc ${c.incorporated.slice(0, 4)}  ${c.substanceNote.slice(0, 40)}`);
+    console.log(`      ${cell.evidence[0]?.method.slice(0, 100)}`);
+  }
+
+  writeFileSync('data/candidates-uk.json', JSON.stringify({ generatedAt: new Date().toISOString(), companies }, null, 2));
+  console.log(`\nwrote ${companies.length} UK companies to data/candidates-uk.json`);
+}
+
 switch (command) {
   case 'discover':
     await discover();
@@ -110,6 +142,9 @@ switch (command) {
     break;
   case 'web':
     await discoverWeb();
+    break;
+  case 'uk':
+    await discoverUkCmd();
     break;
   default:
     console.error(`unknown command: ${command ?? '(none)'}`);
