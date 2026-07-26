@@ -3,6 +3,8 @@ import { writeFileSync } from 'node:fs';
 import { scoreCandidates } from './discovery/sec-13f.js';
 import { searchFullText } from './discovery/sec-fulltext.js';
 import { resolveMany } from './enrich/sec-entity.js';
+import { discoverFromWeb } from './discovery/web.js';
+import { serperUsage } from './lib/serper.js';
 
 const command = process.argv[2];
 
@@ -74,12 +76,40 @@ async function discoverFullText() {
   console.log(`\nwrote ${ranked.length} candidates to data/candidates-sec.json`);
 }
 
+async function discoverWeb() {
+  console.log('web discovery: conference programmes, job postings, news\n');
+  const { candidates, stats } = await discoverFromWeb(Number(process.argv[3] ?? 6));
+
+  console.log(`\nqueries run:        ${stats.queriesRun}  (serper calls used: ${serperUsage()})`);
+  console.log(`pages fetched:      ${stats.pagesFetched}`);
+  console.log(`firms extracted:    ${stats.extracted}`);
+  console.log(`dropped, quote not found in page: ${stats.quoteFailed}`);
+  console.log(`unique candidates:  ${candidates.length}\n`);
+
+  const byChannel = new Map<string, number>();
+  for (const c of candidates) byChannel.set(c.channel, (byChannel.get(c.channel) ?? 0) + 1);
+  console.log('by channel:');
+  for (const [ch, n] of byChannel) console.log(`  ${ch.padEnd(24)} ${n}`);
+
+  console.log('\n=== sample ===');
+  for (const c of candidates.slice(0, 25)) {
+    console.log(`  ${c.name.slice(0, 44).padEnd(46)}${c.typeClaim.padEnd(24)}${(c.location ?? '').slice(0, 20)}`);
+    if (c.principalName) console.log(`      ${c.principalName} - ${c.principalTitle ?? ''}`);
+  }
+
+  writeFileSync('data/candidates-web.json', JSON.stringify({ generatedAt: new Date().toISOString(), stats, candidates }, null, 2));
+  console.log(`\nwrote ${candidates.length} candidates to data/candidates-web.json`);
+}
+
 switch (command) {
   case 'discover':
     await discover();
     break;
   case 'fulltext':
     await discoverFullText();
+    break;
+  case 'web':
+    await discoverWeb();
     break;
   default:
     console.error(`unknown command: ${command ?? '(none)'}`);

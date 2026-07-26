@@ -3,6 +3,7 @@
  * never the key. Run with: npx tsx packages/pipeline/src/lib/check-env.ts
  */
 import 'dotenv/config';
+import { EMBEDDING_MODEL, EMBEDDING_DIMS } from '@fo/core';
 
 type Check = { name: string; required: boolean; run: () => Promise<string> };
 
@@ -30,11 +31,15 @@ const checks: Check[] = [
       const key = process.env.GEMINI_API_KEY;
       if (!key) throw new Error(missing('GEMINI_API_KEY'));
       const res = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/text-embedding-004:embedContent?key=${key}`,
+        `https://generativelanguage.googleapis.com/v1beta/models/${EMBEDDING_MODEL}:embedContent?key=${key}`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ model: 'models/text-embedding-004', content: { parts: [{ text: 'test' }] } }),
+          body: JSON.stringify({
+            model: `models/${EMBEDDING_MODEL}`,
+            content: { parts: [{ text: 'test' }] },
+            outputDimensionality: EMBEDDING_DIMS,
+          }),
         },
       );
       if (!res.ok) throw new Error(`${res.status} ${(await res.text()).slice(0, 120)}`);
