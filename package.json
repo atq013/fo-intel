@@ -1,0 +1,26 @@
+{
+  "name": "fo-intel",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "discover": "tsx packages/pipeline/src/cli.ts discover",
+    "classify": "tsx packages/pipeline/src/cli.ts classify",
+    "enrich": "tsx packages/pipeline/src/cli.ts enrich",
+    "validate": "tsx packages/pipeline/src/cli.ts validate",
+    "emit": "tsx packages/pipeline/src/cli.ts emit",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "cheerio": "^1.2.0",
+    "dotenv": "^17.4.2",
+    "fast-xml-parser": "^5.10.1",
+    "p-limit": "^7.3.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}
