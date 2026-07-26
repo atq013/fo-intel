@@ -51,6 +51,15 @@ const EXCLUDE = [
 ];
 
 /**
+ * The address-cohort signal has a false-positive mode found by reading the first
+ * run: VC and PE firms register a numbered vehicle per fund at one address, so
+ * Khosla Ventures, Foresite Capital and Yorktown Energy all scored like family
+ * clusters. Sequential vehicle naming is the tell that separates them - a family
+ * office does not raise Fund V.
+ */
+const FUND_SEQUENCE = /(\b(fund|partners|associates|ventures|capital)\b.*\b([IVX]{1,5}|\d{1,2})\b\s*,?\s*(l\.?p\.?|llc|ltd)?$)|(\b[IVX]{2,5}\b\s*,?\s*(l\.?p\.?|llc)?$)/i;
+
+/**
  * Weak positive signals. Weak on purpose: any single one of these is common in
  * ordinary asset managers. The hypothesis is that co-occurrence is rare.
  */
@@ -95,9 +104,17 @@ export function scoreCandidates(): Candidate[] {
   // Family offices frequently register several vehicles at one address. Count the
   // cohort before scoring so each member can be credited for it.
   const cohort = new Map<string, number>();
+  // An address is contaminated when any entity there is structurally excluded, or
+  // when the cohort is really a numbered fund family. "American Family Investments"
+  // is not a family office - it shares an address with American Family Insurance.
+  const contaminated = new Set<string>();
+
   for (const row of latest.values()) {
     const key = normaliseAddress(row.FILINGMANAGER_STREET1 ?? '', row.FILINGMANAGER_CITY ?? '', row.FILINGMANAGER_STATEORCOUNTRY ?? '');
-    if (key) cohort.set(key, (cohort.get(key) ?? 0) + 1);
+    if (!key) continue;
+    cohort.set(key, (cohort.get(key) ?? 0) + 1);
+    const name = row.FILINGMANAGER_NAME ?? '';
+    if (EXCLUDE.some((re) => re.test(name)) || FUND_SEQUENCE.test(name)) contaminated.add(key);
   }
 
   const out: Candidate[] = [];
@@ -126,9 +143,16 @@ export function scoreCandidates(): Candidate[] {
       reasons.push('no adviser CRD despite 13F-scale assets');
     }
 
-    if (addressCohort >= 2) {
+    if (FUND_SEQUENCE.test(name)) {
+      score -= 45;
+      reasons.push('sequential fund vehicle, not a family entity');
+    }
+
+    if (addressCohort >= 2 && !contaminated.has(addressKey)) {
       score += Math.min(10 * addressCohort, 30);
       reasons.push(`${addressCohort} filing entities share this address`);
+    } else if (addressCohort >= 2) {
+      reasons.push(`${addressCohort} entities share this address, but the cohort is a fund family or excluded business`);
     }
 
     if (otherManagers === 0) {
