@@ -45,7 +45,7 @@ interface AdvancedSearchResponse {
   }>;
 }
 
-interface Officer {
+export interface Officer {
   name: string;
   officer_role: string;
   occupation?: string;
@@ -55,11 +55,12 @@ interface Officer {
   country_of_residence?: string;
 }
 
-interface Psc {
+export interface Psc {
   name: string;
   kind: string;
   natures_of_control?: string[];
   nationality?: string;
+  country_of_residence?: string;
   notified_on?: string;
   ceased_on?: string;
 }

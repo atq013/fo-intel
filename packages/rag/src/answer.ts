@@ -31,6 +31,9 @@ export interface FirmSummary {
   website: string | null;
   principal: string | null;
   principalTitle: string | null;
+  principalControl: string | null;
+  otherPrincipals: Array<{ name: string; title: string }>;
+  address: string | null;
   latestSignal: { summary: string; date: string } | null;
   /** How each shown value was confirmed, keyed by field. */
   basis: Record<string, string>;
@@ -203,6 +206,7 @@ export async function answerQuestion(question: string): Promise<AnswerResult> {
     note('phone', p?.phone);
     note('email', p?.email);
     note('website', r.website);
+    note('address', r.street);
     if (s) basis.signal = s.evidence.method;
 
     return {
@@ -216,6 +220,16 @@ export async function answerQuestion(question: string): Promise<AnswerResult> {
       website: r.website?.value ?? null,
       principal: p?.fullName?.value ?? null,
       principalTitle: p?.title?.value ?? null,
+      principalControl: p?.controlBasis?.value ?? null,
+      otherPrincipals: (r.principals ?? []).slice(1, 4).map((x) => ({
+        name: x.fullName?.value ?? '',
+        title: x.title?.value ?? '',
+      })).filter((x) => x.name),
+      // Only show an address when there is a street to write to. A lone country
+      // is a location, not somewhere a letter can be sent.
+      address: r.street?.value
+        ? [r.street.value, r.city?.value, r.postcode?.value, r.country?.value].filter(Boolean).join(', ')
+        : null,
       latestSignal: s ? { summary: s.summary, date: s.occurredAt } : null,
       basis,
     };

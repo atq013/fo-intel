@@ -1,0 +1,29 @@
+web discovery: conference programmes, job postings, news
+
+  conference_programme   + 11  "family office" summit 2025 speakers "chief investment off
+  conference_programme   +  0  "family office" conference agenda speakers "single family 
+  conference_programme   +  5  "family office" forum 2026 speaker list principal
+  conference_programme   +  0  private wealth summit "family office" panellists agenda
+  conference_programme   +  4  "family office" investment summit speakers Singapore
+  conference_programme   +  6  "family office" summit speakers Dubai OR "Abu Dhabi"
+  conference_programme   + 21  "family office" conference speakers Zurich OR Geneva OR Li
+  conference_programme   + 27  "family office" forum speakers "Hong Kong" OR Tokyo
+  conference_programme   +  0  "family office" summit speakers India OR Mumbai
+  conference_programme   + 17  "family office" event speakers Brazil OR "Sao Paulo" OR Me
+  conference_programme   + 17  "family office" conference speakers Australia OR Sydney
+  conference_programme   +  6  "family office" summit speakers Canada OR Toronto
+  conference_programme   +  8  "family office" roundtable participants "managing director
+  conference_programme   +  1  impact investing summit "family office" speakers 2025
+  conference_programme   +  4  alternative investments conference "family office" panel s
+  job_posting            +  1  "single family office" hiring "chief investment officer" j
+  job_posting            +  4  "family office" job opening controller OR "investment anal
+  job_posting            +  7  "our family office" careers "we are seeking"
+  job_posting            + 18  "family office" hiring "head of investments" 2026
+  job_posting            +  5  "family office" vacancy "portfolio manager" London OR Sing
+  job_posting            +  1  "family office" recruiting "investment associate" 2026
+  news                   + 16  "family office" led investment round 2026 announcement
+  news                   +  0  "family office of" invests stake announcement 2026
+  news                   +  0  "family office" appoints "chief investment officer" 2026
+  news                   +  0  "single family office" launches OR opens office 2026
+  news                   +  6  "family office" backs startup funding round 2026
+  news                   +  3  "family office" acquires stake 2026 announcement

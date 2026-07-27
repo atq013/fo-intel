@@ -1,0 +1,14 @@
+building index for 70 records
+  inserted 70 firms
+  embedding 219 chunks...
+    25/219
+    50/219
+    75/219
+    100/219
+    125/219
+    150/219
+    175/219
+    200/219
+
+indexed: 70 firms, 219 embedded chunks, 18 audit rows
+dataset stats: {"pool":1323,"qualifiedByRubric":65,"qualifiedByTypeFinding":5,"droppedLowConfidence":6,"droppedConflicted":0,"records":70,"withPhone":5,"withPrincipal":67,"withSignals":58,"withWebsite":1,"withStreetAddress":60,"withTwoPlusPrincipals":45,"withDatedSignals":58,"singleFamily":69}

@@ -43,6 +43,7 @@ function chunksFor(r: FamilyOffice): Chunk[] {
     `${r.legalName} is ${typeLabel}${location ? ` based in ${location}` : ''}.`,
     p?.fullName.value ? `Its named principal is ${p.fullName.value}${p.title.value ? `, ${p.title.value}` : ''}.` : '',
     r.website.value ? `Website: ${r.website.value}.` : '',
+    r.street.value ? `Registered address: ${[r.street.value, r.city.value, r.postcode.value].filter(Boolean).join(', ')}.` : '',
     p?.phone.value ? `A direct phone number is on record.` : '',
     p?.email.value ? `A verified email address is on record.` : '',
     r.classification.evidence[0] ? `Classification basis: ${r.classification.evidence[0].method}` : '',

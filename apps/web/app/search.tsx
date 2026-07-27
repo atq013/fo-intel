@@ -13,6 +13,9 @@ interface Firm {
   website: string | null;
   principal: string | null;
   principalTitle: string | null;
+  principalControl: string | null;
+  otherPrincipals: Array<{ name: string; title: string }>;
+  address: string | null;
   latestSignal: { summary: string; date: string } | null;
   basis: Record<string, string>;
 }
@@ -163,11 +166,35 @@ export default function Search() {
                   <div className="rows">
                     {f.principal && (
                       <div className="row">
-                        <span className="k">Contact</span>
+                        <span className="k">Principal</span>
                         <span className="v">
                           {f.principal}
                           {f.principalTitle ? ` — ${f.principalTitle}` : ''}
+                          {f.principalControl && (
+                            <span style={{ display: 'block', color: 'var(--ink-faint)', fontSize: 13 }}>
+                              {f.principalControl}
+                            </span>
+                          )}
                         </span>
+                      </div>
+                    )}
+                    {f.otherPrincipals.length > 0 && (
+                      <div className="row">
+                        <span className="k">Also</span>
+                        <span className="v">
+                          {f.otherPrincipals.map((o) => (
+                            <span key={o.name} style={{ display: 'block' }}>
+                              {o.name}
+                              {o.title ? ` — ${o.title}` : ''}
+                            </span>
+                          ))}
+                        </span>
+                      </div>
+                    )}
+                    {f.address && (
+                      <div className="row">
+                        <span className="k">Address</span>
+                        <span className="v">{f.address}</span>
                       </div>
                     )}
                     {f.phone && (
@@ -198,9 +225,10 @@ export default function Search() {
                     )}
                     {!f.phone && !f.email && (
                       <div className="row">
-                        <span className="k">Contact</span>
+                        <span className="k">Direct line</span>
                         <span className="v" style={{ color: 'var(--ink-faint)' }}>
-                          No contact route confirmed for this firm
+                          No phone or email published for this firm. Reachable at the
+                          registered address above.
                         </span>
                       </div>
                     )}

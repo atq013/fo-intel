@@ -51,7 +51,10 @@ export async function search(q: string, opts: { num?: number; page?: number } = 
 
 /** Strips scripts, styles and tags. Good enough to feed an extractor, not a parser. */
 export async function fetchPageText(url: string, maxChars = 18_000): Promise<string> {
-  const html = await fetchText(url, { retries: 1, timeoutMs: 20_000 });
+  // Discovery is breadth-first: a page that is slow to answer is worth less than
+  // the next three pages, so the timeout is deliberately short and failures are
+  // simply absent from the corpus rather than retried.
+  const html = await fetchText(url, { retries: 0, timeoutMs: 8_000 });
   const text = html
     .replace(/<script[\s\S]*?<\/script>/gi, ' ')
     .replace(/<style[\s\S]*?<\/style>/gi, ' ')

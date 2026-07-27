@@ -99,6 +99,8 @@ export interface Signal {
 export interface Principal {
   fullName: Cell<string>;
   title: Cell<string>;
+  /** Set when a statutory register records this person as controlling the entity. */
+  controlBasis?: Cell<string>;
   linkedinUrl: Cell<string>;
   email: Cell<string>;
   phone: Cell<string>;
@@ -118,6 +120,8 @@ export interface FamilyOffice {
   aum: Cell<number>;
   website: Cell<string>;
   linkedinUrl: Cell<string>;
+  street: Cell<string>;
+  postcode: Cell<string>;
   city: Cell<string>;
   region: Cell<string>;
   country: Cell<string>;

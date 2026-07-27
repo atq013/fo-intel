@@ -41,6 +41,16 @@ function cellFrom<T>(value: T | null, evidence: Evidence[], confidence: number, 
   return { value, status: 'verified', evidence, confidence };
 }
 
+const HONORIFIC = /\b(mr|mrs|ms|miss|dr|sir|dame|lord|lady|prof|professor)\b/g;
+
+/** Two register entries describe the same person when their name tokens match. */
+function samePerson(a: string | null, b: string | null): boolean {
+  if (!a || !b) return false;
+  const key = (s: string) =>
+    s.toLowerCase().replace(/[^a-z\s]/g, ' ').replace(HONORIFIC, ' ').split(/\s+/).filter(Boolean).sort().join(' ');
+  return key(a) === key(b);
+}
+
 /** Signals with no date are not intelligence, so they are dropped rather than shipped undated. */
 function usableSignals(signals: Signal[]): Signal[] {
   return signals
@@ -122,16 +132,78 @@ export function buildDataset(): BuildResult {
 
     const sourceEvidence: Evidence[] = classification.evidence.slice();
 
-    const principal: Principal = {
-      fullName: cellFrom(firm.principalName || null, sourceEvidence, 0.8, 'no principal identified'),
-      title: cellFrom(firm.principalTitle || null, sourceEvidence, 0.7, 'no title established'),
-      linkedinUrl: emptyCell<string>('not searched in this build'),
-      email: emptyCell<string>('contact enrichment not yet run for this record'),
-      phone: emptyCell<string>('no direct line established'),
-      location: cellFrom([firm.city, firm.region].filter(Boolean).join(', ') || null, sourceEvidence, 0.7),
-    };
+    const registryEvidence: Evidence[] = ukCompany
+      ? [
+          {
+            sourceUrl: `https://find-and-update.company-information.service.gov.uk/company/${ukCompany.companyNumber}`,
+            sourceClass: 'registry',
+            method: `filed on the UK register for company ${ukCompany.companyNumber}`,
+            observedAt: new Date().toISOString(),
+          },
+        ]
+      : [];
 
-    const signals = usableSignals(secEntity?.signals ?? []);
+    // Principals come from the statutory control register first, then serving
+    // directors. A person the register names as controlling the entity is a
+    // materially stronger contact than one who merely holds a title.
+    const principals: Principal[] = [];
+    if (ukCompany) {
+      for (const person of ukCompany.psc.slice(0, 2)) {
+        principals.push({
+          fullName: cellFrom(person.name, registryEvidence, 0.9),
+          title: cellFrom('Person with significant control', registryEvidence, 0.9),
+          controlBasis: cellFrom(
+            (person.natures_of_control ?? []).join('; ').replace(/-/g, ' ') || null,
+            registryEvidence,
+            0.9,
+            'nature of control not stated',
+          ),
+          linkedinUrl: emptyCell<string>('not searched in this build'),
+          email: emptyCell<string>('no published address found for this firm'),
+          phone: emptyCell<string>('no direct line published'),
+          location: cellFrom(person.country_of_residence ?? null, registryEvidence, 0.85),
+        });
+      }
+      for (const officer of ukCompany.officers.filter((o) => o.officer_role === 'director').slice(0, 3)) {
+        // The registers format the same person differently - "SURNAME, Forename"
+        // on the officer list, "Mr Forename Surname" on the PSC list - so names
+        // are compared as sorted token sets rather than as strings.
+        if (principals.some((p) => samePerson(p.fullName.value, officer.name))) continue;
+        principals.push({
+          fullName: cellFrom(officer.name, registryEvidence, 0.9),
+          title: cellFrom(officer.occupation || 'Director', registryEvidence, 0.85),
+          linkedinUrl: emptyCell<string>('not searched in this build'),
+          email: emptyCell<string>('no published address found for this firm'),
+          phone: emptyCell<string>('no direct line published'),
+          location: cellFrom(officer.country_of_residence ?? null, registryEvidence, 0.8),
+        });
+      }
+    }
+
+    if (principals.length === 0) {
+      principals.push({
+        fullName: cellFrom(firm.principalName || null, sourceEvidence, 0.8, 'no principal identified'),
+        title: cellFrom(firm.principalTitle || null, sourceEvidence, 0.7, 'no title established'),
+        linkedinUrl: emptyCell<string>('not searched in this build'),
+        email: emptyCell<string>('no published address found for this firm'),
+        phone: emptyCell<string>('no direct line established'),
+        location: cellFrom([firm.city, firm.region].filter(Boolean).join(', ') || null, sourceEvidence, 0.7),
+      });
+    }
+    const principal = principals[0]!;
+
+    // A director appointment is a dated, filed event - the "recent key hire"
+    // signal, sourced from a statutory register rather than inferred from news.
+    const appointmentSignals: Signal[] = (ukCompany?.officers ?? [])
+      .filter((o) => o.appointed_on && o.officer_role === 'director')
+      .map((o) => ({
+        kind: 'key_hire' as const,
+        summary: `${o.name} was appointed a director of ${firm.name}`,
+        occurredAt: o.appointed_on!,
+        evidence: registryEvidence[0]!,
+      }));
+
+    const signals = usableSignals([...(secEntity?.signals ?? []), ...appointmentSignals]);
 
     records.push({
       id: firm.key,
@@ -140,6 +212,7 @@ export function buildDataset(): BuildResult {
         channel,
         sourceUrl: firm.sourceUrls[0] ?? '',
         discoveredAt: new Date().toISOString(),
+        externalId: ukCompany?.companyNumber ?? secEntity?.cik,
         rawName: firm.name,
       })),
       classification,
@@ -149,10 +222,22 @@ export function buildDataset(): BuildResult {
       aum: emptyCell<number>('not disclosed in any source consulted'),
       website: cellFrom(finding?.website ?? null, sourceEvidence, 0.8, 'no own-domain website identified'),
       linkedinUrl: emptyCell<string>('not searched in this build'),
+      street: cellFrom(
+        ukCompany?.street || secEntity?.street || null,
+        ukCompany ? registryEvidence : sourceEvidence,
+        0.9,
+        'no street address on record',
+      ),
+      postcode: cellFrom(
+        ukCompany?.postcode || secEntity?.postcode || null,
+        ukCompany ? registryEvidence : sourceEvidence,
+        0.9,
+        'no postcode on record',
+      ),
       city: cellFrom(firm.city || null, sourceEvidence, 0.8),
       region: cellFrom(firm.region || null, sourceEvidence, 0.8),
       country: cellFrom(firm.country || null, sourceEvidence, 0.8),
-      principals: [principal],
+      principals,
       signals,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
@@ -199,6 +284,9 @@ export function buildDataset(): BuildResult {
   stats.withPrincipal = records.filter((r) => r.principals[0]?.fullName.value).length;
   stats.withSignals = records.filter((r) => r.signals.length > 0).length;
   stats.withWebsite = records.filter((r) => r.website.value).length;
+  stats.withStreetAddress = records.filter((r) => r.street.value).length;
+  stats.withTwoPlusPrincipals = records.filter((r) => r.principals.length >= 2).length;
+  stats.withDatedSignals = records.filter((r) => r.signals.length > 0).length;
   stats.singleFamily = records.filter((r) => r.classification.type === 'single_family_office').length;
 
   return { records, rejected, stats };

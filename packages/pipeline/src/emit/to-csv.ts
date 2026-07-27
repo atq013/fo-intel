@@ -25,13 +25,14 @@ function basis<T>(c: Cell<T> | undefined): string {
 
 export const COLUMNS = [
   'firm_name', 'firm_type', 'type_confidence', 'type_basis',
-  'country', 'city', 'region',
+  'street', 'city', 'region', 'postcode', 'country', 'address_basis',
   'website', 'website_basis',
-  'principal_name', 'principal_title',
+  'principal_name', 'principal_title', 'principal_control_basis', 'principal_location',
   'principal_phone', 'principal_phone_basis',
   'principal_email', 'principal_email_basis',
+  'second_principal_name', 'second_principal_title',
   'recent_signal_count', 'latest_signal_date', 'latest_signal', 'latest_signal_basis',
-  'discovery_channels', 'rules_matched',
+  'registry_id', 'discovery_channels', 'rules_matched',
 ];
 
 export function toCsv(records: FamilyOffice[]): string {
@@ -39,6 +40,7 @@ export function toCsv(records: FamilyOffice[]): string {
 
   for (const r of records) {
     const p = r.principals[0];
+    const p2 = r.principals[1];
     const s = r.signals[0];
     lines.push([
       r.legalName,
@@ -47,15 +49,17 @@ export function toCsv(records: FamilyOffice[]): string {
       r.classification.evidence[0]
         ? `${r.classification.evidence[0].method} — ${r.classification.evidence[0].sourceUrl}`
         : 'no basis recorded',
-      val(r.country), val(r.city), val(r.region),
+      val(r.street), val(r.city), val(r.region), val(r.postcode), val(r.country), basis(r.street),
       val(r.website), basis(r.website),
-      val(p?.fullName), val(p?.title),
+      val(p?.fullName), val(p?.title), val(p?.controlBasis), val(p?.location),
       val(p?.phone), basis(p?.phone),
       val(p?.email), basis(p?.email),
+      val(p2?.fullName), val(p2?.title),
       String(r.signals.length),
       s?.occurredAt ?? '',
       s?.summary ?? '',
       s?.evidence.method ?? '',
+      r.discoveries[0]?.externalId ?? '',
       [...new Set(r.discoveries.map((d) => d.channel))].join('; '),
       r.classification.rulesMatched.join('; '),
     ].map(esc).join(','));
