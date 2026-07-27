@@ -1,0 +1,209 @@
+{
+  "raintreefamilyoffice": {
+    "city": "Pune",
+    "region": "Pune Region",
+    "country": "India",
+    "quote": "Raintree Family Office | Family Office in Pune Region",
+    "sourceUrl": "https://capitalstack.thesisdriven.com/investors/raintree-family-office",
+    "sourceTier": 4,
+    "note": "stated by an unranked web source"
+  },
+  "wentworthhallfamilyoffice": {
+    "city": "London",
+    "region": null,
+    "country": "United Kingdom",
+    "quote": "Wentworth Hall was founded in 2005 and is headquartered in London, NW7 1RJ.",
+    "sourceUrl": "https://altss.com/profile/wentworth-hall-family-office",
+    "sourceTier": 3,
+    "note": "stated by a third-party profile database"
+  },
+  "theyehfamilyphilanthropy": {
+    "city": "Hong Kong",
+    "region": "Asia",
+    "country": "Hong Kong",
+    "quote": "The family office operates from Hong Kong.",
+    "sourceUrl": "https://altss.com/profile/hsin-chong-international-holdings",
+    "sourceTier": 3,
+    "note": "stated by a third-party profile database"
+  },
+  "themurakamifamilyfoundation": {
+    "city": "Tokyo",
+    "region": "Shibuyaku",
+    "country": "JP",
+    "quote": "We are a non-profit organization aiming to create a society where every person can receive necessary support by earmarked donations and grants to non-profit organizations that are working to solve social issues in Japan.",
+    "sourceUrl": "https://sg.linkedin.com/company/the-murakami-family-foundation/",
+    "sourceTier": 3,
+    "note": "stated by a third-party profile database"
+  },
+  "golubfamilyoffice": {
+    "city": null,
+    "region": null,
+    "country": null,
+    "quote": "",
+    "sourceUrl": "",
+    "sourceTier": null,
+    "note": "no location could be established"
+  },
+  "hiltonfamilyoffice": {
+    "city": "New York City",
+    "region": "Metropolitan Area",
+    "country": null,
+    "quote": "New York City Metropolitan Area",
+    "sourceUrl": "https://www.linkedin.com/in/venkat-boyalla",
+    "sourceTier": 3,
+    "note": "stated by a third-party profile database"
+  },
+  "bezosexpeditions": {
+    "city": "Mercer Island",
+    "region": "Washington",
+    "country": "U.S.",
+    "quote": "Bezos Expeditions is an American investment firm based in Mercer Island, Washington.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Bezos_Expeditions",
+    "sourceTier": 3,
+    "note": "stated by a third-party profile database"
+  },
+  "emersoncollective": {
+    "city": "Palo Alto",
+    "region": null,
+    "country": "US",
+    "quote": "Founded in 2011 in Palo Alto, California, Emerson Collective is considered to be one of the leading groups engaged in both venture capital investing and philanthropy.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Emerson_Collective",
+    "sourceTier": 3,
+    "note": "stated by a third-party profile database"
+  },
+  "thielcapital": {
+    "city": "Los Angeles",
+    "region": null,
+    "country": null,
+    "quote": "Los Angeles-based venture capital firm",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Thiel_Capital",
+    "sourceTier": 3,
+    "note": "stated by a third-party profile database"
+  },
+  "boltventures": {
+    "city": "London",
+    "region": null,
+    "country": "United Kingdom",
+    "quote": "Bolt Ventures is a London based investment firm that focuses on investments into private markets across United Kingdom and United states.",
+    "sourceUrl": "https://www.privateequityinternational.com/institution-profiles/bolt-ventures.html",
+    "sourceTier": 2,
+    "note": "stated by recognised financial press"
+  },
+  "accessindustries": {
+    "city": "New York",
+    "region": null,
+    "country": "United States",
+    "quote": "Access Industries is a private holding company and global investment firm based in New York.",
+    "sourceUrl": "https://www.accessindustries.com/",
+    "sourceTier": 1,
+    "note": "stated by the firm itself or a statutory registry"
+  },
+  "forisventures": {
+    "city": null,
+    "region": null,
+    "country": null,
+    "quote": "",
+    "sourceUrl": "",
+    "sourceTier": null,
+    "note": "extraction failed: groq 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust "
+  },
+  "jawsestatescapital": {
+    "city": "Miami Beach",
+    "region": "North America",
+    "country": "United States",
+    "quote": "Miami Beach, FL 33139",
+    "sourceUrl": "https://www.jawsvc.com/about",
+    "sourceTier": 1,
+    "note": "stated by the firm itself or a statutory registry"
+  },
+  "lightchaincapital": {
+    "city": "St. Louis",
+    "region": null,
+    "country": "United States",
+    "quote": "It is primarily based out of St. Louis, United States.",
+    "sourceUrl": "https://tracxn.com/d/venture-capital/lightchaincapital/__Y_Ymles5fUQeY0ZBBL6No2XvIrY9YXfd5szC7_fYtZQ",
+    "sourceTier": 4,
+    "note": "stated by an unranked web source"
+  },
+  "psppartners": {
+    "city": "Chicago",
+    "region": "Illinois",
+    "country": "US",
+    "quote": "We back bold entrepreneurs who are committed to realizing their vision and building market-leading businesses. Follow Discover all 2 employees Report this company About us PSP Growth is the growth equity arm of PSP Partners. Leveraging our multi-faceted experience and expertise across key segments of the economy, we invest in innovative high-growth B2B software and tech-enabled services companies that drive greater efficiency and disrupt the status quo in two primary sectors: Business and Technology Services and Advanced Industrials.",
+    "sourceUrl": "https://www.linkedin.com/company/psp-growth",
+    "sourceTier": 3,
+    "note": "stated by a third-party profile database"
+  },
+  "aleaglobalgroup": {
+    "city": "Kuwait City",
+    "region": "Mirqab",
+    "country": "KW",
+    "quote": "Alea Global Group is a conglomerate family business/office based in Kuwait and operating internationally.",
+    "sourceUrl": "https://www.linkedin.com/company/alea-global-group",
+    "sourceTier": 3,
+    "note": "stated by a third-party profile database"
+  },
+  "sfocollaborative": {
+    "city": null,
+    "region": null,
+    "country": "United States",
+    "quote": "An international community of leading single family offices, founded by families, exclusively for them, connecting capital, knowledge, and trust across borders and generations.",
+    "sourceUrl": "https://sfocollaborative.org/",
+    "sourceTier": 1,
+    "note": "stated by the firm itself or a statutory registry"
+  },
+  "kaafinvestments": {
+    "city": null,
+    "region": null,
+    "country": null,
+    "quote": "",
+    "sourceUrl": "",
+    "sourceTier": null,
+    "note": "extraction failed: groq 429: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1"
+  },
+  "finkeissenholdings": {
+    "city": null,
+    "region": null,
+    "country": null,
+    "quote": "",
+    "sourceUrl": "",
+    "sourceTier": null,
+    "note": "extraction failed: groq 429: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1"
+  },
+  "tamarcapital": {
+    "city": null,
+    "region": null,
+    "country": null,
+    "quote": "",
+    "sourceUrl": "",
+    "sourceTier": null,
+    "note": "the quote given could not be found in the source it cited"
+  },
+  "blauwparkpartners": {
+    "city": null,
+    "region": null,
+    "country": null,
+    "quote": "",
+    "sourceUrl": "",
+    "sourceTier": null,
+    "note": "extraction failed: groq 429: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1"
+  },
+  "goldenalpha": {
+    "city": "Singapore",
+    "region": null,
+    "country": "Singapore",
+    "quote": "Founded in 1955, Golden Alpha is a Singapore-based family office that represents the Sohmen family through direct public and private investments.",
+    "sourceUrl": "https://www.privateequityinternational.com/institution-profiles/golden-alpha.html",
+    "sourceTier": 2,
+    "note": "stated by recognised financial press"
+  },
+  "calibrium": {
+    "city": null,
+    "region": null,
+    "country": null,
+    "quote": "",
+    "sourceUrl": "",
+    "sourceTier": null,
+    "note": "extraction failed: groq 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust "
+  }
+}

@@ -1,5 +1,17 @@
 [
   {
+    "firm": "TYAGI FAMILY INVESTMENT COMPANY LTD",
+    "reason": "companies_house already supplies 20 records (cap 20 of 50); held back to keep the file from reading as one source at scale"
+  },
+  {
+    "firm": "THE LEON FAMILY INVESTMENT COMPANY LIMITED",
+    "reason": "companies_house already supplies 20 records (cap 20 of 50); held back to keep the file from reading as one source at scale"
+  },
+  {
+    "firm": "GREEN FAMILY INVESTMENTS AND HOLDINGS LIMITED",
+    "reason": "companies_house already supplies 20 records (cap 20 of 50); held back to keep the file from reading as one source at scale"
+  },
+  {
     "firm": "QUINN FAMILY HOLDINGS LTD",
     "reason": "companies_house already supplies 20 records (cap 20 of 50); held back to keep the file from reading as one source at scale"
   },
@@ -126,5 +138,25 @@
   {
     "firm": "LATCHUM HERITAGE WEALTH MANAGEMENT LTD",
     "reason": "companies_house already supplies 20 records (cap 20 of 50); held back to keep the file from reading as one source at scale"
+  },
+  {
+    "firm": "Vedas Group",
+    "reason": "surplus to the 50 required; lower actionability score"
+  },
+  {
+    "firm": "Medway Investments",
+    "reason": "surplus to the 50 required; lower actionability score"
+  },
+  {
+    "firm": "Alea Global Group",
+    "reason": "surplus to the 50 required; lower actionability score"
+  },
+  {
+    "firm": "SFO Collaborative",
+    "reason": "surplus to the 50 required; lower actionability score"
+  },
+  {
+    "firm": "AlleyCorp",
+    "reason": "surplus to the 50 required; lower actionability score"
   }
 ]

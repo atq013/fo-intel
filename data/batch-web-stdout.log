@@ -1,0 +1,22 @@
+10:01:40  pool 1489 firms; 332 already resolved; enriching 90
+10:01:44    single_family_office   conf 0.30 t4  Al-Daw Holding
+10:03:17    single_family_office   conf 0.58 t3  Al Rajhi Ekhwan
+10:04:52    not_a_family_office    conf 0.50 t3  Pandan Ventures
+10:05:23    single_family_office   conf 0.58 t3  JRT Partners
+10:05:53    single_family_office   conf 0.58 t3  Vedas Group
+10:06:24    single_family_office   conf 0.58 t3  Medway Investments
+10:07:25    not_a_family_office    conf 0.50 t3  KHK & Partners Limited
+10:09:09    single_family_office   conf 0.93 t1  KAAF Investments
+10:11:01    single_family_office   conf 0.50 t3  ViaTalenta Holdings
+10:12:00    single_family_office   conf 0.78 t2  Tamar Capital
+10:12:03    single_family_office   conf 0.70 t2  Calibrium AG
+10:13:03    single_family_office   conf 0.50 t3  Aras
+10:13:34    single_family_office   conf 0.85 t1  Finkeissen Holdings
+10:13:34  25/90 after 11.9m  |  {"single_family_office":11,"undetermined":12,"not_a_family_office":2}  |  serper 25  dns {"failures":4,"recoveries":4,"cached":36}
+10:14:10    multi_family_office    conf 0.93 t1  Blauwpark Partners
+10:15:45    multi_family_office    conf 0.30 t4  Plenisfer Investments
+10:16:16    not_a_family_office    conf 0.50 t3  Sathguru Catalysers
+10:16:47    not_a_family_office    conf 0.50 t3  HealthQuad
+10:28:09    single_family_office   conf 0.30 t4  RDA Investments Singapore
+10:33:44    single_family_office   conf 0.78 t2  Golden Alpha
+10:40:33  50/90 after 38.9m  |  {"single_family_office":13,"undetermined":31,"not_a_family_office":4,"multi_family_office":2}  |  serper 50  dns {"failures":4,"recoveries":4,"cached":72}

@@ -26,32 +26,38 @@ delivered file by `packages/pipeline/src/emit/stats.ts` — run it to reproduce 
 
 | | of 50 |
 |---|---|
-| Single-family offices | 48 |
-| Multi-family offices | 2 |
-| Named principal | 45 |
-| Two or more named principals | 23 |
-| Statutory control basis recorded | 23 |
-| Registered street address | 28 |
-| Dated activity signals | 28 |
-| Direct phone number, from a statutory filing | 6 |
-| Confirmed website | 1 |
-| Verified email | 0 |
+| Single-family offices | 49 |
+| Multi-family offices | 1 |
+| Named principal | 47 |
+| Two or more named principals | 20 |
+| Statutory control basis recorded | 20 |
+| Registered street address | 25 |
+| Dated activity signals | 25 |
+| Confirmed website | 14 |
+| Direct phone number | 10 |
+| Verified email | 4 |
 
-Primary discovery channel: Companies House 46%, conference programmes 20%, news
-18%, SEC 13F 6%, SEC 13D/G 6%, job postings 4%. Country: United Kingdom 23,
-United States 8, Kuwait 1, not established 18.
+**Primary discovery channel:** Companies House 40%, conference programmes 30%,
+news 18%, SEC 13F 6%, SEC 13D/G 6%. No channel exceeds 40%, which is the cap.
 
-The qualifying pool was 82. The delivered 50 were selected under a 40% per-channel
-cap so the file could not read as one registry copied at scale; the other 32 are in
-`held-back.json` with the reason.
+**Country:** United Kingdom 22, United States 12, Singapore 2, and one each from
+India, Kuwait, Hong Kong, Japan and Saudi Arabia. 9 records have no country
+established — a blank rather than a guess.
+
+The qualifying pool was 90. The delivered 50 were selected under a 40%
+per-channel cap so the file could not read as one registry copied at scale; the
+other 40 are in `held-back.json` with the reason recorded.
 
 **That cap has a cost worth stating.** Companies House records are the most
-complete ones — they carry the addresses, the statutory control evidence and the
-appointment signals. Capping them traded per-record completeness for source
-diversity. Before the cap, 60 of 82 records had a street address; after it, 28 of
-50. I judged the sourcing rule to be the binding constraint, since the brief says a
-file discovered mostly through one source does not advance regardless of how well
-each record is verified.
+complete ones — they carry the registered addresses, the statutory control
+evidence and the appointment signals. Capping that channel traded per-record
+completeness for source diversity: across the full qualifying pool 60 of 90
+records have a street address, but in the delivered 50 it is 25.
+
+I judged the sourcing rule to be the binding constraint. The brief states that a
+file discovered mostly through one source does not advance *regardless of how well
+each record is verified*, so a more complete file drawn mainly from one registry
+would score worse than a slightly thinner one drawn from five sources.
 
 ## Three things worth reading first
 

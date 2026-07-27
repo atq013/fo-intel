@@ -252,5 +252,368 @@
       "phones": [],
       "pagesTried": []
     }
+  },
+  "stephensgroup": {
+    "website": "https://stephensgroup.com",
+    "websiteBasis": "confirmed against the firm name",
+    "contacts": {
+      "emails": [
+        {
+          "address": "info@stephensgroup.com",
+          "status": "verified_published",
+          "method": "published on a source; stephensgroup.com has valid MX but the delivery probe was blocked",
+          "mxHost": "mx1-us1.ppe-hosted.com",
+          "domainAcceptsAll": false,
+          "checkedAt": "2026-07-27T09:41:15.600Z",
+          "source": "https://stephensgroup.com"
+        }
+      ],
+      "phones": [
+        {
+          "value": "57626320 0",
+          "source": "https://stephensgroup.com"
+        },
+        {
+          "value": "335640 17.2",
+          "source": "https://stephensgroup.com"
+        },
+        {
+          "value": "57626320 0",
+          "source": "https://stephensgroup.com/contact"
+        },
+        {
+          "value": "335640 17.2",
+          "source": "https://stephensgroup.com/contact"
+        },
+        {
+          "value": "57626320 0",
+          "source": "https://stephensgroup.com/team"
+        },
+        {
+          "value": "335640 17.2",
+          "source": "https://stephensgroup.com/team"
+        }
+      ],
+      "pagesTried": [
+        "https://stephensgroup.com",
+        "https://stephensgroup.com/contact",
+        "https://stephensgroup.com/team"
+      ]
+    }
+  },
+  "thealduaijfamilyoffice": {
+    "website": null,
+    "websiteBasis": "none found",
+    "contacts": {
+      "emails": [],
+      "phones": [],
+      "pagesTried": []
+    }
+  },
+  "raintreefamilyoffice": {
+    "website": "https://theraintree.co.in",
+    "websiteBasis": "confirmed against the firm name",
+    "contacts": {
+      "emails": [
+        {
+          "address": "contactus@theraintree.co.in",
+          "status": "rejected",
+          "method": "theraintree.co.in publishes no MX record, so it cannot receive mail",
+          "mxHost": null,
+          "domainAcceptsAll": false,
+          "checkedAt": "2026-07-27T09:43:25.370Z",
+          "source": "https://theraintree.co.in"
+        }
+      ],
+      "phones": [],
+      "pagesTried": [
+        "https://theraintree.co.in",
+        "https://theraintree.co.in/contact",
+        "https://theraintree.co.in/contact-us",
+        "https://theraintree.co.in/about"
+      ]
+    }
+  },
+  "wentworthhallfamilyoffice": {
+    "website": "https://www.wentworthhall.com",
+    "websiteBasis": "confirmed against the firm name",
+    "contacts": {
+      "emails": [
+        {
+          "address": "ian.morley@wentworthhall.com",
+          "status": "verified_published",
+          "method": "published on a source; wentworthhall.com has valid MX but the delivery probe was blocked",
+          "mxHost": "wentworthhall-com.mail.protection.outlook.com",
+          "domainAcceptsAll": false,
+          "checkedAt": "2026-07-27T09:44:45.104Z",
+          "source": "https://www.wentworthhall.com"
+        },
+        {
+          "address": "rita.gosrani@wentworthhall.com",
+          "status": "verified_published",
+          "method": "published on a source; wentworthhall.com has valid MX but the delivery probe was blocked",
+          "mxHost": "wentworthhall-com.mail.protection.outlook.com",
+          "domainAcceptsAll": false,
+          "checkedAt": "2026-07-27T09:45:05.490Z",
+          "source": "https://www.wentworthhall.com"
+        }
+      ],
+      "phones": [
+        {
+          "value": "2545352419",
+          "source": "https://www.wentworthhall.com"
+        },
+        {
+          "value": "74290729-59",
+          "source": "https://www.wentworthhall.com"
+        },
+        {
+          "value": "2545352419",
+          "source": "https://www.wentworthhall.com/team"
+        },
+        {
+          "value": "74290729-59",
+          "source": "https://www.wentworthhall.com/team"
+        }
+      ],
+      "pagesTried": [
+        "https://www.wentworthhall.com",
+        "https://www.wentworthhall.com/team"
+      ]
+    }
+  },
+  "royanjade3rdgenerationleaderwingcheungjewelleryandjade": {
+    "website": null,
+    "websiteBasis": "none found",
+    "contacts": {
+      "emails": [],
+      "phones": [],
+      "pagesTried": []
+    }
+  },
+  "theyehfamilyphilanthropy": {
+    "website": null,
+    "websiteBasis": "none found",
+    "contacts": {
+      "emails": [],
+      "phones": [],
+      "pagesTried": []
+    }
+  },
+  "themurakamifamilyfoundation": {
+    "website": null,
+    "websiteBasis": "none found",
+    "contacts": {
+      "emails": [],
+      "phones": [],
+      "pagesTried": []
+    }
+  },
+  "golubfamilyoffice": {
+    "website": null,
+    "websiteBasis": "none found",
+    "contacts": {
+      "emails": [],
+      "phones": [],
+      "pagesTried": []
+    }
+  },
+  "hiltonfamilyoffice": {
+    "website": null,
+    "websiteBasis": "none found",
+    "contacts": {
+      "emails": [],
+      "phones": [],
+      "pagesTried": []
+    }
+  },
+  "bezosexpeditions": {
+    "website": "https://www.bezosexpeditions.com",
+    "websiteBasis": "confirmed against the firm name",
+    "contacts": {
+      "emails": [],
+      "phones": [],
+      "pagesTried": [
+        "https://www.bezosexpeditions.com"
+      ]
+    }
+  },
+  "emersoncollective": {
+    "website": "https://emersoncollective.com",
+    "websiteBasis": "confirmed against the firm name",
+    "contacts": {
+      "emails": [
+        {
+          "address": "info@emersoncollective.com",
+          "status": "verified_published",
+          "method": "published on a source; emersoncollective.com accepts all recipients so delivery could not be independently confirmed",
+          "mxHost": "mxa-0071d701.gslb.pphosted.com",
+          "domainAcceptsAll": true,
+          "checkedAt": "2026-07-27T09:51:31.459Z",
+          "source": "https://emersoncollective.com"
+        },
+        {
+          "address": "capacitybuilding@emersoncollective.com",
+          "status": "verified_published",
+          "method": "published on a source; emersoncollective.com accepts all recipients so delivery could not be independently confirmed",
+          "mxHost": "mxa-0071d701.gslb.pphosted.com",
+          "domainAcceptsAll": true,
+          "checkedAt": "2026-07-27T09:51:38.175Z",
+          "source": "https://emersoncollective.com"
+        }
+      ],
+      "phones": [
+        {
+          "value": "1706895664",
+          "source": "https://emersoncollective.com"
+        },
+        {
+          "value": "1673361092",
+          "source": "https://emersoncollective.com"
+        },
+        {
+          "value": "1733454975",
+          "source": "https://emersoncollective.com/about"
+        },
+        {
+          "value": "1765586807",
+          "source": "https://emersoncollective.com/about"
+        }
+      ],
+      "pagesTried": [
+        "https://emersoncollective.com",
+        "https://emersoncollective.com/about"
+      ]
+    }
+  },
+  "thielcapital": {
+    "website": "https://thielcapital.com",
+    "websiteBasis": "confirmed against the firm name",
+    "contacts": {
+      "emails": [],
+      "phones": [],
+      "pagesTried": [
+        "https://thielcapital.com"
+      ]
+    }
+  },
+  "boltventures": {
+    "website": "https://bolt-ventures.com",
+    "websiteBasis": "confirmed against the firm name",
+    "contacts": {
+      "emails": [
+        {
+          "address": "info@bolt-ventures.com",
+          "status": "verified_published",
+          "method": "published on a source; bolt-ventures.com accepts all recipients so delivery could not be independently confirmed",
+          "mxHost": "aspmx.l.google.com",
+          "domainAcceptsAll": true,
+          "checkedAt": "2026-07-27T09:53:03.794Z",
+          "source": "https://bolt-ventures.com"
+        }
+      ],
+      "phones": [],
+      "pagesTried": [
+        "https://bolt-ventures.com"
+      ]
+    }
+  },
+  "accessindustries": {
+    "website": "https://accessindustries.com",
+    "websiteBasis": "confirmed against the firm name",
+    "contacts": {
+      "emails": [
+        {
+          "address": "len.blavatnik@accessindustries.com",
+          "status": "inferred",
+          "method": "pattern-derived; accessindustries.com has valid MX but the delivery probe was blocked",
+          "mxHost": "us-smtp-inbound-1.mimecast.com",
+          "domainAcceptsAll": false,
+          "checkedAt": "2026-07-27T09:53:29.668Z",
+          "source": "derived from the firm domain",
+          "personName": "Len Blavatnik"
+        },
+        {
+          "address": "lblavatnik@accessindustries.com",
+          "status": "inferred",
+          "method": "pattern-derived; accessindustries.com has valid MX but the delivery probe was blocked",
+          "mxHost": "us-smtp-inbound-1.mimecast.com",
+          "domainAcceptsAll": false,
+          "checkedAt": "2026-07-27T09:53:33.866Z",
+          "source": "derived from the firm domain",
+          "personName": "Len Blavatnik"
+        },
+        {
+          "address": "len@accessindustries.com",
+          "status": "inferred",
+          "method": "pattern-derived; accessindustries.com has valid MX but the delivery probe was blocked",
+          "mxHost": "us-smtp-inbound-1.mimecast.com",
+          "domainAcceptsAll": false,
+          "checkedAt": "2026-07-27T09:53:35.067Z",
+          "source": "derived from the firm domain",
+          "personName": "Len Blavatnik"
+        },
+        {
+          "address": "lenblavatnik@accessindustries.com",
+          "status": "inferred",
+          "method": "pattern-derived; accessindustries.com has valid MX but the delivery probe was blocked",
+          "mxHost": "us-smtp-inbound-1.mimecast.com",
+          "domainAcceptsAll": false,
+          "checkedAt": "2026-07-27T09:53:36.481Z",
+          "source": "derived from the firm domain",
+          "personName": "Len Blavatnik"
+        },
+        {
+          "address": "blavatnikl@accessindustries.com",
+          "status": "inferred",
+          "method": "pattern-derived; accessindustries.com has valid MX but the delivery probe was blocked",
+          "mxHost": "us-smtp-inbound-1.mimecast.com",
+          "domainAcceptsAll": false,
+          "checkedAt": "2026-07-27T09:53:37.710Z",
+          "source": "derived from the firm domain",
+          "personName": "Len Blavatnik"
+        }
+      ],
+      "phones": [
+        {
+          "value": "+1 212 247 6400",
+          "source": "https://accessindustries.com"
+        },
+        {
+          "value": "+44 207 569 8686",
+          "source": "https://accessindustries.com"
+        },
+        {
+          "value": "+1 212 247 6400",
+          "source": "https://accessindustries.com/contact"
+        },
+        {
+          "value": "+44 207 569 8686",
+          "source": "https://accessindustries.com/contact"
+        },
+        {
+          "value": "+1 212 247 6400",
+          "source": "https://accessindustries.com/contact-us"
+        },
+        {
+          "value": "+44 207 569 8686",
+          "source": "https://accessindustries.com/contact-us"
+        },
+        {
+          "value": "+1 212 247 6400",
+          "source": "https://accessindustries.com/team"
+        },
+        {
+          "value": "+44 207 569 8686",
+          "source": "https://accessindustries.com/team"
+        }
+      ],
+      "pagesTried": [
+        "https://accessindustries.com",
+        "https://accessindustries.com/contact",
+        "https://accessindustries.com/contact-us",
+        "https://accessindustries.com/team"
+      ]
+    }
   }
 }

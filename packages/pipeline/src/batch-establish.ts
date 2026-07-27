@@ -45,11 +45,22 @@ const firms = consolidate();
 const targets = firms
   .filter((f) => !f.classification.qualifies)
   .filter((f) => f.classification.type !== 'advisory_or_wealth_manager')
-  // A phone from an SEC filing is the strongest contact datum available, so firms
-  // that already have one are worth the most: establishing their type turns a
-  // half-record into a complete, actionable one. Firms with no contact route gain
-  // far less from classification, and the run has a fixed budget.
-  .filter((f) => f.phone)
+  /**
+   * Two targeting modes.
+   *
+   * 'phone' prefers SEC firms that already carry a filed phone, because
+   * establishing their type turns a half-record into a complete one.
+   *
+   * 'web' prefers web-discovered firms with a named principal whose type the
+   * extraction could not settle. These matter for a different reason: the file is
+   * half Companies House, and every web record that qualifies moves it further
+   * from reading as one registry copied at scale.
+   */
+  .filter((f) =>
+    (process.env.BATCH_TARGET ?? 'phone') === 'web'
+      ? f.principalName && !f.phone && ![...f.channels].some((c) => c.startsWith('sec') || c === 'companies_house')
+      : Boolean(f.phone),
+  )
   .filter((f) => !findings[f.key])
   .sort((a, b) => {
     const score = (x: typeof a) =>

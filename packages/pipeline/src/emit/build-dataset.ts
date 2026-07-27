@@ -10,10 +10,15 @@ import { existsSync, readFileSync } from 'node:fs';
 import type { Cell, Classification, Evidence, FamilyOffice, Principal, Signal } from '@fo/core';
 import { emptyCell } from '@fo/core';
 import { consolidate, type MergedFirm } from '../classify/consolidate.js';
+import { normaliseCountry } from '../classify/normalise.js';
 import type { TypeFinding } from '../enrich/establish-type.js';
 import { toEvidence } from '../enrich/establish-type.js';
 import type { SecEntity } from '../enrich/sec-entity.js';
 import type { UkCompany } from '../discovery/companies-house.js';
+import type { LocationFinding } from '../enrich/find-location.js';
+import { locationCell } from '../enrich/find-location.js';
+import type { ContactFinding } from '../enrich/contacts.js';
+import { emailCell } from '../enrich/contacts.js';
 
 /** Below this, an assertion about what a firm is rests on a lone profile database. */
 export const TYPE_CONFIDENCE_FLOOR = 0.55;
@@ -64,6 +69,9 @@ export function buildDataset(): BuildResult {
   const findings = readJson<Record<string, TypeFinding>>('data/type-findings.json') ?? {};
   const sec = readJson<{ entities: SecEntity[] }>('data/candidates-sec.json');
   const uk = readJson<{ companies: UkCompany[] }>('data/candidates-uk.json');
+  const locations = readJson<Record<string, LocationFinding>>('data/location-findings.json') ?? {};
+  const contacts =
+    readJson<Record<string, { website: string | null; contacts: ContactFinding }>>('data/contact-findings.json') ?? {};
 
   const secByName = new Map((sec?.entities ?? []).map((e) => [e.legalName.toLowerCase(), e]));
   const ukByName = new Map((uk?.companies ?? []).map((c) => [c.name.toLowerCase(), c]));
@@ -266,6 +274,57 @@ export function buildDataset(): BuildResult {
         ],
         confidence: 0.85,
       };
+    }
+
+    const record = records[records.length - 1]!;
+
+    // Location from the web, but never over a filed address. A registry or SEC
+    // filing outranks a page that says where a firm is.
+    const located = locations[firm.key];
+    if (located && !record.street.value && !record.country.value) {
+      if (located.city) record.city = locationCell(located.city, located);
+      if (located.region) record.region = locationCell(located.region, located);
+      if (located.country) record.country = locationCell(normaliseCountry(located.country) || located.country, located);
+    }
+
+    // Website and any address the firm's own site published.
+    const contact = contacts[firm.key];
+    if (contact) {
+      if (contact.website && !record.website.value) {
+        record.website = {
+          value: contact.website,
+          status: 'verified',
+          evidence: [
+            {
+              sourceUrl: contact.website,
+              sourceClass: 'primary_web',
+              method: 'domain derived from the firm name, and the live page names the firm',
+              observedAt: new Date().toISOString(),
+            },
+          ],
+          confidence: 0.85,
+        };
+      }
+      const email = emailCell(contact.contacts);
+      if (email.value && !record.principals[0]!.email.value) {
+        record.principals[0]!.email = email;
+      }
+      const sitePhone = contact.contacts.phones[0];
+      if (sitePhone && !record.principals[0]!.phone.value) {
+        record.principals[0]!.phone = {
+          value: sitePhone.value,
+          status: 'verified',
+          evidence: [
+            {
+              sourceUrl: sitePhone.source,
+              sourceClass: 'primary_web',
+              method: 'published on the firm\'s own website',
+              observedAt: new Date().toISOString(),
+            },
+          ],
+          confidence: 0.75,
+        };
+      }
     }
 
     if (ukCompany && !ukCompany.hasSubstance) {

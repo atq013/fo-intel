@@ -4085,5 +4085,792 @@
     "claims": [],
     "conflicted": false,
     "note": "search failed: fetch failed"
+  },
+  "aldawholding": {
+    "firmName": "Al-Daw Holding",
+    "type": "single_family_office",
+    "confidence": 0.3,
+    "quote": "The Alduaij family office has a long and illustrious history in Kuwait as one of the most prominent and respected business forces in the region, as well as one of the most socially responsible.",
+    "sourceUrl": "https://mefamilyofficesummit.com/",
+    "sourceTier": 4,
+    "website": null,
+    "claims": [
+      {
+        "sourceUrl": "https://mefamilyofficesummit.com/",
+        "tier": 4,
+        "value": "single_family_office",
+        "quote": "The Alduaij family office has a long and illustrious history in Kuwait as one of the most prominent and respected business forces in the region, as well as one of the most socially responsible."
+      }
+    ],
+    "conflicted": false,
+    "note": "established by an unranked web source"
+  },
+  "almalinvestment": {
+    "firmName": "AlMal Investment Company",
+    "type": "undetermined",
+    "confidence": 0,
+    "quote": "",
+    "sourceUrl": "",
+    "sourceTier": null,
+    "website": null,
+    "claims": [],
+    "conflicted": false,
+    "note": "no source established a type"
+  },
+  "alameerigroupholding": {
+    "firmName": "Al Ameeri Group Holding",
+    "type": "undetermined",
+    "confidence": 0,
+    "quote": "",
+    "sourceUrl": "",
+    "sourceTier": null,
+    "website": null,
+    "claims": [],
+    "conflicted": false,
+    "note": "no source established a type"
+  },
+  "alfardanholdings": {
+    "firmName": "Al Fardan Holdings",
+    "type": "undetermined",
+    "confidence": 0,
+    "quote": "",
+    "sourceUrl": "",
+    "sourceTier": null,
+    "website": null,
+    "claims": [],
+    "conflicted": false,
+    "note": "no source established a type"
+  },
+  "alrajhiekhwan": {
+    "firmName": "Al Rajhi Ekhwan",
+    "type": "single_family_office",
+    "confidence": 0.58,
+    "quote": "At the VCCircle Family Office Summit 2025, Sunil Dhall, CFA-Investment Management, Al Rajhi Ekhwan Group l مجموعة الراجحي إخوان shared why real estate continues to be a key focus for family office portfolios.",
+    "sourceUrl": "https://www.linkedin.com/posts/vccircle_vcfamilyofficesummit25-familyofficeleadership-activity-7359195960545071104-UtkP",
+    "sourceTier": 3,
+    "website": null,
+    "claims": [
+      {
+        "sourceUrl": "https://www.linkedin.com/posts/vccircle_vcfamilyofficesummit25-familyofficeleadership-activity-7359195960545071104-UtkP",
+        "tier": 3,
+        "value": "single_family_office",
+        "quote": "At the VCCircle Family Office Summit 2025, Sunil Dhall, CFA-Investment Management, Al Rajhi Ekhwan Group l مجموعة الراجحي إخوان shared why real estate continues to be a key focus for family office portfolios."
+      },
+      {
+        "sourceUrl": "https://altss.com/profile/al-rajhi-ekhwan-group",
+        "tier": 3,
+        "value": "single_family_office",
+        "quote": "The entity functions as the family office for branches of the Al Rajhi banking family and maintains board participation from Abdulaziz bin Sulaiman Al Rajhi."
+      }
+    ],
+    "conflicted": false,
+    "note": "established by a third-party profile database"
+  },
+  "alsirajholdings": {
+    "firmName": "Al Siraj Holdings",
+    "type": "undetermined",
+    "confidence": 0,
+    "quote": "",
+    "sourceUrl": "",
+    "sourceTier": null,
+    "website": null,
+    "claims": [],
+    "conflicted": false,
+    "note": "no source established a type"
+  },
+  "alteiacapital": {
+    "firmName": "Alteia Capital",
+    "type": "undetermined",
+    "confidence": 0,
+    "quote": "",
+    "sourceUrl": "",
+    "sourceTier": null,
+    "website": null,
+    "claims": [],
+    "conflicted": false,
+    "note": "no source established a type"
+  },
+  "pandanventures": {
+    "firmName": "Pandan Ventures",
+    "type": "not_a_family_office",
+    "confidence": 0.5,
+    "quote": "Pandan Ventures is a venture capital firm that focuses on seed and series-A stage investments in financial, food and agriculture, and industrial sectors.",
+    "sourceUrl": "https://altss.com/profile/pandan-ventures",
+    "sourceTier": 3,
+    "website": null,
+    "claims": [
+      {
+        "sourceUrl": "https://altss.com/profile/pandan-ventures",
+        "tier": 3,
+        "value": "not_a_family_office",
+        "quote": "Pandan Ventures is a venture capital firm that focuses on seed and series-A stage investments in financial, food and agriculture, and industrial sectors."
+      }
+    ],
+    "conflicted": false,
+    "note": "established by a third-party profile database"
+  },
+  "jrtpartners": {
+    "firmName": "JRT Partners",
+    "type": "single_family_office",
+    "confidence": 0.58,
+    "quote": "Singapore-based family office JRT Partners is sharpening its investment strategy by focusing on selective private credit and growth equity opportunities.",
+    "sourceUrl": "https://www.linkedin.com/posts/hktenzin_privatecredit-growthequity-familyoffice-activity-7351743765230874625-zdRf",
+    "sourceTier": 3,
+    "website": null,
+    "claims": [
+      {
+        "sourceUrl": "https://www.linkedin.com/posts/hktenzin_privatecredit-growthequity-familyoffice-activity-7351743765230874625-zdRf",
+        "tier": 3,
+        "value": "single_family_office",
+        "quote": "Singapore-based family office JRT Partners is sharpening its investment strategy by focusing on selective private credit and growth equity opportunities."
+      },
+      {
+        "sourceUrl": "https://www.preqin.com/data/profile/investor/jrt-partners/259264",
+        "tier": 3,
+        "value": "single_family_office",
+        "quote": "JRT Partners is a single-family office based in Singapore. The firm provides services including company and fund structuring, administration, and due diligence services for family offices and funds."
+      }
+    ],
+    "conflicted": false,
+    "note": "established by a third-party profile database"
+  },
+  "vedasgroup": {
+    "firmName": "Vedas Group",
+    "type": "single_family_office",
+    "confidence": 0.58,
+    "quote": "The Vedas Group is a single-family office based in Singapore. It manages the wealth of the Chityala family.",
+    "sourceUrl": "https://www.preqin.com/data/profile/investor/the-vedas-group/779485",
+    "sourceTier": 3,
+    "website": null,
+    "claims": [
+      {
+        "sourceUrl": "https://www.preqin.com/data/profile/investor/the-vedas-group/779485",
+        "tier": 3,
+        "value": "single_family_office",
+        "quote": "The Vedas Group is a single-family office based in Singapore. It manages the wealth of the Chityala family."
+      },
+      {
+        "sourceUrl": "https://www.linkedin.com/posts/vedas-group-asia_cryptoenthusiast-familyoffice-digitalasseteconomy-activity-7374815757731409920-9uY5",
+        "tier": 3,
+        "value": "single_family_office",
+        "quote": "You know family offices by by the way they are created or the basic mandate that they have, they are conservative, right? Family wealth preservation is the main criteria for often creating a family office."
+      },
+      {
+        "sourceUrl": "https://www.linkedin.com/posts/asian-investor_chityala-family-office-taps-spv-strategy-activity-7360886785830211584-wUR0",
+        "tier": 3,
+        "value": "single_family_office",
+        "quote": "Singapore based single family office Vedas Group Asia is moving away from blind pool VC/PE fund commitments in favour of direct, sector-specific investments through special purpose vehicles."
+      }
+    ],
+    "conflicted": false,
+    "note": "established by a third-party profile database"
+  },
+  "medwayinvestments": {
+    "firmName": "Medway Investments",
+    "type": "single_family_office",
+    "confidence": 0.58,
+    "quote": "Medway Investments is a single-family office based in Singapore.",
+    "sourceUrl": "https://www.preqin.com/data/profile/investor/medway-investments/509484",
+    "sourceTier": 3,
+    "website": null,
+    "claims": [
+      {
+        "sourceUrl": "https://www.preqin.com/data/profile/investor/medway-investments/509484",
+        "tier": 3,
+        "value": "single_family_office",
+        "quote": "Medway Investments is a single-family office based in Singapore."
+      },
+      {
+        "sourceUrl": "https://sg.linkedin.com/company/medway-investments",
+        "tier": 3,
+        "value": "single_family_office",
+        "quote": "a Singapore headquartered single-family office, evolved over the decades from a traditional investment management company into a single-family office responsible for the holistic management and stewardship of family capital and affairs."
+      }
+    ],
+    "conflicted": false,
+    "note": "established by a third-party profile database"
+  },
+  "thekanoogroup": {
+    "firmName": "The Kanoo Group",
+    "type": "undetermined",
+    "confidence": 0,
+    "quote": "",
+    "sourceUrl": "",
+    "sourceTier": null,
+    "website": null,
+    "claims": [],
+    "conflicted": false,
+    "note": "no source established a type"
+  },
+  "dalmacapital": {
+    "firmName": "Dalma Capital",
+    "type": "undetermined",
+    "confidence": 0,
+    "quote": "",
+    "sourceUrl": "",
+    "sourceTier": null,
+    "website": null,
+    "claims": [],
+    "conflicted": false,
+    "note": "no page could be fetched"
+  },
+  "khkandpartners": {
+    "firmName": "KHK & Partners Limited",
+    "type": "not_a_family_office",
+    "confidence": 0.5,
+    "quote": "The Firm's mandate is to source, structure and manage investments on behalf of HNWIs, Family Groups and Institutions with a focus on global alternatives.",
+    "sourceUrl": "https://www.linkedin.com/company/khk-&-partners-limited",
+    "sourceTier": 3,
+    "website": null,
+    "claims": [
+      {
+        "sourceUrl": "https://www.linkedin.com/company/khk-&-partners-limited",
+        "tier": 3,
+        "value": "not_a_family_office",
+        "quote": "The Firm's mandate is to source, structure and manage investments on behalf of HNWIs, Family Groups and Institutions with a focus on global alternatives."
+      }
+    ],
+    "conflicted": false,
+    "note": "established by a third-party profile database"
+  },
+  "johnsonarabia": {
+    "firmName": "Johnson Arabia LLC",
+    "type": "undetermined",
+    "confidence": 0,
+    "quote": "",
+    "sourceUrl": "",
+    "sourceTier": null,
+    "website": null,
+    "claims": [],
+    "conflicted": false,
+    "note": "extraction failed: groq 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma"
+  },
+  "kaafinvestments": {
+    "firmName": "KAAF Investments",
+    "type": "single_family_office",
+    "confidence": 0.9299999999999999,
+    "quote": "A Single Family backed investment platform that supports exceptional entrepreneurs and fund managers in building & growing leading businesses that will shape the future for the better.",
+    "sourceUrl": "https://www.kaafinvestments.com/",
+    "sourceTier": 1,
+    "website": "https://www.kaafinvestments.com/",
+    "claims": [
+      {
+        "sourceUrl": "https://www.preqin.com/data/profile/investor/kaaf-investments/259055",
+        "tier": 3,
+        "value": "single_family_office",
+        "quote": "About KAAF Investments is a single-family office based in the United Arab Emirates."
+      },
+      {
+        "sourceUrl": "https://www.kaafinvestments.com/",
+        "tier": 1,
+        "value": "single_family_office",
+        "quote": "A Single Family backed investment platform that supports exceptional entrepreneurs and fund managers in building & growing leading businesses that will shape the future for the better."
+      }
+    ],
+    "conflicted": false,
+    "note": "established by the firm itself or a statutory registry, corroborated by 1 other source(s)"
+  },
+  "thetolaniflow": {
+    "firmName": "The Tolani Flow",
+    "type": "undetermined",
+    "confidence": 0,
+    "quote": "",
+    "sourceUrl": "",
+    "sourceTier": null,
+    "website": null,
+    "claims": [],
+    "conflicted": false,
+    "note": "no source established a type"
+  },
+  "kirkcapital": {
+    "firmName": "Kirk Capital",
+    "type": "undetermined",
+    "confidence": 0,
+    "quote": "",
+    "sourceUrl": "",
+    "sourceTier": null,
+    "website": null,
+    "claims": [],
+    "conflicted": false,
+    "note": "extraction failed: groq 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma"
+  },
+  "viatalentaholdings": {
+    "firmName": "ViaTalenta Holdings",
+    "type": "single_family_office",
+    "confidence": 0.5,
+    "quote": "ViaTalenta Holdings is a Switzerland-based family office for impact, investments, and sustainability.",
+    "sourceUrl": "https://www.linkedin.com/posts/aurum-circle_arabinvestorsconference-familyoffices-activity-7459197449077800960-kvTa",
+    "sourceTier": 3,
+    "website": null,
+    "claims": [
+      {
+        "sourceUrl": "https://www.linkedin.com/posts/aurum-circle_arabinvestorsconference-familyoffices-activity-7459197449077800960-kvTa",
+        "tier": 3,
+        "value": "single_family_office",
+        "quote": "ViaTalenta Holdings is a Switzerland-based family office for impact, investments, and sustainability."
+      }
+    ],
+    "conflicted": false,
+    "note": "established by a third-party profile database"
+  },
+  "sphindujabanqueprive": {
+    "firmName": "S.P. Hinduja Banque Privée",
+    "type": "undetermined",
+    "confidence": 0,
+    "quote": "",
+    "sourceUrl": "",
+    "sourceTier": null,
+    "website": "https://www.sphinduja.com/story",
+    "claims": [],
+    "conflicted": false,
+    "note": "no source established a type"
+  },
+  "tamarcapital": {
+    "firmName": "Tamar Capital",
+    "type": "single_family_office",
+    "confidence": 0.7799999999999999,
+    "quote": "Tamar Capital is a family office that has international offices in the United States, the Middle East and the United Kingdom.",
+    "sourceUrl": "https://www.privateequityinternational.com/institution-profiles/tamar-capital.html",
+    "sourceTier": 2,
+    "website": "https://tamar.capital/",
+    "claims": [
+      {
+        "sourceUrl": "https://www.linkedin.com/company/tamar-capital",
+        "tier": 3,
+        "value": "single_family_office",
+        "quote": "Tamar Capital (TC) is a Family Office combining asset management, cash management, risk management and financial planning."
+      },
+      {
+        "sourceUrl": "https://www.privateequityinternational.com/institution-profiles/tamar-capital.html",
+        "tier": 2,
+        "value": "single_family_office",
+        "quote": "Tamar Capital is a family office that has international offices in the United States, the Middle East and the United Kingdom."
+      }
+    ],
+    "conflicted": false,
+    "note": "established by recognised financial press, corroborated by 1 other source(s)"
+  },
+  "calibrium": {
+    "firmName": "Calibrium AG",
+    "type": "single_family_office",
+    "confidence": 0.7,
+    "quote": "Calibrium AG is a private investment office based in Switzerland that makes investments in listed securities, private equity & real estate.",
+    "sourceUrl": "https://www.privateequityinternational.com/institution-profiles/calibrium-ag.html",
+    "sourceTier": 2,
+    "website": null,
+    "claims": [
+      {
+        "sourceUrl": "https://www.privateequityinternational.com/institution-profiles/calibrium-ag.html",
+        "tier": 2,
+        "value": "single_family_office",
+        "quote": "Calibrium AG is a private investment office based in Switzerland that makes investments in listed securities, private equity & real estate."
+      }
+    ],
+    "conflicted": false,
+    "note": "established by recognised financial press"
+  },
+  "aras": {
+    "firmName": "Aras",
+    "type": "single_family_office",
+    "confidence": 0.5,
+    "quote": "Julien Tizot, Chief Investment Officer, Aras Partners, speaking at Family Office Summit in Abu Dhabi on the panel “Family Office 2.0: Reimagining the Architecture of Wealth, Purpose, and Legacy”",
+    "sourceUrl": "https://www.linkedin.com/posts/family-office-summit_fosummits-familyofficesummit-familyoffice-activity-7335203756755546112-F9te",
+    "sourceTier": 3,
+    "website": null,
+    "claims": [
+      {
+        "sourceUrl": "https://www.linkedin.com/posts/family-office-summit_fosummits-familyofficesummit-familyoffice-activity-7335203756755546112-F9te",
+        "tier": 3,
+        "value": "single_family_office",
+        "quote": "Julien Tizot, Chief Investment Officer, Aras Partners, speaking at Family Office Summit in Abu Dhabi on the panel “Family Office 2.0: Reimagining the Architecture of Wealth, Purpose, and Legacy”"
+      }
+    ],
+    "conflicted": false,
+    "note": "established by a third-party profile database"
+  },
+  "rdbrwandadevelopmentboard": {
+    "firmName": "RDB (Rwanda Development Board)",
+    "type": "undetermined",
+    "confidence": 0,
+    "quote": "",
+    "sourceUrl": "",
+    "sourceTier": null,
+    "website": null,
+    "claims": [],
+    "conflicted": false,
+    "note": "no source established a type"
+  },
+  "finkeissenholdings": {
+    "firmName": "Finkeissen Holdings",
+    "type": "single_family_office",
+    "confidence": 0.85,
+    "quote": "Finkeissen Holdings ist ein Single Family Office mit Schwerpunkt auf Investitionen in Real Estate, Private Equity Funds sowie Startups und Firmen in Tech und KI.",
+    "sourceUrl": "https://www.finkeissen.at/",
+    "sourceTier": 1,
+    "website": "https://www.finkeissen.at/",
+    "claims": [
+      {
+        "sourceUrl": "https://www.finkeissen.at/",
+        "tier": 1,
+        "value": "single_family_office",
+        "quote": "Finkeissen Holdings ist ein Single Family Office mit Schwerpunkt auf Investitionen in Real Estate, Private Equity Funds sowie Startups und Firmen in Tech und KI."
+      }
+    ],
+    "conflicted": false,
+    "note": "established by the firm itself or a statutory registry"
+  },
+  "nexuseurope": {
+    "firmName": "NEXUS Europe",
+    "type": "undetermined",
+    "confidence": 0,
+    "quote": "",
+    "sourceUrl": "",
+    "sourceTier": null,
+    "website": null,
+    "claims": [],
+    "conflicted": false,
+    "note": "no source established a type"
+  },
+  "blauwparkpartners": {
+    "firmName": "Blauwpark Partners",
+    "type": "multi_family_office",
+    "confidence": 0.9299999999999999,
+    "quote": "We are a single family office for multiple families.",
+    "sourceUrl": "https://www.blauwparkpartners.com/our-team",
+    "sourceTier": 1,
+    "website": "https://www.blauwparkpartners.com/our-team",
+    "claims": [
+      {
+        "sourceUrl": "https://www.blauwparkpartners.com/our-team",
+        "tier": 1,
+        "value": "multi_family_office",
+        "quote": "We are a single family office for multiple families."
+      },
+      {
+        "sourceUrl": "https://sg.linkedin.com/company/blauwparkpartners",
+        "tier": 3,
+        "value": "multi_family_office",
+        "quote": "We are a Singapore-based 'single-family office for multiple families', with a focus on private markets & private equity"
+      }
+    ],
+    "conflicted": false,
+    "note": "established by the firm itself or a statutory registry, corroborated by 1 other source(s)"
+  },
+  "superseed": {
+    "firmName": "SuperSeed",
+    "type": "undetermined",
+    "confidence": 0,
+    "quote": "",
+    "sourceUrl": "",
+    "sourceTier": null,
+    "website": "https://www.superseed.com/team/",
+    "claims": [],
+    "conflicted": false,
+    "note": "no source established a type"
+  },
+  "ivbf": {
+    "firmName": "IVBF",
+    "type": "undetermined",
+    "confidence": 0,
+    "quote": "",
+    "sourceUrl": "",
+    "sourceTier": null,
+    "website": null,
+    "claims": [],
+    "conflicted": false,
+    "note": "no source established a type"
+  },
+  "plenisferinvestments": {
+    "firmName": "Plenisfer Investments",
+    "type": "multi_family_office",
+    "confidence": 0.3,
+    "quote": "World Family Office Forum Europe 2026 has confirmed Plenisfer Investments as a sponsor of the upcoming event, reinforcing the programme’s focus on long-term, conviction-led investment thinking.",
+    "sourceUrl": "https://www.connectgroup.global/news/plenisfer-investments-joins-the-world-family-office-forum-europe-2026-as-sponsor",
+    "sourceTier": 4,
+    "website": "https://www.plenisfer.com/it/en/professional/",
+    "claims": [
+      {
+        "sourceUrl": "https://www.connectgroup.global/news/plenisfer-investments-joins-the-world-family-office-forum-europe-2026-as-sponsor",
+        "tier": 4,
+        "value": "multi_family_office",
+        "quote": "World Family Office Forum Europe 2026 has confirmed Plenisfer Investments as a sponsor of the upcoming event, reinforcing the programme’s focus on long-term, conviction-led investment thinking."
+      }
+    ],
+    "conflicted": false,
+    "note": "established by an unranked web source"
+  },
+  "sathgurucatalysers": {
+    "firmName": "Sathguru Catalysers",
+    "type": "not_a_family_office",
+    "confidence": 0.5,
+    "quote": "Sathguru Catalysers Venture Capital and Private Equity Principals Hyderabad, Telangana 695 followers Follow Discover all 8 employees Report this company About us Sathguru Catalyser Advisors Private Limited (SCA) is the investment manager of Innovation in Food & Agriculture Fund (IFA Fund)",
+    "sourceUrl": "https://in.linkedin.com/company/sathguru-catalysers",
+    "sourceTier": 3,
+    "website": "https://sathgurucatalysers.fund/",
+    "claims": [
+      {
+        "sourceUrl": "https://in.linkedin.com/company/sathguru-catalysers",
+        "tier": 3,
+        "value": "not_a_family_office",
+        "quote": "Sathguru Catalysers Venture Capital and Private Equity Principals Hyderabad, Telangana 695 followers Follow Discover all 8 employees Report this company About us Sathguru Catalyser Advisors Private Limited (SCA) is the investment manager of Innovation in Food & Agriculture Fund (IFA Fund)"
+      }
+    ],
+    "conflicted": false,
+    "note": "established by a third-party profile database"
+  },
+  "healthquad": {
+    "firmName": "HealthQuad",
+    "type": "not_a_family_office",
+    "confidence": 0.5,
+    "quote": "HealthQuad is an institutional private equity fund manager, not a family office.",
+    "sourceUrl": "https://altss.com/profile/healthquad",
+    "sourceTier": 3,
+    "website": null,
+    "claims": [
+      {
+        "sourceUrl": "https://altss.com/profile/healthquad",
+        "tier": 3,
+        "value": "not_a_family_office",
+        "quote": "HealthQuad is an institutional private equity fund manager, not a family office."
+      }
+    ],
+    "conflicted": false,
+    "note": "established by a third-party profile database"
+  },
+  "apocapital": {
+    "firmName": "Apo Capital",
+    "type": "undetermined",
+    "confidence": 0,
+    "quote": "",
+    "sourceUrl": "",
+    "sourceTier": null,
+    "website": "https://apocapital.com/recruiting",
+    "claims": [],
+    "conflicted": false,
+    "note": "no source established a type"
+  },
+  "cfunds": {
+    "firmName": "c*funds",
+    "type": "undetermined",
+    "confidence": 0,
+    "quote": "",
+    "sourceUrl": "",
+    "sourceTier": null,
+    "website": "https://www.cfunds.io/product-tag/family-office/",
+    "claims": [],
+    "conflicted": false,
+    "note": "no source established a type"
+  },
+  "apgwealthfamilyoffice": {
+    "firmName": "APG Wealth (Family Office)",
+    "type": "undetermined",
+    "confidence": 0,
+    "quote": "",
+    "sourceUrl": "",
+    "sourceTier": null,
+    "website": null,
+    "claims": [],
+    "conflicted": false,
+    "note": "no source established a type"
+  },
+  "bondsgroupofcompanies": {
+    "firmName": "Bonds Group of Companies",
+    "type": "undetermined",
+    "confidence": 0,
+    "quote": "",
+    "sourceUrl": "",
+    "sourceTier": null,
+    "website": "https://www.bondsgroup.com/Anson.htm",
+    "claims": [],
+    "conflicted": false,
+    "note": "no source established a type"
+  },
+  "centurycityinternationalholdings": {
+    "firmName": "Century City International Holdings Limited",
+    "type": "undetermined",
+    "confidence": 0,
+    "quote": "",
+    "sourceUrl": "",
+    "sourceTier": null,
+    "website": null,
+    "claims": [],
+    "conflicted": false,
+    "note": "extraction failed: groq 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma"
+  },
+  "taylorseducationgroup": {
+    "firmName": "Taylor's Education Group",
+    "type": "undetermined",
+    "confidence": 0,
+    "quote": "",
+    "sourceUrl": "",
+    "sourceTier": null,
+    "website": null,
+    "claims": [],
+    "conflicted": false,
+    "note": "extraction failed: groq 429: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kyfxatgve37a2b4d70v8ewhs` service tier `on_demand` on tokens per day (TPD): Limit 500000, Used 498764, R"
+  },
+  "vinawood": {
+    "firmName": "Vinawood",
+    "type": "undetermined",
+    "confidence": 0,
+    "quote": "",
+    "sourceUrl": "",
+    "sourceTier": null,
+    "website": null,
+    "claims": [],
+    "conflicted": false,
+    "note": "extraction failed: groq 429: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kyfxatgve37a2b4d70v8ewhs` service tier `on_demand` on tokens per day (TPD): Limit 500000, Used 498048, R"
+  },
+  "draperassociates": {
+    "firmName": "Draper Associates",
+    "type": "undetermined",
+    "confidence": 0,
+    "quote": "",
+    "sourceUrl": "",
+    "sourceTier": null,
+    "website": null,
+    "claims": [],
+    "conflicted": false,
+    "note": "extraction failed: groq 429: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kyfxatgve37a2b4d70v8ewhs` service tier `on_demand` on tokens per day (TPD): Limit 500000, Used 497333, R"
+  },
+  "portcullisgroup": {
+    "firmName": "Portcullis Group",
+    "type": "undetermined",
+    "confidence": 0,
+    "quote": "",
+    "sourceUrl": "",
+    "sourceTier": null,
+    "website": null,
+    "claims": [],
+    "conflicted": false,
+    "note": "extraction failed: groq 429: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kyfxatgve37a2b4d70v8ewhs` service tier `on_demand` on tokens per day (TPD): Limit 500000, Used 496617, R"
+  },
+  "rdainvestmentssingapore": {
+    "firmName": "RDA Investments Singapore",
+    "type": "single_family_office",
+    "confidence": 0.3,
+    "quote": "Yogiraj heads the ex-India Family Office for the owners of Thermax Ltd, a listed engineering conglomerate from India.",
+    "sourceUrl": "https://asia.worldfamilyofficeforum.com/speaker/yogiraj-nadgauda",
+    "sourceTier": 4,
+    "website": null,
+    "claims": [
+      {
+        "sourceUrl": "https://asia.worldfamilyofficeforum.com/speaker/yogiraj-nadgauda",
+        "tier": 4,
+        "value": "single_family_office",
+        "quote": "Yogiraj heads the ex-India Family Office for the owners of Thermax Ltd, a listed engineering conglomerate from India."
+      }
+    ],
+    "conflicted": false,
+    "note": "established by an unranked web source"
+  },
+  "ferrettocapital": {
+    "firmName": "Ferretto Capital",
+    "type": "undetermined",
+    "confidence": 0,
+    "quote": "",
+    "sourceUrl": "",
+    "sourceTier": null,
+    "website": null,
+    "claims": [],
+    "conflicted": false,
+    "note": "extraction failed: groq 429: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kyfxatgve37a2b4d70v8ewhs` service tier `on_demand` on tokens per day (TPD): Limit 500000, Used 498004, R"
+  },
+  "siammotorsgroup": {
+    "firmName": "Siam Motors Group",
+    "type": "undetermined",
+    "confidence": 0,
+    "quote": "",
+    "sourceUrl": "",
+    "sourceTier": null,
+    "website": null,
+    "claims": [],
+    "conflicted": false,
+    "note": "extraction failed: groq 429: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kyfxatgve37a2b4d70v8ewhs` service tier `on_demand` on tokens per day (TPD): Limit 500000, Used 497368, R"
+  },
+  "royalselangor": {
+    "firmName": "Royal Selangor",
+    "type": "undetermined",
+    "confidence": 0,
+    "quote": "",
+    "sourceUrl": "",
+    "sourceTier": null,
+    "website": null,
+    "claims": [],
+    "conflicted": false,
+    "note": "extraction failed: groq 429: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kyfxatgve37a2b4d70v8ewhs` service tier `on_demand` on tokens per day (TPD): Limit 500000, Used 496652, R"
+  },
+  "goldenalpha": {
+    "firmName": "Golden Alpha",
+    "type": "single_family_office",
+    "confidence": 0.7799999999999999,
+    "quote": "Founded in 1955, Golden Alpha is a Singapore-based family office that represents the Sohmen family through direct public and private investments.",
+    "sourceUrl": "https://www.privateequityinternational.com/institution-profiles/golden-alpha.html",
+    "sourceTier": 2,
+    "website": null,
+    "claims": [
+      {
+        "sourceUrl": "https://www.preqin.com/data/profile/investor/golden-alpha/198933",
+        "tier": 3,
+        "value": "single_family_office",
+        "quote": "Golden Alpha is a single-family office based in Singapore. The firm represents the Sohmen family and serves as the investment team for part of the family’s investment activities."
+      },
+      {
+        "sourceUrl": "https://www.privateequityinternational.com/institution-profiles/golden-alpha.html",
+        "tier": 2,
+        "value": "single_family_office",
+        "quote": "Founded in 1955, Golden Alpha is a Singapore-based family office that represents the Sohmen family through direct public and private investments."
+      }
+    ],
+    "conflicted": false,
+    "note": "established by recognised financial press, corroborated by 1 other source(s)"
+  },
+  "mahsinggroupberhad": {
+    "firmName": "Mah Sing Group Berhad",
+    "type": "undetermined",
+    "confidence": 0,
+    "quote": "",
+    "sourceUrl": "",
+    "sourceTier": null,
+    "website": null,
+    "claims": [],
+    "conflicted": false,
+    "note": "extraction failed: groq 429: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kyfxatgve37a2b4d70v8ewhs` service tier `on_demand` on tokens per day (TPD): Limit 500000, Used 498883, R"
+  },
+  "junsoncapital": {
+    "firmName": "Junson Capital",
+    "type": "undetermined",
+    "confidence": 0,
+    "quote": "",
+    "sourceUrl": "",
+    "sourceTier": null,
+    "website": null,
+    "claims": [],
+    "conflicted": false,
+    "note": "extraction failed: groq 429: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kyfxatgve37a2b4d70v8ewhs` service tier `on_demand` on tokens per day (TPD): Limit 500000, Used 498165, R"
+  },
+  "kiricapital": {
+    "firmName": "Kiri Capital",
+    "type": "undetermined",
+    "confidence": 0,
+    "quote": "",
+    "sourceUrl": "",
+    "sourceTier": null,
+    "website": null,
+    "claims": [],
+    "conflicted": false,
+    "note": "extraction failed: groq 429: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kyfxatgve37a2b4d70v8ewhs` service tier `on_demand` on tokens per day (TPD): Limit 500000, Used 497530, R"
+  },
+  "theharilelagroup": {
+    "firmName": "The Harilela Group",
+    "type": "undetermined",
+    "confidence": 0,
+    "quote": "",
+    "sourceUrl": "",
+    "sourceTier": null,
+    "website": null,
+    "claims": [],
+    "conflicted": false,
+    "note": "no source established a type"
   }
 }

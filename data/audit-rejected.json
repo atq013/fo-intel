@@ -40,5 +40,68 @@
     "value": "single_family_office",
     "reason": "confidence 0.30 below the 0.55 floor; established by an unranked web source",
     "detectedBy": "source reconciliation"
+  },
+  {
+    "firmName": "Al-Daw Holding",
+    "fieldPath": "classification.type",
+    "value": "single_family_office",
+    "reason": "confidence 0.30 below the 0.55 floor; established by an unranked web source",
+    "detectedBy": "source reconciliation"
+  },
+  {
+    "firmName": "Pandan Ventures",
+    "fieldPath": "classification.type",
+    "value": "not_a_family_office",
+    "reason": "confidence 0.50 below the 0.55 floor; established by a third-party profile database",
+    "detectedBy": "source reconciliation"
+  },
+  {
+    "firmName": "KHK & Partners Limited",
+    "fieldPath": "classification.type",
+    "value": "not_a_family_office",
+    "reason": "confidence 0.50 below the 0.55 floor; established by a third-party profile database",
+    "detectedBy": "source reconciliation"
+  },
+  {
+    "firmName": "ViaTalenta Holdings",
+    "fieldPath": "classification.type",
+    "value": "single_family_office",
+    "reason": "confidence 0.50 below the 0.55 floor; established by a third-party profile database",
+    "detectedBy": "source reconciliation"
+  },
+  {
+    "firmName": "Aras",
+    "fieldPath": "classification.type",
+    "value": "single_family_office",
+    "reason": "confidence 0.50 below the 0.55 floor; established by a third-party profile database",
+    "detectedBy": "source reconciliation"
+  },
+  {
+    "firmName": "Plenisfer Investments",
+    "fieldPath": "classification.type",
+    "value": "multi_family_office",
+    "reason": "confidence 0.30 below the 0.55 floor; established by an unranked web source",
+    "detectedBy": "source reconciliation"
+  },
+  {
+    "firmName": "Sathguru Catalysers",
+    "fieldPath": "classification.type",
+    "value": "not_a_family_office",
+    "reason": "confidence 0.50 below the 0.55 floor; established by a third-party profile database",
+    "detectedBy": "source reconciliation"
+  },
+  {
+    "firmName": "HealthQuad",
+    "fieldPath": "classification.type",
+    "value": "not_a_family_office",
+    "reason": "confidence 0.50 below the 0.55 floor; established by a third-party profile database",
+    "detectedBy": "source reconciliation"
+  },
+  {
+    "firmName": "RDA Investments Singapore",
+    "fieldPath": "classification.type",
+    "value": "single_family_office",
+    "reason": "confidence 0.30 below the 0.55 floor; established by an unranked web source",
+    "detectedBy": "source reconciliation"
   }
 ]
