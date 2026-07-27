@@ -3,19 +3,40 @@
     "target": "ES2022",
     "module": "ESNext",
     "moduleResolution": "bundler",
-    "lib": ["ES2022", "DOM"],
+    "lib": [
+      "ES2022",
+      "DOM"
+    ],
     "strict": true,
     "noUncheckedIndexedAccess": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "types": ["node"],
+    "types": [
+      "node"
+    ],
     "baseUrl": ".",
     "paths": {
-      "@fo/core": ["packages/core/src/index.ts"],
-      "@fo/core/*": ["packages/core/src/*"],
-      "@fo/db": ["packages/db/src/index.ts"]
+      "@fo/core": [
+        "packages/core/src/index.ts"
+      ],
+      "@fo/core/*": [
+        "packages/core/src/*"
+      ],
+      "@fo/db": [
+        "packages/db/src/index.ts"
+      ],
+      "@fo/rag": [
+        "packages/rag/src/index.ts"
+      ],
+      "@fo/rag/*": [
+        "packages/rag/src/*"
+      ]
     }
   },
-  "exclude": ["node_modules", "dist", ".next"]
+  "exclude": [
+    "node_modules",
+    "dist",
+    ".next"
+  ]
 }

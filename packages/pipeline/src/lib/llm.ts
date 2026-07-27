@@ -21,7 +21,7 @@ installResilientDns();
  */
 
 const geminiLimit = pLimit(4);
-const groqLimit = pLimit(8);
+const groqLimit = pLimit(2);
 
 interface JsonSchema {
   type: string;
@@ -53,7 +53,7 @@ async function withRetry<T>(fn: () => Promise<T>, provider: string, attempts = 4
         throw new QuotaError(provider);
       }
       if (!/429|rate|quota|503|502|overloaded/i.test(msg)) throw err;
-      await new Promise((r) => setTimeout(r, Math.min(2 ** i * 1500, 20_000)));
+      await new Promise((r) => setTimeout(r, Math.min(2 ** i * 4000, 45_000)));
     }
   }
   throw lastErr instanceof Error ? lastErr : new Error(`${provider} failed`);

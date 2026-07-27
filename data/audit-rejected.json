@@ -1,0 +1,44 @@
+[
+  {
+    "firmName": "JS Capital Management LLC",
+    "fieldPath": "classification.type",
+    "value": "single_family_office",
+    "reason": "confidence 0.50 below the 0.55 floor; established by a third-party profile database",
+    "detectedBy": "source reconciliation"
+  },
+  {
+    "firmName": "QVT Financial LP",
+    "fieldPath": "classification.type",
+    "value": "single_family_office",
+    "reason": "confidence 0.50 below the 0.55 floor; established by a third-party profile database",
+    "detectedBy": "source reconciliation"
+  },
+  {
+    "firmName": "Tarsadia Capital, LLC",
+    "fieldPath": "classification.type",
+    "value": "single_family_office",
+    "reason": "confidence 0.50 below the 0.55 floor; established by a third-party profile database",
+    "detectedBy": "source reconciliation"
+  },
+  {
+    "firmName": "CHARTWELL FAMILY FUND TFI LP",
+    "fieldPath": "classification.type",
+    "value": "not_a_family_office",
+    "reason": "confidence 0.30 below the 0.55 floor; established by an unranked web source",
+    "detectedBy": "source reconciliation"
+  },
+  {
+    "firmName": "Outerbridge Capital Management LLC",
+    "fieldPath": "classification.type",
+    "value": "not_a_family_office",
+    "reason": "confidence 0.50 below the 0.55 floor; established by a third-party profile database",
+    "detectedBy": "source reconciliation"
+  },
+  {
+    "firmName": "Antilles Family Office, LLC",
+    "fieldPath": "classification.type",
+    "value": "single_family_office",
+    "reason": "confidence 0.30 below the 0.55 floor; established by an unranked web source",
+    "detectedBy": "source reconciliation"
+  }
+]

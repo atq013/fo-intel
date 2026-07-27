@@ -1,0 +1,15 @@
+05:16:10  pool 1323 firms; 72 already resolved; enriching 260
+05:33:14  25/260 after 17.1m  |  {"undetermined":25}  |  serper 14  dns {"failures":12,"recoveries":0,"cached":14}
+05:33:14  50/260 after 17.1m  |  {"undetermined":50}  |  serper 14  dns {"failures":37,"recoveries":0,"cached":14}
+05:33:14  75/260 after 17.1m  |  {"undetermined":75}  |  serper 14  dns {"failures":62,"recoveries":0,"cached":14}
+05:33:14  100/260 after 17.1m  |  {"undetermined":100}  |  serper 14  dns {"failures":87,"recoveries":0,"cached":14}
+05:33:14  125/260 after 17.1m  |  {"undetermined":125}  |  serper 14  dns {"failures":112,"recoveries":0,"cached":14}
+05:33:14  150/260 after 17.1m  |  {"undetermined":150}  |  serper 14  dns {"failures":137,"recoveries":0,"cached":14}
+05:33:14  175/260 after 17.1m  |  {"undetermined":175}  |  serper 14  dns {"failures":162,"recoveries":0,"cached":14}
+05:33:14  200/260 after 17.1m  |  {"undetermined":200}  |  serper 14  dns {"failures":187,"recoveries":0,"cached":14}
+05:33:14  225/260 after 17.1m  |  {"undetermined":225}  |  serper 14  dns {"failures":212,"recoveries":0,"cached":14}
+05:33:14  250/260 after 17.1m  |  {"undetermined":250}  |  serper 14  dns {"failures":237,"recoveries":0,"cached":14}
+05:33:14  finished: 260 firms processed
+05:33:14  outcomes: {"undetermined":260}
+05:33:14  serper queries used this run: 14
+05:33:14  dns: {"failures":247,"recoveries":0,"cached":14}

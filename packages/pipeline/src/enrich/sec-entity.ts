@@ -94,7 +94,7 @@ export async function resolveEntity(cik: string): Promise<SecEntity | null> {
     return null;
   }
 
-  const biz = data.addresses?.business ?? {};
+  const biz = data.addresses?.business ?? ({} as NonNullable<SubmissionsResponse['addresses']['business']>);
   const recent = data.filings?.recent;
 
   const signals: Signal[] = [];

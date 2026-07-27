@@ -25,6 +25,7 @@
     "typescript": "^5.7.2"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^1.1.0",
     "undici": "^8.9.0"
   }
 }

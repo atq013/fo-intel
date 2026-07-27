@@ -1,0 +1,37 @@
+21:34:29  pool 1323 firms; 0 already resolved; enriching 420
+21:34:39    single_family_office   conf 0.50 t3  JS Capital Management LLC
+21:35:09    single_family_office   conf 0.85 t1  Kopp Family Office, LLC
+21:35:33    single_family_office   conf 0.93 t1  Duquesne Family Office LLC
+21:36:34    single_family_office   conf 0.50 t3  QVT Financial LP
+21:40:56    single_family_office   conf 0.50 t3  Tarsadia Capital, LLC
+01:39:44  stopping: reached the 145 minute budget
+01:39:44  finished: 11 firms processed
+01:39:44  outcomes: {"undetermined":6,"single_family_office":5}
+01:39:44  serper queries used this run: 11
+01:39:44  dns: {"failures":11,"recoveries":11,"cached":17}
+04:16:32  pool 1323 firms; 11 already resolved; enriching 140
+04:40:42    single_family_office   conf 0.85 t1  Pinnacle Family Office Investments L.P.
+04:41:32    single_family_office   conf 0.58 t3  CASCADE INVESTMENT, L.L.C.
+04:42:12    not_a_family_office    conf 0.30 t4  CHARTWELL FAMILY FUND TFI LP
+04:42:12  25/140 after 25.7m  |  {"undetermined":22,"single_family_office":2,"not_a_family_office":1}  |  serper 18  dns {"failures":38,"recoveries":38,"cached":28}
+04:45:08    not_a_family_office    conf 0.85 t1  New Mountain Guardian IV Rated Feeder I, LTD
+04:45:59    not_a_family_office    conf 0.50 t3  Outerbridge Capital Management LLC
+04:48:44    not_a_family_office    conf 0.85 t1  Tax-Exempt Private Credit Fund, Inc.
+04:48:54    single_family_office   conf 0.85 t1  PITON CAPITAL PARTNERS LLC
+04:54:32    single_family_office   conf 0.30 t4  Antilles Family Office, LLC
+05:00:55  50/140 after 44.4m  |  {"undetermined":42,"single_family_office":4,"not_a_family_office":4}  |  serper 43  dns {"failures":38,"recoveries":38,"cached":53}
+05:16:10  pool 1323 firms; 72 already resolved; enriching 260
+05:33:14  25/260 after 17.1m  |  {"undetermined":25}  |  serper 14  dns {"failures":12,"recoveries":0,"cached":14}
+05:33:14  50/260 after 17.1m  |  {"undetermined":50}  |  serper 14  dns {"failures":37,"recoveries":0,"cached":14}
+05:33:14  75/260 after 17.1m  |  {"undetermined":75}  |  serper 14  dns {"failures":62,"recoveries":0,"cached":14}
+05:33:14  100/260 after 17.1m  |  {"undetermined":100}  |  serper 14  dns {"failures":87,"recoveries":0,"cached":14}
+05:33:14  125/260 after 17.1m  |  {"undetermined":125}  |  serper 14  dns {"failures":112,"recoveries":0,"cached":14}
+05:33:14  150/260 after 17.1m  |  {"undetermined":150}  |  serper 14  dns {"failures":137,"recoveries":0,"cached":14}
+05:33:14  175/260 after 17.1m  |  {"undetermined":175}  |  serper 14  dns {"failures":162,"recoveries":0,"cached":14}
+05:33:14  200/260 after 17.1m  |  {"undetermined":200}  |  serper 14  dns {"failures":187,"recoveries":0,"cached":14}
+05:33:14  225/260 after 17.1m  |  {"undetermined":225}  |  serper 14  dns {"failures":212,"recoveries":0,"cached":14}
+05:33:14  250/260 after 17.1m  |  {"undetermined":250}  |  serper 14  dns {"failures":237,"recoveries":0,"cached":14}
+05:33:14  finished: 260 firms processed
+05:33:14  outcomes: {"undetermined":260}
+05:33:14  serper queries used this run: 14
+05:33:14  dns: {"failures":247,"recoveries":0,"cached":14}
