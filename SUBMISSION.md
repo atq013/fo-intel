@@ -7,7 +7,7 @@
 | Dataset, 50 validated records | `data/fo-dataset.csv` (also `.json` with full provenance) |
 | Methodology summary | `docs/METHODOLOGY.md` |
 | Three full validation chains | `docs/VALIDATION_CHAINS.md` |
-| Working repository | this repo, shared with optimize@falconscaling.com |
+| Working repository | this repo, public |
 | Live customer-facing URL | https://fo-intel-web.vercel.app |
 | RAG documentation note | `docs/RAG_NOTES.md` |
 | Task 2, SaaS conversion analysis | `docs/TASK2_CONVERSION.md` |

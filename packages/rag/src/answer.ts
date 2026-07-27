@@ -15,7 +15,7 @@
  * the system qualify, limit, or decline when evidence is insufficient, and a
  * control that never fires is not a control.
  */
-import { retrieve, getFirms, logQuery, type RetrievedChunk } from '@fo/db';
+import { retrieve, getFirms, countMatching, firmsNamedIn, logQuery, type RetrievedChunk } from '@fo/db';
 import type { RequestedField } from './query.js';
 import { checkAttribution, type Claim, type CheckedClaim } from './attribution.js';
 import { parseQuery, type ParsedQuery } from './query.js';
@@ -50,6 +50,8 @@ export interface AnswerResult {
   claims: CheckedClaim[];
   droppedClaims: CheckedClaim[];
   firms: FirmSummary[];
+  /** Firms matching the structured filters, which may exceed those shown. */
+  totalMatching: number;
   timings: { totalMs: number; retrievalMs: number; generationMs: number; auditMs: number };
 }
 
@@ -70,13 +72,28 @@ const FIELD_ABSENT: Record<NonNullable<RequestedField>, string> = {
   ranking: 'This dataset holds no size or performance measure, so firms cannot be ranked. Ranking them would require a number that does not exist in any record.',
 };
 
-/** True when at least one of these firms actually carries the requested field. */
-async function fieldIsHeld(field: NonNullable<RequestedField>, firmIds: string[]): Promise<boolean> {
+/**
+ * True when the firms the question is actually about carry the requested field.
+ *
+ * Scoping to the named firm matters. Asked for Francis Family Office's email, an
+ * unscoped check asks "does any retrieved firm have an email" - and once a few
+ * records did, the gate opened and the answer listed three other firms' emails.
+ * Every claim was true and none of them answered the question.
+ */
+async function fieldIsHeld(
+  field: NonNullable<RequestedField>,
+  firmIds: string[],
+  question: string,
+): Promise<boolean> {
   if (field === 'ranking' || field === 'aum' || field === 'sectors' || field === 'thesis') return false;
   if (firmIds.length === 0) return false;
 
-  const rows = await getFirms(firmIds);
-  return rows.some((row) => {
+  // If the question names a firm we hold, that firm alone decides the answer -
+  // whether or not similarity search happened to retrieve it.
+  const named = await firmsNamedIn(question).catch(() => []);
+  const scope = named.length > 0 ? named : await getFirms(firmIds);
+
+  return scope.some((row) => {
     const r = row.record;
     const p = r.principals?.[0];
     if (field === 'email') return Boolean(p?.email?.value);
@@ -111,8 +128,15 @@ const ANSWER_SCHEMA = {
  * added, so every fallback failed too and the user saw "not enough records" when
  * the truth was "prompt too large".
  */
-const MAX_SOURCES_IN_PROMPT = 8;
-const MAX_SOURCE_CHARS = 320;
+const MAX_SOURCES_IN_PROMPT = 14;
+/**
+ * Trimmed from 320. Showing more firms per answer meant more sources per prompt,
+ * which pushed the fallback model back toward its per-minute ceiling - and a
+ * model at its ceiling returns an empty claims array rather than an error, which
+ * surfaces to the user as "not enough records" when the records were fine.
+ * Fourteen shorter sources cost less than eight long ones.
+ */
+const MAX_SOURCE_CHARS = 210;
 
 function answerPrompt(question: string, chunks: RetrievedChunk[]): string {
   const sources = chunks
@@ -144,22 +168,29 @@ export async function answerQuestion(question: string): Promise<AnswerResult> {
   const t0 = Date.now();
   const parsed = await parseQuery(question);
 
+  const filters = {
+    firmType: parsed.firmType ?? undefined,
+    country: parsed.country ?? undefined,
+    requireContact: parsed.requireContact,
+    sinceDate: parsed.sinceDate ?? undefined,
+  };
+
   const tRetrieve = Date.now();
-  const vector = await embed(parsed.semanticQuery);
+  const [vector, totalMatching] = await Promise.all([
+    embed(parsed.semanticQuery),
+    countMatching(filters).catch(() => 0),
+  ]);
   const chunks = await retrieve(
     vector,
     {
-      firmType: parsed.firmType ?? undefined,
-      country: parsed.country ?? undefined,
-      requireContact: parsed.requireContact,
-      sinceDate: parsed.sinceDate ?? undefined,
+      ...filters,
       // Whether a firm is reachable is a property of its profile, not of its
       // filing history. Asked "who can I phone", unrestricted retrieval fills the
       // context with signal chunks about quarterly holdings, and the model then
       // correctly concludes the sources do not answer the question.
       kinds: parsed.requireContact ? ['profile'] : undefined,
     },
-    14,
+    30,
   );
   const retrievalMs = Date.now() - tRetrieve;
 
@@ -173,6 +204,7 @@ export async function answerQuestion(question: string): Promise<AnswerResult> {
       claims: [],
       droppedClaims: [],
       firms: [],
+      totalMatching,
       timings: { totalMs: Date.now() - t0, retrievalMs, generationMs: 0, auditMs: 0 },
     };
     await logQuery({
@@ -207,7 +239,7 @@ export async function answerQuestion(question: string): Promise<AnswerResult> {
   // true statements about location - every claim supported, none responsive - and
   // the attribution audit passes them all, because grounding is not relevance.
   if (parsed.requestedField) {
-    const held = await fieldIsHeld(parsed.requestedField, [...new Set(usable.map((c) => c.firm_id))]);
+    const held = await fieldIsHeld(parsed.requestedField, [...new Set(usable.map((c) => c.firm_id))], question);
     if (!held) {
       return decline(FIELD_ABSENT[parsed.requestedField]);
     }
@@ -322,6 +354,7 @@ export async function answerQuestion(question: string): Promise<AnswerResult> {
     claims: kept,
     droppedClaims: dropped,
     firms,
+    totalMatching,
     timings: { totalMs, retrievalMs, generationMs, auditMs },
   };
 }

@@ -102,17 +102,15 @@ is supposed to **refuse**. A system that answers everything scores zero here.
 | | |
 |---|---|
 | Cases | 15 |
-| Correct | **14 (93%)** |
+| Correct | **15 (100%)** |
 | **False negative rate** (answered when it should have refused) | **0%** |
-| False positive rate (refused when it could have answered) | 20% (1 of 5) |
-| Claims kept / dropped | 36 / 34 |
+| False positive rate (refused when it could have answered) | **0%** |
+| Claims kept / dropped | 112 / 47 |
 | Provider outages | 0 |
-| Median latency | 9.6s |
+| Median latency | 8.8s |
 
-The one false positive is "Which family offices are based in the United States?",
-where the drafted claims did not survive the audit and the answer was withheld.
-Withholding is the safe direction to fail in, but it is a real cost: the records
-exist and the user got nothing.
+47 of 159 drafted claims were dropped by the audit — roughly 30%. That rate is the
+point of the control, not a defect in it.
 
 False negative rate is the number that matters. Framed as a validation layer, the
 dangerous error is letting an unsupported claim through, because it then ships
@@ -127,6 +125,35 @@ An earlier run of this same suite reported 0% on both rates with 2 outages, and
 that number was partly luck: rate limiting was suppressing answers that would
 otherwise have been wrong. Measuring a control while the infrastructure beneath it
 is failing flatters it. The numbers above come from a run with zero outages.
+
+## A fourth defect, found by a user rather than the test set
+
+Someone using the deployed system counted sixteen statements in an answer and only
+eight firm cards, and asked whether that was a bug.
+
+The count itself was correct - each firm produces two separately audited claims,
+one for its classification and one for its principal, which is deliberate: a
+combined sentence would be a single claim where half could be invented and the
+auditor would have to pass or fail it whole.
+
+But the question exposed something real underneath. The dataset holds 22 UK
+single-family offices and the answer showed 8, because the prompt-size fix
+described below had capped sources at eight - and nothing in the interface said so,
+which made eight look like all of them.
+
+Three changes followed. Sources per prompt raised to 14 and trimmed to 210
+characters each, which fits more firms into a smaller prompt than eight long ones
+did. The interface now reports "showing 14 of 22 matching" whenever a structured
+filter has run, and stays silent when one has not, since without a filter that
+count is simply the size of the file.
+
+The third change was a latent bug the first two exposed. The field gate asked
+"does any retrieved firm hold this field", so once a few records had email
+addresses, the question "what is the email address for Francis Family Office"
+returned three *other* firms' emails - every claim true, none of them the answer.
+The gate now looks up firms whose name appears in the question, against the whole
+table rather than the retrieved set, because similarity search will rank firms
+that *have* the field above the firm that was asked about.
 
 ## Three defects this evaluation found
 

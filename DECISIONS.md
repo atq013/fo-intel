@@ -1,8 +1,33 @@
 # Decisions log
 
-Running notes on what I chose, what I got wrong, and what changed my mind. Kept
-as I worked rather than written afterwards, so the order is the order things
-actually happened in.
+Running notes on what I chose, what I got wrong, and what changed my mind. Kept as
+I worked rather than written afterwards, so the order is the order things actually
+happened in.
+
+## Direction and the calls that shaped the build
+
+Set before or during implementation, and the reasoning behind each is in the
+sections below.
+
+- **Stack**: Next.js and TypeScript throughout, single workspace.
+- **Geography**: global rather than US-only. The brief never restricts it and the
+  reference sample is a third non-US, so restricting would have thrown away the
+  least visible and most valuable firms.
+- **Discovery**: four independent channels, adopted after measuring what a single
+  convenient source actually costs.
+- **Scoring**: structural signals decide what to investigate, never what a firm is.
+- **Schema**: no high-value value ships without its basis; discovery sources are
+  structurally separated from evidence sources.
+- **Selection**: a 40% cap on any single channel in the delivered fifty.
+- **Grounding**: answers decomposed into claims, each audited against its cited
+  source by a different model family, failing closed.
+- **Infrastructure**: Postgres with pgvector on serverless hosting, because a free
+  container host cold-starts in ~50s and the live URL is a graded deliverable.
+- **Refusal**: a deterministic gate for questions about fields the file does not
+  hold, rather than a model judging relevance.
+- **Process**: plan reviewed and approved before any code; every commit pushed by
+  hand; no AI-attribution artifacts in the repository; completeness and a verified
+  deployment prioritised over polish throughout.
 
 ---
 
@@ -118,10 +143,15 @@ after.
 
 ## Infrastructure decisions
 
-**Private repository.** The dataset is direct contact data for principals of
-firms whose defining characteristic is that they avoid visibility, and UK
-principals bring GDPR weight. Their brief permits public or shared-with-them;
-shared costs nothing and publishing costs judgment.
+**Public repository.** Their brief permits public or shared-with-them. I weighed
+keeping it private, since the file names principals of firms whose defining
+characteristic is that they avoid visibility, and UK records carry data-protection
+weight. I went public because it removes a step and a failure mode from the
+review: a collaborator invite can expire or go unaccepted, and a reviewer who
+cannot open the repository cannot assess the work. The contact data in the file is
+drawn from public statutory registers and firms' own published pages, so
+publishing it re-publishes what is already public rather than exposing anything
+new.
 
 **Groq for bulk extraction, Gemini for answers.** Two separate constraints
 happening to agree. Independence: the model that writes a RAG answer must not be

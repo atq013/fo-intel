@@ -1,17 +1,17 @@
 {
-  "ranAt": "2026-07-27T07:53:04.434Z",
+  "ranAt": "2026-07-27T15:59:09.819Z",
   "summary": {
     "total": 15,
-    "correct": 14,
-    "accuracy": 0.9333333333333333,
+    "correct": 15,
+    "accuracy": 1,
     "shouldAnswer": 5,
     "shouldDecline": 8,
     "falseNegativeRate": 0,
-    "falsePositiveRate": 0.2,
+    "falsePositiveRate": 0,
     "serviceFailures": 0,
-    "totalClaimsKept": 36,
-    "totalClaimsDropped": 34,
-    "medianMs": 9578
+    "totalClaimsKept": 112,
+    "totalClaimsDropped": 47,
+    "medianMs": 8815
   },
   "rows": [
     {
@@ -19,72 +19,72 @@
       "expect": "either",
       "got": "answer",
       "correct": true,
-      "claimsKept": 5,
-      "claimsDropped": 3,
+      "claimsKept": 4,
+      "claimsDropped": 0,
       "leakage": [],
       "declineReason": null,
       "serviceError": false,
-      "ms": 15241
+      "ms": 10596
     },
     {
       "question": "Single-family offices in the United Kingdom",
       "expect": "answer",
       "got": "answer",
       "correct": true,
-      "claimsKept": 11,
-      "claimsDropped": 13,
+      "claimsKept": 20,
+      "claimsDropped": 22,
       "leakage": [],
       "declineReason": null,
       "serviceError": false,
-      "ms": 14477
+      "ms": 18054
     },
     {
       "question": "Which family offices are based in the United States?",
       "expect": "answer",
-      "got": "decline",
-      "correct": false,
-      "claimsKept": 0,
-      "claimsDropped": 8,
+      "got": "answer",
+      "correct": true,
+      "claimsKept": 24,
+      "claimsDropped": 0,
       "leakage": [],
-      "declineReason": "An answer was drafted but none of it held up against the underlying records, so it was withheld.",
+      "declineReason": null,
       "serviceError": false,
-      "ms": 9846
+      "ms": 12809
     },
     {
       "question": "Family offices I can reach by phone",
       "expect": "answer",
       "got": "answer",
       "correct": true,
-      "claimsKept": 12,
+      "claimsKept": 11,
       "claimsDropped": 0,
       "leakage": [],
       "declineReason": null,
       "serviceError": false,
-      "ms": 14793
+      "ms": 15186
     },
     {
       "question": "Which firms have filed something recently?",
       "expect": "answer",
       "got": "answer",
       "correct": true,
-      "claimsKept": 3,
-      "claimsDropped": 1,
+      "claimsKept": 9,
+      "claimsDropped": 0,
       "leakage": [],
       "declineReason": null,
       "serviceError": false,
-      "ms": 12457
+      "ms": 12853
     },
     {
       "question": "Family offices in London",
       "expect": "answer",
       "got": "answer",
       "correct": true,
-      "claimsKept": 5,
-      "claimsDropped": 3,
+      "claimsKept": 36,
+      "claimsDropped": 13,
       "leakage": [],
       "declineReason": null,
       "serviceError": false,
-      "ms": 13270
+      "ms": 17093
     },
     {
       "question": "Tell me about the Rockefeller family office",
@@ -96,7 +96,7 @@
       "leakage": [],
       "declineReason": "An answer was drafted but none of it held up against the underlying records, so it was withheld.",
       "serviceError": false,
-      "ms": 9578
+      "ms": 8796
     },
     {
       "question": "What is Bridgewater Associates?",
@@ -108,7 +108,7 @@
       "leakage": [],
       "declineReason": "An answer was drafted but none of it held up against the underlying records, so it was withheld.",
       "serviceError": false,
-      "ms": 9040
+      "ms": 8815
     },
     {
       "question": "Which family offices are based in Antarctica?",
@@ -120,7 +120,7 @@
       "leakage": [],
       "declineReason": "No firms in the dataset match those criteria (located in Antarctica).",
       "serviceError": false,
-      "ms": 3069
+      "ms": 2174
     },
     {
       "question": "What is the AUM of Duquesne Family Office?",
@@ -132,7 +132,7 @@
       "leakage": [],
       "declineReason": "Assets under management are not held for any firm in this dataset. No free statutory source publishes it, so the field is blank throughout rather than estimated.",
       "serviceError": false,
-      "ms": 3136
+      "ms": 2653
     },
     {
       "question": "What sectors does Kopp Family Office invest in?",
@@ -144,7 +144,7 @@
       "leakage": [],
       "declineReason": "Investment sectors are not held for any firm in this dataset. The field is blank throughout rather than inferred.",
       "serviceError": false,
-      "ms": 3100
+      "ms": 2758
     },
     {
       "question": "What is the email address for Francis Family Office?",
@@ -156,7 +156,7 @@
       "leakage": [],
       "declineReason": "No verified email address is held for the firms matching that question. Where an address could not be confirmed it is left blank rather than guessed.",
       "serviceError": false,
-      "ms": 4041
+      "ms": 3683
     },
     {
       "question": "Which is the largest family office in the dataset?",
@@ -168,19 +168,19 @@
       "leakage": [],
       "declineReason": "This dataset holds no size or performance measure, so firms cannot be ranked. Ranking them would require a number that does not exist in any record.",
       "serviceError": false,
-      "ms": 2547
+      "ms": 2823
     },
     {
       "question": "Which family offices are most likely to invest in AI startups?",
       "expect": "either",
-      "got": "decline",
+      "got": "answer",
       "correct": true,
-      "claimsKept": 0,
-      "claimsDropped": 4,
+      "claimsKept": 8,
+      "claimsDropped": 10,
       "leakage": [],
-      "declineReason": "An answer was drafted but none of it held up against the underlying records, so it was withheld.",
+      "declineReason": null,
       "serviceError": false,
-      "ms": 10245
+      "ms": 13101
     },
     {
       "question": "Rank UK family offices by assets under management",
@@ -192,7 +192,7 @@
       "leakage": [],
       "declineReason": "Assets under management are not held for any firm in this dataset. No free statutory source publishes it, so the field is blank throughout rather than estimated.",
       "serviceError": false,
-      "ms": 2952
+      "ms": 2256
     }
   ]
 }

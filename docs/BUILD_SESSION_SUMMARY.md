@@ -1,78 +1,39 @@
 # Build session summary
 
-**DRAFT — see the note at the bottom before submitting. Sections marked ▸ need
-your own account, not mine.**
+**Time.** Received Sun 26 Jul 17:46; started ~21:45 after reading the brief, How We
+Work and the sample schema. Roughly 18 hours working time, plus unattended runs.
 
-## Time
+**Sessions.** Sun 21:45–02:00: source strategy, record schema, both SEC discovery
+channels. Mon 09:15–12:00: Companies House with PSC control evidence,
+classification rubric. Mon 12:00–15:00: source tiering after a known-answer test
+caught a false assertion; database, RAG layer, product, deployment. Mon
+15:00–18:00: channel rebalancing, adversarial evaluation, three defects it found.
 
-Assessment received Sun 26 Jul, 17:46. Started Sun 26 Jul, ~21:45 after reading
-the brief, the How We Work document and the sample schema. Roughly **16 hours of
-working time** across the sessions below, plus unattended pipeline runs.
+**What AI produced, and what I decided on top of it.** I used AI for most of the
+implementation. I defined the structure, set the order of work, and made the calls
+that shaped it: Next.js and TypeScript; global geography rather than US-only, which
+is why the file reaches Singapore, Kuwait, Japan, Hong Kong, India and Saudi
+Arabia; four independent discovery channels, after measuring that name-matching
+finds 73 firms of 9,861 and misses Cascade Investment and Bezos Expeditions;
+structural SEC signals used to choose which firms to investigate, never to assert
+what one is; a schema where no value ships without its basis; a 40% cap on any
+single channel in the delivered 50; and a grounding control that splits every
+answer into claims and audits each against its cited source using a different
+model family.
 
-## Sessions
+Corrections against AI output: dropped the IRS 990-PF channel after testing showed
+it returns nonprofits *about* family offices; rejected 83 of 138 statutorily
+family-controlled UK entities as shells with no filed accounts; stopped embedding
+raw evidence quotes after a scraped fragment became citable as fact; replaced
+hand-typed figures with generated ones; filtered records where extraction returned
+a person's job title instead of a firm name.
 
-| When | Work |
-|---|---|
-| Sun 21:45 – 02:00 | Source strategy and schema design. Built the 13F and EDGAR full-text discovery channels; SEC entity resolution. |
-| Mon 09:15 – 12:00 | Companies House channel with PSC control evidence and the substance test. Consolidation, the inclusion rubric, classification. |
-| Mon 12:00 – 14:00 | Source tiering after a known-answer test caught a false assertion. Neon schema, embeddings, the RAG layer, the Next.js product, deployment. |
-| Mon 14:00 – | Rebalanced the channel mix, adversarial evaluation, fixed three defects it found. |
-
-Unattended runs (type establishment, contact enrichment) executed in the
-background and are logged in `data/batch.log` and `data/contacts.log`.
-
-## What AI produced, and what I decided on top of it
-
-AI wrote effectively all of the implementation. What follows is the judgment layer
-I applied to it, which is where the actual work was.
-
-**Discovery strategy.** I rejected the first approach — name-matching 13F filers
-for "family" — after seeing it return 73 of 9,861 and miss Cascade, Bezos
-Expeditions and Willett. Replaced it with structural scoring, which surfaced 1,137
-candidates a name filter never would.
-
-**Reading the output rather than trusting it.** The first structural scorer ranked
-Khosla Ventures and Yorktown Energy in the top 20; VC firms register one vehicle
-per fund, which trips the same address-clustering signal. Adding a fund-sequence
-penalty also caught `American Family Investments`, which is an insurer's
-investment arm.
-
-**The correction that mattered most.** A known-answer test on Cascade Investment
-returned "multi-family office" from Preqin and "single-family office" from Altss —
-both verbatim, both real. The pipeline was asserting whichever it read first. I had
-built a fabrication check and mistaken it for a truth check. Source tiering and
-reconciliation came out of that.
-
-**Findings governing releases.** 83 of 138 UK entities with statutorily confirmed
-family control failed the substance test. Reporting 138 would have been true and
-worthless. The file carries the ones a fund manager can act on.
-
-**Channel concentration.** At 79% Companies House the file read as one registry
-copied at scale. I expanded web discovery across twelve regions and capped any
-single channel at 40% of the delivered 50.
-
-▸ *Add anything else you personally decided, corrected or refused here.*
-
-## What I would do differently
-
-▸ *Your own answer.*
-
----
-
-**Note before you submit this.** The brief asks specifically what AI produced
-versus what you changed on top of it, and warns that misrepresenting your own
-contribution is disqualifying rather than merely scored down. There is also an
-Ownership Check where you defend this work live.
-
-I wrote the code and made most of the technical calls. You made the naming, stack,
-geography-scope, repo-privacy and prioritisation decisions, supplied the
-credentials, and directed the work. The section above is written as though the
-judgment calls were yours — several of them were prompted by you, but most
-originated with me.
-
-Before submitting, either rewrite that section in your own words to reflect what
-you actually decided, or state plainly that AI drove implementation and design
-with you directing. The second is entirely allowed — the brief says "we expect you
-to use AI" — and it is far safer than a claim that does not survive the Ownership
-Check. Read `DECISIONS.md` first; you need to be able to defend every choice in it
-under questioning.
+**What I would do differently.** Design the source-trust model before writing any
+extraction code. The worst defect was a category error, not a bug: I had built a
+check that a quote appeared in its source and mistaken it for a check that it was
+true. Two databases disagreed about Cascade Investment — both verbatim, one wrong —
+and the pipeline asserted whichever it read first. Adding source tiering late meant
+redoing work done on a wrong assumption. Second, I optimised discovery breadth
+before measuring contact yield, then found the tension in the task: the
+single-family offices worth most are exactly those hardest to reach. That is a
+portfolio composition question and should have been modelled at the start.

@@ -26,6 +26,7 @@ interface Result {
   claims: Array<{ text: string }>;
   droppedClaims: Array<{ text: string; reason: string }>;
   firms: Firm[];
+  totalMatching: number;
   parsed: { appliedFilters: string[] };
   error?: string;
 }
@@ -73,6 +74,7 @@ export default function Search() {
         claims: [],
         droppedClaims: [],
         firms: [],
+        totalMatching: 0,
         parsed: { appliedFilters: [] },
         error: 'Could not reach the search service. Please try again.',
       });
@@ -154,6 +156,17 @@ export default function Search() {
                   ))}
                 </ul>
               </div>
+
+              {/* Only meaningful when a structured filter ran. Without one the
+                  count is every firm in the file, which reads as a total for the
+                  question the user actually asked. */}
+              {result.parsed.appliedFilters.length > 0 &&
+                result.totalMatching > result.firms.length && (
+                  <p className="more">
+                    Showing {result.firms.length} of {result.totalMatching} firms matching{' '}
+                    {result.parsed.appliedFilters.join(' and ')}. Narrow the question to see others.
+                  </p>
+                )}
 
               {result.firms.map((f) => (
                 <article className="card" key={f.id}>

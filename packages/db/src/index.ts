@@ -92,6 +92,52 @@ export async function retrieve(
   return rows as unknown as RetrievedChunk[];
 }
 
+/**
+ * How many firms match the structured filters, ignoring the semantic ranking and
+ * the prompt-size cap. Without this the interface cannot tell a user that more
+ * results exist, and eight of twenty-two reads as "these are all of them".
+ */
+/**
+ * Firms whose name appears in the question text.
+ *
+ * Looked up against the whole table rather than the retrieved set, because a
+ * question naming a firm does not guarantee similarity search ranks that firm
+ * highly - asked for one firm's email, retrieval will happily surface the firms
+ * that actually have emails instead.
+ */
+export async function firmsNamedIn(question: string): Promise<FirmRow[]> {
+  const sql = db();
+  const asked = question.toLowerCase().replace(/[^a-z0-9]/g, '');
+  if (asked.length < 6) return [];
+
+  const rows = (await sql`SELECT * FROM firms`) as unknown as FirmRow[];
+  return rows.filter((row) => {
+    const bare = row.legal_name
+      .toLowerCase()
+      .replace(/\b(llc|ltd|limited|inc|lp|plc|corporation|corp|company|co)\b/g, '')
+      .replace(/[^a-z0-9]/g, '');
+    return bare.length >= 6 && asked.includes(bare);
+  });
+}
+
+export async function countMatching(filters: {
+  firmType?: string;
+  country?: string;
+  requireContact?: boolean;
+  sinceDate?: string;
+}): Promise<number> {
+  const sql = db();
+  const [row] = (await sql`
+    SELECT COUNT(*)::int AS n
+    FROM firms f
+    WHERE (${filters.firmType ?? null}::text IS NULL OR f.firm_type = ${filters.firmType ?? null})
+      AND (${filters.country ?? null}::text IS NULL OR f.country = ${filters.country ?? null})
+      AND (${filters.requireContact ?? false} = FALSE OR f.has_phone OR f.has_email)
+      AND (${filters.sinceDate ?? null}::date IS NULL OR f.latest_signal_on >= ${filters.sinceDate ?? null}::date)
+  `) as unknown as Array<{ n: number }>;
+  return row?.n ?? 0;
+}
+
 export async function getFirms(ids: string[]): Promise<FirmRow[]> {
   if (ids.length === 0) return [];
   const sql = db();
