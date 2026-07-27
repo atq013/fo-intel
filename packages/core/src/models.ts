@@ -20,16 +20,24 @@ export const EMBEDDING_DIMS = 1536;
 /**
  * Answer generation for the served product.
  *
- * Third model this build. Gemini Flash first, until its free generation quota -
- * a few hundred calls a day - was spent by one bulk pass. Then Llama 3.3 70B,
- * until that hit Groq's 100,000 tokens-per-day ceiling during evaluation.
+ * This moved three times and the history is worth keeping. Gemini Flash first,
+ * until its free generation quota - a few hundred calls a day - was spent by one
+ * bulk extraction pass. Then Llama 3.3 70B, until evaluation exhausted Groq's
+ * 100,000 tokens-per-day ceiling. Then Qwen, which returned HTTP 200 with an
+ * empty body: it is a reasoning model and spent its entire output budget on
+ * thinking tokens, leaving nothing for the answer. That failure only appeared in
+ * production, on a prompt large enough to provoke it.
  *
- * Qwen carries the answer now, and the churn turned out to be useful: with
- * extraction on Llama, answering on Qwen and auditing on gpt-oss, all three
- * stages run on different model families. Independence is a stronger property
- * here than it was when it merely meant two providers.
+ * Back on Llama 3.3, with a fallback rather than a hope. The fallback is
+ * deliberately the smaller Llama rather than a better model from another family,
+ * because ANSWER and VERIFIER must never share a lineage - degrading to a weaker
+ * answer is acceptable, degrading to an answer its own auditor cannot judge
+ * independently is not.
  */
-export const ANSWER_MODEL = 'qwen/qwen3.6-27b';
+export const ANSWER_MODEL = 'llama-3.3-70b-versatile';
+
+/** Used when the primary is rate limited or refuses. Same family, on purpose. */
+export const ANSWER_FALLBACK_MODEL = 'llama-3.1-8b-instant';
 
 /** Bulk extraction: query parsing, page extraction. Small and fast on purpose. */
 export const EXTRACTION_MODEL = 'llama-3.1-8b-instant';

@@ -60,7 +60,14 @@ export interface RetrievedChunk {
  */
 export async function retrieve(
   embedding: number[],
-  filters: { firmType?: string; country?: string; requireContact?: boolean; sinceDate?: string },
+  filters: {
+    firmType?: string;
+    country?: string;
+    requireContact?: boolean;
+    sinceDate?: string;
+    /** Restrict to chunk kinds. Contact facts live on profile chunks, activity on signal chunks. */
+    kinds?: string[];
+  },
   limit = 12,
 ): Promise<RetrievedChunk[]> {
   const sql = db();
@@ -77,6 +84,7 @@ export async function retrieve(
       AND (${filters.country ?? null}::text IS NULL OR f.country = ${filters.country ?? null})
       AND (${filters.requireContact ?? false} = FALSE OR f.has_phone OR f.has_email)
       AND (${filters.sinceDate ?? null}::date IS NULL OR f.latest_signal_on >= ${filters.sinceDate ?? null}::date)
+      AND (${filters.kinds ?? null}::text[] IS NULL OR c.kind = ANY(${filters.kinds ?? null}::text[]))
     ORDER BY distance ASC
     LIMIT ${limit}
   `;

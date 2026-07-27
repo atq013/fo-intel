@@ -8,7 +8,14 @@
  * Gemini answers, Groq audits. A model asked to check its own output shares its
  * own blind spots, so the attribution check must not run on the answering model.
  */
-import { ANSWER_MODEL, EMBEDDING_MODEL, EMBEDDING_DIMS, VERIFIER_MODEL, EXTRACTION_MODEL } from '@fo/core';
+import {
+  ANSWER_MODEL,
+  ANSWER_FALLBACK_MODEL,
+  EMBEDDING_MODEL,
+  EMBEDDING_DIMS,
+  VERIFIER_MODEL,
+  EXTRACTION_MODEL,
+} from '@fo/core';
 
 export async function embed(text: string): Promise<number[]> {
   const key = process.env.GEMINI_API_KEY;
@@ -31,11 +38,23 @@ export async function embed(text: string): Promise<number[]> {
 }
 
 export async function generateJson<T>(prompt: string, schema: object): Promise<T> {
+  // Compact, not pretty-printed: the indented form cost a few hundred tokens on
+  // every single call for no benefit to the model.
   const withShape = `${prompt}
 
-Respond with JSON only, matching this shape and adding no commentary:
-${JSON.stringify(schema, null, 2)}`;
-  return groq<T>(withShape, ANSWER_MODEL);
+Respond with JSON only, no commentary, matching: ${JSON.stringify(schema)}`;
+
+  try {
+    return await groq<T>(withShape, ANSWER_MODEL);
+  } catch (err) {
+    // Falling back is worth it for a daily ceiling or a refused generation. It is
+    // not worth it for a malformed request, which will fail identically.
+    const msg = err instanceof Error ? err.message : String(err);
+    const worthRetrying = err instanceof ServiceUnavailable || /json_validate_failed|429|tokens per day/i.test(msg);
+    if (!worthRetrying) throw err;
+    console.error(`answer model fell back to ${ANSWER_FALLBACK_MODEL}: ${msg.slice(0, 160)}`);
+    return groq<T>(withShape, ANSWER_FALLBACK_MODEL);
+  }
 }
 
 /**
@@ -70,9 +89,10 @@ async function groq<T>(prompt: string, model: string, attempts = 3): Promise<T> 
       return JSON.parse(json.choices[0]!.message.content) as T;
     }
 
-    last = `${res.status}`;
+    const body = (await res.text()).slice(0, 300);
+    last = `${res.status} ${body}`;
     // 429 and 5xx clear on their own; anything else will not.
-    if (res.status !== 429 && res.status < 500) throw new Error(`groq ${res.status}`);
+    if (res.status !== 429 && res.status < 500) throw new Error(`groq ${res.status}: ${body}`);
   }
   throw new ServiceUnavailable(`groq unavailable after ${attempts} attempts (${last})`);
 }

@@ -10,8 +10,16 @@
  */
 import { extractJson } from './llm.js';
 
+/**
+ * A field the question is specifically asking for. Detected with patterns rather
+ * than by the model, because it gates a refusal and a deterministic gate is worth
+ * more than a clever one.
+ */
+export type RequestedField = 'email' | 'phone' | 'aum' | 'sectors' | 'thesis' | 'website' | 'ranking' | null;
+
 export interface ParsedQuery {
   semanticQuery: string;
+  requestedField: RequestedField;
   firmType: 'single_family_office' | 'multi_family_office' | null;
   country: string | null;
   requireContact: boolean;
@@ -40,6 +48,24 @@ interface Raw {
   recency_months: number;
 }
 
+const FIELD_PATTERNS: Array<[RequestedField, RegExp]> = [
+  ['email', /\b(e-?mail|email address|contact address)\b/i],
+  ['phone', /\b(phone|telephone|call them|direct line|number to call)\b/i],
+  ['aum', /\b(aum|assets under management|how much .{0,20}manage|fund size|how big)\b/i],
+  ['sectors', /\b(sectors?|industry|industries|asset class(es)?|what do they invest in)\b/i],
+  ['thesis', /\b(thesis|strategy|investment approach|mandate)\b/i],
+  ['aum', /\bhow much .{0,25}(manage|worth)\b/i],
+  ['website', /\b(website|web site|url|homepage)\b/i],
+  ['ranking', /\b(largest|biggest|smallest|top \d+|rank|ranked|most active|wealthiest)\b/i],
+];
+
+export function detectRequestedField(question: string): RequestedField {
+  for (const [field, re] of FIELD_PATTERNS) {
+    if (re.test(question)) return field;
+  }
+  return null;
+}
+
 const COUNTRY_CANON: Record<string, string> = {
   uk: 'United Kingdom', 'united kingdom': 'United Kingdom', britain: 'United Kingdom', england: 'United Kingdom',
   us: 'United States', usa: 'United States', 'united states': 'United States', america: 'United States',
@@ -48,6 +74,7 @@ const COUNTRY_CANON: Record<string, string> = {
 export async function parseQuery(question: string): Promise<ParsedQuery> {
   const fallback: ParsedQuery = {
     semanticQuery: question,
+    requestedField: detectRequestedField(question),
     firmType: null,
     country: null,
     requireContact: false,
@@ -58,17 +85,32 @@ export async function parseQuery(question: string): Promise<ParsedQuery> {
   let raw: Raw;
   try {
     raw = await extractJson<Raw>(
-      `Extract search constraints from this question about a family office database.
+      `Extract search constraints from this question about a family office database. Respond with JSON.
 
-QUESTION: ${question}
-
+Fields:
 - semantic_query: the topic to match on, with constraints removed. If the question is purely a filter, restate what kind of firm is wanted.
 - firm_type: "single_family_office" only if the question asks specifically for single-family offices; "multi_family_office" likewise; otherwise "any".
 - country: the country named, or "" if none. Use the full country name.
-- require_contact: true only if the question asks for firms you can contact or reach.
+- require_contact: true whenever the question is about reaching, contacting, calling, emailing or phoning firms.
 - recency_months: if the question asks about recent activity, how many months back; otherwise 0.
 
-Report only what the question actually says. Do not infer constraints the user did not state.`,
+Examples:
+
+Q: "Single-family offices in the United Kingdom"
+{"semantic_query":"single-family office","firm_type":"single_family_office","country":"United Kingdom","require_contact":false,"recency_months":0}
+
+Q: "Family offices I can actually reach by phone"
+{"semantic_query":"family office with a direct phone number","firm_type":"any","country":"","require_contact":true,"recency_months":0}
+
+Q: "Which firms have filed something recently?"
+{"semantic_query":"recent regulatory filing activity","firm_type":"any","country":"","require_contact":false,"recency_months":12}
+
+Q: "Who runs Duquesne Family Office?"
+{"semantic_query":"Duquesne Family Office principal","firm_type":"any","country":"","require_contact":false,"recency_months":0}
+
+Now do the same for this question. Report only what it actually says; do not invent constraints.
+
+QUESTION: ${question}`,
       SCHEMA,
     );
   } catch {
@@ -96,6 +138,7 @@ Report only what the question actually says. Do not infer constraints the user d
 
   return {
     semanticQuery: raw.semantic_query?.trim() || question,
+    requestedField: detectRequestedField(question),
     firmType,
     country,
     requireContact: Boolean(raw.require_contact),

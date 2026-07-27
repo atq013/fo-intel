@@ -1,17 +1,17 @@
 {
-  "ranAt": "2026-07-27T07:16:01.238Z",
+  "ranAt": "2026-07-27T07:53:04.434Z",
   "summary": {
     "total": 15,
-    "correct": 13,
-    "accuracy": 0.8666666666666667,
+    "correct": 14,
+    "accuracy": 0.9333333333333333,
     "shouldAnswer": 5,
     "shouldDecline": 8,
     "falseNegativeRate": 0,
-    "falsePositiveRate": 0,
-    "serviceFailures": 2,
-    "totalClaimsKept": 11,
-    "totalClaimsDropped": 1,
-    "medianMs": 4914
+    "falsePositiveRate": 0.2,
+    "serviceFailures": 0,
+    "totalClaimsKept": 36,
+    "totalClaimsDropped": 34,
+    "medianMs": 9578
   },
   "rows": [
     {
@@ -19,27 +19,51 @@
       "expect": "either",
       "got": "answer",
       "correct": true,
-      "claimsKept": 1,
-      "claimsDropped": 0,
+      "claimsKept": 5,
+      "claimsDropped": 3,
       "leakage": [],
       "declineReason": null,
       "serviceError": false,
-      "ms": 10582
+      "ms": 15241
     },
     {
       "question": "Single-family offices in the United Kingdom",
       "expect": "answer",
-      "got": "decline",
-      "correct": false,
-      "claimsKept": 0,
-      "claimsDropped": 0,
+      "got": "answer",
+      "correct": true,
+      "claimsKept": 11,
+      "claimsDropped": 13,
       "leakage": [],
-      "declineReason": "Something went wrong composing the answer. The underlying records are unaffected.",
-      "serviceError": true,
-      "ms": 7224
+      "declineReason": null,
+      "serviceError": false,
+      "ms": 14477
     },
     {
       "question": "Which family offices are based in the United States?",
+      "expect": "answer",
+      "got": "decline",
+      "correct": false,
+      "claimsKept": 0,
+      "claimsDropped": 8,
+      "leakage": [],
+      "declineReason": "An answer was drafted but none of it held up against the underlying records, so it was withheld.",
+      "serviceError": false,
+      "ms": 9846
+    },
+    {
+      "question": "Family offices I can reach by phone",
+      "expect": "answer",
+      "got": "answer",
+      "correct": true,
+      "claimsKept": 12,
+      "claimsDropped": 0,
+      "leakage": [],
+      "declineReason": null,
+      "serviceError": false,
+      "ms": 14793
+    },
+    {
+      "question": "Which firms have filed something recently?",
       "expect": "answer",
       "got": "answer",
       "correct": true,
@@ -48,43 +72,19 @@
       "leakage": [],
       "declineReason": null,
       "serviceError": false,
-      "ms": 10640
-    },
-    {
-      "question": "Family offices I can reach by phone",
-      "expect": "answer",
-      "got": "answer",
-      "correct": true,
-      "claimsKept": 4,
-      "claimsDropped": 0,
-      "leakage": [],
-      "declineReason": null,
-      "serviceError": false,
-      "ms": 9221
-    },
-    {
-      "question": "Which firms have filed something recently?",
-      "expect": "answer",
-      "got": "decline",
-      "correct": false,
-      "claimsKept": 0,
-      "claimsDropped": 0,
-      "leakage": [],
-      "declineReason": "Something went wrong composing the answer. The underlying records are unaffected.",
-      "serviceError": true,
-      "ms": 6743
+      "ms": 12457
     },
     {
       "question": "Family offices in London",
       "expect": "answer",
       "got": "answer",
       "correct": true,
-      "claimsKept": 2,
-      "claimsDropped": 0,
+      "claimsKept": 5,
+      "claimsDropped": 3,
       "leakage": [],
       "declineReason": null,
       "serviceError": false,
-      "ms": 9269
+      "ms": 13270
     },
     {
       "question": "Tell me about the Rockefeller family office",
@@ -92,11 +92,11 @@
       "got": "decline",
       "correct": true,
       "claimsKept": 0,
-      "claimsDropped": 0,
+      "claimsDropped": 1,
       "leakage": [],
-      "declineReason": "The records retrieved do not contain enough to answer that question.",
+      "declineReason": "An answer was drafted but none of it held up against the underlying records, so it was withheld.",
       "serviceError": false,
-      "ms": 3480
+      "ms": 9578
     },
     {
       "question": "What is Bridgewater Associates?",
@@ -104,11 +104,11 @@
       "got": "decline",
       "correct": true,
       "claimsKept": 0,
-      "claimsDropped": 0,
+      "claimsDropped": 1,
       "leakage": [],
-      "declineReason": "The records retrieved do not contain enough to answer that question.",
+      "declineReason": "An answer was drafted but none of it held up against the underlying records, so it was withheld.",
       "serviceError": false,
-      "ms": 3577
+      "ms": 9040
     },
     {
       "question": "Which family offices are based in Antarctica?",
@@ -118,9 +118,9 @@
       "claimsKept": 0,
       "claimsDropped": 0,
       "leakage": [],
-      "declineReason": "The records retrieved do not contain enough to answer that question.",
+      "declineReason": "No firms in the dataset match those criteria (located in Antarctica).",
       "serviceError": false,
-      "ms": 4203
+      "ms": 3069
     },
     {
       "question": "What is the AUM of Duquesne Family Office?",
@@ -130,9 +130,9 @@
       "claimsKept": 0,
       "claimsDropped": 0,
       "leakage": [],
-      "declineReason": "The records retrieved do not contain enough to answer that question.",
+      "declineReason": "Assets under management are not held for any firm in this dataset. No free statutory source publishes it, so the field is blank throughout rather than estimated.",
       "serviceError": false,
-      "ms": 4914
+      "ms": 3136
     },
     {
       "question": "What sectors does Kopp Family Office invest in?",
@@ -142,9 +142,9 @@
       "claimsKept": 0,
       "claimsDropped": 0,
       "leakage": [],
-      "declineReason": "The records retrieved do not contain enough to answer that question.",
+      "declineReason": "Investment sectors are not held for any firm in this dataset. The field is blank throughout rather than inferred.",
       "serviceError": false,
-      "ms": 4468
+      "ms": 3100
     },
     {
       "question": "What is the email address for Francis Family Office?",
@@ -154,9 +154,9 @@
       "claimsKept": 0,
       "claimsDropped": 0,
       "leakage": [],
-      "declineReason": "The records retrieved do not contain enough to answer that question.",
+      "declineReason": "No verified email address is held for the firms matching that question. Where an address could not be confirmed it is left blank rather than guessed.",
       "serviceError": false,
-      "ms": 3692
+      "ms": 4041
     },
     {
       "question": "Which is the largest family office in the dataset?",
@@ -166,21 +166,21 @@
       "claimsKept": 0,
       "claimsDropped": 0,
       "leakage": [],
-      "declineReason": "The records retrieved do not contain enough to answer that question.",
+      "declineReason": "This dataset holds no size or performance measure, so firms cannot be ranked. Ranking them would require a number that does not exist in any record.",
       "serviceError": false,
-      "ms": 3463
+      "ms": 2547
     },
     {
       "question": "Which family offices are most likely to invest in AI startups?",
       "expect": "either",
-      "got": "answer",
+      "got": "decline",
       "correct": true,
-      "claimsKept": 1,
-      "claimsDropped": 0,
+      "claimsKept": 0,
+      "claimsDropped": 4,
       "leakage": [],
-      "declineReason": null,
+      "declineReason": "An answer was drafted but none of it held up against the underlying records, so it was withheld.",
       "serviceError": false,
-      "ms": 8893
+      "ms": 10245
     },
     {
       "question": "Rank UK family offices by assets under management",
@@ -190,9 +190,9 @@
       "claimsKept": 0,
       "claimsDropped": 0,
       "leakage": [],
-      "declineReason": "The records retrieved do not contain enough to answer that question.",
+      "declineReason": "Assets under management are not held for any firm in this dataset. No free statutory source publishes it, so the field is blank throughout rather than estimated.",
       "serviceError": false,
-      "ms": 4341
+      "ms": 2952
     }
   ]
 }

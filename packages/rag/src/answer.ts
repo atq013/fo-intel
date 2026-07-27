@@ -16,6 +16,7 @@
  * control that never fires is not a control.
  */
 import { retrieve, getFirms, logQuery, type RetrievedChunk } from '@fo/db';
+import type { RequestedField } from './query.js';
 import { checkAttribution, type Claim, type CheckedClaim } from './attribution.js';
 import { parseQuery, type ParsedQuery } from './query.js';
 import { embed, generateJson, ServiceUnavailable } from './llm.js';
@@ -58,6 +59,33 @@ export interface AnswerResult {
  */
 const MAX_DISTANCE = 0.62;
 
+/** What to tell the user when the file simply does not carry the field they asked for. */
+const FIELD_ABSENT: Record<NonNullable<RequestedField>, string> = {
+  email: 'No verified email address is held for the firms matching that question. Where an address could not be confirmed it is left blank rather than guessed.',
+  phone: 'No verified phone number is held for the firms matching that question.',
+  aum: 'Assets under management are not held for any firm in this dataset. No free statutory source publishes it, so the field is blank throughout rather than estimated.',
+  sectors: 'Investment sectors are not held for any firm in this dataset. The field is blank throughout rather than inferred.',
+  thesis: 'Investment thesis is not held for any firm in this dataset.',
+  website: 'No confirmed website is held for the firms matching that question.',
+  ranking: 'This dataset holds no size or performance measure, so firms cannot be ranked. Ranking them would require a number that does not exist in any record.',
+};
+
+/** True when at least one of these firms actually carries the requested field. */
+async function fieldIsHeld(field: NonNullable<RequestedField>, firmIds: string[]): Promise<boolean> {
+  if (field === 'ranking' || field === 'aum' || field === 'sectors' || field === 'thesis') return false;
+  if (firmIds.length === 0) return false;
+
+  const rows = await getFirms(firmIds);
+  return rows.some((row) => {
+    const r = row.record;
+    const p = r.principals?.[0];
+    if (field === 'email') return Boolean(p?.email?.value);
+    if (field === 'phone') return Boolean(p?.phone?.value);
+    if (field === 'website') return Boolean(r.website?.value);
+    return false;
+  });
+}
+
 const ANSWER_SCHEMA = {
   type: 'object',
   properties: {
@@ -76,9 +104,20 @@ const ANSWER_SCHEMA = {
   required: ['claims'],
 };
 
+/**
+ * Sources sent to the answering model. Deliberately fewer and shorter than what
+ * retrieval returns: a 14-chunk prompt costs about 3,900 tokens, which exceeds
+ * the smaller model's 6,000-per-minute budget once the schema and question are
+ * added, so every fallback failed too and the user saw "not enough records" when
+ * the truth was "prompt too large".
+ */
+const MAX_SOURCES_IN_PROMPT = 8;
+const MAX_SOURCE_CHARS = 320;
+
 function answerPrompt(question: string, chunks: RetrievedChunk[]): string {
   const sources = chunks
-    .map((c) => `[${c.id}] ${c.legal_name} (${c.firm_type}) — ${c.field_path}\n    ${c.content}`)
+    .slice(0, MAX_SOURCES_IN_PROMPT)
+    .map((c) => `[${c.id}] ${c.legal_name} (${c.firm_type})\n    ${c.content.slice(0, MAX_SOURCE_CHARS)}`)
     .join('\n');
 
   return `Answer a question from an investor relations professional using ONLY the sources below.
@@ -114,6 +153,11 @@ export async function answerQuestion(question: string): Promise<AnswerResult> {
       country: parsed.country ?? undefined,
       requireContact: parsed.requireContact,
       sinceDate: parsed.sinceDate ?? undefined,
+      // Whether a firm is reachable is a property of its profile, not of its
+      // filing history. Asked "who can I phone", unrestricted retrieval fills the
+      // context with signal chunks about quarterly holdings, and the model then
+      // correctly concludes the sources do not answer the question.
+      kinds: parsed.requireContact ? ['profile'] : undefined,
     },
     14,
   );
@@ -158,11 +202,23 @@ export async function answerQuestion(question: string): Promise<AnswerResult> {
 
   const usable = chunks.filter((c) => Number(c.distance) <= MAX_DISTANCE + 0.12);
 
+  // If the question asks for a specific field, check we actually hold it before
+  // generating. Without this the model answers a question about sectors with
+  // true statements about location - every claim supported, none responsive - and
+  // the attribution audit passes them all, because grounding is not relevance.
+  if (parsed.requestedField) {
+    const held = await fieldIsHeld(parsed.requestedField, [...new Set(usable.map((c) => c.firm_id))]);
+    if (!held) {
+      return decline(FIELD_ABSENT[parsed.requestedField]);
+    }
+  }
+
   const tGen = Date.now();
   let drafted: { claims: Array<{ text: string; cited_chunk_ids: string[] }> };
   try {
     drafted = await generateJson(answerPrompt(question, usable), ANSWER_SCHEMA);
   } catch (err) {
+    console.error('answer generation failed:', err instanceof Error ? err.message : err);
     const unavailable = err instanceof ServiceUnavailable;
     return decline(
       unavailable
@@ -179,6 +235,9 @@ export async function answerQuestion(question: string): Promise<AnswerResult> {
   }));
 
   if (claims.length === 0) {
+    console.error(
+      `no claims drafted: ${usable.length} usable chunks, nearest distance ${nearest.toFixed(3)}, question "${question}"`,
+    );
     return decline('The records retrieved do not contain enough to answer that question.');
   }
 

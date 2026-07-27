@@ -13,7 +13,7 @@ do next.
 | Store | Neon Postgres + pgvector | one store for structured filters and vectors; no second system to keep in sync |
 | App | Next.js on Vercel | serverless cold start is a few hundred ms. Free container hosts idle down and cold-start around fifty seconds, and a blank minute on a page whose entire purpose is "open it and ask" is a failed deliverable |
 | Embeddings | `gemini-embedding-001` at 1536 dims | metered separately from generation, which is why it kept working after generation quota ran out |
-| Answering | `qwen/qwen3.6-27b` (Groq) | see below |
+| Answering | `llama-3.3-70b-versatile`, falling back to `llama-3.1-8b-instant` (Groq) | see below |
 | Auditing | `openai/gpt-oss-120b` (Groq) | different model family from the answerer |
 | Extraction | `llama-3.1-8b-instant` (Groq) | bulk work; every output is mechanically checked anyway |
 
@@ -21,14 +21,23 @@ do next.
 cannot index it — both hnsw and ivfflat cap at 2000. 1536 indexes cleanly with
 hnsw and costs nothing measurable at this corpus size.
 
-**Three answer models in one build**, which is worth recording honestly. Gemini
-Flash first, until its free generation quota — a few hundred calls a day — was
-spent by a single bulk extraction pass. Then Llama 3.3 70B, until that hit Groq's
-100,000 tokens-per-day ceiling during evaluation. Now Qwen.
+**The answer model moved three times**, and the history is worth recording.
 
-The churn produced a better property than I designed for. Extraction runs on
-Llama, answering on Qwen, auditing on gpt-oss: **three different model families**.
-The requirement was never "two providers" — it was that the model checking an
+Gemini Flash first, until its free generation quota — a few hundred calls a day —
+was spent by a single bulk extraction pass. Then Llama 3.3 70B, until evaluation
+exhausted Groq's 100,000 tokens-per-day ceiling. Then Qwen, which returned HTTP
+200 with an empty body: it is a reasoning model and spent its whole output budget
+on thinking tokens. **That failure only appeared in production**, on a prompt large
+enough to provoke it, which is a fair argument for testing against the deployed
+system rather than only locally.
+
+Back on Llama 3.3, now with a fallback rather than a hope. The fallback is
+deliberately the *smaller Llama* rather than a stronger model from another family,
+because the answerer and the auditor must never share a lineage. Degrading to a
+weaker answer is acceptable; degrading to an answer its own auditor cannot judge
+independently is not.
+
+The requirement was never "two providers" — it is that the model checking an
 answer must not be the model that wrote it, because a model auditing itself shares
 its own blind spots.
 
@@ -93,12 +102,17 @@ is supposed to **refuse**. A system that answers everything scores zero here.
 | | |
 |---|---|
 | Cases | 15 |
-| Correct | **13 (87%)** |
+| Correct | **14 (93%)** |
 | **False negative rate** (answered when it should have refused) | **0%** |
-| False positive rate (refused when it could have answered) | **0%** |
-| Claims kept / dropped | 11 / 1 |
-| Provider outages (excluded from both rates) | 2 |
-| Median latency | 4.9s |
+| False positive rate (refused when it could have answered) | 20% (1 of 5) |
+| Claims kept / dropped | 36 / 34 |
+| Provider outages | 0 |
+| Median latency | 9.6s |
+
+The one false positive is "Which family offices are based in the United States?",
+where the drafted claims did not survive the audit and the answer was withheld.
+Withholding is the safe direction to fail in, but it is a real cost: the records
+exist and the user got nothing.
 
 False negative rate is the number that matters. Framed as a validation layer, the
 dangerous error is letting an unsupported claim through, because it then ships
@@ -108,6 +122,45 @@ with the system's confidence behind it.
 declines. Telling a user "there is not enough evidence" when the truth is "we were
 rate limited" is a false statement about their data, so the two are distinguished
 in the code and in the interface.
+
+An earlier run of this same suite reported 0% on both rates with 2 outages, and
+that number was partly luck: rate limiting was suppressing answers that would
+otherwise have been wrong. Measuring a control while the infrastructure beneath it
+is failing flatters it. The numbers above come from a run with zero outages.
+
+## Three defects this evaluation found
+
+**Junk evidence became a citable fact.** The profile chunk embedded the raw
+classification quote. For Duquesne that quote was `page states: "Duquesne Family
+Office Stanley Druckenmiller 7"` - a scraped LinkedIn fragment. The model then
+cited it to claim Druckenmiller runs the firm, and the auditor passed the claim,
+correctly: the text genuinely was in the retrieved source.
+
+Two fixes. The informativeness check now strips the firm's name token by token
+rather than as one string, so a quote using a shorter form of the name no longer
+survives on the strength of its own subject. And the embedded chunk now carries
+the classification *conclusion and source class* rather than the raw quote. The
+full quote stays on the record for the provenance disclosure, where a human reads
+it, rather than in the corpus, where a model can cite it.
+
+**Grounding is not relevance.** Asked what sectors a firm invests in - a field
+blank throughout the file - the system returned nine true statements about that
+firm's location and type. Every claim supported, none responsive, and the audit
+passed them all because it checks support.
+
+The fix is a deterministic field gate rather than a relevance judge: patterns
+detect when a question asks for a specific field, and the system checks whether
+any retrieved record actually holds it before generating. AUM, sectors, thesis and
+ranking are refused outright, because no record carries them. A regex gate is
+worth more than a cleverer one here, because it decides a refusal.
+
+**Prompt size was silently breaking the fallback.** A 14-chunk prompt costs about
+3,900 tokens. The fallback model's ceiling is 6,000 per minute, so once the
+primary hit its daily cap the fallback failed too, and the user saw "not enough
+records" when the truth was "prompt too large". Sources sent to the model are now
+capped at 8, truncated to 320 characters, and the schema is echoed compactly
+rather than pretty-printed: roughly 510 tokens. The system now degrades to the
+smaller model instead of failing.
 
 ## Two cases that changed my mind
 

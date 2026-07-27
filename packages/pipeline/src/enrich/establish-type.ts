@@ -106,8 +106,20 @@ const TYPE_BEARING =
 function quoteIsInformative(quote: string, firmName: string): boolean {
   const q = norm(quote);
   if (q.split(' ').length < 6) return false;
-  const withoutName = q.replace(norm(firmName), '').trim();
-  if (withoutName.split(' ').filter(Boolean).length < 4) return false;
+
+  // Strip the firm's name TOKEN BY TOKEN, not as one string. Removing the whole
+  // string only works when the quote uses the exact registered name; a quote
+  // saying "Duquesne Family Office Stanley Druckenmiller 7" kept all six words
+  // against the name "Duquesne Family Office LLC" and passed as informative,
+  // when it is a scraped page fragment that establishes nothing.
+  const nameTokens = new Set(norm(firmName).split(' ').filter(Boolean));
+  const remaining = q.split(' ').filter((w) => w && !nameTokens.has(w));
+  if (remaining.length < 5) return false;
+
+  // A quote that is mostly digits or single characters is page furniture.
+  const substantive = remaining.filter((w) => w.length > 2 && !/^\d+$/.test(w));
+  if (substantive.length < 4) return false;
+
   return TYPE_BEARING.test(quote);
 }
 

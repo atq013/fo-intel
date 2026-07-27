@@ -47,7 +47,14 @@ function chunksFor(r: FamilyOffice): Chunk[] {
     r.street.value ? `Registered address: ${[r.street.value, r.city.value, r.postcode.value].filter(Boolean).join(', ')}.` : '',
     p?.phone.value ? `A direct phone number is on record.` : '',
     p?.email.value ? `A verified email address is on record.` : '',
-    r.classification.evidence[0] ? `Classification basis: ${r.classification.evidence[0].method}` : '',
+    // Deliberately the source CLASS, not the source quote. Embedding raw quotes
+    // put a scraped fragment - "Duquesne Family Office Stanley Druckenmiller 7" -
+    // into the corpus, where the model could cite it and the auditor would pass
+    // it, because it genuinely was in the retrieved text. The full quote stays on
+    // the record for the provenance disclosure in the interface.
+    r.classification.evidence[0]
+      ? `Classified as ${typeLabel} on the evidence of ${r.classification.evidence[0].sourceClass.replace(/_/g, ' ')}.`
+      : '',
   ]
     .filter(Boolean)
     .join(' ');
