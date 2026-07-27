@@ -81,8 +81,11 @@ export function isOwnDomain(url: string, firmName: string, pageText?: string): b
 
   // A single token has to be distinctive, and even then the page must name the
   // firm - otherwise "cascade" matches any firm with cascade in its domain.
+  // A short single token needs the page to name the firm before it counts.
+  // "kopp" alone could be anyone; kopp.com whose page says "Kopp Family Office"
+  // could not.
   const token = matched[0]!;
-  if (token.length < 6) return false;
+  if (token.length < 4) return false;
   if (!pageText) return false;
   return nameCompact.length >= 6 && compact(pageText).includes(nameCompact);
 }

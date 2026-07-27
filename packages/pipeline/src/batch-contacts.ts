@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import { existsSync, readFileSync, writeFileSync, appendFileSync } from 'node:fs';
 import { buildDataset } from './emit/build-dataset.js';
+import { selectFinal } from './emit/select-final.js';
 import { findWebsite } from './enrich/find-website.js';
 import { findContacts, hunterUsage, type ContactFinding } from './enrich/contacts.js';
 import { isCustomerFacing } from './validate/email-verify.js';
@@ -8,7 +9,7 @@ import { serperUsage } from './lib/serper.js';
 
 const OUT = 'data/contact-findings.json';
 const LOG = 'data/contacts.log';
-const DEADLINE_MS = Number(process.env.CONTACT_MINUTES ?? 80) * 60_000;
+const DEADLINE_MS = Number(process.env.CONTACT_MINUTES ?? 110) * 60_000;
 
 function log(msg: string) {
   const line = `${new Date().toISOString().slice(11, 19)}  ${msg}`;
@@ -19,7 +20,10 @@ function log(msg: string) {
 interface Stored { website: string | null; websiteBasis: string; contacts: ContactFinding }
 const stored: Record<string, Stored> = existsSync(OUT) ? JSON.parse(readFileSync(OUT, 'utf8')) : {};
 
-const { records } = buildDataset();
+// Enrich only what actually ships. Spending Hunter credits on held-back records
+// wastes a fixed budget on rows no customer will see.
+const { records: qualifying } = buildDataset();
+const records = selectFinal(qualifying, 50).selected;
 const started = Date.now();
 
 // Records with the strongest classification first: if we run out of time, the
