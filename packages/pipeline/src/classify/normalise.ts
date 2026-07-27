@@ -23,16 +23,29 @@ const COUNTRY_ALIASES: Array<[RegExp, string]> = [
   [/^(singapore|sg)$/i, 'Singapore'],
 ];
 
-/** US state codes and names, for the many records that only carry a state. */
+/**
+ * US states, by code and by full name. Records frequently carry only a state -
+ * SEC addresses give "NY", web extraction gives "New York" - and left alone each
+ * becomes its own row in the country facet a customer filters on.
+ */
 const US_STATES = new Set([
   'al','ak','az','ar','ca','co','ct','de','fl','ga','hi','id','il','in','ia','ks','ky','la','me','md','ma','mi','mn',
   'ms','mo','mt','ne','nv','nh','nj','nm','ny','nc','nd','oh','ok','or','pa','ri','sc','sd','tn','tx','ut','vt','va',
   'wa','wv','wi','wy','dc','vi','pr',
+  'alabama','alaska','arizona','arkansas','california','colorado','connecticut','delaware','florida','georgia',
+  'hawaii','idaho','illinois','indiana','iowa','kansas','kentucky','louisiana','maine','maryland','massachusetts',
+  'michigan','minnesota','mississippi','missouri','montana','nebraska','nevada','new hampshire','new jersey',
+  'new mexico','new york','north carolina','north dakota','ohio','oklahoma','oregon','pennsylvania','rhode island',
+  'south carolina','south dakota','tennessee','texas','utah','vermont','virginia','washington','west virginia',
+  'wisconsin','wyoming','district of columbia',
 ]);
+
+/** Values web extraction returns when the page named no location. */
+const NOT_A_COUNTRY = /^(unclear|unknown|n\/a|none|global|international|worldwide|various|multiple)$/i;
 
 export function normaliseCountry(raw: string): string {
   const v = (raw ?? '').trim();
-  if (!v) return '';
+  if (!v || NOT_A_COUNTRY.test(v)) return '';
 
   for (const [re, canonical] of COUNTRY_ALIASES) {
     if (re.test(v)) return canonical;

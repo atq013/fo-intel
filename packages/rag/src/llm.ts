@@ -38,22 +38,43 @@ ${JSON.stringify(schema, null, 2)}`;
   return groq<T>(withShape, ANSWER_MODEL);
 }
 
-async function groq<T>(prompt: string, model: string): Promise<T> {
+/**
+ * Marks failures that are the provider being busy rather than the records being
+ * insufficient. The distinction matters: telling a user "there is not enough
+ * evidence" when the truth is "we were rate limited" is a false statement about
+ * their data.
+ */
+export class ServiceUnavailable extends Error {}
+
+async function groq<T>(prompt: string, model: string, attempts = 3): Promise<T> {
   const key = process.env.GROQ_API_KEY;
   if (!key) throw new Error('GROQ_API_KEY not set');
-  const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      model,
-      temperature: 0,
-      response_format: { type: 'json_object' },
-      messages: [{ role: 'user', content: prompt }],
-    }),
-  });
-  if (!res.ok) throw new Error(`groq ${res.status}`);
-  const json = (await res.json()) as { choices: Array<{ message: { content: string } }> };
-  return JSON.parse(json.choices[0]!.message.content) as T;
+
+  let last = '';
+  for (let i = 0; i < attempts; i++) {
+    if (i > 0) await new Promise((r) => setTimeout(r, 900 * 2 ** i));
+
+    const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model,
+        temperature: 0,
+        response_format: { type: 'json_object' },
+        messages: [{ role: 'user', content: prompt }],
+      }),
+    });
+
+    if (res.ok) {
+      const json = (await res.json()) as { choices: Array<{ message: { content: string } }> };
+      return JSON.parse(json.choices[0]!.message.content) as T;
+    }
+
+    last = `${res.status}`;
+    // 429 and 5xx clear on their own; anything else will not.
+    if (res.status !== 429 && res.status < 500) throw new Error(`groq ${res.status}`);
+  }
+  throw new ServiceUnavailable(`groq unavailable after ${attempts} attempts (${last})`);
 }
 
 /** The independent auditor. Never the answering model. */

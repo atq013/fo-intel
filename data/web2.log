@@ -27,3 +27,68 @@ web discovery: conference programmes, job postings, news
   news                   +  0  "single family office" launches OR opens office 2026
   news                   +  6  "family office" backs startup funding round 2026
   news                   +  3  "family office" acquires stake 2026 announcement
+  news                   + 20  "the family office of" billionaire investment 2026
+  news                   +  0  "family office" commits to fund 2026
+  news                   +  1  "family investment office" news 2026
+  news                   +  0  "family office" opens Singapore OR Dubai office 2026
+  news                   +  0  "family office" hires head of private equity 2026
+  news                   +  0  "family office" real estate acquisition 2026 announcement
+
+queries run:        33  (serper calls used: 33)
+pages fetched:      132
+firms extracted:    264
+dropped, quote not found in page: 9
+unique candidates:  209
+
+by channel:
+  conference_programme     127
+  job_posting              36
+  news                     46
+
+=== sample ===
+  Hirshmark Capital                             unclear                 
+  The Alduaij family office                     single_family_office    Kuwait
+      Mohammad Al Duaij - CEO
+  Alea Global Group                             multi_family_office     
+      Mohamed Badr - 
+  Al-Daw Holding                                unclear                 Kuwait
+      Bader Al Sayer - CEO
+  AlMal Investment Company                      unclear                 Kuwait
+      Sara Al Ateeqi - CEO & Vice Chairman
+  Al Ameeri Group Holding                       unclear                 Kuwait
+      Ahmad Musaed Al Ameeri - CEO
+  Al Bahar & Emad AlFaraj Real Estate Group     unclear                 Kuwait
+      Sabeekah Mohammad AlBahar - Managing Partner
+  Al Fardan Holdings                            unclear                 UAE
+      Mohammed Al Fardan - CEO
+  Al Rajhi Ekhwan                               unclear                 Kingdom of Saudi Ara
+      Sunil Dhall - Investment Management
+  Al Siraj Holdings                             unclear                 Sultanate Of Oman
+      Abhineet Singh - Chief Investment officer
+  Alteia Capital                                unclear                 Kingdom of Saudi Ara
+      Hasan Juma - Chief Executive Officer
+  DC Finance                                    unclear                 Texas
+  CAASA                                         unclear                 Toronto, Ontario
+  Campden Wealth                                unclear                 Switzerland (Lucerne
+  Institute for Private Investors               unclear                 New York, NY
+  Prestel & Partner                             unclear                 UK and international
+  Pandan Ventures                               unclear                 Singapore
+      Chris - Managing Partner
+  JRT Partners                                  unclear                 Singapore
+      Tuck Meng Yee - Partner
+  Vedas Group                                   unclear                 Singapore
+      Shreyas Slater Chityala - Managing Partner
+  Medway Investments                            unclear                 Singapore
+      Eric SayWei Neo - Executive Board Director
+  The Kanoo Group                               unclear                 Gulf region
+      Mishal Kanoo - Chairman
+  Dalma Capital                                 unclear                 Gulf region
+      Mishal Kanoo - Chairman/Director
+  KHK & Partners Limited                        unclear                 Gulf region
+      Mishal Kanoo - Chairman/Director
+  Johnson Arabia LLC                            unclear                 Gulf region
+      Mishal Kanoo - Chairman/Director
+  KAAF Investments                              unclear                 Gulf region
+      Mishal Kanoo - Chairman/Director
+
+wrote 209 candidates to data/candidates-web.json

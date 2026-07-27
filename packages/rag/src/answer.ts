@@ -18,7 +18,7 @@
 import { retrieve, getFirms, logQuery, type RetrievedChunk } from '@fo/db';
 import { checkAttribution, type Claim, type CheckedClaim } from './attribution.js';
 import { parseQuery, type ParsedQuery } from './query.js';
-import { embed, generateJson } from './llm.js';
+import { embed, generateJson, ServiceUnavailable } from './llm.js';
 
 export interface FirmSummary {
   id: string;
@@ -44,6 +44,8 @@ export interface AnswerResult {
   parsed: ParsedQuery;
   answered: boolean;
   declineReason: string | null;
+  /** True when the answer is missing because a provider failed, not because the evidence was thin. */
+  serviceError: boolean;
   claims: CheckedClaim[];
   droppedClaims: CheckedClaim[];
   firms: FirmSummary[];
@@ -117,12 +119,13 @@ export async function answerQuestion(question: string): Promise<AnswerResult> {
   );
   const retrievalMs = Date.now() - tRetrieve;
 
-  const decline = async (reason: string): Promise<AnswerResult> => {
+  const decline = async (reason: string, serviceError = false): Promise<AnswerResult> => {
     const result: AnswerResult = {
       question,
       parsed,
       answered: false,
       declineReason: reason,
+      serviceError,
       claims: [],
       droppedClaims: [],
       firms: [],
@@ -159,8 +162,14 @@ export async function answerQuestion(question: string): Promise<AnswerResult> {
   let drafted: { claims: Array<{ text: string; cited_chunk_ids: string[] }> };
   try {
     drafted = await generateJson(answerPrompt(question, usable), ANSWER_SCHEMA);
-  } catch {
-    return decline('The answering service is temporarily unavailable. The underlying records are unaffected.');
+  } catch (err) {
+    const unavailable = err instanceof ServiceUnavailable;
+    return decline(
+      unavailable
+        ? 'The answering service is busy right now. This is not a statement about the records - please try again in a moment.'
+        : 'Something went wrong composing the answer. The underlying records are unaffected.',
+      true,
+    );
   }
   const generationMs = Date.now() - tGen;
 
@@ -250,6 +259,7 @@ export async function answerQuestion(question: string): Promise<AnswerResult> {
     parsed,
     answered: true,
     declineReason: null,
+    serviceError: false,
     claims: kept,
     droppedClaims: dropped,
     firms,

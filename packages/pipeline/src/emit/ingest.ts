@@ -13,6 +13,7 @@ import 'dotenv/config';
 import { neon } from '@neondatabase/serverless';
 import type { FamilyOffice } from '@fo/core';
 import { buildDataset } from './build-dataset.js';
+import { selectFinal } from './select-final.js';
 import { embed } from '../lib/llm.js';
 
 const url = process.env.DATABASE_URL;
@@ -66,7 +67,9 @@ function chunksFor(r: FamilyOffice): Chunk[] {
   return out;
 }
 
-const { records, rejected, stats } = buildDataset();
+const { records: qualifying, rejected, stats } = buildDataset();
+// Only the delivered file is served. Held-back records stay in the audit trail.
+const { records } = { records: selectFinal(qualifying, 50).selected };
 console.log(`building index for ${records.length} records`);
 
 await sql`TRUNCATE firm_chunks, firms RESTART IDENTITY CASCADE`;
