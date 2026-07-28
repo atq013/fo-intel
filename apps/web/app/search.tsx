@@ -192,7 +192,7 @@ export default function Search() {
                           ) : (
                             f.principal
                           )}
-                          {f.principalTitle ? ` — ${f.principalTitle}` : ''}
+                          {f.principalTitle ? ` | ${f.principalTitle}` : ''}
                           {f.principalControl && (
                             <span style={{ display: 'block', color: 'var(--ink-faint)', fontSize: 13 }}>
                               {f.principalControl}
@@ -208,7 +208,7 @@ export default function Search() {
                           {f.otherPrincipals.map((o) => (
                             <span key={o.name} style={{ display: 'block' }}>
                               {o.name}
-                              {o.title ? ` — ${o.title}` : ''}
+                              {o.title ? ` | ${o.title}` : ''}
                             </span>
                           ))}
                         </span>
