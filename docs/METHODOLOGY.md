@@ -170,7 +170,15 @@ one source's view, and it is why the web channel was expanded across twelve
 regions rather than left at its first pass.
 
 **No AUM, thesis, or sector data.** Nothing in the free statutory sources carries
-it, and I would not infer it. Those cells are honestly blank across the file.
+it, and I would not infer it. Those cells are honestly blank across the file, and
+the deployed system refuses questions about them outright rather than answering
+around them.
+
+**Background and LinkedIn coverage is partial.** 32 of 50 records carry a
+description, 12 a corporate LinkedIn page and 12 a principal profile. Seven
+further descriptions were discarded for saying only what legal form the company
+takes — "a private company limited by shares" is true of most of the file and
+tells a reader nothing, so it is worth less than an honest blank.
 
 **Deduplication is name-and-phone based.** A firm trading under a name materially
 different from its registered name could appear twice. I saw one near-miss

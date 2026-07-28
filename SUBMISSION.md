@@ -83,13 +83,14 @@ record, and the independent auditor rejected it.
 
 ## Honest limitations
 
-- **Contact coverage is 6 of 50 for direct phone lines and 0 for email.** This is
+- **Contact coverage is 10 of 50 for direct phone lines and 4 for email.** This is
   the market, not the method: single-family offices have no reason to be
   reachable. Tested rather than assumed — the obvious domains often resolve but
   serve nothing (`francisfamilyoffice.com` returns a 114-byte parked page,
-  `kopp.com` accepts no HTTPS connection). What 45 of 50 records do carry is a
-  named principal, and 28 a registered postal address, which is a slower contact
-  route rather than no contact route. Documented in `METHODOLOGY.md`.
+  `kopp.com` accepts no HTTPS connection). What 47 of 50 records do carry is a
+  named principal, 32 a background description, and 25 a registered postal
+  address, which is a slower contact route rather than no contact route.
+  Documented in `METHODOLOGY.md`.
 - **No AUM, sector, or thesis data.** No free statutory source publishes it. Those
   cells are blank throughout rather than inferred, and the deployed system refuses
   questions about them explicitly.

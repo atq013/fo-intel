@@ -48,7 +48,7 @@ Chunks are **semantic units, not fixed windows**. A record produces:
 - one **profile** chunk — what the firm is, where, who its principal is, whether contact data exists, and the basis for the classification
 - one chunk **per dated signal** — filings, stake disclosures, director appointments
 
-50 records produce 152 chunks. Fixed-size windows would split a firm's identity
+50 records produce 146 chunks. Fixed-size windows would split a firm's identity
 from its evidence and let a signal be retrieved without knowing whose it is.
 
 **What is deliberately not embedded:** validation notes, audit reasons, confidence

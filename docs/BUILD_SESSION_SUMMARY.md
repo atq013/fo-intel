@@ -1,13 +1,20 @@
 # Build session summary
 
-**Time.** Received Sun 26 Jul 17:46; started ~21:45 after reading the brief, How We
-Work and the sample schema. Roughly 18 hours working time, plus unattended runs.
+**Time.** Received Sun 26 Jul 17:46; started ~21:45 after reading the brief, How
+We Work and the sample schema. Roughly 18 hours of working sessions, including
+time spent waiting on pipeline runs.
 
-**Sessions.** Sun 21:45–02:00: source strategy, record schema, both SEC discovery
-channels. Mon 09:15–12:00: Companies House with PSC control evidence,
-classification rubric. Mon 12:00–15:00: source tiering after a known-answer test
-caught a false assertion; database, RAG layer, product, deployment. Mon
-15:00–18:00: channel rebalancing, adversarial evaluation, three defects it found.
+**Sessions**, as they appear in the commit history:
+
+- *Sun 21:45 – Mon 02:00* — source strategy, record schema, the two SEC discovery
+  channels, Companies House with PSC control evidence, classification rubric.
+- *Mon 09:15 – 16:10* — source tiering after a known-answer test caught a false
+  assertion; database, RAG layer, product, deployment; channel rebalancing and
+  adversarial evaluation.
+- *Mon 19:30 – Tue 01:40* — widened result sets and scoped the field gate after a
+  defect surfaced in the deployed system rather than the test suite.
+- *Tue 11:00 – 12:20* — background and LinkedIn enrichment; hardened the answer
+  model fallback after both primaries hit daily token ceilings.
 
 **What AI produced, and what I decided on top of it.** I used AI for most of the
 implementation. I defined the structure, set the order of work, and made the calls
