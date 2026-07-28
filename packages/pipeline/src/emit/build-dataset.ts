@@ -19,6 +19,8 @@ import type { LocationFinding } from '../enrich/find-location.js';
 import { locationCell } from '../enrich/find-location.js';
 import type { ContactFinding } from '../enrich/contacts.js';
 import { emailCell } from '../enrich/contacts.js';
+import type { ProfileFinding } from '../enrich/find-profile.js';
+import { descriptionCell, linkedinCell } from '../enrich/find-profile.js';
 
 /** Below this, an assertion about what a firm is rests on a lone profile database. */
 export const TYPE_CONFIDENCE_FLOOR = 0.55;
@@ -72,6 +74,7 @@ export function buildDataset(): BuildResult {
   const locations = readJson<Record<string, LocationFinding>>('data/location-findings.json') ?? {};
   const contacts =
     readJson<Record<string, { website: string | null; contacts: ContactFinding }>>('data/contact-findings.json') ?? {};
+  const profiles = readJson<Record<string, ProfileFinding>>('data/profile-findings.json') ?? {};
 
   const secByName = new Map((sec?.entities ?? []).map((e) => [e.legalName.toLowerCase(), e]));
   const ukByName = new Map((uk?.companies ?? []).map((c) => [c.name.toLowerCase(), c]));
@@ -324,6 +327,18 @@ export function buildDataset(): BuildResult {
           ],
           confidence: 0.75,
         };
+      }
+    }
+
+    // Background and LinkedIn pages. The brief names all three among the cells
+    // where the value of the file lives, and the reference schema carries them.
+    const profile = profiles[firm.key];
+    if (profile) {
+      const described = descriptionCell(profile);
+      if (described.value) record.description = described;
+      if (profile.corporateLinkedin) record.linkedinUrl = linkedinCell(profile.corporateLinkedin, 'firm');
+      if (profile.principalLinkedin && record.principals[0]) {
+        record.principals[0].linkedinUrl = linkedinCell(profile.principalLinkedin, 'principal');
       }
     }
 

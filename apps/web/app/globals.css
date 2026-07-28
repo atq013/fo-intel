@@ -101,6 +101,8 @@ button:disabled { opacity: 0.55; cursor: default; }
 }
 .loc { color: var(--ink-faint); font-size: 13.5px; margin: 3px 0 12px; }
 
+.desc { font-size: 14.5px; color: var(--ink-soft); margin: 0 0 14px; line-height: 1.55; }
+
 .rows { display: grid; gap: 7px; }
 .row { display: grid; grid-template-columns: 96px 1fr; gap: 12px; font-size: 14.5px; align-items: start; }
 .row .k { color: var(--ink-faint); font-size: 13px; padding-top: 1px; }

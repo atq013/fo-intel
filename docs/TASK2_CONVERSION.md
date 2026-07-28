@@ -76,6 +76,29 @@ gradual ramp. **What would tell me I am wrong:** conversions correlate with
 session count over weeks, which would mean value genuinely compounds and the
 funnel is a real funnel.
 
+## Evidence I did not have to imagine
+
+Task 1 of this assessment had me build exactly this product, so the economics
+above are measured rather than hypothesised. Discovering that a family office
+exists is cheap. Establishing a verified route to reach one was nearly the entire
+cost of the build — and for the most valuable firms it was frequently impossible:
+of my fifty delivered records, ten carry a direct phone and four a verified
+email, not because verification was weak but because single-family offices are
+structurally unreachable. The contact route is the scarce, expensive artifact.
+The catalogue is not.
+
+My own deployed demo makes the free-tier mistake deliberately: ask it for family
+offices you can reach by phone and it prints the numbers. As an assessment
+deliverable, that is the point. As a business, that is the 3% problem in one
+screenshot — the user has extracted the file's marginal value in a single
+session and has no reason to return.
+
+It is also why I trust the breadth-free, depth-paid structure over any cleverer
+alternative: it is where every incumbent data vendor converged — ZoomInfo,
+Apollo and PitchBook all sell credit-limited reveals of contact data and signals
+against a freely browsable catalogue. Convergent evolution under market pressure
+is about as strong as secondhand evidence gets.
+
 ## What I would change, in order
 
 **1. Split the metric before touching the product.** Report conversion for

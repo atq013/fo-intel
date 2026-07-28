@@ -14,6 +14,9 @@ interface Firm {
   principal: string | null;
   principalTitle: string | null;
   principalControl: string | null;
+  description: string | null;
+  linkedin: string | null;
+  principalLinkedin: string | null;
   otherPrincipals: Array<{ name: string; title: string }>;
   address: string | null;
   latestSignal: { summary: string; date: string } | null;
@@ -175,13 +178,20 @@ export default function Search() {
                     <span className="type">{TYPE_LABEL[f.type] ?? f.type}</span>
                   </div>
                   {f.location && <p className="loc">{f.location}</p>}
+                  {f.description && <p className="desc">{f.description}</p>}
 
                   <div className="rows">
                     {f.principal && (
                       <div className="row">
                         <span className="k">Principal</span>
                         <span className="v">
-                          {f.principal}
+                          {f.principalLinkedin ? (
+                            <a href={f.principalLinkedin} target="_blank" rel="noreferrer noopener">
+                              {f.principal}
+                            </a>
+                          ) : (
+                            f.principal
+                          )}
                           {f.principalTitle ? ` — ${f.principalTitle}` : ''}
                           {f.principalControl && (
                             <span style={{ display: 'block', color: 'var(--ink-faint)', fontSize: 13 }}>
@@ -223,6 +233,16 @@ export default function Search() {
                         <span className="k">Email</span>
                         <span className="v">
                           <a href={`mailto:${f.email}`}>{f.email}</a>
+                        </span>
+                      </div>
+                    )}
+                    {f.linkedin && (
+                      <div className="row">
+                        <span className="k">LinkedIn</span>
+                        <span className="v">
+                          <a href={f.linkedin} target="_blank" rel="noreferrer noopener">
+                            Company page
+                          </a>
                         </span>
                       </div>
                     )}

@@ -1,0 +1,17 @@
+ok   [either →answer ] Who runs Duquesne Family Office?                       kept 2 dropped 0
+primary model at its daily ceiling; using llama-3.1-8b-instant for the next 30 minutes
+answer generation failed: groq unavailable after 3 attempts (429 {"error":{"message":"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kyfxatgve37a2b4d70v8ewhs` service tier `on_demand` on tokens per day (TPD): Limit 500000, Used 498997, Requested 1257. Please try again in 43.8912s. Need more tokens? Upgrade to Dev Tier today at https://)
+FAIL [answer →decline] Single-family offices in the United Kingdom            kept 0 dropped 0
+      declined: The answering service is busy right now. This is not a statement about the records - pleas
+ok   [answer →answer ] Which family offices are based in the United States?   kept 18 dropped 0
+answer generation failed: groq unavailable after 3 attempts (429 {"error":{"message":"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kyfxatgve37a2b4d70v8ewhs` service tier `on_demand` on tokens per day (TPD): Limit 500000, Used 499670, Requested 1799. Please try again in 4m13.8432s. Need more tokens? Upgrade to Dev Tier today at https:)
+FAIL [answer →decline] Family offices I can reach by phone                    kept 0 dropped 0
+      declined: The answering service is busy right now. This is not a statement about the records - pleas
+answer generation failed: groq unavailable after 3 attempts (429 {"error":{"message":"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kyfxatgve37a2b4d70v8ewhs` service tier `on_demand` on tokens per day (TPD): Limit 500000, Used 499376, Requested 1023. Please try again in 1m8.9472s. Need more tokens? Upgrade to Dev Tier today at https:/)
+FAIL [answer →decline] Which firms have filed something recently?             kept 0 dropped 0
+      declined: The answering service is busy right now. This is not a statement about the records - pleas
+answer generation failed: groq unavailable after 3 attempts (429 {"error":{"message":"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kyfxatgve37a2b4d70v8ewhs` service tier `on_demand` on tokens per day (TPD): Limit 500000, Used 499078, Requested 1866. Please try again in 2m43.1232s. Need more tokens? Upgrade to Dev Tier today at https:)
+FAIL [answer →decline] Family offices in London                               kept 0 dropped 0
+      declined: The answering service is busy right now. This is not a statement about the records - pleas
+answer generation failed: groq unavailable after 3 attempts (429 {"error":{"message":"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kyfxatgve37a2b4d70v8ewhs` service tier `on_demand` on tokens per day (TPD): Limit 500000, Used 498778, Requested 1266. Please try again in 7.6032s. Need more tokens? Upgrade to Dev Tier today at https://c)
+FAIL [decline→decline] Tell me about the Rockefeller family office            kept 0 dropped 0

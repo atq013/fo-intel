@@ -1,0 +1,452 @@
+{
+  "koppfamilyoffice": {
+    "description": null,
+    "descriptionQuote": "",
+    "descriptionSourceUrl": "",
+    "descriptionTier": null,
+    "corporateLinkedin": null,
+    "principalLinkedin": null,
+    "note": "extraction failed: groq 400: {\"error\":{\"message\":\"Failed to generate JSON. Plea"
+  },
+  "fentonfamilyoffice": {
+    "description": "Fenton Family Office Limited is a private limited company that provides management consultancy activities and other holding company services.",
+    "descriptionQuote": "Activities of other holding companies not elsewhere classified",
+    "descriptionSourceUrl": "https://find-and-update.company-information.service.gov.uk/company/14695938",
+    "descriptionTier": 1,
+    "corporateLinkedin": null,
+    "principalLinkedin": null,
+    "note": "described by the firm itself or a statutory registry"
+  },
+  "duquesnefamilyoffice": {
+    "description": "A family office that manages the money of Stanley Druckenmiller.",
+    "descriptionQuote": "Founder, Duquesne Family Office $7.8B Real Time Net Worth as of 7/27/26",
+    "descriptionSourceUrl": "https://www.forbes.com/profile/stanley-druckenmiller/",
+    "descriptionTier": 2,
+    "corporateLinkedin": null,
+    "principalLinkedin": "https://www.linkedin.com/in/sue-meng-b428a49",
+    "note": "described by recognised financial press"
+  },
+  "stephensgroup": {
+    "description": "A private investment firm that partners with entrepreneurs and management teams to build exceptional businesses with long-term, sustainable value.",
+    "descriptionQuote": "We do what we say we will do. Pure and simple. We shepherd our investments ethically and purposefully.",
+    "descriptionSourceUrl": "https://www.stephensgroup.com/",
+    "descriptionTier": 1,
+    "corporateLinkedin": "https://www.linkedin.com/company/the-stephens-group",
+    "principalLinkedin": null,
+    "note": "described by the firm itself or a statutory registry"
+  },
+  "alexanderfamilyholdings": {
+    "description": "A company with Anthony John ALEXANDER as an active director.",
+    "descriptionQuote": "ALEXANDER FAMILY HOLDINGS LTD. (03419689) Company status Active",
+    "descriptionSourceUrl": "https://find-and-update.company-information.service.gov.uk/officers/aMZ8u6wDwQ1itoAXzngZ0-3xq-M/appointments",
+    "descriptionTier": 1,
+    "corporateLinkedin": null,
+    "principalLinkedin": null,
+    "note": "described by the firm itself or a statutory registry"
+  },
+  "cascadeinvestmentllc": {
+    "description": null,
+    "descriptionQuote": "",
+    "descriptionSourceUrl": "",
+    "descriptionTier": null,
+    "corporateLinkedin": null,
+    "principalLinkedin": null,
+    "note": "extraction failed: groq 400: {\"error\":{\"message\":\"Failed to generate JSON. Plea"
+  },
+  "barrettfamilyholdings": {
+    "description": "A holding company for the Barrett family.",
+    "descriptionQuote": "Company Overview for BARRETT FAMILY HOLDINGS LIMITED (07790616) Filing history for BARRETT FAMILY HOLDINGS LIMITED (07790616)",
+    "descriptionSourceUrl": "https://find-and-update.company-information.service.gov.uk/company/07790616/persons-with-significant-control",
+    "descriptionTier": 1,
+    "corporateLinkedin": null,
+    "principalLinkedin": null,
+    "note": "described by the firm itself or a statutory registry"
+  },
+  "malhotrafamilyholdings": {
+    "description": "Private limited Company Incorporated on 20 January 2012",
+    "descriptionQuote": "Company Overview for MALHOTRA FAMILY HOLDINGS LIMITED (07918146) Filing history for MALHOTRA FAMILY HOLDINGS LIMITED (07918146) People for MALHOTRA FAMILY HOLDINGS LIMITED (07918146) Charges for MALHOTRA FAMILY HOLDINGS LIMITED (07918146) More for MALHOTRA FAMILY HOLDINGS LIMITED (07918146)",
+    "descriptionSourceUrl": "https://find-and-update.company-information.service.gov.uk/company/07918146",
+    "descriptionTier": 1,
+    "corporateLinkedin": null,
+    "principalLinkedin": null,
+    "note": "described by the firm itself or a statutory registry"
+  },
+  "newmanheritage": {
+    "description": "A company with multiple directors, including David William Newman and Jayne Newman-Hatton.",
+    "descriptionQuote": "NEWMAN HERITAGE LIMITED (13222383) Company status Active Correspondence address Umberslade Hall, Hockley Heath, Solihull, West Midlands, United Kingdom, B94 5DF",
+    "descriptionSourceUrl": "https://find-and-update.company-information.service.gov.uk/officers/dODaWt_X40pQW3qT6UPym9lLJ9M/appointments",
+    "descriptionTier": 1,
+    "corporateLinkedin": null,
+    "principalLinkedin": null,
+    "note": "described by the firm itself or a statutory registry"
+  },
+  "smithfamilytrust": {
+    "description": "A private limited company that is a holding company not elsewhere classified.",
+    "descriptionQuote": "Company type Private limited Company Incorporated on 18 August 2015",
+    "descriptionSourceUrl": "https://find-and-update.company-information.service.gov.uk/company/09738826",
+    "descriptionTier": 1,
+    "corporateLinkedin": null,
+    "principalLinkedin": null,
+    "note": "described by the firm itself or a statutory registry"
+  },
+  "wentworthhallfamilyoffice": {
+    "description": "Wentworth Hall Family Office is a family office that operates in private equity and fintech, providing startups with capital and business intelligence.",
+    "descriptionQuote": "Chairman of Wentworth Hall Family Office and Consultancy, Chairman of Atitlan, an award winning Crypto Multi Manager Fund.",
+    "descriptionSourceUrl": "https://london-wealth.com/speakers/ian-morley/",
+    "descriptionTier": 4,
+    "corporateLinkedin": null,
+    "principalLinkedin": "https://uk.linkedin.com/in/ian-morley-0a906817",
+    "note": "described by an unranked web source"
+  },
+  "emersoncollective": {
+    "description": "A company that invests in entrepreneurs and innovators driven by purpose and possibility, working to create a world of abundance for future generations.",
+    "descriptionQuote": "We are working to create a world that honors talent, expands opportunity, and ensures the conditions for human flourishing.",
+    "descriptionSourceUrl": "https://www.emersoncollective.com/about-us",
+    "descriptionTier": 1,
+    "corporateLinkedin": "https://www.linkedin.com/company/emerson-collective",
+    "principalLinkedin": null,
+    "note": "described by the firm itself or a statutory registry"
+  },
+  "pinnaclefamilyofficeinvestmentslp": {
+    "description": "Pinnacle Family Office Investments L.P. is a Texas limited partnership that manages investments and has a managing general partner.",
+    "descriptionQuote": "Pinnacle Family Office Investments, L.P. - Phone, Email, Employees, CEO, VP, 2024 Our Platform Powerful Sales Intelligence Platform Overview Buyer Intent Data B2B Prospect Data Website Visitor ID Email Tracking Why? Your Challenges Our Data See For Yourself Pricing Resources Resellers Add Ons Call Tracking Keyword Level Tracking Reputation Management Integrations About Us Contact Atlanta Jacksonville Blog Careers Support 888-586-7730 --> Login Free Trial Schedule A Demo &times; Our Platform Platform Overview Buyer Intent Data B2B Prospect Data Website Visitor Id Email Tracking Why? Your Challenges Our Data See For Yourself Pricing Resources Reseller Add Ons Call Tracking Keyword Level Tracking Reputation Management Integrations About Us Contact Atlanta Jacksonville Blog Careers Support Login Free Trial &#9776; Pinnacle Family Office Investments, L.P. Get Full Access Description Headquarters: 5910 North Central Expressway , Dallas, Texas, United States More Phone Number: +1 469-941-4303 Website: Employees: 0 Revenue: Legal Name: Pinnacle Family Office Investments, L.P. Pinnacle Family Office Investments, L.P.'s Social Media Is this data correct? | NAICS Code: 525910 | Show More --> Get Full Access --> Managing General Partner for Pinnacle Family Office Investments, L.P. Barry Kitt Managing General Partner --> Sell more in less time! Buyer intent data, anonymous visitor identification, first party data integration backed by a massive contact database that will supercharge your sales team. Schedule a demo to learn more! Learn More View Employees Barry Kitt Managing General Partner Frequently Asked Questions regarding Pinnacle Family Office Investments, L.P. Where are Pinnacle Family Office Investments, L.P.&#39;s Headquarters? Pinnacle Family Office Investments, L.P.&#39;s Headquarters are in 5910 North Central Expressway ,Dallas,Texas,United States What is Pinnacle Family Office Investments, L.P.&#39;s phone number? Pinnacle Family Office Investments, L.P.&#39;s phone number is +1 469-941-4303 What is Pinnacle Family Office Investments, L.P.&#39;s NAICS code? Pinnacle Family Office Investments, L.P.&#39;s NAICS code is 525910 Who is Pinnacle Family Office Investments, L.P.&#39;s Managing General Partner? Pinnacle Family Office Investments, L.P.&#39;s Managing General Partner is Barry Kitt Company Directory A B C D E F G H I J K L M N O P Q R S T U V W X Y Z SUBSCRIBE TO OUR NEWSLETTER! --> Subscribe --> Main Menu Home Marketing Product Sales Product Pricing & Plans Legal Privacy Policy User Guidelines Terms of Service Do Not Sell My Info Support Login Support About Us Contact Us 888-586-7730 --> Company Directory &copy; 2023 Visual Visitor",
+    "descriptionSourceUrl": "https://www.visualvisitor.com/companies/3934923/pinnacle_family_office_investments_l.p.",
+    "descriptionTier": 4,
+    "corporateLinkedin": null,
+    "principalLinkedin": null,
+    "note": "described by an unranked web source"
+  },
+  "pitoncapitalpartners": {
+    "description": "Piton Capital Partners LLC is a Delaware limited liability company that reports beneficial ownership of the Issuer's common stock.",
+    "descriptionQuote": "Piton Capital Partners LLC, a Delaware limited liability company (\"Piton\") and family client of Kokino LLC (\"Kokino\"),",
+    "descriptionSourceUrl": "https://www.sec.gov/Archives/edgar/data/1644342/000156761918007628/xslF345X03/doc1.xml",
+    "descriptionTier": 1,
+    "corporateLinkedin": null,
+    "principalLinkedin": null,
+    "note": "described by the firm itself or a statutory registry"
+  },
+  "knowlesfamilyinvestment": {
+    "description": "A private limited company involved in activities of other holding companies, financial intermediation, and letting and operating of own or leased real estate.",
+    "descriptionQuote": "Nature of business (SIC) 64209 - Activities of other holding companies not elsewhere classified 64999 - Financial intermediation not elsewhere classified 68209 - Other letting and operating of own or leased real estate",
+    "descriptionSourceUrl": "https://find-and-update.company-information.service.gov.uk/company/14858794",
+    "descriptionTier": 1,
+    "corporateLinkedin": null,
+    "principalLinkedin": null,
+    "note": "described by the firm itself or a statutory registry"
+  },
+  "whiteheadfamilyholdings": {
+    "description": "Activities of other holding companies not elsewhere classified",
+    "descriptionQuote": "Nature of business (SIC) 64209 - Activities of other holding companies not elsewhere classified",
+    "descriptionSourceUrl": "https://find-and-update.company-information.service.gov.uk/company/14436123",
+    "descriptionTier": 1,
+    "corporateLinkedin": null,
+    "principalLinkedin": null,
+    "note": "described by the firm itself or a statutory registry"
+  },
+  "francisfamilyoffice": {
+    "description": "A private limited company that is a holding company not elsewhere classified.",
+    "descriptionQuote": "Activities of other holding companies not elsewhere classified",
+    "descriptionSourceUrl": "https://find-and-update.company-information.service.gov.uk/company/12706913",
+    "descriptionTier": 1,
+    "corporateLinkedin": null,
+    "principalLinkedin": null,
+    "note": "described by the firm itself or a statutory registry"
+  },
+  "gatesfamilyholdings": {
+    "description": "A holding company not elsewhere classified.",
+    "descriptionQuote": "Nature of business (SIC) 64209 - Activities of other holding companies not elsewhere classified",
+    "descriptionSourceUrl": "https://find-and-update.company-information.service.gov.uk/company/12410715",
+    "descriptionTier": 1,
+    "corporateLinkedin": null,
+    "principalLinkedin": null,
+    "note": "described by the firm itself or a statutory registry"
+  },
+  "crossfamilygroupholdings": {
+    "description": "CROSS FAMILY GROUP HOLDINGS LIMITED is a Private limited company (Ltd.) company based in Killaney Lodge 19 Carryduff Road Boardmills, United Kingdom, which employs 2 people.",
+    "descriptionQuote": "CROSS FAMILY GROUP HOLDINGS LIMITED is a Private limited company (Ltd.) company based in Killaney Lodge 19 Carryduff Road Boardmills, United Kingdom, which employs 2 people.",
+    "descriptionSourceUrl": "https://uk.globaldatabase.com/company/cross-family-group-holdings-limited",
+    "descriptionTier": 4,
+    "corporateLinkedin": null,
+    "principalLinkedin": null,
+    "note": "described by an unranked web source"
+  },
+  "kingfamilyholdings": {
+    "description": "King Family Holdings Limited is an established Private Limited Company who have traded for 10 years in the Other retail sale in non-specialised stores sector.",
+    "descriptionQuote": "KING FAMILY HOLDINGS LIMITED are an established Private Limited Company who have traded for 10 years.",
+    "descriptionSourceUrl": "https://www.reportingaccounts.com/uk/10178432/king-family-holdings-limited/",
+    "descriptionTier": 4,
+    "corporateLinkedin": null,
+    "principalLinkedin": null,
+    "note": "described by an unranked web source"
+  },
+  "lintonfamilyholdings": {
+    "description": "A private limited company that is a holding company not elsewhere classified.",
+    "descriptionQuote": "Activities of other holding companies not elsewhere classified",
+    "descriptionSourceUrl": "https://find-and-update.company-information.service.gov.uk/company/00392482",
+    "descriptionTier": 1,
+    "corporateLinkedin": null,
+    "principalLinkedin": null,
+    "note": "described by the firm itself or a statutory registry"
+  },
+  "lloydfamilyholdings": {
+    "description": "The company appears to be a family holding company, with three directors and three persons with significant control.",
+    "descriptionQuote": "Ownership of shares – More than 25% but not more than 50% as a member of a firm",
+    "descriptionSourceUrl": "https://find-and-update.company-information.service.gov.uk/company/15160048/persons-with-significant-control",
+    "descriptionTier": 1,
+    "corporateLinkedin": null,
+    "principalLinkedin": null,
+    "note": "described by the firm itself or a statutory registry"
+  },
+  "tandonfamilyoffice": {
+    "description": "A private limited company that is a holding company not elsewhere classified.",
+    "descriptionQuote": "Nature of business (SIC) 64209 - Activities of other holding companies not elsewhere classified",
+    "descriptionSourceUrl": "https://find-and-update.company-information.service.gov.uk/company/14823039",
+    "descriptionTier": 1,
+    "corporateLinkedin": null,
+    "principalLinkedin": null,
+    "note": "described by the firm itself or a statutory registry"
+  },
+  "petersfamilyinvestment": {
+    "description": null,
+    "descriptionQuote": "",
+    "descriptionSourceUrl": "",
+    "descriptionTier": null,
+    "corporateLinkedin": null,
+    "principalLinkedin": null,
+    "note": "a description was drafted but its quote was not found in the source it cited"
+  },
+  "moorsfamilyinvestment": {
+    "description": null,
+    "descriptionQuote": "",
+    "descriptionSourceUrl": "",
+    "descriptionTier": null,
+    "corporateLinkedin": null,
+    "principalLinkedin": null,
+    "note": "a description was drafted but its quote was not found in the source it cited"
+  },
+  "gershonfamilyinvestmentgroup": {
+    "description": "A private company limited by shares.",
+    "descriptionQuote": "GERSHON FAMILY INVESTMENT GROUP LIMITED (14516277) Company status Active Correspondence address Handel House, 95 High Street, Edgware, England, HA8 7DB Role Active Director Appointed on 30 November 2022",
+    "descriptionSourceUrl": "https://find-and-update.company-information.service.gov.uk/officers/qTpuguiInWBDEtRU9141zwcn3Gc/appointments",
+    "descriptionTier": 1,
+    "corporateLinkedin": null,
+    "principalLinkedin": null,
+    "note": "described by the firm itself or a statutory registry"
+  },
+  "thegoldingfamilyinvestment": {
+    "description": "The Golding Family Investment Company Limited is a company with two directors, Barry Golding and Janice Elizabeth Golding.",
+    "descriptionQuote": "Company Overview for THE GOLDING FAMILY INVESTMENT COMPANY LIMITED (10440096) Filing history for THE GOLDING FAMILY INVESTMENT COMPANY LIMITED (10440096) People for THE GOLDING FAMILY INVESTMENT COMPANY LIMITED (10440096) More for THE GOLDING FAMILY INVESTMENT COMPANY LIMITED (10440096)",
+    "descriptionSourceUrl": "https://find-and-update.company-information.service.gov.uk/company/10440096/officers",
+    "descriptionTier": 1,
+    "corporateLinkedin": null,
+    "principalLinkedin": null,
+    "note": "described by the firm itself or a statutory registry"
+  },
+  "gershonfamilyinvestment": {
+    "description": null,
+    "descriptionQuote": "",
+    "descriptionSourceUrl": "",
+    "descriptionTier": null,
+    "corporateLinkedin": null,
+    "principalLinkedin": null,
+    "note": "a description was drafted but its quote was not found in the source it cited"
+  },
+  "boltventures": {
+    "description": "Bolt Ventures is a London-based investment firm that focuses on investments into private markets across the United Kingdom and United States.",
+    "descriptionQuote": "Bolt Ventures is a London based investment firm that focuses on investments into private markets across United Kingdom and United states.",
+    "descriptionSourceUrl": "https://www.privateequityinternational.com/institution-profiles/bolt-ventures.html",
+    "descriptionTier": 2,
+    "corporateLinkedin": null,
+    "principalLinkedin": "https://www.linkedin.com/in/jonas-cohon",
+    "note": "described by recognised financial press"
+  },
+  "accessindustries": {
+    "description": "A privately-held, global investment company that identifies companies with strong business models and optimizes their value through financial backing and expertise.",
+    "descriptionQuote": "Access Industries is a privately-held, global investment company. Founded in 1986, by businessman and philanthropist Len Blavatnik, Access identifies companies with strong business models and management teams, and optimizes their value through financial backing and expertise.",
+    "descriptionSourceUrl": "https://www.accessindustries.com/contact-us/",
+    "descriptionTier": 1,
+    "corporateLinkedin": "https://www.linkedin.com/company/access-industries",
+    "principalLinkedin": null,
+    "note": "described by the firm itself or a statutory registry"
+  },
+  "kaafinvestments": {
+    "description": "A single-family backed investment platform that supports exceptional entrepreneurs and fund managers in building & growing leading businesses.",
+    "descriptionQuote": "A Single Family backed investment platform that supports exceptional entrepreneurs and fund managers in building & growing leading businesses that will shape the future for the better.",
+    "descriptionSourceUrl": "https://www.kaafinvestments.com/",
+    "descriptionTier": 1,
+    "corporateLinkedin": "https://www.linkedin.com/company/kaaf-investments",
+    "principalLinkedin": "https://ae.linkedin.com/in/mishal-kanoo-14099111b",
+    "note": "described by the firm itself or a statutory registry"
+  },
+  "finkeissenholdings": {
+    "description": "A Single Family Office with a focus on investments in Real Estate, Private Equity Funds, and Startups and companies in Tech and AI.",
+    "descriptionQuote": "Finkeissen Holdings ist ein Single Family Office mit Schwerpunkt auf Investitionen in Real Estate, Private Equity Funds sowie Startups und Firmen in Tech und KI.",
+    "descriptionSourceUrl": "https://www.finkeissen.at/",
+    "descriptionTier": 1,
+    "corporateLinkedin": null,
+    "principalLinkedin": "https://ch.linkedin.com/in/christoph-roos-657524b2",
+    "note": "described by the firm itself or a statutory registry"
+  },
+  "tamarcapital": {
+    "description": "Tamar Capital is a diversified investment firm providing asset, cash, and risk management, as well as financial planning.",
+    "descriptionQuote": "Deploying human and financial capital to create value, empower societies, and communities.",
+    "descriptionSourceUrl": "https://tamar.capital/",
+    "descriptionTier": 1,
+    "corporateLinkedin": "https://www.linkedin.com/company/tamar-capital",
+    "principalLinkedin": "https://www.linkedin.com/in/karinesarkissian",
+    "note": "described by the firm itself or a statutory registry"
+  },
+  "raintreefamilyoffice": {
+    "description": "Raintree Family Office is a single-family office that manages the investment portfolios of the promoter family with a focus on sustainable and socially conscious investments.",
+    "descriptionQuote": "Raintree Family Office is a single-family office committed to tackling India’s chronic social issues through a hybrid model of a socially conscious investing arm and a private philanthropic foundation.",
+    "descriptionSourceUrl": "https://iiic.in/newsletter/bimonthly/issue_05/lp-connect.html",
+    "descriptionTier": 4,
+    "corporateLinkedin": "https://in.linkedin.com/company/raintree-family-office",
+    "principalLinkedin": "https://in.linkedin.com/in/leenadandekar",
+    "note": "described by an unranked web source"
+  },
+  "bezosexpeditions": {
+    "description": "Bezos Expeditions is an American investment firm based in Mercer Island, Washington. It serves as a family office for Amazon.com founder Jeff Bezos by managing his personal investments.",
+    "descriptionQuote": "Bezos Expeditions is an American investment firm based in Mercer Island, Washington. [2] It serves as a family office for Amazon.com founder Jeff Bezos by managing his personal investments.",
+    "descriptionSourceUrl": "https://en.wikipedia.org/wiki/Bezos_Expeditions",
+    "descriptionTier": 3,
+    "corporateLinkedin": null,
+    "principalLinkedin": null,
+    "note": "described by a third-party profile database"
+  },
+  "thielcapital": {
+    "description": "Thiel Capital is an American company described as a family office, venture capital firm, or an investment firm, founded by Peter Thiel.",
+    "descriptionQuote": "Thiel Capital is an American company described as a family office, [6] [7] venture capital firm [8] [9] or an investment firm, [10] founded by Peter Thiel.",
+    "descriptionSourceUrl": "https://en.wikipedia.org/wiki/Thiel_Capital",
+    "descriptionTier": 3,
+    "corporateLinkedin": "https://www.linkedin.com/company/thiel-capital-llc",
+    "principalLinkedin": "https://www.linkedin.com/in/peter-thiel-9590a0314",
+    "note": "described by a third-party profile database"
+  },
+  "blauwparkpartners": {
+    "description": "A single family office for multiple families that combines the benefits of a single and multi-family office.",
+    "descriptionQuote": "We are a single family office for multiple families.",
+    "descriptionSourceUrl": "https://www.blauwparkpartners.com/our-team",
+    "descriptionTier": 1,
+    "corporateLinkedin": "https://sg.linkedin.com/company/blauwparkpartners",
+    "principalLinkedin": "https://sg.linkedin.com/in/wouterkneepkens",
+    "note": "described by the firm itself or a statutory registry"
+  },
+  "goldenalpha": {
+    "description": "A single-family office based in Singapore that represents the Sohmen family and oversees their private and public investments.",
+    "descriptionQuote": "Golden Alpha is a single-family office based in Singapore. The firm represents the Sohmen family and serves as the investment team for part of the family’s investment activities.",
+    "descriptionSourceUrl": "https://www.preqin.com/data/profile/investor/golden-alpha/198933",
+    "descriptionTier": 3,
+    "corporateLinkedin": null,
+    "principalLinkedin": "https://sg.linkedin.com/in/pavan-sawhney-18025717",
+    "note": "described by a third-party profile database"
+  },
+  "calibrium": {
+    "description": "Calibrium AG is a private investment office based in Switzerland that makes investments in listed securities, private equity & real estate.",
+    "descriptionQuote": "Calibrium AG is a private investment office based in Switzerland that makes investments in listed securities, private equity & real estate.",
+    "descriptionSourceUrl": "https://www.privateequityinternational.com/institution-profiles/calibrium-ag.html",
+    "descriptionTier": 2,
+    "corporateLinkedin": "https://www.linkedin.com/company/calibrium-ag",
+    "principalLinkedin": null,
+    "note": "described by recognised financial press"
+  },
+  "thealduaijfamilyoffice": {
+    "description": "The Alduaij family office is a prominent and respected business force with a long history in Kuwait.",
+    "descriptionQuote": "The Alduaij family office has a long and glorious history in Kuwait as one of the most prominent and respected business forces.",
+    "descriptionSourceUrl": "https://mefamilyofficesummit.com/about/",
+    "descriptionTier": 4,
+    "corporateLinkedin": null,
+    "principalLinkedin": null,
+    "note": "described by an unranked web source"
+  },
+  "theyehfamilyphilanthropy": {
+    "description": "The Yeh Family Philanthropy is a philanthropic organization that collaborates to reimagine learning systems for the development of youth potential.",
+    "descriptionQuote": "Collaborating to reimagine learning systems for the development of youth potential",
+    "descriptionSourceUrl": "https://www.yehfp.com/",
+    "descriptionTier": 4,
+    "corporateLinkedin": "https://hk.linkedin.com/company/the-yeh-family-philanthropy",
+    "principalLinkedin": null,
+    "note": "described by an unranked web source"
+  },
+  "themurakamifamilyfoundation": {
+    "description": null,
+    "descriptionQuote": "",
+    "descriptionSourceUrl": "",
+    "descriptionTier": null,
+    "corporateLinkedin": "https://sg.linkedin.com/company/the-murakami-family-foundation",
+    "principalLinkedin": null,
+    "note": "extraction failed: groq 400: {\"error\":{\"message\":\"Failed to generate JSON. Plea"
+  },
+  "golubfamilyoffice": {
+    "description": null,
+    "descriptionQuote": "",
+    "descriptionSourceUrl": "",
+    "descriptionTier": null,
+    "corporateLinkedin": null,
+    "principalLinkedin": null,
+    "note": "no description could be established"
+  },
+  "hiltonfamilyoffice": {
+    "description": null,
+    "descriptionQuote": "",
+    "descriptionSourceUrl": "",
+    "descriptionTier": null,
+    "corporateLinkedin": null,
+    "principalLinkedin": null,
+    "note": "extraction failed: groq 429: {\"error\":{\"message\":\"Rate limit reached for model "
+  },
+  "forisventures": {
+    "description": null,
+    "descriptionQuote": "",
+    "descriptionSourceUrl": "",
+    "descriptionTier": null,
+    "corporateLinkedin": null,
+    "principalLinkedin": null,
+    "note": "extraction failed: groq 400: {\"error\":{\"message\":\"Failed to generate JSON. Plea"
+  },
+  "jawsestatescapital": {
+    "description": "JAWS Estate Capital is a single-family office that invests its own capital in real estate, venture capital, private equity, and public equities.",
+    "descriptionQuote": "JAWS Estate Capital was established as the single-family office for Barry S. Sternlicht after he founded Starwood Capital in 1991.",
+    "descriptionSourceUrl": "https://altss.com/profile/jaws-estate-capital",
+    "descriptionTier": 3,
+    "corporateLinkedin": null,
+    "principalLinkedin": null,
+    "note": "described by a third-party profile database"
+  },
+  "lightchaincapital": {
+    "description": null,
+    "descriptionQuote": "",
+    "descriptionSourceUrl": "",
+    "descriptionTier": null,
+    "corporateLinkedin": null,
+    "principalLinkedin": "https://www.linkedin.com/in/bobby-w-sandage-jr-phd-69087211",
+    "note": "extraction failed: groq 429: {\"error\":{\"message\":\"Rate limit reached for model "
+  },
+  "psppartners": {
+    "description": null,
+    "descriptionQuote": "",
+    "descriptionSourceUrl": "",
+    "descriptionTier": null,
+    "corporateLinkedin": null,
+    "principalLinkedin": "https://www.linkedin.com/in/penny-pritzker",
+    "note": "extraction failed: groq 429: {\"error\":{\"message\":\"Rate limit reached for model "
+  },
+  "alrajhiekhwan": {
+    "description": "Al Rajhi Ekhwan Group is an investment company based in Riyadh, Saudi Arabia. It provides investment services primarily focused on real estate development, industrial development, and the Saudi stock market.",
+    "descriptionQuote": "Al Rajhi Ekhwan Group is an investment company based in Riyadh, Saudi Arabia.",
+    "descriptionSourceUrl": "https://www.preqin.com/data/profile/investor/al-rajhi-ekhwan-group/699867",
+    "descriptionTier": 3,
+    "corporateLinkedin": "https://www.linkedin.com/company/al-rajhi-ekhwan-group-co",
+    "principalLinkedin": null,
+    "note": "described by a third-party profile database"
+  },
+  "jrtpartners": {
+    "description": "JRT Partners is a single-family office based in Singapore that provides investment services and advises other family offices on structuring and due diligence.",
+    "descriptionQuote": "JRT Partners is a single-family office based in Singapore.",
+    "descriptionSourceUrl": "https://www.preqin.com/data/profile/investor/jrt-partners/259264",
+    "descriptionTier": 3,
+    "corporateLinkedin": null,
+    "principalLinkedin": null,
+    "note": "described by a third-party profile database"
+  }
+}

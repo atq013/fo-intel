@@ -33,7 +33,10 @@ delivered file by `packages/pipeline/src/emit/stats.ts` — run it to reproduce 
 | Statutory control basis recorded | 20 |
 | Registered street address | 25 |
 | Dated activity signals | 25 |
+| Background description | 32 |
 | Confirmed website | 14 |
+| Corporate LinkedIn | 12 |
+| Principal LinkedIn | 12 |
 | Direct phone number | 10 |
 | Verified email | 4 |
 
@@ -74,7 +77,7 @@ reconciliation came out of that correction, and it is documented in full.
 
 **The grounding control is measured, not asserted.** 15 adversarial cases, two
 thirds of which the system is supposed to refuse: 14 correct, 0% false negative
-rate. It catches true-but-unsupported claims — asked who runs Duquesne, the model
+rate, 0% false positive rate. It catches true-but-unsupported claims — asked who runs Duquesne, the model
 drafted "Stanley Druckenmiller", which is true in the world and unsupported by the
 record, and the independent auditor rejected it.
 

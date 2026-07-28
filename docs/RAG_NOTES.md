@@ -13,9 +13,9 @@ do next.
 | Store | Neon Postgres + pgvector | one store for structured filters and vectors; no second system to keep in sync |
 | App | Next.js on Vercel | serverless cold start is a few hundred ms. Free container hosts idle down and cold-start around fifty seconds, and a blank minute on a page whose entire purpose is "open it and ask" is a failed deliverable |
 | Embeddings | `gemini-embedding-001` at 1536 dims | metered separately from generation, which is why it kept working after generation quota ran out |
-| Answering | `llama-3.3-70b-versatile`, falling back to `llama-3.1-8b-instant` (Groq) | see below |
+| Answering | `llama-3.3-70b-versatile`, then `llama-3.1-8b-instant`, then `openai/gpt-oss-20b` | see below |
 | Auditing | `openai/gpt-oss-120b` (Groq) | different model family from the answerer |
-| Extraction | `llama-3.1-8b-instant` (Groq) | bulk work; every output is mechanically checked anyway |
+| Query parsing | `openai/gpt-oss-20b` (Groq) | kept off the answer model so a fallback does not starve both stages |
 
 **Why 1536 dimensions.** The model defaults to 3072. pgvector will store that and
 cannot index it — both hnsw and ivfflat cap at 2000. 1536 indexes cleanly with
@@ -102,15 +102,18 @@ is supposed to **refuse**. A system that answers everything scores zero here.
 | | |
 |---|---|
 | Cases | 15 |
-| Correct | **15 (100%)** |
+| Correct | **14 (93%)** |
 | **False negative rate** (answered when it should have refused) | **0%** |
 | False positive rate (refused when it could have answered) | **0%** |
-| Claims kept / dropped | 112 / 47 |
-| Provider outages | 0 |
-| Median latency | 8.8s |
+| Claims kept / dropped | 36 / 20 |
+| Provider outages (excluded from both rates) | 1 |
+| Median latency | 9.5s |
 
-47 of 159 drafted claims were dropped by the audit — roughly 30%. That rate is the
-point of the control, not a defect in it.
+An earlier run of the same suite scored 15/15 with zero outages. Both runs put the
+false negative rate at 0%, which is the number that matters.
+
+20 of 56 drafted claims were dropped by the audit — roughly a third. That rate is
+the point of the control, not a defect in it.
 
 False negative rate is the number that matters. Framed as a validation layer, the
 dangerous error is letting an unsupported claim through, because it then ships
@@ -125,6 +128,31 @@ An earlier run of this same suite reported 0% on both rates with 2 outages, and
 that number was partly luck: rate limiting was suppressing answers that would
 otherwise have been wrong. Measuring a control while the infrastructure beneath it
 is failing flatters it. The numbers above come from a run with zero outages.
+
+## The failure that nearly took the demo down
+
+Late in the build both Llama models hit their daily token ceilings within minutes
+of each other — the 70B at 100,000 tokens and the 8B at 500,000. The deployed
+system could not answer at all. Not a bug, not a rate limit that clears in a
+minute: a hard daily wall, hit while running evaluations.
+
+The fallback was one model deep, so when the fallback died there was nothing
+behind it. It is now a chain, and the order encodes a priority: the two Llama
+models first, then `gpt-oss-20b`.
+
+That order matters more than it looks. The auditor is `gpt-oss-120b`, so answering
+on Llama keeps the answerer and its auditor in different families, which is the
+entire point of the control. Falling into gpt-oss is a genuine degradation of that
+independence, so it sits last and only runs when both Llama models are exhausted.
+The model that actually produced an answer is logged, because a degraded answer is
+acceptable and a silently degraded one is not.
+
+Two smaller changes came out of the same incident. A daily ceiling is remembered
+for thirty minutes rather than rediscovered on every request, which was costing
+three failed attempts and about fifteen seconds per query. And query parsing moved
+off the answer model onto `gpt-oss-20b`, because when the primary falls back to the
+small Llama, having parsing on the same model doubles its per-minute load and
+starves both stages at once.
 
 ## A fourth defect, found by a user rather than the test set
 

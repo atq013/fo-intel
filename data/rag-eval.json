@@ -1,22 +1,70 @@
 {
-  "ranAt": "2026-07-27T15:59:09.819Z",
+  "ranAt": "2026-07-27T21:13:23.285Z",
   "summary": {
     "total": 15,
-    "correct": 15,
-    "accuracy": 1,
+    "correct": 14,
+    "accuracy": 0.9333333333333333,
     "shouldAnswer": 5,
     "shouldDecline": 8,
     "falseNegativeRate": 0,
     "falsePositiveRate": 0,
-    "serviceFailures": 0,
-    "totalClaimsKept": 112,
-    "totalClaimsDropped": 47,
-    "medianMs": 8815
+    "serviceFailures": 1,
+    "totalClaimsKept": 36,
+    "totalClaimsDropped": 20,
+    "medianMs": 9521
   },
   "rows": [
     {
       "question": "Who runs Duquesne Family Office?",
       "expect": "either",
+      "got": "decline",
+      "correct": true,
+      "claimsKept": 0,
+      "claimsDropped": 0,
+      "leakage": [],
+      "declineReason": "The records retrieved do not contain enough to answer that question.",
+      "serviceError": false,
+      "ms": 15657
+    },
+    {
+      "question": "Single-family offices in the United Kingdom",
+      "expect": "answer",
+      "got": "decline",
+      "correct": false,
+      "claimsKept": 0,
+      "claimsDropped": 0,
+      "leakage": [],
+      "declineReason": "Something went wrong composing the answer. The underlying records are unaffected.",
+      "serviceError": true,
+      "ms": 11279
+    },
+    {
+      "question": "Which family offices are based in the United States?",
+      "expect": "answer",
+      "got": "answer",
+      "correct": true,
+      "claimsKept": 18,
+      "claimsDropped": 0,
+      "leakage": [],
+      "declineReason": null,
+      "serviceError": false,
+      "ms": 8351
+    },
+    {
+      "question": "Family offices I can reach by phone",
+      "expect": "answer",
+      "got": "answer",
+      "correct": true,
+      "claimsKept": 2,
+      "claimsDropped": 9,
+      "leakage": [],
+      "declineReason": null,
+      "serviceError": false,
+      "ms": 15010
+    },
+    {
+      "question": "Which firms have filed something recently?",
+      "expect": "answer",
       "got": "answer",
       "correct": true,
       "claimsKept": 4,
@@ -24,67 +72,19 @@
       "leakage": [],
       "declineReason": null,
       "serviceError": false,
-      "ms": 10596
-    },
-    {
-      "question": "Single-family offices in the United Kingdom",
-      "expect": "answer",
-      "got": "answer",
-      "correct": true,
-      "claimsKept": 20,
-      "claimsDropped": 22,
-      "leakage": [],
-      "declineReason": null,
-      "serviceError": false,
-      "ms": 18054
-    },
-    {
-      "question": "Which family offices are based in the United States?",
-      "expect": "answer",
-      "got": "answer",
-      "correct": true,
-      "claimsKept": 24,
-      "claimsDropped": 0,
-      "leakage": [],
-      "declineReason": null,
-      "serviceError": false,
-      "ms": 12809
-    },
-    {
-      "question": "Family offices I can reach by phone",
-      "expect": "answer",
-      "got": "answer",
-      "correct": true,
-      "claimsKept": 11,
-      "claimsDropped": 0,
-      "leakage": [],
-      "declineReason": null,
-      "serviceError": false,
-      "ms": 15186
-    },
-    {
-      "question": "Which firms have filed something recently?",
-      "expect": "answer",
-      "got": "answer",
-      "correct": true,
-      "claimsKept": 9,
-      "claimsDropped": 0,
-      "leakage": [],
-      "declineReason": null,
-      "serviceError": false,
-      "ms": 12853
+      "ms": 12987
     },
     {
       "question": "Family offices in London",
       "expect": "answer",
       "got": "answer",
       "correct": true,
-      "claimsKept": 36,
-      "claimsDropped": 13,
+      "claimsKept": 4,
+      "claimsDropped": 1,
       "leakage": [],
       "declineReason": null,
       "serviceError": false,
-      "ms": 17093
+      "ms": 13504
     },
     {
       "question": "Tell me about the Rockefeller family office",
@@ -92,11 +92,11 @@
       "got": "decline",
       "correct": true,
       "claimsKept": 0,
-      "claimsDropped": 1,
+      "claimsDropped": 0,
       "leakage": [],
-      "declineReason": "An answer was drafted but none of it held up against the underlying records, so it was withheld.",
+      "declineReason": "The records retrieved do not contain enough to answer that question.",
       "serviceError": false,
-      "ms": 8796
+      "ms": 9521
     },
     {
       "question": "What is Bridgewater Associates?",
@@ -104,11 +104,11 @@
       "got": "decline",
       "correct": true,
       "claimsKept": 0,
-      "claimsDropped": 1,
+      "claimsDropped": 0,
       "leakage": [],
-      "declineReason": "An answer was drafted but none of it held up against the underlying records, so it was withheld.",
+      "declineReason": "The records retrieved do not contain enough to answer that question.",
       "serviceError": false,
-      "ms": 8815
+      "ms": 9725
     },
     {
       "question": "Which family offices are based in Antarctica?",
@@ -120,7 +120,7 @@
       "leakage": [],
       "declineReason": "No firms in the dataset match those criteria (located in Antarctica).",
       "serviceError": false,
-      "ms": 2174
+      "ms": 2939
     },
     {
       "question": "What is the AUM of Duquesne Family Office?",
@@ -132,7 +132,7 @@
       "leakage": [],
       "declineReason": "Assets under management are not held for any firm in this dataset. No free statutory source publishes it, so the field is blank throughout rather than estimated.",
       "serviceError": false,
-      "ms": 2653
+      "ms": 4064
     },
     {
       "question": "What sectors does Kopp Family Office invest in?",
@@ -144,7 +144,7 @@
       "leakage": [],
       "declineReason": "Investment sectors are not held for any firm in this dataset. The field is blank throughout rather than inferred.",
       "serviceError": false,
-      "ms": 2758
+      "ms": 3565
     },
     {
       "question": "What is the email address for Francis Family Office?",
@@ -156,7 +156,7 @@
       "leakage": [],
       "declineReason": "No verified email address is held for the firms matching that question. Where an address could not be confirmed it is left blank rather than guessed.",
       "serviceError": false,
-      "ms": 3683
+      "ms": 4830
     },
     {
       "question": "Which is the largest family office in the dataset?",
@@ -168,7 +168,7 @@
       "leakage": [],
       "declineReason": "This dataset holds no size or performance measure, so firms cannot be ranked. Ranking them would require a number that does not exist in any record.",
       "serviceError": false,
-      "ms": 2823
+      "ms": 2538
     },
     {
       "question": "Which family offices are most likely to invest in AI startups?",
@@ -180,7 +180,7 @@
       "leakage": [],
       "declineReason": null,
       "serviceError": false,
-      "ms": 13101
+      "ms": 9711
     },
     {
       "question": "Rank UK family offices by assets under management",
@@ -192,7 +192,7 @@
       "leakage": [],
       "declineReason": "Assets under management are not held for any firm in this dataset. No free statutory source publishes it, so the field is blank throughout rather than estimated.",
       "serviceError": false,
-      "ms": 2256
+      "ms": 3226
     }
   ]
 }

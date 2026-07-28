@@ -25,9 +25,11 @@ function basis<T>(c: Cell<T> | undefined): string {
 
 export const COLUMNS = [
   'firm_name', 'firm_type', 'type_confidence', 'type_basis',
+  'description', 'description_basis',
   'street', 'city', 'region', 'postcode', 'country', 'address_basis',
-  'website', 'website_basis',
+  'website', 'website_basis', 'corporate_linkedin',
   'principal_name', 'principal_title', 'principal_control_basis', 'principal_location',
+  'principal_linkedin',
   'principal_phone', 'principal_phone_basis',
   'principal_email', 'principal_email_basis',
   'second_principal_name', 'second_principal_title',
@@ -49,16 +51,20 @@ export function toCsv(records: FamilyOffice[]): string {
       r.classification.evidence[0]
         ? `${r.classification.evidence[0].method} — ${r.classification.evidence[0].sourceUrl}`
         : 'no basis recorded',
+      val(r.description), basis(r.description),
       val(r.street), val(r.city), val(r.region), val(r.postcode), val(r.country), basis(r.street),
-      val(r.website), basis(r.website),
+      val(r.website), basis(r.website), val(r.linkedinUrl),
       val(p?.fullName), val(p?.title), val(p?.controlBasis), val(p?.location),
+      val(p?.linkedinUrl),
       val(p?.phone), basis(p?.phone),
       val(p?.email), basis(p?.email),
       val(p2?.fullName), val(p2?.title),
       String(r.signals.length),
       s?.occurredAt ?? '',
       s?.summary ?? '',
-      s?.evidence.method ?? '',
+      // Every other blank in this file states why it is blank; an empty signal
+      // column should not be the one exception a reader has to guess about.
+      s?.evidence.method ?? 'could not verify: no dated activity found in the sources consulted',
       r.discoveries[0]?.externalId ?? '',
       [...new Set(r.discoveries.map((d) => d.channel))].join('; '),
       r.classification.rulesMatched.join('; '),

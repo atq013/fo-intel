@@ -33,6 +33,9 @@ export interface FirmSummary {
   principal: string | null;
   principalTitle: string | null;
   principalControl: string | null;
+  description: string | null;
+  linkedin: string | null;
+  principalLinkedin: string | null;
   otherPrincipals: Array<{ name: string; title: string }>;
   address: string | null;
   latestSignal: { summary: string; date: string } | null;
@@ -307,6 +310,7 @@ export async function answerQuestion(question: string): Promise<AnswerResult> {
     note('email', p?.email);
     note('website', r.website);
     note('address', r.street);
+    note('description', r.description);
     if (s) basis.signal = s.evidence.method;
 
     return {
@@ -321,6 +325,9 @@ export async function answerQuestion(question: string): Promise<AnswerResult> {
       principal: p?.fullName?.value ?? null,
       principalTitle: p?.title?.value ?? null,
       principalControl: p?.controlBasis?.value ?? null,
+      description: r.description?.value ?? null,
+      linkedin: r.linkedinUrl?.value ?? null,
+      principalLinkedin: p?.linkedinUrl?.value ?? null,
       otherPrincipals: (r.principals ?? []).slice(1, 4).map((x) => ({
         name: x.fullName?.value ?? '',
         title: x.title?.value ?? '',

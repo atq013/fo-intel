@@ -36,8 +36,20 @@ export const EMBEDDING_DIMS = 1536;
  */
 export const ANSWER_MODEL = 'llama-3.3-70b-versatile';
 
-/** Used when the primary is rate limited or refuses. Same family, on purpose. */
-export const ANSWER_FALLBACK_MODEL = 'llama-3.1-8b-instant';
+/**
+ * Fallback chain, tried in order, and the order encodes a priority.
+ *
+ * The Llama models come first because the auditor is gpt-oss: answering on Llama
+ * keeps the answerer and its auditor in different families, which is the whole
+ * point of the control. Crossing into gpt-oss is a real degradation of that
+ * independence, so it sits last and is used only when both Llama models are at
+ * their daily ceilings - which happened once during this build, and left the
+ * deployed demo unable to answer at all.
+ *
+ * A degraded answer beats no answer; a silently degraded one does not, so the
+ * model that actually produced an answer is logged.
+ */
+export const ANSWER_FALLBACK_MODELS = ['llama-3.1-8b-instant', 'openai/gpt-oss-20b'] as const;
 
 /** Bulk extraction: query parsing, page extraction. Small and fast on purpose. */
 export const EXTRACTION_MODEL = 'llama-3.1-8b-instant';
@@ -53,3 +65,11 @@ export const EXTRACTION_MODEL = 'llama-3.1-8b-instant';
  * requirement.
  */
 export const VERIFIER_MODEL = 'openai/gpt-oss-120b';
+
+/**
+ * Query parsing in the served product. Deliberately not the same model as the
+ * answerer: when the primary is at its daily ceiling the answerer falls back to
+ * the small Llama, and having parsing on that model too doubles its per-minute
+ * load and starves both stages.
+ */
+export const QUERY_PARSE_MODEL = 'openai/gpt-oss-20b';

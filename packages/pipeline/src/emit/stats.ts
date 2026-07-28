@@ -32,6 +32,9 @@ console.log(`  dated activity signals     ${has((r) => r.signals.length > 0)}`);
 console.log(`  direct phone number        ${has((r) => r.principals[0]?.phone.value)}`);
 console.log(`  verified email             ${has((r) => r.principals[0]?.email.value)}`);
 console.log(`  confirmed website          ${has((r) => r.website.value)}`);
+console.log(`  background description     ${has((r) => r.description.value)}`);
+console.log(`  corporate LinkedIn         ${has((r) => r.linkedinUrl.value)}`);
+console.log(`  principal LinkedIn         ${has((r) => r.principals[0]?.linkedinUrl.value)}`);
 
 console.log('\nprimary discovery channel:');
 for (const [c, n] of [...channels].sort((a, b) => b[1] - a[1])) {

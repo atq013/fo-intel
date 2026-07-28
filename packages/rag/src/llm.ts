@@ -10,11 +10,11 @@
  */
 import {
   ANSWER_MODEL,
-  ANSWER_FALLBACK_MODEL,
+  ANSWER_FALLBACK_MODELS,
   EMBEDDING_MODEL,
   EMBEDDING_DIMS,
   VERIFIER_MODEL,
-  EXTRACTION_MODEL,
+  QUERY_PARSE_MODEL,
 } from '@fo/core';
 
 export async function embed(text: string): Promise<number[]> {
@@ -37,6 +37,14 @@ export async function embed(text: string): Promise<number[]> {
   return json.embedding.values;
 }
 
+/**
+ * Once the primary model reports a daily ceiling, every later request would spend
+ * three attempts and ~15 seconds rediscovering that before falling back. A daily
+ * limit does not clear inside a session, so it is remembered and the primary is
+ * skipped until the process restarts.
+ */
+let primaryExhaustedUntil = 0;
+
 export async function generateJson<T>(prompt: string, schema: object): Promise<T> {
   // Compact, not pretty-printed: the indented form cost a few hundred tokens on
   // every single call for no benefit to the model.
@@ -44,17 +52,32 @@ export async function generateJson<T>(prompt: string, schema: object): Promise<T
 
 Respond with JSON only, no commentary, matching: ${JSON.stringify(schema)}`;
 
-  try {
-    return await groq<T>(withShape, ANSWER_MODEL);
-  } catch (err) {
-    // Falling back is worth it for a daily ceiling or a refused generation. It is
-    // not worth it for a malformed request, which will fail identically.
-    const msg = err instanceof Error ? err.message : String(err);
-    const worthRetrying = err instanceof ServiceUnavailable || /json_validate_failed|429|tokens per day/i.test(msg);
-    if (!worthRetrying) throw err;
-    console.error(`answer model fell back to ${ANSWER_FALLBACK_MODEL}: ${msg.slice(0, 160)}`);
-    return groq<T>(withShape, ANSWER_FALLBACK_MODEL);
+  const chain = Date.now() < primaryExhaustedUntil
+    ? [...ANSWER_FALLBACK_MODELS]
+    : [ANSWER_MODEL, ...ANSWER_FALLBACK_MODELS];
+
+  let lastErr: unknown;
+  for (const model of chain) {
+    try {
+      const result = await groq<T>(withShape, model);
+      if (model !== ANSWER_MODEL) console.error(`answer produced by fallback model ${model}`);
+      return result;
+    } catch (err) {
+      lastErr = err;
+      const msg = err instanceof Error ? err.message : String(err);
+
+      // A malformed request will fail identically on every model.
+      const worthMovingOn =
+        err instanceof ServiceUnavailable || /json_validate_failed|429|tokens per day/i.test(msg);
+      if (!worthMovingOn) throw err;
+
+      if (model === ANSWER_MODEL && /tokens per day|TPD/i.test(msg)) {
+        primaryExhaustedUntil = Date.now() + 30 * 60_000;
+        console.error('primary model at its daily ceiling; skipping it for 30 minutes');
+      }
+    }
   }
+  throw lastErr instanceof Error ? lastErr : new ServiceUnavailable('no answer model available');
 }
 
 /**
@@ -101,4 +124,4 @@ async function groq<T>(prompt: string, model: string, attempts = 3): Promise<T> 
 export const verifyJson = <T>(prompt: string) => groq<T>(prompt, VERIFIER_MODEL);
 
 /** Cheap structured work, e.g. parsing a query into filters. */
-export const extractJson = <T>(prompt: string, _schema: object) => groq<T>(prompt, EXTRACTION_MODEL);
+export const extractJson = <T>(prompt: string, _schema: object) => groq<T>(prompt, QUERY_PARSE_MODEL);
