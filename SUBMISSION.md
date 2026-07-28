@@ -1,4 +1,4 @@
-# Stage 1 submission — Attique Ur Rehman
+# Stage 1 submission — Muhammad Attique Ur Rehman
 
 ## Deliverables
 
