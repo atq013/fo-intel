@@ -1,8 +1,9 @@
 # Build session summary
 
-**Time.** Received Sun 26 Jul 17:46; started ~21:45 after reading the brief, How
-We Work and the sample schema. Roughly 18 hours of working sessions, including
-time spent waiting on pipeline runs.
+**Time.** Roughly 22 hours: about three to four spent reading & understanding the brief,
+the sample schema and settling the approach between receiving the assessment at
+17:46 on Sun 26 Jul and starting to build at ~21:45, then roughly 18 hours of
+build sessions, including time waiting on pipeline runs.
 
 **Sessions**, as they appear in the commit history:
 
