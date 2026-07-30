@@ -191,3 +191,6 @@ export async function recordRejection(entry: {
 // Stage 2 operating reads, kept in their own module so the Stage 1 read path
 // above is untouched.
 export * from './stage2-reads.js';
+
+// D4 evidence-aware shortlist retrieval.
+export * from './shortlist.js';
