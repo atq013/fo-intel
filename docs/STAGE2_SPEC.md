@@ -594,6 +594,18 @@ Stage 1's SFO-1 rule proved family control, not family-office function. Twenty
 records qualified on it. Splitting the category is honest reclassification rather
 than relabelling. *Cost:* the qualifying count drops before it rises.
 
+**ADR-11 · Reachability is reported as two metrics and they are never merged.**
+Assumption A1 — that a verified personal profile is a contact route — is a
+judgement the brief does not settle, and the reachability count swings from ~60 to
+~160 depending on it. Merging them into one number would force a reviewer to
+accept our reading of A1 in order to check our arithmetic, which is the same
+category of error as Stage 1's single `verified` status: one word standing in for
+several different states. `strict_reachable` and `profile_assisted_reachable` are
+therefore separate columns, separate metrics, and separate sentences everywhere
+they appear. *Cost:* every surface that reports reachability reports two numbers,
+which is slightly more to explain. Accepted — the alternative is a headline count
+that cannot survive a reviewer disagreeing with one assumption.
+
 **ADR-10 · Interface copy is validated data.**
 Correction 8 holds user-visible sentences to the data truth standard. *Cost:* a
 precondition registry every string must join.
@@ -657,9 +669,22 @@ SEC-derived firms, 0% of UK registry and web-derived firms.
 
 **Position on the 200: marginal, not demonstrated.** ~160 projected under
 assumption A1 (a verified personal profile counts as a route); ~60 without it.
-Reachability is recomputed from the file at every checkpoint and **reported both
-with and without profiles**, so the number survives either reading. If the final
-count is short it ships as measured, with this evidence attached.
+
+### Reachability is two metrics, never one
+
+Because A1 is a judgement a reviewer may not share, reachability is carried through
+the entire system as **two independent counts**:
+
+| Metric | Counts | Projected |
+|---|---|---|
+| `strict_reachable` | email or phone that demonstrably reaches the named individual. Profiles excluded. | ~60 |
+| `profile_assisted_reachable` | the above, **plus** verified personal profiles under A1 | ~160 |
+
+Both are computed at every checkpoint, stored on the entity, reported in the
+dataset, displayed in the product, and stated in the submission. Neither is ever
+presented alone or blended into a single headline. See ADR-11.
+
+If the final counts are short they ship as measured, with this evidence attached.
 
 Assumptions A1–A5 are recorded in `SPIKE_REACHABILITY.md` and are the audit trail
 for this decision.

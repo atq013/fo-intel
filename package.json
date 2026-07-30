@@ -13,7 +13,8 @@
     "enrich": "tsx packages/pipeline/src/cli.ts enrich",
     "validate": "tsx packages/pipeline/src/cli.ts validate",
     "emit": "tsx packages/pipeline/src/cli.ts emit",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test \"packages/**/*.test.ts\""
   },
   "devDependencies": {
     "@types/node": "^22.10.2",
