@@ -640,13 +640,29 @@ is reachable at all — and say so in the submission rather than shipping 120 an
 hoping. A projected shortfall found on day 1 is a design input; found on day 4 it
 is a failure.
 
-**My prior, stated so it can be proven wrong:** the SEC signatory phone is the
-highest-volume channel and I expect it to have the *worst* ownership evidence,
-because a cover-page number is usually the firm's. If that is right, the highest
-yield comes from firm leadership pages and profile verification, which are lower
-volume and push the file toward firms with a web presence — the exact opposite of
-the invisible-SFO thesis that made Stage 1 interesting. That tension is real and
-the spike exists to price it.
+**FROZEN 30 Jul — measured, see `SPIKE_REACHABILITY.md`.**
+
+My prior was that the SEC signatory phone would be a switchboard and fail
+ownership. Measurement contradicted it: 6,940 of 9,874 routes adjudicate to an
+individual. The channel's limit is reach, not ownership — 50% coverage of
+SEC-derived firms, 0% of UK registry and web-derived firms.
+
+| Channel | Gate-5 yield | Role in the build |
+|---|---|---|
+| SEC 13F signatory | 50% of SEC-derived firms | primary reachability |
+| Verified principal profile | 20% overall, ~2 API calls | primary reachability |
+| SEC ADV Schedule A | **0 — structural**, the form has no individual contact field | identity and decision-maker evidence only |
+| Companies House | 0% | identity, control evidence, breadth |
+| Firm leadership page | 0 of 26 | not pursued |
+
+**Position on the 200: marginal, not demonstrated.** ~160 projected under
+assumption A1 (a verified personal profile counts as a route); ~60 without it.
+Reachability is recomputed from the file at every checkpoint and **reported both
+with and without profiles**, so the number survives either reading. If the final
+count is short it ships as measured, with this evidence attached.
+
+Assumptions A1–A5 are recorded in `SPIKE_REACHABILITY.md` and are the audit trail
+for this decision.
 
 ### D2 · Minimum qualifying-record standard
 

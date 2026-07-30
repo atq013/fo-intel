@@ -1,0 +1,306 @@
+[
+  {
+    "firm": "FENTON FAMILY OFFICE LIMITED",
+    "channel": "firm_leadership_page",
+    "personIdentified": null,
+    "routeFound": null,
+    "ownershipEvidenced": false,
+    "ownershipReason": "no leadership page reached",
+    "passesGate5": false,
+    "apiCalls": 1,
+    "wallMs": 2407
+  },
+  {
+    "firm": "ALEXANDER FAMILY HOLDINGS LTD.",
+    "channel": "firm_leadership_page",
+    "personIdentified": null,
+    "routeFound": null,
+    "ownershipEvidenced": false,
+    "ownershipReason": "no leadership page reached",
+    "passesGate5": false,
+    "apiCalls": 1,
+    "wallMs": 5820
+  },
+  {
+    "firm": "BARRETT FAMILY HOLDINGS LIMITED",
+    "channel": "firm_leadership_page",
+    "personIdentified": "Community Appointing",
+    "routeFound": {
+      "channel": "phone",
+      "value": "45 2026-04-14"
+    },
+    "ownershipEvidenced": true,
+    "ownershipReason": "number published adjacent to the person's name on wren.excalibur.org.uk",
+    "passesGate5": true,
+    "apiCalls": 2,
+    "wallMs": 29496
+  },
+  {
+    "firm": "MALHOTRA FAMILY HOLDINGS LIMITED",
+    "channel": "firm_leadership_page",
+    "personIdentified": null,
+    "routeFound": null,
+    "ownershipEvidenced": false,
+    "ownershipReason": "no leadership page reached",
+    "passesGate5": false,
+    "apiCalls": 1,
+    "wallMs": 24916
+  },
+  {
+    "firm": "NEWMAN HERITAGE LIMITED",
+    "channel": "firm_leadership_page",
+    "personIdentified": null,
+    "routeFound": null,
+    "ownershipEvidenced": false,
+    "ownershipReason": "no leadership page reached",
+    "passesGate5": false,
+    "apiCalls": 1,
+    "wallMs": 4679
+  },
+  {
+    "firm": "SMITH FAMILY TRUST CORPORATION LIMITED",
+    "channel": "firm_leadership_page",
+    "personIdentified": null,
+    "routeFound": null,
+    "ownershipEvidenced": false,
+    "ownershipReason": "no leadership page reached",
+    "passesGate5": false,
+    "apiCalls": 1,
+    "wallMs": 1829
+  },
+  {
+    "firm": "KNOWLES FAMILY INVESTMENT COMPANY LIMITED",
+    "channel": "firm_leadership_page",
+    "personIdentified": null,
+    "routeFound": null,
+    "ownershipEvidenced": false,
+    "ownershipReason": "no leadership page reached",
+    "passesGate5": false,
+    "apiCalls": 1,
+    "wallMs": 28405
+  },
+  {
+    "firm": "WHITEHEAD FAMILY HOLDINGS LIMITED",
+    "channel": "firm_leadership_page",
+    "personIdentified": "Incorporation Documents",
+    "routeFound": {
+      "channel": "email",
+      "value": "hi@tracxn.com"
+    },
+    "ownershipEvidenced": false,
+    "ownershipReason": "person found but no route ties to them",
+    "passesGate5": false,
+    "apiCalls": 2,
+    "wallMs": 2216
+  },
+  {
+    "firm": "FRANCIS FAMILY OFFICE LIMITED",
+    "channel": "firm_leadership_page",
+    "personIdentified": null,
+    "routeFound": null,
+    "ownershipEvidenced": false,
+    "ownershipReason": "no leadership page reached",
+    "passesGate5": false,
+    "apiCalls": 1,
+    "wallMs": 18750
+  },
+  {
+    "firm": "GATES FAMILY HOLDINGS LTD",
+    "channel": "firm_leadership_page",
+    "personIdentified": null,
+    "routeFound": null,
+    "ownershipEvidenced": false,
+    "ownershipReason": "no leadership page reached",
+    "passesGate5": false,
+    "apiCalls": 2,
+    "wallMs": 16585
+  },
+  {
+    "firm": "Kopp Family Office, LLC",
+    "channel": "firm_leadership_page",
+    "personIdentified": "Initial Contact",
+    "routeFound": {
+      "channel": "phone",
+      "value": "952) 841-0430"
+    },
+    "ownershipEvidenced": true,
+    "ownershipReason": "number published adjacent to the person's name on www.hinchilla.com",
+    "passesGate5": true,
+    "apiCalls": 2,
+    "wallMs": 36126
+  },
+  {
+    "firm": "Duquesne Family Office LLC",
+    "channel": "firm_leadership_page",
+    "personIdentified": null,
+    "routeFound": null,
+    "ownershipEvidenced": false,
+    "ownershipReason": "no leadership page reached",
+    "passesGate5": false,
+    "apiCalls": 1,
+    "wallMs": 33211
+  },
+  {
+    "firm": "Stephens Group, LLC",
+    "channel": "firm_leadership_page",
+    "personIdentified": "Chief Executive",
+    "routeFound": null,
+    "ownershipEvidenced": false,
+    "ownershipReason": "person found but no route ties to them",
+    "passesGate5": false,
+    "apiCalls": 2,
+    "wallMs": 14783
+  },
+  {
+    "firm": "CASCADE INVESTMENT, L.L.C.",
+    "channel": "firm_leadership_page",
+    "personIdentified": "Michael Larson",
+    "routeFound": null,
+    "ownershipEvidenced": false,
+    "ownershipReason": "person found but no route ties to them",
+    "passesGate5": false,
+    "apiCalls": 2,
+    "wallMs": 9663
+  },
+  {
+    "firm": "Pinnacle Family Office Investments L.P.",
+    "channel": "firm_leadership_page",
+    "personIdentified": null,
+    "routeFound": null,
+    "ownershipEvidenced": false,
+    "ownershipReason": "no leadership page reached",
+    "passesGate5": false,
+    "apiCalls": 1,
+    "wallMs": 18618
+  },
+  {
+    "firm": "PITON CAPITAL PARTNERS LLC",
+    "channel": "firm_leadership_page",
+    "personIdentified": "Stockton Executive",
+    "routeFound": null,
+    "ownershipEvidenced": false,
+    "ownershipReason": "person found but no route ties to them",
+    "passesGate5": false,
+    "apiCalls": 2,
+    "wallMs": 13806
+  },
+  {
+    "firm": "Wentworth Hall Family Office",
+    "channel": "firm_leadership_page",
+    "personIdentified": "Europe Country",
+    "routeFound": null,
+    "ownershipEvidenced": false,
+    "ownershipReason": "person found but no route ties to them",
+    "passesGate5": false,
+    "apiCalls": 2,
+    "wallMs": 2132
+  },
+  {
+    "firm": "Emerson Collective",
+    "channel": "firm_leadership_page",
+    "personIdentified": "Emerson Collective",
+    "routeFound": null,
+    "ownershipEvidenced": false,
+    "ownershipReason": "person found but no route ties to them",
+    "passesGate5": false,
+    "apiCalls": 2,
+    "wallMs": 21033
+  },
+  {
+    "firm": "Bolt Ventures",
+    "channel": "firm_leadership_page",
+    "personIdentified": "Megha Tibrewal",
+    "routeFound": {
+      "channel": "email",
+      "value": "hi@tracxn.com"
+    },
+    "ownershipEvidenced": false,
+    "ownershipReason": "person found but no route ties to them",
+    "passesGate5": false,
+    "apiCalls": 2,
+    "wallMs": 4858
+  },
+  {
+    "firm": "Access Industries",
+    "channel": "firm_leadership_page",
+    "personIdentified": null,
+    "routeFound": null,
+    "ownershipEvidenced": false,
+    "ownershipReason": "no leadership page reached",
+    "passesGate5": false,
+    "apiCalls": 1,
+    "wallMs": 25786
+  },
+  {
+    "firm": "KAAF Investments",
+    "channel": "firm_leadership_page",
+    "personIdentified": "Partner With",
+    "routeFound": {
+      "channel": "email",
+      "value": "info@kaafinvestments.com"
+    },
+    "ownershipEvidenced": false,
+    "ownershipReason": "person found but no route ties to them",
+    "passesGate5": false,
+    "apiCalls": 2,
+    "wallMs": 7912
+  },
+  {
+    "firm": "Finkeissen Holdings",
+    "channel": "firm_leadership_page",
+    "personIdentified": null,
+    "routeFound": null,
+    "ownershipEvidenced": false,
+    "ownershipReason": "no leadership page reached",
+    "passesGate5": false,
+    "apiCalls": 1,
+    "wallMs": 39565
+  },
+  {
+    "firm": "Tamar Capital",
+    "channel": "firm_leadership_page",
+    "personIdentified": null,
+    "routeFound": null,
+    "ownershipEvidenced": false,
+    "ownershipReason": "no leadership page reached",
+    "passesGate5": false,
+    "apiCalls": 1,
+    "wallMs": 23212
+  },
+  {
+    "firm": "Raintree Family Office",
+    "channel": "firm_leadership_page",
+    "personIdentified": "Our Founders",
+    "routeFound": {
+      "channel": "email",
+      "value": "contactus@theraintree.co.in"
+    },
+    "ownershipEvidenced": false,
+    "ownershipReason": "person found but no route ties to them",
+    "passesGate5": false,
+    "apiCalls": 2,
+    "wallMs": 15892
+  },
+  {
+    "firm": "Bezos Expeditions",
+    "channel": "firm_leadership_page",
+    "personIdentified": "Melinda Lewison",
+    "routeFound": null,
+    "ownershipEvidenced": false,
+    "ownershipReason": "person found but no route ties to them",
+    "passesGate5": false,
+    "apiCalls": 2,
+    "wallMs": 4470
+  },
+  {
+    "firm": "Thiel Capital",
+    "channel": "firm_leadership_page",
+    "personIdentified": "Business Page",
+    "routeFound": null,
+    "ownershipEvidenced": false,
+    "ownershipReason": "person found but no route ties to them",
+    "passesGate5": false,
+    "apiCalls": 2,
+    "wallMs": 19927
+  }
+]

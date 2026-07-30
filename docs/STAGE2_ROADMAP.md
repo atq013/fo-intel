@@ -45,8 +45,14 @@ extrapolation to 500. Recorded whatever it says, including if it says the target
 is not reachable.
 
 **Exit criteria:** a written source-mix decision, or an explicit finding that ≥200
-is not achievable with the channels available — which becomes a submission
-disclosure rather than a silent shortfall.
+is not achievable with the channels available.
+
+**COMPLETE 30 Jul.** Five channels measured, D1 frozen. SEC signatory and verified
+profile carry reachability; ADV Schedule A carries decision-maker identity;
+Companies House carries breadth and control evidence; leadership pages dropped.
+Position on the 200 is *marginal, not demonstrated* — ~160 projected, to be
+reported with and without profiles. Results and assumptions A1–A5 in
+`SPIKE_REACHABILITY.md`.
 
 ---
 
@@ -213,7 +219,7 @@ system actually did, build summary, session record index, submission email.
 
 | # | Milestone | Proves | Target |
 |---|---|---|---|
-| M0 | Spike complete, source mix decided | the 200 is reachable, or is not | 30 Jul evening |
+| M0 | ~~Spike complete~~ **DONE** | marginal: ~160 projected, assumptions recorded | 30 Jul ✓ |
 | M1 | Contract + gates green on Stage 1 fixtures | the defect class is now impossible | 30 Jul late |
 | M2 | Companies House end to end; Stage 1 re-qualified | the pipeline produces correct records | 31 Jul midday |
 | M3 | **Deployed, scheduled, checkpoint email sent** | day-2 requirement met; 48h clock starts | **31 Jul EOD** |
