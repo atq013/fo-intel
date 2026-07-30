@@ -1,5 +1,7 @@
 import { generateJson } from '../llm.js';
 import { TOOLS, TOOL_SCHEMAS, type ToolResult } from './tools.js';
+import { resolveNames } from './names.js';
+import { newMetrics, recordMetrics, resolveCounts, tokenRoster } from './counts.js';
 
 /**
  * The bounded agent (spec §8).
@@ -40,6 +42,10 @@ export interface AgentAnswer {
   toolsUsed: string[];
   scope: Record<string, unknown>[];
   trace: AgentTrace[];
+  /** firm names rewritten to their stored spelling */
+  nameCorrections: Array<{ wrote: string; stored: string }>;
+  /** every number in the answer, and the tool metric it came from */
+  countsResolved: Array<{ token: string; value: number }>;
 }
 
 interface Plan {
@@ -48,6 +54,32 @@ interface Plan {
 }
 
 const MAX_CALLS = 4;
+
+/** Tools whose input names one entity, so they cannot run before a search. */
+const ID_TOOLS = new Set(['get_firm', 'check_evidence']);
+
+/**
+ * Pull entityId -> stored legalName out of whatever a tool returned.
+ *
+ * This map is the ONLY source of firm names in the final answer. If a name is
+ * not in here it did not come from the data.
+ */
+function harvest(data: unknown, into: Map<string, string>): void {
+  const add = (id: unknown, name: unknown) => {
+    if (typeof id === 'string' && typeof name === 'string' && id && name) into.set(id, name);
+  };
+  if (Array.isArray(data)) {
+    for (const row of data) {
+      if (row && typeof row === 'object') add((row as any).entityId, (row as any).name);
+    }
+  } else if (data && typeof data === 'object') {
+    const d = data as any;
+    if (d.entity?.canonical_name) {
+      // get_firm returns the entity without echoing its id; the caller knows it.
+      add(d.entityId ?? d.entity?.id, d.entity.canonical_name);
+    }
+  }
+}
 
 const PLAN_PROMPT = (question: string) => `You are planning how to answer a question about a family-office dataset.
 
@@ -73,7 +105,7 @@ Return JSON:
 {"constraints":[{"constraint":"...","honourable":true,"why":"..."}],
  "calls":[{"tool":"search_firms","input":{...},"because":"..."}]}`;
 
-const COMPOSE_PROMPT = (question: string, results: string, unhonoured: string[]) => `Answer the question using ONLY the tool results below.
+const COMPOSE_PROMPT = (question: string, results: string, unhonoured: string[], roster: string, counts: string) => `Answer the question using ONLY the tool results below.
 
 Question: "${question}"
 
@@ -88,11 +120,24 @@ words. Say which part of the question you could not do and what you did instead.
 An answer that quietly ignores these is worse than no answer.` : 'All constraints were honourable.'}
 
 Rules:
-- Every firm you name must appear in the tool results. Never name one that does not.
+- NEVER write a firm's name. Refer to each firm by its exact token from this
+  roster, copied character for character:
+${roster || '  (no firms were returned)'}
+  The server substitutes the stored legal name. Do not invent a token, do not
+  write the words "entityId", and do not type a firm name yourself — you will get
+  its spelling wrong, and a misspelled firm name is a fabricated value.
 - Never upgrade a label: a company inbox is not a principal's email; "not found" is not "does not exist".
 - State the scope: how many were searched, how many MATCHED. Use the "matched"
   number from the tool scope, never the length of the returned data array - the
   array is a truncated page, and reporting its length understates the answer.
+- NEVER type a number for how many firms matched, were searched, were excluded,
+  are reachable, or how many claims or evidence rows exist. Use these tokens,
+  copied exactly:
+${counts || '  (no counts available)'}
+  The server substitutes the figure the tool actually returned. A number you type
+  yourself is a guess, and a wrong count is a fabricated fact.
+- Numbers that are NOT dataset counts — phone numbers, postcodes, dates, values
+  quoted inside evidence — you may write normally.
 - If a firm is missing a field, say it is missing. Do not estimate it.
 - Be concise and specific. No preamble.
 
@@ -118,48 +163,124 @@ export async function runAgent(question: string): Promise<AgentAnswer> {
     .filter((c) => !c.honourable)
     .map((c) => `${c.constraint} — ${c.why}`);
 
-  // ---- act ---------------------------------------------------------------
+  // ---- act, in two phases ------------------------------------------------
+  //
+  // The planner runs once, before any tool has executed, so it cannot know an
+  // entityId that only exists after a search. In production it filled the gap
+  // with the literal string "<firm_id>" and both ID-dependent calls returned
+  // nothing. A tool call with a placeholder argument is not a call, it is a
+  // wasted round trip that can be misread as "this firm has no data".
+  //
+  // So discovery tools run first, real ids are harvested from what they return,
+  // and ID-dependent tools run only afterwards and only with an id that exists.
   const toolsUsed: string[] = [];
   const scope: Record<string, unknown>[] = [];
   const collected: string[] = [];
+  const canonical = new Map<string, string>();
+  const metrics = newMetrics();
+  let callIndex = 0;
 
-  for (const call of (plan.calls ?? []).slice(0, MAX_CALLS)) {
-    const fn = TOOLS[call.tool];
-    if (!fn) {
-      push('tool', { tool: call.tool, error: 'no such tool' });
-      continue;
-    }
+  const runTool = async (tool: string, input: Record<string, unknown>) => {
+    const fn = TOOLS[tool];
+    if (!fn) { push('tool', { tool, error: 'no such tool' }); return; }
     try {
-      const r: ToolResult<unknown> = await fn(call.input ?? {});
-      toolsUsed.push(call.tool);
-      scope.push({ tool: call.tool, ...r.scope });
-      push('tool', { tool: call.tool, input: call.input, scope: r.scope, excluded: r.excluded, rows: Array.isArray(r.data) ? r.data.length : 1 });
+      const r: ToolResult<unknown> = await fn(input);
+      toolsUsed.push(tool);
+      scope.push({ tool, ...r.scope });
+      push('tool', { tool, input, scope: r.scope, excluded: r.excluded, rows: Array.isArray(r.data) ? r.data.length : 1 });
+      harvest(r.data, canonical);
+      recordMetrics(metrics, tool, ++callIndex, r.scope, r.excluded, r.data);
       collected.push(
-        `TOOL ${call.tool}(${JSON.stringify(call.input)})\n` +
+        `TOOL ${tool}(${JSON.stringify(input)})\n` +
         `scope: ${JSON.stringify(r.scope)}\n` +
         `excluded: ${JSON.stringify(r.excluded)}\n` +
         `limits: ${r.limits.join(' | ')}\n` +
         `data: ${JSON.stringify(r.data).slice(0, 4000)}`,
       );
     } catch (err) {
-      push('tool', { tool: call.tool, error: err instanceof Error ? err.message : String(err) });
+      push('tool', { tool, error: err instanceof Error ? err.message : String(err) });
     }
+  };
+
+  const calls = (plan.calls ?? []).slice(0, MAX_CALLS);
+  const discovery = calls.filter((c) => !ID_TOOLS.has(c.tool));
+  const needsId = calls.filter((c) => ID_TOOLS.has(c.tool));
+
+  for (const call of discovery) await runTool(call.tool, (call.input ?? {}) as Record<string, unknown>);
+
+  // The sequence has to be guaranteed, not merely policed. A plan can consist
+  // entirely of ID-dependent calls with a firm NAME where an id belongs, in
+  // which case refusing them all leaves nothing to answer from. Seeding the
+  // search the planner omitted turns a dead run into a correct one, and the
+  // seeded call is recorded in the trace like any other.
+  if (!discovery.length && needsId.length) {
+    const hint = needsId
+      .map((c) => String((c.input as Record<string, unknown> | undefined)?.entityId ?? ''))
+      .find((v) => v && !v.startsWith('ent_') && !v.startsWith('<'));
+    if (hint) {
+      push('plan', { seeded: 'search_firms', reason: 'plan had no discovery call; ID-dependent tools cannot run without one', q: hint });
+      await runTool('search_firms', { q: hint, limit: 5 });
+    }
+  }
+
+  for (const call of needsId) {
+    const asked = String((call.input as Record<string, unknown> | undefined)?.entityId ?? '');
+    // Accept only an id the tools actually returned. Otherwise fall back to the
+    // top discovery result, and if there is none, skip and say so in the trace.
+    const entityId = canonical.has(asked) ? asked : [...canonical.keys()][0];
+    if (!entityId) {
+      push('tool', { tool: call.tool, skipped: 'no real entity id available; refused to call with a placeholder', asked });
+      continue;
+    }
+    if (entityId !== asked) {
+      push('tool', { tool: call.tool, rebound: { from: asked || '(none)', to: entityId }, why: 'planner supplied a placeholder or unknown id' });
+    }
+    await runTool(call.tool, { ...(call.input as Record<string, unknown>), entityId });
   }
 
   if (!collected.length) {
     const answer =
       'I could not retrieve anything for this question. No tool call succeeded, so I have nothing to base an answer on.';
     push('compose', { answer, reason: 'no tool results' });
-    return { answer, unhonouredConstraints: unhonoured, blocked: false, toolsUsed, scope, trace };
+    return { answer, unhonouredConstraints: unhonoured, blocked: false, toolsUsed, scope, trace, nameCorrections: [], countsResolved: [] };
   }
 
   // ---- compose -----------------------------------------------------------
+  // The exact tokens, so the model copies rather than composes them. Given only
+  // a format example it wrote the literal string "[[entityId]]".
+  const roster = [...canonical.entries()]
+    .slice(0, 40)
+    .map(([id, name]) => `  [[${id}]] = ${name}`)
+    .join('\n');
+
   const composed = await generateJson<{ answer: string }>(
-    COMPOSE_PROMPT(question, collected.join('\n\n'), unhonoured),
+    COMPOSE_PROMPT(question, collected.join('\n\n'), unhonoured, roster, tokenRoster(metrics)),
     { type: 'object', properties: { answer: { type: 'string' } } },
   );
-  let answer = composed.answer ?? '';
-  push('compose', { answer });
+  const rawAnswer = composed.answer ?? '';
+  push('compose', { answer: rawAnswer });
+
+  // ---- firm names become non-generative -----------------------------------
+  const counts = resolveCounts(rawAnswer, metrics);
+  const resolved = resolveNames(counts.text, canonical);
+  let answer = resolved.text;
+  const nameCorrections = resolved.corrected;
+  const countsResolved = counts.resolved;
+  if (counts.unresolvedTokens.length || counts.unsupported.length) {
+    push('block', {
+      stage: 'count-resolution',
+      unresolvedTokens: counts.unresolvedTokens,
+      unsupported: counts.unsupported,
+    });
+  }
+  if (resolved.corrected.length || resolved.fabricated.length || resolved.unresolvedTokens.length) {
+    push('block', {
+      stage: 'name-resolution',
+      corrected: resolved.corrected,
+      fabricated: resolved.fabricated,
+      unresolvedTokens: resolved.unresolvedTokens,
+    });
+  }
 
   // ---- the constraint-preservation check, in control flow ----------------
   //
@@ -168,6 +289,35 @@ export async function runAgent(question: string): Promise<AgentAnswer> {
   // not ship. This is the check Stage 1 did not have.
   let blocked = false;
   let blockReason: string | undefined;
+
+  // A dataset count the tools did not produce is a fabricated fact.
+  if (counts.unresolvedTokens.length || counts.unsupported.length) {
+    blocked = true;
+    blockReason =
+      `composer stated ${counts.unsupported.length} dataset count(s) no tool produced` +
+      (counts.unresolvedTokens.length ? ` and ${counts.unresolvedTokens.length} unresolved count token(s)` : '');
+    answer =
+      'I cannot give this answer. The draft stated ' +
+      [...counts.unsupported.map(String), ...counts.unresolvedTokens].map((c) => `"${c}"`).join(', ') +
+      ' as a figure from the data, but no tool returned it. Rather than show you a ' +
+      'number I cannot trace, I am declining the answer.';
+    return { answer, unhonouredConstraints: unhonoured, blocked, blockReason, toolsUsed, scope, trace, nameCorrections, countsResolved };
+  }
+
+  // A firm-like name with no counterpart in the tool output is a fabricated
+  // value. It does not ship, even if everything around it is correct.
+  if (resolved.fabricated.length || resolved.unresolvedTokens.length) {
+    blocked = true;
+    blockReason =
+      `composer produced ${resolved.fabricated.length} firm name(s) and ` +
+      `${resolved.unresolvedTokens.length} entity reference(s) that no tool returned`;
+    answer =
+      'I cannot give this answer. The draft named ' +
+      [...resolved.fabricated, ...resolved.unresolvedTokens].map((f) => `"${f}"`).join(', ') +
+      ', which does not appear in the data I retrieved. Rather than show you a firm ' +
+      'that may not exist, I am declining the answer.';
+    return { answer, unhonouredConstraints: unhonoured, blocked, blockReason, toolsUsed, scope, trace, nameCorrections, countsResolved };
+  }
 
   if (unhonoured.length) {
     const surfaced = surfacesLimitation(answer, unhonoured);
@@ -183,7 +333,7 @@ export async function runAgent(question: string): Promise<AgentAnswer> {
     }
   }
 
-  return { answer, unhonouredConstraints: unhonoured, blocked, blockReason, toolsUsed, scope, trace };
+  return { answer, unhonouredConstraints: unhonoured, blocked, blockReason, toolsUsed, scope, trace, nameCorrections, countsResolved };
 }
 
 /**

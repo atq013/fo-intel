@@ -89,7 +89,22 @@ export interface ShortlistResponse {
 /** Fields a buyer needs to act. Absence of any is reported, not penalised silently. */
 const COMMERCIAL_FIELDS = ['legalName', 'country', 'city', 'principal.fullName', 'principal.phone'];
 
-export async function shortlist(query: ShortlistQuery): Promise<ShortlistResponse> {
+export async function shortlist(raw: ShortlistQuery): Promise<ShortlistResponse> {
+  // Callers -- the agent planner in particular -- emit 0 as a "no value"
+  // sentinel for these. Taken literally they are unsatisfiable: nothing is 0
+  // days old, and there is no source tier 0, so either silently excluded every
+  // record. Worse, `appliedFilters` tested truthiness, so the filter ran without
+  // being disclosed and the scope under-reported what had been applied.
+  //
+  // Normalising here keeps one rule: a filter that runs is a filter that is
+  // reported, and a value that cannot constrain anything is not a filter.
+  const query: ShortlistQuery = {
+    ...raw,
+    freshWithinDays: raw.freshWithinDays && raw.freshWithinDays > 0 ? raw.freshWithinDays : undefined,
+    maxSourceTier: raw.maxSourceTier && raw.maxSourceTier >= 1 ? raw.maxSourceTier : undefined,
+    requiredFields: raw.requiredFields?.length ? raw.requiredFields : undefined,
+    q: raw.q?.trim() || undefined,
+  };
   const limit = Math.min(query.limit ?? 25, 100);
   const sql = db();
 
@@ -137,8 +152,8 @@ export async function shortlist(query: ShortlistQuery): Promise<ShortlistRespons
   if (query.requireStrictReachable) appliedFilters.push('strict reachability (profiles excluded)');
   if (query.requireProfileAssisted) appliedFilters.push('profile-assisted reachability');
   if (query.requiredFields?.length) appliedFilters.push(`holds ${query.requiredFields.join(', ')}`);
-  if (query.freshWithinDays) appliedFilters.push(`observed within ${query.freshWithinDays}d`);
-  if (query.maxSourceTier) appliedFilters.push(`source tier <= ${query.maxSourceTier}`);
+  if (query.freshWithinDays != null) appliedFilters.push(`observed within ${query.freshWithinDays}d`);
+  if (query.maxSourceTier != null) appliedFilters.push(`source tier <= ${query.maxSourceTier}`);
 
   const now = Date.now();
   const kept: ShortlistResult[] = [];

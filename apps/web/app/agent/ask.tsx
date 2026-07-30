@@ -11,6 +11,7 @@ interface AgentAnswer {
   toolsUsed: string[];
   scope: Record<string, unknown>[];
   trace: Trace[];
+  nameCorrections?: Array<{ wrote: string; stored: string }>;
   error?: string;
 }
 
@@ -115,6 +116,15 @@ export default function Ask() {
 
           {res.answer && (
             <p style={{ whiteSpace: 'pre-wrap', fontSize: '.92rem', lineHeight: 1.6 }}>{res.answer}</p>
+          )}
+
+          {(res.nameCorrections?.length ?? 0) > 0 && (
+            <p className="note">
+              <strong>Firm names corrected to their stored spelling:</strong>{' '}
+              {res.nameCorrections!.map((c) => `"${c.wrote}" → ${c.stored}`).join(' · ')}.
+              Names are resolved server-side from the entity id, so the model cannot
+              invent one.
+            </p>
           )}
 
           {res.unhonouredConstraints.length > 0 && (
