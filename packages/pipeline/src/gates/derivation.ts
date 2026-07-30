@@ -46,6 +46,12 @@ const US_STATES: Record<string, string> = {
   WA: 'Washington', WV: 'West Virginia', WI: 'Wisconsin', WY: 'Wyoming',
 };
 
+/**
+ * The same table the rules use, exported so producers can ask "does this rule
+ * apply?" before making a claim. Two separate lists would drift.
+ */
+export const US_STATE_CODES = new Set(Object.keys(US_STATES));
+
 /** UK home nations are countries in the register's sense and one country in ISO's. */
 const UK_NATIONS = new Set(['england', 'wales', 'scotland', 'northern ireland', 'great britain', 'united kingdom', 'gb', 'uk']);
 

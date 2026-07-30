@@ -2,6 +2,7 @@ import { createHash, randomUUID } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import type { Collector, Extractor, Observation, Source } from '@fo/core/contract/index.js';
 import type { OpenExtractionEvent } from '@fo/core/contract/index.js';
+import { US_STATE_CODES, derivedMethod } from '../gates/derivation.js';
 
 /**
  * SEC 13F signature blocks — the reachability channel.
@@ -38,7 +39,11 @@ export const SEC_13F_SOURCE: Source = {
 };
 
 interface SigRow { ACCESSION_NUMBER: string; NAME: string; TITLE: string; PHONE: string }
-interface CoverRow { ACCESSION_NUMBER: string; FILINGMANAGER_NAME: string; DATEREPORTED: string }
+interface CoverRow {
+  ACCESSION_NUMBER: string; FILINGMANAGER_NAME: string; DATEREPORTED: string;
+  FILINGMANAGER_STREET1: string; FILINGMANAGER_CITY: string;
+  FILINGMANAGER_STATEORCOUNTRY: string; FILINGMANAGER_ZIPCODE: string;
+}
 
 function tsv<T>(path: string): T[] {
   const lines = readFileSync(path, 'utf8').split('\n').filter(Boolean);
@@ -71,6 +76,18 @@ export interface SignatoryRoute {
   cik?: string;
 }
 
+/**
+ * The filer's own address, as filed on the cover page.
+ *
+ * Already present in COVERPAGE.tsv beside the manager name -- no new source and
+ * no extra fetch. It matters because a route to a person is only commercially
+ * usable alongside enough context to act on, and without it a reachable record
+ * fails the commercial floor and counts toward nothing.
+ */
+export interface FilerAddress {
+  street: string; city: string; stateOrCountry: string; zip: string;
+}
+
 /** Normalised for joining a filer name to a candidate's legal name. */
 export function normFirm(s: string): string {
   return s.toUpperCase()
@@ -79,6 +96,13 @@ export function normFirm(s: string): string {
     .replace(/[^A-Z0-9 ]/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
+}
+
+/** Populated as a side effect of the census pass; keyed by accession. */
+const addressByAccession = new Map<string, FilerAddress>();
+
+export function addressFor(accession: string): FilerAddress | undefined {
+  return addressByAccession.get(accession);
 }
 
 export function buildSignatoryRoutes(dir = SEC_DIR): SignatoryRoute[] {
@@ -129,6 +153,12 @@ export function buildSignatoryRoutes(dir = SEC_DIR): SignatoryRoute[] {
       firm, accession: s.ACCESSION_NUMBER, person: s.NAME.trim(), title: s.TITLE.trim(),
       phone: s.PHONE.trim(), filedOn: c.DATEREPORTED, ownership, reason,
     });
+    addressByAccession.set(s.ACCESSION_NUMBER, {
+      street: (c.FILINGMANAGER_STREET1 ?? '').trim(),
+      city: (c.FILINGMANAGER_CITY ?? '').trim(),
+      stateOrCountry: (c.FILINGMANAGER_STATEORCOUNTRY ?? '').trim(),
+      zip: (c.FILINGMANAGER_ZIPCODE ?? '').trim(),
+    });
   }
   return out;
 }
@@ -151,6 +181,7 @@ export interface FilerUnit {
   firm: string;
   cik: string;
   routes: SignatoryRoute[];
+  address?: FilerAddress;
 }
 
 /**
@@ -190,6 +221,7 @@ export function filerUnits(candidatesPath: string, dir = SEC_DIR): FilerUnit[] {
     if (!cik) continue;
     const u = grouped.get(cik) ?? { firm: r.firm, cik, routes: [] };
     u.routes.push({ ...r, cik });
+    u.address ??= addressFor(r.accession);
     grouped.set(cik, u);
   }
   // Filers carrying at least one individually-owned route first: those are the
@@ -246,7 +278,6 @@ export function secSignatoryExtractor(): Extractor {
         );
       };
 
-      const latest = unit.routes[0]!;
       say('legalName', unit.firm, 'string',
         `COVERPAGE.FILINGMANAGER_NAME: ${unit.firm}`,
         'the name under which this manager files its 13F');
@@ -255,9 +286,42 @@ export function secSignatoryExtractor(): Extractor {
           `EDGAR central index key: ${unit.cik}`,
           'the filer identifier on EDGAR');
       }
-      say('country', 'United States', 'string',
-        `SEC Form 13F filing, accession ${latest.accession}`,
-        'only US-registered managers file Form 13F');
+      // The filer's own address, as filed on the cover page beside its name.
+      //
+      // `country` was previously asserted from "Form 13F implies a US manager",
+      // citing the accession number. That reads as pointer evidence, so gate 2
+      // correctly returned `skipped` and the release gate held all 49 of them --
+      // which in turn left every SEC entity below the commercial floor. The gate
+      // was right; the evidence was the wrong kind. Here the state code is read
+      // from the filing and the country is re-derived from it by a registered
+      // rule, so gate 2 can actually check the claim instead of deferring it.
+      const addr = unit.address;
+      if (addr) {
+        const cited = (field: string, v: string) => `COVERPAGE.FILINGMANAGER_${field}: ${v}`;
+
+        say('street', addr.street, 'string', cited('STREET1', addr.street),
+          'the business address on the filing cover page');
+        say('city', addr.city, 'string', cited('CITY', addr.city),
+          'the business address on the filing cover page');
+        say('postcode', addr.zip, 'string', cited('ZIPCODE', addr.zip),
+          'the business address on the filing cover page');
+
+        if (addr.stateOrCountry) {
+          const state = addr.stateOrCountry.toUpperCase();
+          const span = cited('STATEORCOUNTRY', addr.stateOrCountry);
+
+          // Only claimed when the registered rule actually applies. A filer
+          // domiciled outside the US carries a country code here, not a state
+          // code, and asserting "United States" for it would be a fabrication
+          // the gate would have to catch. Better not to make the claim.
+          if (US_STATE_CODES.has(state)) {
+            say('region', addr.stateOrCountry, 'string', span,
+              'the state given on the filing cover page');
+            say('country', 'United States', 'string', span,
+              derivedMethod('us_state_to_country', addr.stateOrCountry));
+          }
+        }
+      }
 
       // One person per assertion set, each citing its own signature block. The
       // span carries name, title and number together because that is how the
