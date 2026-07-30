@@ -1,10 +1,11 @@
 import { openExtractionEvent } from '@fo/core/contract/index.js';
 import type {
-  Claim, Collector, Entity, Extractor, GateResult, Observation, Source,
+  Claim, Collector, Entity, Evidence, Extractor, GateResult, Observation, Source,
 } from '@fo/core/contract/index.js';
 import { contractWriter } from '../../../db/src/contract-writer.js';
 import { GATES } from '../gates/index.js';
 import { assessEntity, releaseDecision } from '../release/gate.js';
+import { syncContacts } from './contacts.js';
 import type { RunHandle } from './runner.js';
 
 /**
@@ -121,6 +122,10 @@ async function processObservation(
 
   const siblings = closed.assertions.map((a) => a.claim);
   const released: Claim[] = [];
+  // Kept so contact promotion can see which gate actually proved ownership,
+  // rather than re-deriving it from the claim and guessing.
+  const evidenceByClaim = new Map<string, Evidence>();
+  const resultsByClaim = new Map<string, GateResult[]>();
 
   for (const { claim, establishing } of closed.assertions) {
     const results: GateResult[] = [];
@@ -142,6 +147,8 @@ async function processObservation(
     }
 
     await db.recordGateResults(claim.id, run.id, results);
+    evidenceByClaim.set(claim.id, establishing);
+    resultsByClaim.set(claim.id, results);
     const decision = releaseDecision(claim, results);
     await db.applyRelease(decision, run.id);
 
@@ -156,6 +163,15 @@ async function processObservation(
         reason: decision.reason ?? '',
       });
     }
+  }
+
+  // Contacts and reachability, before the commercial assessment reads them.
+  const reach = await syncContacts(ent.id, released, evidenceByClaim, resultsByClaim);
+  if (reach.created) {
+    await run.log('info', 'contacts_synced', {
+      entity: ent.id, routes: reach.created,
+      strictReachable: reach.strict, profileAssistedReachable: reach.profileAssisted,
+    });
   }
 
   const commercial = assessEntity(entity, released);

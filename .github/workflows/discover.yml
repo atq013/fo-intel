@@ -38,3 +38,15 @@ jobs:
           GITHUB_SHA: ${{ github.sha }}
           MAX_UNITS: '60'
         run: npx tsx packages/pipeline/src/jobs/discover.ts
+
+      # The reachability channel. Runs second and unconditionally (`if: always()`)
+      # because it costs zero API calls against a local dataset, so a Companies
+      # House rate-limit or timeout must not stop the only job that produces
+      # contact routes.
+      - name: run discover (SEC 13F signatories)
+        if: always()
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          GITHUB_EVENT_NAME: ${{ github.event_name }}
+          GITHUB_SHA: ${{ github.sha }}
+        run: npx tsx packages/pipeline/src/jobs/discover-sec.ts
