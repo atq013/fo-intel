@@ -16,3 +16,5 @@ data/cache/
 
 .code-review-graph/
 *.graph.json
+
+.claude/

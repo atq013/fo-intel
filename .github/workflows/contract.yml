@@ -1,0 +1,41 @@
+# Contract — re-judges claims under the current policy version.
+#
+# Runs after discover and refresh complete, so it sees whatever they wrote.
+# This is what makes release a pipeline rather than a boolean: when the standard
+# tightens, previously released claims are re-evaluated and can be demoted.
+#
+# It also runs the PTC-1 audit and FAILS THE JOB if a released claim exists with
+# no release_decision row naming its gates. A red workflow is the point — that
+# state is a contract violation, not a warning.
+name: contract
+
+on:
+  workflow_run:
+    workflows: [discover, refresh]
+    types: [completed]
+  schedule:
+    - cron: '30 6 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: contract
+  cancel-in-progress: false
+
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: run contract
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          GITHUB_EVENT_NAME: ${{ github.event_name }}
+          GITHUB_SHA: ${{ github.sha }}
+          CONTRACT_BATCH: '600'
+        run: npx tsx packages/pipeline/src/jobs/contract.ts

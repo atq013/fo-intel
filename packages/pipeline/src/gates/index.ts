@@ -12,6 +12,7 @@ export * from './value-type.js';
 export * from './identity.js';
 export * from './contact-ownership.js';
 export * from './coherence.js';
+export * from './derivation.js';
 
 /** Build order from the roadmap. Order within a band does not affect outcome. */
 export const GATES: Gate[] = [

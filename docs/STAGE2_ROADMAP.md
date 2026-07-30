@@ -118,6 +118,33 @@ failures from a real system**, not invented cases:
 **Exit criteria:** every fixture above is red before the gate exists and green
 after. A gate that cannot turn a known Stage 1 defect red is not doing work.
 
+**COMPLETE 30 Jul.** 12 contract tables applied; PTC-10 verified adversarially
+against the live database (`packages/db/src/verify-ptc10.ts`) rather than assumed.
+`Evidence` carries an unexported brand so `openExtractionEvent` is the only minter,
+and four `@ts-expect-error` assertions in `contract/invariants.type-test.ts` fail
+the build if that ever weakens. 19 fixtures extracted mechanically from
+`fo-dataset.json`; 30 tests green.
+
+**Two corrections to the table above, found by measuring rather than assuming:**
+
+- **Kopp is an `attribution` defect, not a `coherence` one.** Its street value is
+  `701 CARLSON PARKWAY` while the filing it cites says `8400 NORMANDALE LAKE
+  BOULEVARD`. The value is absent from its own span.
+- **The coherence fixture does not exist in the delivered data.** Across the 39
+  records with a composite address, the number citing different source URLs per
+  part is **zero** -- and the addresses are still wrong. They agree on the URL
+  *because the evidence was copied*. Uniform provenance was the fingerprint of the
+  defect, not evidence of coherence, so no URL-keyed check could have caught it.
+  This is why `coherence` keys on `extraction_event_id`, which a copy cannot fake.
+
+**One spec amendment, approved:** a third evidence kind, `derivation`. Gate 2 knew
+quoting and pointer evidence only, so a value *computed* from the source (`MN` ->
+`United States`) failed attribution and quarantined correctly but wrongly. The span
+now holds the input, `method` names a rule in a registry, and the gate passes only
+if the input is present **and** re-running the rule reproduces the value. Derived
+values are re-derived at validation time by a different code path than produced
+them. Nine tests cover the ways it must refuse.
+
 **Demonstrable at this checkpoint:** a SQL query showing one entity with claims,
 each carrying establishing evidence from its own extraction event, and a
 `release_decision` row naming the gates that ran.
@@ -146,6 +173,24 @@ landing, and the number gets reported honestly.
 **Exit criteria:** ≥40 entities in the new schema with released claims; the
 re-qualified Stage 1 count known and recorded.
 
+**Collector complete 30 Jul.** `collect/companies-house.ts` implements `Collector`
+and `Extractor` against the contract. It is a separate path from the Stage 1
+adapter rather than a refactor of it, because the Stage 1 adapter returns a
+`UkCompany` bag whose values are already detached from the bytes that establish
+them -- anything built on it inherits the defect.
+
+Every value cites the exact field it was read from (`registered_office_address.
+postal_code: W2 1BF`), not a summary of the document, which is what made Stage 1's
+spans unfalsifiable. Corporate PSCs are asserted as the register records them and
+left for `value_type` to judge: a silent pre-filter in the extractor would be an
+unrecorded decision.
+
+First live run: 9 companies, 119 claims, 118 released, 1 quarantined --
+`GATELEY SECRETARIES LIMITED` in an officer name field, the same defect class as
+Stage 1's five corporate PSCs. Checkpoint resume verified across two runs.
+`contact_ownership` skipped on all of them, which matches the Phase 0 finding that
+Companies House contributes 0% reachability.
+
 ---
 
 ## Phase 3 · Deploy and schedule — **the day-2 gate**
@@ -168,6 +213,25 @@ will abstain).
 **Exit criteria:** two workflow runs visible in Actions history, triggered by
 schedule not by hand, with rows in `run`. The 48-hour clock starts at the first
 one.
+
+**Built 30 Jul, awaiting secrets and first scheduled fire.** Three workflows:
+`discover` at 02/08/14/20 UTC, `refresh` at 05/17 UTC (offset so the two never
+contend for the Companies House rate limit), `contract` on `workflow_run`
+completion of either. Each has a `concurrency` group -- two discover runs at once
+would share a checkpoint, both advance it, and silently skip units.
+
+`contract` **fails the job** on a PTC-1 violation (a released claim with no
+decision row). A red workflow is the intended behaviour; that state is a contract
+violation, not a warning.
+
+Idempotency: deterministic entity ids (`ent_ch_<number>`), content-hash short
+circuit so an unchanged source writes nothing, and a checkpoint written only
+*after* the unit's writes commit -- a cursor written before would make the next run
+skip a unit that was never stored, which is data loss that looks like progress.
+
+Operating record: `s2_run`, `s2_decision_log`, plus `s2_run_log` (migration 004)
+for structured lines in Neon as well as the Actions log, which expires.
+`/operations` on the deployed app renders all of it. Stage 1's `/` is untouched.
 
 ---
 
@@ -220,8 +284,8 @@ system actually did, build summary, session record index, submission email.
 | # | Milestone | Proves | Target |
 |---|---|---|---|
 | M0 | ~~Spike complete~~ **DONE** | marginal: ~160 projected, assumptions recorded | 30 Jul ✓ |
-| M1 | Contract + gates green on Stage 1 fixtures | the defect class is now impossible | 30 Jul late |
-| M2 | Companies House end to end; Stage 1 re-qualified | the pipeline produces correct records | 31 Jul midday |
+| M1 | ~~Contract + gates green on Stage 1 fixtures~~ **DONE** | the defect class is now impossible | 30 Jul ✓ |
+| M2 | ~~Companies House end to end~~ **DONE** · re-qualification in progress | the pipeline produces correct records | 30 Jul ✓ |
 | M3 | **Deployed, scheduled, checkpoint email sent** | day-2 requirement met; 48h clock starts | **31 Jul EOD** |
 | M4 | Retrieval extension live | a paying user has something new | 1–2 Aug |
 | M5 | Agent answering all three goals | the agentic mandate | 2 Aug |

@@ -1,0 +1,169 @@
+import { openExtractionEvent } from '@fo/core/contract/index.js';
+import type {
+  Claim, Collector, Entity, Extractor, GateResult, Observation, Source,
+} from '@fo/core/contract/index.js';
+import { contractWriter } from '../../../db/src/contract-writer.js';
+import { GATES } from '../gates/index.js';
+import { assessEntity, releaseDecision } from '../release/gate.js';
+import type { RunHandle } from './runner.js';
+
+/**
+ * The loop every job shares: collect, extract, gate, release, checkpoint.
+ *
+ * Written once because the interesting property is uniformity -- every claim
+ * from every source passes the same gates and the same chokepoint. A source that
+ * needed its own release path would be a source whose data nobody had checked.
+ */
+
+const db = contractWriter(process.env.DATABASE_URL!);
+
+export interface ProcessOptions {
+  run: RunHandle;
+  source: Source;
+  collector: Collector;
+  extractor: Extractor;
+  /** stable, deterministic id so re-running upserts rather than duplicates */
+  entityFor: (observation: Observation) => { id: string; canonicalName: string; entityType?: string };
+  /** stop after this many units; the budget guard, in its simplest form */
+  maxUnits?: number;
+  resume?: boolean;
+}
+
+export async function processSource(opts: ProcessOptions): Promise<void> {
+  const { run, source, collector, extractor, entityFor } = opts;
+  const maxUnits = opts.maxUnits ?? Number(process.env.MAX_UNITS ?? 40);
+
+  await db.upsertSource(source);
+  const cursor = opts.resume === false ? undefined : (await run.readCheckpoint(source.id)) ?? undefined;
+  await run.log('info', 'source_started', { source: source.id, resumeFrom: cursor ?? null, maxUnits });
+
+  let units = 0;
+
+  for await (const { observation, cursor: next } of collector.collect(source, cursor)) {
+    if (units >= maxUnits) {
+      await run.log('info', 'budget_halt', { source: source.id, units, reason: 'maxUnits reached' });
+      await run.decision('budget_halt', {
+        rule: 'max_units_per_run',
+        reason: `stopped after ${units} units to stay inside the run budget`,
+        after: { cursor: next },
+      });
+      break;
+    }
+
+    try {
+      await processObservation(observation, { run, source, extractor, entityFor });
+      units++;
+      run.counts.touched++;
+
+      // Checkpoint AFTER the writes have committed. See migration 004.
+      if (next) await run.checkpoint(source.id, next, units);
+    } catch (err) {
+      const message = err instanceof Error ? err.message : String(err);
+      run.failures.push({ source: source.id, url: observation.url, message });
+      await run.log('error', 'unit_failed', { url: observation.url, message });
+      // One bad unit must not end the run -- an unattended system that stops on
+      // the first malformed record is a system that stops.
+    }
+  }
+
+  await run.log('info', 'source_finished', { source: source.id, units });
+}
+
+async function processObservation(
+  observation: Observation,
+  ctx: Pick<ProcessOptions, 'run' | 'source' | 'extractor' | 'entityFor'>,
+): Promise<void> {
+  const { run, extractor, entityFor } = ctx;
+  const ent = entityFor(observation);
+
+  // Evidence-based staleness: if we have seen this exact content before, there
+  // is nothing new to extract. A clock alone never justifies re-extraction.
+  const seen = (await db.sql`
+    SELECT id FROM s2_observation WHERE url = ${observation.url} AND content_hash = ${observation.contentHash}
+    LIMIT 1`) as unknown as Array<{ id: string }>;
+  if (seen.length) {
+    await run.log('debug', 'unchanged', { url: observation.url, hash: observation.contentHash });
+    return;
+  }
+
+  const priorRows = (await db.sql`
+    SELECT content_hash FROM s2_observation WHERE url = ${observation.url}
+    ORDER BY fetched_at DESC LIMIT 1`) as unknown as Array<{ content_hash: string }>;
+  const prior = priorRows[0]?.content_hash;
+
+  await db.upsertObservation(observation);
+
+  const entity: Entity = {
+    id: ent.id, canonicalName: ent.canonicalName, entityType: ent.entityType ?? 'unconfirmed',
+    firstSeenAt: new Date(), trustState: 'active', commercialState: 'unassessed',
+    strictReachable: false, profileAssistedReachable: false,
+  };
+  await db.upsertEntity(entity);
+
+  if (prior) {
+    // A content change with a recorded before/after is the staleness evidence
+    // the brief asks for. Recorded when it happens, not reconstructed later.
+    await run.decision('stale', {
+      entityId: ent.id, rule: 'content_hash_changed',
+      before: { contentHash: prior }, after: { contentHash: observation.contentHash },
+      reason: `source content at ${observation.url} changed, so its claims are re-derived`,
+    });
+    await run.log('info', 'content_changed', { url: observation.url, from: prior, to: observation.contentHash });
+  }
+
+  const event = openExtractionEvent({ observation, extractor: extractor.name, runId: run.id });
+  await extractor.extract(observation, event);
+  const closed = event.close();
+  if (!closed.assertions.length) return;
+
+  await db.writeEvent(closed.event, closed.assertions, closed.attached);
+  run.counts.created += closed.assertions.length;
+
+  const siblings = closed.assertions.map((a) => a.claim);
+  const released: Claim[] = [];
+
+  for (const { claim, establishing } of closed.assertions) {
+    const results: GateResult[] = [];
+    for (const gate of GATES) {
+      try {
+        results.push(await gate.evaluate(claim, {
+          evidence: [establishing], observation,
+          siblings: siblings.filter((c) => c.id !== claim.id),
+          entity, policyVersion: 'runtime',
+        }));
+      } catch (err) {
+        // A gate that threw did not pass. Recording it as `error` keeps PTC-2
+        // honest: only an explicit pass counts as a pass.
+        results.push({
+          gate: gate.name, outcome: 'error', band: gate.band,
+          detail: err instanceof Error ? err.message : String(err),
+        });
+      }
+    }
+
+    await db.recordGateResults(claim.id, run.id, results);
+    const decision = releaseDecision(claim, results);
+    await db.applyRelease(decision, run.id);
+
+    if (decision.decision === 'released') {
+      released.push(claim);
+      run.counts.released++;
+    } else {
+      run.counts.quarantined++;
+      await run.decision(decision.decision === 'quarantined' ? 'quarantine' : 'release', {
+        entityId: ent.id, claimId: claim.id, rule: 'release_gate',
+        after: { decision: decision.decision, failed: decision.gatesFailed, skipped: decision.gatesSkipped },
+        reason: decision.reason ?? '',
+      });
+    }
+  }
+
+  const commercial = assessEntity(entity, released);
+  await db.sql`UPDATE s2_entity SET commercial_state = ${commercial.commercialState}, updated_at = now()
+               WHERE id = ${ent.id}`;
+  await run.decision('classify', {
+    entityId: ent.id, rule: 'commercial_floor',
+    after: { state: commercial.commercialState, missing: commercial.missing },
+    reason: commercial.reason,
+  });
+}

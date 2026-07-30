@@ -1,0 +1,40 @@
+# Discovery — finds and re-derives records through the contract.
+#
+# Every six hours. The 48-hour operating window the brief asks for is measured
+# from the first run that fires on this schedule, not from a manual dispatch,
+# which is why `trigger` is recorded in s2_run and why the workflow passes
+# GITHUB_EVENT_NAME through: a run that a human started cannot evidence
+# unattended operation.
+name: discover
+
+on:
+  schedule:
+    # 02:00, 08:00, 14:00, 20:00 UTC
+    - cron: '0 2,8,14,20 * * *'
+  workflow_dispatch:
+
+concurrency:
+  # Never two discover runs at once: they would share a checkpoint and both
+  # advance it, silently skipping units.
+  group: discover
+  cancel-in-progress: false
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: run discover
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          COMPANIES_HOUSE_API_KEY: ${{ secrets.COMPANIES_HOUSE_API_KEY }}
+          GITHUB_EVENT_NAME: ${{ github.event_name }}
+          GITHUB_SHA: ${{ github.sha }}
+          MAX_UNITS: '60'
+        run: npx tsx packages/pipeline/src/jobs/discover.ts

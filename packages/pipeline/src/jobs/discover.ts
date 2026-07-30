@@ -1,0 +1,71 @@
+import 'dotenv/config';
+import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+
+import { withRun } from '../run/runner.js';
+import { processSource } from '../run/pipeline.js';
+import {
+  COMPANIES_HOUSE_SOURCE,
+  companiesHouseCollector,
+  companiesHouseExtractor,
+} from '../collect/companies-house.js';
+import type { Observation } from '@fo/core/contract/index.js';
+
+/**
+ * `discover` — Companies House, through the contract.
+ *
+ * Ordering is deliberate: the companies that appear in the Stage 1 delivered
+ * dataset go first. The roadmap requires the Stage 1 fifty to be re-derived
+ * through the new pipeline rather than copied across, and re-deriving them first
+ * means the re-qualified count is known early, while there is still time to act
+ * on it. It is also the number most likely to be uncomfortable, and finding out
+ * late would be the expensive way to learn it.
+ */
+
+const root = fileURLToPath(new URL('../../../../', import.meta.url));
+
+function loadCandidates(): string[] {
+  const uk = JSON.parse(readFileSync(root + 'data/candidates-uk.json', 'utf8')) as {
+    companies: Array<{ companyNumber: string; name: string; hasSubstance: boolean }>;
+  };
+
+  // Company numbers that appear in the Stage 1 delivered file, matched by name.
+  const delivered = JSON.parse(readFileSync(root + 'data/fo-dataset.json', 'utf8')) as Array<{ legalName: string }>;
+  const deliveredNames = new Set(delivered.map((r) => r.legalName.trim().toUpperCase()));
+
+  const inStage1: string[] = [];
+  const rest: string[] = [];
+  for (const c of uk.companies) {
+    if (deliveredNames.has(c.name.trim().toUpperCase())) inStage1.push(c.companyNumber);
+    else if (c.hasSubstance) rest.push(c.companyNumber);
+  }
+
+  // Shells are excluded from the tail but never from the Stage 1 set: a record
+  // we already shipped must be re-judged on the new standard, not quietly
+  // dropped because it would fail. Dropping it would hide the correction.
+  return [...inStage1, ...rest];
+}
+
+const numbers = loadCandidates();
+
+function entityFor(observation: Observation) {
+  const doc = JSON.parse(observation.body ?? '{}') as { companyNumber: string; profile?: { company_name?: string } };
+  return {
+    // Deterministic, so a re-run upserts the same entity instead of duplicating
+    // it. Entity duplication is disqualifying in the brief.
+    id: `ent_ch_${doc.companyNumber}`,
+    canonicalName: doc.profile?.company_name ?? doc.companyNumber,
+    entityType: 'unconfirmed',
+  };
+}
+
+await withRun('discover', (process.env.GITHUB_EVENT_NAME === 'schedule' ? 'schedule' : 'manual'), async (run) => {
+  await run.log('info', 'candidates_loaded', { total: numbers.length });
+  await processSource({
+    run,
+    source: COMPANIES_HOUSE_SOURCE,
+    collector: companiesHouseCollector(numbers),
+    extractor: companiesHouseExtractor((doc) => `ent_ch_${doc.companyNumber}`),
+    entityFor,
+  });
+});

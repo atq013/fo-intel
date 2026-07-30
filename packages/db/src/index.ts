@@ -187,3 +187,7 @@ export async function recordRejection(entry: {
     VALUES (${entry.firmId}, ${entry.firmName}, ${entry.fieldPath}, ${entry.value}, ${entry.reason}, ${entry.detectedBy})
   `;
 }
+
+// Stage 2 operating reads, kept in their own module so the Stage 1 read path
+// above is untouched.
+export * from './stage2-reads.js';

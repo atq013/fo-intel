@@ -1,4 +1,5 @@
 import type { Claim, Gate, GateContext, GateResult } from '@fo/core/contract/index.js';
+import { checkDerivation } from './derivation.js';
 
 /**
  * Gate 2 · attribution — the centrepiece.
@@ -57,7 +58,14 @@ export const COVERAGE_THRESHOLD = 0.6;
 export function checkAttribution(
   value: unknown,
   spanText: string,
+  method = '',
 ): { outcome: 'passed' | 'failed' | 'skipped'; detail: string; counterfactual?: unknown } {
+  // Third evidence kind: the value was computed from what the source says rather
+  // than written in it. Checked by re-running the named rule, not by exempting
+  // the claim -- see gates/derivation.ts.
+  const derived = checkDerivation(value, spanText, method);
+  if (derived) return derived;
+
   const valueStr = typeof value === 'string' ? value : JSON.stringify(value);
   const vTokens = tokenize(valueStr);
   const sTokens = new Set(tokenize(spanText));
@@ -119,7 +127,7 @@ export const attributionGate: Gate = {
         counterfactual: { wouldHaveReleased: claim.value, citing: null },
       };
     }
-    const r = checkAttribution(claim.value, establishing.spanText);
+    const r = checkAttribution(claim.value, establishing.spanText, establishing.method);
     return { gate: 'attribution', outcome: r.outcome, band: 'A', detail: r.detail, counterfactual: r.counterfactual };
   },
 };
