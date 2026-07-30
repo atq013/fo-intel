@@ -24,7 +24,7 @@ export function connect(url = process.env.DATABASE_URL) {
 }
 
 /**
- * Retry wrapper for transient connection faults.
+ * Retry the wrapper for transient connection faults.
  *
  * Kept even though the DNS fix addresses the cause, because it does not address
  * every cause: Neon suspends idle compute and the first query after a suspend
