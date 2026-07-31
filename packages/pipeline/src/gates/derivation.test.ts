@@ -142,3 +142,41 @@ test('identity · a surname split by slug punctuation still verifies', async () 
   assert.equal(checkProfileSlug('https://www.linkedin.com/in/david-o-connor-a29410b2', "David O'Connor").ok, true);
   assert.equal(checkProfileSlug('https://www.linkedin.com/in/robert-gale-15195466', 'GALE, Robert John').ok, true);
 });
+
+test('identity · a profile matching ANY named principal of the firm passes', async () => {
+  const { identityGate } = await import('./identity.js');
+  // A firm with two principals. Checking only the first quarantined 32 correct
+  // profiles in production because it compared against a colleague.
+  const mk = (field: string, value: string, valueType: string) => ({
+    id: 'c_' + field + value, entityId: 'e', extractionEventId: 'xe', field, value, valueType,
+    status: 'released' as const, confidence: 0.9, refreshPolicy: 'statutory' as const,
+    establishedAt: new Date(),
+  });
+  const claim = mk('principal.linkedinUrl', 'https://www.linkedin.com/in/varun-malhotra-123', 'profile_url');
+  const res = await identityGate.evaluate(claim as never, {
+    evidence: [], siblings: [
+      mk('principal.fullName', 'ELLIOTT, James', 'person_name'),
+      mk('principal.fullName', 'MALHOTRA, Varun', 'person_name'),
+    ] as never,
+    entity: { id: 'e' } as never, policyVersion: 'test',
+  });
+  assert.equal(res.outcome, 'passed', res.detail);
+});
+
+test('identity · a profile matching NO principal is still refused', async () => {
+  const { identityGate } = await import('./identity.js');
+  const mk = (field: string, value: string, valueType: string) => ({
+    id: 'c_' + field + value, entityId: 'e', extractionEventId: 'xe', field, value, valueType,
+    status: 'released' as const, confidence: 0.9, refreshPolicy: 'statutory' as const,
+    establishedAt: new Date(),
+  });
+  const claim = mk('principal.linkedinUrl', 'https://www.linkedin.com/in/jonas-cohon', 'profile_url');
+  const res = await identityGate.evaluate(claim as never, {
+    evidence: [], siblings: [
+      mk('principal.fullName', 'ELLIOTT, James', 'person_name'),
+      mk('principal.fullName', 'MALHOTRA, Varun', 'person_name'),
+    ] as never,
+    entity: { id: 'e' } as never, policyVersion: 'test',
+  });
+  assert.equal(res.outcome, 'failed');
+});

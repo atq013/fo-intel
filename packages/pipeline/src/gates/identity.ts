@@ -121,17 +121,40 @@ export const identityGate: Gate = {
     if (claim.valueType !== 'profile_url') {
       return { gate: 'identity', outcome: 'skipped', band: 'A', detail: 'not a profile claim' };
     }
-    const person = ctx.siblings.find((c) => c.field.endsWith('fullName'))?.value;
-    if (typeof person !== 'string') {
+    // A firm can have several principals, so the profile must be checked against
+    // ALL of them. Taking the first name found compared /in/-varunmalhotra
+    // against a colleague called Elliott and quarantined 32 correct profiles --
+    // the gate was strict, but about the wrong person.
+    const people = ctx.siblings
+      .filter((c) => c.field.endsWith('fullName') && typeof c.value === 'string')
+      .map((c) => String(c.value));
+
+    if (!people.length) {
       return { gate: 'identity', outcome: 'failed', band: 'A', detail: 'no named person to verify against' };
     }
-    const r = checkProfileSlug(String(claim.value), person);
+
+    const url = String(claim.value);
+    const checks = people.map((person) => ({ person, r: checkProfileSlug(url, person) }));
+    const hit = checks.find((c) => c.r.ok);
+
+    if (hit) {
+      return {
+        gate: 'identity',
+        outcome: 'passed',
+        band: 'A',
+        detail: `${hit.r.why} — matches ${hit.person}`,
+      };
+    }
+
     return {
       gate: 'identity',
-      outcome: r.ok ? 'passed' : 'failed',
+      outcome: 'failed',
       band: 'A',
-      detail: r.why,
-      counterfactual: r.ok ? undefined : { wouldHaveReleased: claim.value, asProfileFor: person },
+      detail: `no named principal matches this profile; ${checks[0]!.r.why}`,
+      counterfactual: {
+        wouldHaveReleased: claim.value,
+        asProfileForAnyOf: people.slice(0, 4),
+      },
     };
   },
 };

@@ -1,0 +1,229 @@
+{
+ "generatedAt": "2026-07-31T13:10:59.938Z",
+ "method": "Companies House advanced-search, explicit family-office terms only",
+ "fragments": [
+  "family office",
+  "single family office",
+  "multi family office",
+  "multi-family office",
+  "private family office"
+ ],
+ "sicCodes": [
+  "64205",
+  "64303",
+  "66300",
+  "64209",
+  "70100",
+  "64999",
+  "64301",
+  "64302",
+  "64304",
+  "64306",
+  "66190",
+  "70221"
+ ],
+ "note": "Name selects which companies to investigate. It establishes nothing: every entity is created unconfirmed and must earn its classification from evidence.",
+ "companies": [
+  {
+   "companyNumber": "11031775",
+   "name": "RALPH FAMILY OFFICE LIMITED",
+   "status": "active",
+   "incorporated": "2017-10-25",
+   "sicCodes": [
+    "64301",
+    "68209"
+   ],
+   "accountsType": "total-exemption-full",
+   "hasSubstance": true,
+   "officers": [],
+   "psc": []
+  },
+  {
+   "companyNumber": "14126520",
+   "name": "THE OLIVER FAMILY OFFICE LIMITED",
+   "status": "active",
+   "incorporated": "2022-05-24",
+   "sicCodes": [
+    "64301"
+   ],
+   "accountsType": "total-exemption-full",
+   "hasSubstance": true,
+   "officers": [],
+   "psc": []
+  },
+  {
+   "companyNumber": "14964155",
+   "name": "DAVIDOFF FREY FAMILY OFFICE (UK) LTD",
+   "status": "active",
+   "incorporated": "2023-06-27",
+   "sicCodes": [
+    "64306"
+   ],
+   "accountsType": "total-exemption-full",
+   "hasSubstance": true,
+   "officers": [],
+   "psc": []
+  },
+  {
+   "companyNumber": "07931194",
+   "name": "WIMMER FAMILY OFFICE LTD",
+   "status": "active",
+   "incorporated": "2012-02-01",
+   "sicCodes": [
+    "66190"
+   ],
+   "accountsType": "full",
+   "hasSubstance": true,
+   "officers": [],
+   "psc": []
+  },
+  {
+   "companyNumber": "06934623",
+   "name": "TY DANJUMA FAMILY OFFICE LIMITED",
+   "status": "active",
+   "incorporated": "2009-06-15",
+   "sicCodes": [
+    "66190"
+   ],
+   "accountsType": "group",
+   "hasSubstance": true,
+   "officers": [],
+   "psc": []
+  },
+  {
+   "companyNumber": "08501446",
+   "name": "JH FAMILY OFFICE LTD",
+   "status": "active",
+   "incorporated": "2013-04-24",
+   "sicCodes": [
+    "66190"
+   ],
+   "accountsType": "total-exemption-full",
+   "hasSubstance": true,
+   "officers": [],
+   "psc": []
+  },
+  {
+   "companyNumber": "11137710",
+   "name": "STANBRIDGE FAMILY OFFICE LTD",
+   "status": "active",
+   "incorporated": "2018-01-08",
+   "sicCodes": [
+    "66190"
+   ],
+   "accountsType": "total-exemption-full",
+   "hasSubstance": true,
+   "officers": [],
+   "psc": []
+  },
+  {
+   "companyNumber": "08741581",
+   "name": "FRY FAMILY OFFICE LIMITED",
+   "status": "active",
+   "incorporated": "2013-10-21",
+   "sicCodes": [
+    "70221"
+   ],
+   "accountsType": "unaudited-abridged",
+   "hasSubstance": true,
+   "officers": [],
+   "psc": []
+  },
+  {
+   "companyNumber": "09250656",
+   "name": "POMMES D'OR FAMILY OFFICE LIMITED",
+   "status": "active",
+   "incorporated": "2014-10-06",
+   "sicCodes": [
+    "47290",
+    "47810",
+    "70221",
+    "70229"
+   ],
+   "accountsType": "total-exemption-full",
+   "hasSubstance": true,
+   "officers": [],
+   "psc": []
+  },
+  {
+   "companyNumber": "09473311",
+   "name": "GREGORY FAMILY OFFICE LIMITED",
+   "status": "active",
+   "incorporated": "2015-03-05",
+   "sicCodes": [
+    "70221"
+   ],
+   "accountsType": "total-exemption-full",
+   "hasSubstance": true,
+   "officers": [],
+   "psc": []
+  },
+  {
+   "companyNumber": "12912696",
+   "name": "SWIX FAMILY OFFICE UK LIMITED",
+   "status": "active",
+   "incorporated": "2020-09-29",
+   "sicCodes": [
+    "70221"
+   ],
+   "accountsType": "full",
+   "hasSubstance": true,
+   "officers": [],
+   "psc": []
+  },
+  {
+   "companyNumber": "11529655",
+   "name": "BLG FAMILY OFFICE UK LIMITED",
+   "status": "active",
+   "incorporated": "2018-08-21",
+   "sicCodes": [
+    "69203",
+    "70221"
+   ],
+   "accountsType": "total-exemption-full",
+   "hasSubstance": true,
+   "officers": [],
+   "psc": []
+  },
+  {
+   "companyNumber": "13335864",
+   "name": "CLARMOND FAMILY OFFICE LIMITED",
+   "status": "active",
+   "incorporated": "2021-04-14",
+   "sicCodes": [
+    "70221"
+   ],
+   "accountsType": "total-exemption-full",
+   "hasSubstance": true,
+   "officers": [],
+   "psc": []
+  },
+  {
+   "companyNumber": "07697113",
+   "name": "SIMON FAMILY OFFICE LIMITED",
+   "status": "active",
+   "incorporated": "2011-07-07",
+   "sicCodes": [
+    "70221"
+   ],
+   "accountsType": "total-exemption-full",
+   "hasSubstance": true,
+   "officers": [],
+   "psc": []
+  },
+  {
+   "companyNumber": "10038201",
+   "name": "PALL MALL FAMILY OFFICE LTD",
+   "status": "active",
+   "incorporated": "2016-03-02",
+   "sicCodes": [
+    "70221",
+    "70229"
+   ],
+   "accountsType": "total-exemption-full",
+   "hasSubstance": true,
+   "officers": [],
+   "psc": []
+  }
+ ]
+}
