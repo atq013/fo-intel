@@ -41,10 +41,24 @@ function loadCandidates(): string[] {
     else if (c.hasSubstance) rest.push(c.companyNumber);
   }
 
+  // The narrow pool: explicit family-office terms only. Collected separately
+  // after the broad terms were measured and rejected for returning independent
+  // financial advisers rather than family offices.
+  let narrow: string[] = [];
+  try {
+    const n = JSON.parse(readFileSync(root + 'data/candidates-uk-narrow.json', 'utf8')) as {
+      companies: Array<{ companyNumber: string }>;
+    };
+    const seen = new Set([...inStage1, ...rest]);
+    narrow = n.companies.map((c) => c.companyNumber).filter((c) => !seen.has(c));
+  } catch {
+    // Absent file simply means the narrow collection has not been run.
+  }
+
   // Shells are excluded from the tail but never from the Stage 1 set: a record
   // we already shipped must be re-judged on the new standard, not quietly
   // dropped because it would fail. Dropping it would hide the correction.
-  return [...inStage1, ...rest];
+  return [...inStage1, ...rest, ...narrow];
 }
 
 const numbers = loadCandidates();

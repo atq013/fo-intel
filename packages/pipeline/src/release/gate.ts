@@ -19,13 +19,18 @@ import type {
  * that has no decision at the current version, so a bump makes the scheduled
  * runs re-evaluate the whole file unattended.
  *
+ * 2025-07-31.2 — the identity gate verifies a profile against every named
+ * principal of the firm, not just the first one found. It had been comparing
+ * /in/-varunmalhotra against a colleague called Elliott and quarantining 32
+ * correct profiles.
+ *
  * 2025-07-31.1 — attribution no longer strips a value that is entirely
  * stopwords. Oregon's state code "OR" was being filtered as the English
  * conjunction, leaving nothing to compare, and a correct claim was quarantined.
  * Previously quarantined claims are re-admitted by re-evaluation, not by an
  * UPDATE: the decision row records that it changed and why.
  */
-export const POLICY_VERSION = '2025-07-31.1';
+export const POLICY_VERSION = '2025-07-31.2';
 
 export function releaseDecision(
   claim: Claim,
