@@ -1,6 +1,6 @@
 # Stage 2 — Handoff
 
-Written 31 Jul 2026 14:14 UTC. Every figure below is a query against the live
+Written 31 Jul 2026, last refreshed 15:40 UTC. Every figure below is a query against the live
 database or the GitHub Actions API at that moment, not a recollection.
 
 No secrets in this file. `DATABASE_URL`, `COMPANIES_HOUSE_API_KEY`,
@@ -14,7 +14,7 @@ for the deployed app.
 
 | | |
 |---|---|
-| commit | `01221d2` on `main` |
+| commit | see `git log -1`; this doc last updated at `93c2d7f`+ |
 | repository | https://github.com/atq013/fo-intel |
 | retrieval feature | https://fo-intel-web.vercel.app/shortlist |
 | agent | https://fo-intel-web.vercel.app/agent |
@@ -35,7 +35,10 @@ for the deployed app.
 | qualifying + **profile-assisted** reachable | **174** | — |
 | qualifying + **postal** reachable | **47** | — |
 | **qualifying + any defensible named-individual route** | **187** | — |
-| released claims | ~2,900 | — |
+| released claims | **2,842** | — |
+| quarantined claims | **11** | — |
+| scheduled runs | **9** | ≥2, ≥48h apart |
+| window elapsed | **21.5h** of 48 | closes 1 Aug 18:07Z |
 | tests | **69/69** | — |
 
 Routes by channel: 68 phone (strict) · 107 LinkedIn (profile-assisted) · 81 postal.
@@ -74,22 +77,78 @@ rejects A1 should read 67; one who accepts postal routes should read 187.
   and dataset counts are resolved server-side from tool output — the model emits
   tokens and cannot type either. An answer that fails to surface a constraint the
   planner could not honour is blocked in control flow.
-- **Scheduled operation**: 6 scheduled runs, window open since 30 Jul 18:07:53Z.
+- **Scheduled operation**: 9 scheduled runs, window open since 30 Jul 18:07:53Z.
 - **Day-2 checkpoint email** sent.
+
+---
+
+## Web-discovery spike — completed, NOT IMPORTED
+
+Ran 31 Jul, 40 Serper queries across the four exact phrases, 153 unique
+candidate domains, 45 fetched for first-party verification, 150s, $0.
+
+| measure | value |
+|---|---|
+| unique candidate domains | 153 |
+| directory results skipped (discovery only) | 40 |
+| sites fetched | 45 |
+| passed the automated filter | 12 (27%) |
+| **actually family offices on inspection** | **1, possibly 2** |
+| **true precision** | **~2–4%** |
+| duplicates against existing entities | 0 |
+| projected strict / postal reachability | **0 / 0** |
+
+### Decision: do not import. Recorded with the reason.
+
+The 27% headline is false and must not be quoted. Reading what "qualified":
+`privatebank.jpmorgan.com` and `bbh.com` are **banks**; `daypitney.com` and
+`pillsburylaw.com` are **law firms**; `kaufmanrossin.com` is an **accountancy**;
+`sage.com` is **accounting software**; `kellogg.northwestern.edu` is a
+**university**; `cowenpartners.com` is an **executive search firm**;
+`uhnwinstitute.org` is a **trade body**. Only `legacyknight.com` is plausibly a
+multi-family office.
+
+Principal extraction returned page furniture, not people: *"Insights Reports
+Family"*, *"Enterprise Value"*, *"Topics Asena Client"*, *"Chief Investment
+Officer"*.
+
+**The structural reason, which no regex fixes:** a single family office has no
+commercial reason to have a website. It serves one family and seeks no clients.
+The organisations ranking for `"family office"` are precisely those *selling
+services to* family offices. A wording test cannot separate "we are a family
+office" from "we advise family offices", and the corpus is ~95% content
+marketing.
+
+Importing at this precision would place banks and law firms in a family-office
+dataset — a worse version of the `family wealth` IFA problem already rejected,
+and exactly what the brief fails a submission for. Same call, same reasoning, as
+Phase 0's leadership-page probe (measured 0 of 26, reported rather than salvaged).
+
+**Reproduce:** `WEB_QUERIES=40 WEB_FETCH=45 npx tsx packages/pipeline/src/discovery/sample-web.ts`
 
 ---
 
 ## Remaining, in priority order
 
-1. **The 500 gap — the one open decision.** 218 of 500. Every built source is at
-   or near its ceiling (see Risks). The web-discovery spike measuring whether
-   official firm websites can close it was running when this was written; its
-   result decides whether 500 is reachable or must be reported short.
-2. **Operating window completion.** Needs two scheduled runs ≥48h apart (opened
-   30 Jul 18:07:53Z, closes 1 Aug 18:07Z), one genuine dependency failure
-   (**already captured**, see below), and a cross-run staleness event with an
-   evidence-based reason (**not yet fired** — refresh has found every content
-   hash unchanged, which is the mechanism working but not yet a decay event).
+1. **The 500 gap — the one open decision, now fully measured.** 218 of 500.
+   Every channel including web discovery has been measured and is at its ceiling
+   (see Risks). There is no measured path to 500 that does not involve importing
+   firms that are not family offices. The decision — submit 218 honest records
+   with the ceiling evidence attached, or something else — is the user's.
+2. **Operating window completion.** Opened 30 Jul 18:07:53Z, closes 1 Aug
+   18:07Z. 9 scheduled runs, 21.5h elapsed.
+   - two scheduled runs ≥48h apart — **on track**, needs a scheduled run after
+     1 Aug 18:07Z
+   - one genuine dependency failure — **captured** (see below)
+   - cross-run staleness with an evidence-based reason — **NOT yet satisfied.**
+     `s2_decision_log` holds 6 rows of kind `stale`, and they must not be
+     presented as meeting this condition: all 6 fired in **manual** runs inside a
+     single working session, and the "change" is a search engine returning a
+     different LinkedIn profile on a re-query — not a source contradicting a held
+     record. The brief excludes both ("staleness detected within a single
+     compressed session is not staleness"). A qualifying event needs a
+     **scheduled** `refresh` to find a Companies House or SEC content hash
+     genuinely changed across cycles.
 3. **The three official goals** run against production with raw traces saved.
    Goal 2 must be used verbatim.
 4. **Architecture notes** (2–3 pages), **build session summary**, **AI
