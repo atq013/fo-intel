@@ -25,14 +25,27 @@ const EXISTING_FRAGMENTS = [
 ];
 
 /**
- * Widened set. Each is a term a family wealth vehicle actually registers under;
- * none is a generic finance word that would drag in ordinary asset managers.
+ * Explicit family-office terms only.
+ *
+ * The first widened set included 'family wealth', 'family services' and
+ * 'family management', and the sample showed what that actually returns:
+ * SKEPPER FAMILY WEALTH MANAGEMENT LTD, IFS FAMILY WEALTH ADVISERS LTD,
+ * REDWOOD FINANCIAL FAMILY WEALTH & ESTATE PLANNERS LIMITED -- independent
+ * financial advisers and retail wealth practices, not family offices. Importing
+ * them would hit the record count by putting a different industry in a
+ * family-office dataset.
+ *
+ * These four terms are self-descriptions a firm only adopts if it is claiming to
+ * be a family office. That claim still establishes nothing on its own: the
+ * entity is created `unconfirmed` and has to earn its classification from
+ * evidence like any other.
  */
 const NEW_FRAGMENTS = [
-  'family wealth', 'family partners', 'family group', 'family assets', 'family estates',
-  'family fund', 'family ventures', 'family enterprises', 'family investments',
-  'private office', 'family services', 'family management', 'family properties',
-  'family securities', 'family equity',
+  'family office',
+  'single family office',
+  'multi family office',
+  'multi-family office',
+  'private family office',
 ];
 
 /** Stage 1's codes plus adjacent investment-vehicle classifications. */
