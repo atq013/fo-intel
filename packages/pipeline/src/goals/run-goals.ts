@@ -18,7 +18,8 @@ import { fileURLToPath } from 'node:url';
  */
 
 const BASE = process.env.GOALS_BASE ?? 'https://fo-intel-web.vercel.app';
-const OUT = fileURLToPath(new URL('../../../../docs/goals/', import.meta.url));
+const ATTEMPT = process.env.GOALS_ATTEMPT ?? 'attempt-2';
+const OUT = fileURLToPath(new URL(`../../../../docs/goals/${ATTEMPT}/`, import.meta.url));
 mkdirSync(OUT, { recursive: true });
 
 interface Goal {
@@ -131,6 +132,8 @@ for (const g of GOALS) {
     unhonouredConstraints: b.unhonouredConstraints ?? [],
     abstained: (b.unhonouredConstraints ?? []).length > 0 || b.blocked === true,
     nameCorrections: b.nameCorrections ?? [],
+    relevanceAsConfidence: b.relevanceAsConfidence ?? [],
+    toolInternalsLeaked: b.toolInternalsLeaked ?? [],
     countsResolvedFromToolOutput: b.countsResolved ?? [],
     toolsUsed: b.toolsUsed ?? [],
     scopePerTool: b.scope ?? [],
@@ -143,6 +146,8 @@ for (const g of GOALS) {
 
   console.log(`  submitted   : ${agent.started}  (${agent.ms}ms, HTTP ${agent.status})`);
   console.log(`  blocked     : ${record.blocked}   abstained: ${record.abstained}`);
+  console.log(`  relevance-as-confidence: ${JSON.stringify(record.relevanceAsConfidence)}`);
+  console.log(`  internals leaked       : ${JSON.stringify(record.toolInternalsLeaked)}`);
   console.log(`  unhonoured  : ${JSON.stringify(record.unhonouredConstraints)}`);
   console.log(`  tools       : ${JSON.stringify(record.toolsUsed)}`);
   console.log(`  entity ids  : ${record.entityIdsUsed.length}`);
@@ -151,7 +156,7 @@ for (const g of GOALS) {
   console.log(`  answer      : ${String(record.agentAnswer ?? '').slice(0, 300)}`);
 
   summary.push({
-    goal: g.category, file: `docs/goals/${g.id}.json`,
+    goal: g.category, file: `docs/goals/${ATTEMPT}/${g.id}.json`,
     submittedAtUtc: agent.started, blocked: record.blocked,
     abstained: record.abstained, tools: record.toolsUsed,
     traceSteps: record.rawTrace.length,
@@ -159,9 +164,10 @@ for (const g of GOALS) {
 }
 
 writeFileSync(OUT + 'index.json', JSON.stringify({
+  attempt: ATTEMPT,
   producedAtUtc: new Date().toISOString(),
   productionBase: BASE,
   note: 'Unedited production output. Nothing was corrected after execution.',
   goals: summary,
 }, null, 2));
-console.log(`\nwritten: docs/goals/*.json`);
+console.log(`\nwritten: docs/goals/${ATTEMPT}/*.json`);
