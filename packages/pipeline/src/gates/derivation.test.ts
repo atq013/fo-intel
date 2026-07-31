@@ -89,3 +89,56 @@ test('attribution · a stopword-only value absent from the span still fails', ()
   const r = checkAttribution('OR', span, 'the state given on the filing cover page');
   assert.equal(r.outcome, 'failed');
 });
+
+test('identity · surname is taken from before the comma in SEC-format names', async () => {
+  const { checkProfileSlug, surnameOf } = await import('./identity.js');
+  // ADV Schedule A and 13F write the family name first. Taking the last token
+  // rejected /in/dploftus for "LOFTUS, DOUGLAS, PAUL" -- the correct profile.
+  assert.equal(surnameOf('LOFTUS, DOUGLAS, PAUL'), 'loftus');
+  assert.equal(surnameOf('BUTTAR, Sharnpreet Singh'), 'buttar');
+  assert.equal(surnameOf('Douglas Paul Loftus'), 'loftus');
+  assert.equal(checkProfileSlug('https://www.linkedin.com/in/dploftus', 'LOFTUS, DOUGLAS, PAUL').ok, true);
+});
+
+test('identity · the Stage 1 wrong-person links are still rejected', async () => {
+  const { checkProfileSlug } = await import('./identity.js');
+  // The two the Stage 1 feedback found. The surname fix must not weaken these.
+  assert.equal(checkProfileSlug('https://www.linkedin.com/in/jonas-cohon', 'David Blitzer').ok, false);
+  assert.equal(
+    checkProfileSlug('https://www.linkedin.com/in/bobby-w-sandage-jr-phd-69087211', 'Rodger Riney').ok,
+    false,
+  );
+});
+
+test('identity · a surname that is only a substring of another name is rejected', async () => {
+  const { checkProfileSlug } = await import('./identity.js');
+  // Found in production sampling: "curti" sits inside "curtis". Curtis Martin
+  // Thom is not Thomas Alfred Curti.
+  const r = checkProfileSlug('https://www.linkedin.com/in/curtis-martin-thom-2401aa28', 'CURTI, THOMAS, ALFRED');
+  assert.equal(r.ok, false, r.why);
+});
+
+test('identity · abbreviated and concatenated slugs still verify', async () => {
+  const { checkProfileSlug } = await import('./identity.js');
+  assert.equal(checkProfileSlug('https://www.linkedin.com/in/lintonjen', 'LINTON, Vivienne Jennifer').ok, true);
+  assert.equal(checkProfileSlug('https://www.linkedin.com/in/davidoconnor', "David O'Connor").ok, true);
+  assert.equal(checkProfileSlug('https://www.linkedin.com/in/petermay', 'Peter W. May').ok, true);
+  assert.equal(checkProfileSlug('https://www.linkedin.com/in/mr-marian-stupka-569286b', 'STUPKA, MARIAN, NMN').ok, true);
+});
+
+test('identity · a surname that is a substring of a slug TOKEN is rejected', async () => {
+  const { checkProfileSlug } = await import('./identity.js');
+  // "curti" inside "curtis". Alfred Curtis is not Thomas Alfred Curti, even
+  // though "alfred" corroborates.
+  assert.equal(
+    checkProfileSlug('https://www.linkedin.com/in/alfred-curtis-0a61337a', 'CURTI, THOMAS, ALFRED').ok,
+    false,
+  );
+});
+
+test('identity · a surname split by slug punctuation still verifies', async () => {
+  const { checkProfileSlug } = await import('./identity.js');
+  // "o-connor" is one surname the slug happened to split.
+  assert.equal(checkProfileSlug('https://www.linkedin.com/in/david-o-connor-a29410b2', "David O'Connor").ok, true);
+  assert.equal(checkProfileSlug('https://www.linkedin.com/in/robert-gale-15195466', 'GALE, Robert John').ok, true);
+});
