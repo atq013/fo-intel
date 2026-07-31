@@ -116,12 +116,32 @@ await withRun('contract', process.env.GITHUB_EVENT_NAME === 'schedule' ? 'schedu
     run.counts.touched++;
   }
 
-  for (const [entityId, released] of byEntity) {
+  // Commercial sufficiency is a question about the WHOLE record, so it must be
+  // asked over every released claim the entity holds -- not the subset that
+  // happened to fall in this batch.
+  //
+  // Assessing the batch alone silently withheld 102 qualifying entities: a firm
+  // with ten released claims, three of which were in this run of 600, was judged
+  // as though it had three. The batch is a unit of work, never a unit of truth.
+  for (const entityId of byEntity.keys()) {
+    const allReleased = (await sql`
+      SELECT id, entity_id, extraction_event_id, field, value_json, value_type, status,
+             confidence, refresh_policy, established_at
+      FROM s2_claim WHERE entity_id = ${entityId}
+        AND status = 'released'`) as unknown as Array<Record<string, any>>;
+
+    const claims = allReleased.map((r) => ({
+      id: r.id, entityId: r.entity_id, extractionEventId: r.extraction_event_id, field: r.field,
+      value: r.value_json, valueType: r.value_type, status: r.status, confidence: r.confidence,
+      refreshPolicy: r.refresh_policy, establishedAt: new Date(r.established_at),
+    })) as Claim[];
+
     const entity: Entity = {
       id: entityId, canonicalName: entityId, entityType: 'unconfirmed', firstSeenAt: new Date(),
-      trustState: 'active', commercialState: 'unassessed', strictReachable: false, profileAssistedReachable: false,
+      trustState: 'active', commercialState: 'unassessed',
+      strictReachable: false, profileAssistedReachable: false,
     };
-    const commercial = assessEntity(entity, released, POLICY_VERSION);
+    const commercial = assessEntity(entity, claims, POLICY_VERSION);
     await sql`UPDATE s2_entity SET commercial_state = ${commercial.commercialState}, updated_at = now()
               WHERE id = ${entityId}`;
   }
