@@ -84,7 +84,7 @@ await withRun('contract', process.env.GITHUB_EVENT_NAME === 'schedule' ? 'schedu
       }
     }
 
-    await db.recordGateResults(claim.id, run.id, results);
+    await db.recordGateResults(claim.id, run.id, results, POLICY_VERSION);
     const decision = releaseDecision(claim, results, POLICY_VERSION);
     const was = claim.status;
     await db.applyRelease(decision, run.id);

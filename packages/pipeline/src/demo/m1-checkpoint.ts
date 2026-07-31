@@ -21,7 +21,7 @@ import { openExtractionEvent } from '@fo/core/contract/index.js';
 import type { Claim, Entity, GateResult, Observation, Source } from '@fo/core/contract/index.js';
 import { contractWriter } from '../../../db/src/contract-writer.js';
 import { GATES } from '../gates/index.js';
-import { assessEntity, releaseDecision } from '../release/gate.js';
+import { assessEntity, releaseDecision, POLICY_VERSION } from '../release/gate.js';
 
 const root = fileURLToPath(new URL('../../../../', import.meta.url));
 const rows = JSON.parse(readFileSync(root + 'data/fo-dataset.json', 'utf8')) as any[];
@@ -119,7 +119,7 @@ async function main() {
     const results: GateResult[] = [];
     for (const gate of GATES) results.push(await gate.evaluate(claim, ctx));
 
-    await db.recordGateResults(claim.id, RUN, results);
+    await db.recordGateResults(claim.id, RUN, results, POLICY_VERSION);
     const decision = releaseDecision(claim, results);
     await db.applyRelease(decision, RUN);
     if (decision.decision === 'released') released.push(claim);

@@ -91,16 +91,36 @@ export function contractWriter(connectionString: string) {
       await sql.transaction(statements);
     },
 
-    async recordGateResults(claimId: string, runId: string | null, results: GateResult[]): Promise<void> {
+    /**
+     * One verdict per claim, per gate, per policy version.
+     *
+     * The id previously omitted the policy version, so re-judging a claim under
+     * a new standard collided with the verdict recorded under the old one. The
+     * `ON CONFLICT` target also named a different constraint from the primary
+     * key, so it could never have caught that collision -- it looked defensive
+     * and was not. Both are fixed here: the conflict target now matches the
+     * constraint that actually exists (M6), so a repeat under the same policy
+     * updates in place while a new policy writes a new row and leaves history
+     * intact.
+     */
+    async recordGateResults(
+      claimId: string,
+      runId: string | null,
+      results: GateResult[],
+      policyVersion: string,
+    ): Promise<void> {
       if (!results.length) return;
       await sql.transaction(
         results.map((r) => sql`
-          INSERT INTO s2_validation_result (id, claim_id, run_id, gate, outcome, band, detail, counterfactual)
-          VALUES (${`vr_${claimId}_${r.gate}`}, ${claimId}, ${runId}, ${r.gate}, ${r.outcome}, ${r.band},
-                  ${r.detail ?? null}, ${r.counterfactual ? JSON.stringify(r.counterfactual) : null}::jsonb)
-          ON CONFLICT (claim_id, run_id, gate) DO UPDATE SET
+          INSERT INTO s2_validation_result (id, claim_id, run_id, gate, outcome, band,
+                                            detail, counterfactual, policy_version)
+          VALUES (${`vr_${claimId}_${r.gate}_${policyVersion}`}, ${claimId}, ${runId}, ${r.gate},
+                  ${r.outcome}, ${r.band}, ${r.detail ?? null},
+                  ${r.counterfactual ? JSON.stringify(r.counterfactual) : null}::jsonb, ${policyVersion})
+          ON CONFLICT (claim_id, gate, policy_version) DO UPDATE SET
             outcome = EXCLUDED.outcome, detail = EXCLUDED.detail,
-            counterfactual = EXCLUDED.counterfactual, evaluated_at = now()`),
+            counterfactual = EXCLUDED.counterfactual, run_id = EXCLUDED.run_id,
+            evaluated_at = now()`),
       );
     },
 

@@ -4,7 +4,7 @@ import type {
 } from '@fo/core/contract/index.js';
 import { contractWriter } from '../../../db/src/contract-writer.js';
 import { GATES } from '../gates/index.js';
-import { assessEntity, releaseDecision } from '../release/gate.js';
+import { assessEntity, releaseDecision, POLICY_VERSION } from '../release/gate.js';
 import { syncContacts } from './contacts.js';
 import type { RunHandle } from './runner.js';
 
@@ -134,7 +134,7 @@ async function processObservation(
         results.push(await gate.evaluate(claim, {
           evidence: [establishing], observation,
           siblings: siblings.filter((c) => c.id !== claim.id),
-          entity, policyVersion: 'runtime',
+          entity, policyVersion: POLICY_VERSION,
         }));
       } catch (err) {
         // A gate that threw did not pass. Recording it as `error` keeps PTC-2
@@ -146,7 +146,7 @@ async function processObservation(
       }
     }
 
-    await db.recordGateResults(claim.id, run.id, results);
+    await db.recordGateResults(claim.id, run.id, results, POLICY_VERSION);
     evidenceByClaim.set(claim.id, establishing);
     resultsByClaim.set(claim.id, results);
     const decision = releaseDecision(claim, results);

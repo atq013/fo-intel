@@ -72,8 +72,15 @@ export async function contractStats(): Promise<ContractStats> {
 export interface GateRow { gate: string; outcome: string; n: number }
 
 export async function gateOutcomes(): Promise<GateRow[]> {
+  // The CURRENT verdict per claim and gate. Once a policy bump re-judges the
+  // file, every claim holds a row per version; counting them all would report
+  // each claim once per standard it has ever been judged under.
   return (await db()`
-    SELECT gate, outcome, count(*)::int n FROM s2_validation_result
+    SELECT gate, outcome, count(*)::int n FROM (
+      SELECT DISTINCT ON (claim_id, gate) gate, outcome
+      FROM s2_validation_result
+      ORDER BY claim_id, gate, policy_version DESC
+    ) latest
     GROUP BY 1, 2 ORDER BY 1, 2`) as unknown as GateRow[];
 }
 

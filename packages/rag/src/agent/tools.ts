@@ -159,16 +159,27 @@ export async function count_matching(input: {
 
 export async function check_evidence(input: { entityId: string; field?: string }): Promise<ToolResult<unknown>> {
   const sql = db();
+  // Only the verdict under the newest policy the claim was judged under. An
+  // older verdict is history, not the system's current position, and returning
+  // both would let the agent quote a superseded outcome as current.
   const rows = (await sql`
-    SELECT c.field, c.status, vr.gate, vr.outcome, vr.detail
+    SELECT c.field, c.status, vr.gate, vr.outcome, vr.detail, vr.policy_version
     FROM s2_claim c
-    LEFT JOIN s2_validation_result vr ON vr.claim_id = c.id
+    LEFT JOIN LATERAL (
+      SELECT DISTINCT ON (v.gate) v.gate, v.outcome, v.detail, v.policy_version
+      FROM s2_validation_result v
+      WHERE v.claim_id = c.id
+      ORDER BY v.gate, v.policy_version DESC
+    ) vr ON TRUE
     WHERE c.entity_id = ${input.entityId}
       AND (${input.field ?? null}::text IS NULL OR c.field = ${input.field ?? null})
     ORDER BY c.field, vr.gate`) as unknown as Array<Record<string, any>>;
 
   return {
-    data: rows.map((r) => ({ field: r.field, claimStatus: r.status, gate: r.gate, outcome: r.outcome, detail: r.detail })),
+    data: rows.map((r) => ({
+      field: r.field, claimStatus: r.status, gate: r.gate,
+      outcome: r.outcome, detail: r.detail, policyVersion: r.policy_version,
+    })),
     scope: { entityId: input.entityId, field: input.field ?? 'all', rows: rows.length },
     excluded: [],
     limits: [
