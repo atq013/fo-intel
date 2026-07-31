@@ -37,13 +37,20 @@ export async function syncContacts(
   released: Claim[],
   evidenceByClaim: Map<string, Evidence>,
   gateResultsByClaim: Map<string, GateResult[]>,
+  /** person-name claims released for this entity by EARLIER readings */
+  priorNamed = false,
 ): Promise<{ created: number; strict: boolean; profileAssisted: boolean; postal: boolean }> {
   let created = 0;
 
-  // A route is personal only if this entity also has a released person name.
-  // Without one there is no "named individual" for the route to reach, and the
-  // brief's bar is unmeetable by definition.
-  const hasPerson = released.some((c) => c.field.endsWith('fullName') && c.valueType === 'person_name');
+  // A route is personal only if this entity has a released person name.
+  //
+  // "Has" spans readings, not just this one. A verified profile is found in a
+  // search whose only assertion is the URL -- the person was established earlier
+  // by Companies House or Form ADV. Requiring the name in the SAME event silently
+  // zeroed every profile route: the contact row was written and counted toward
+  // nothing.
+  const hasPerson =
+    priorNamed || released.some((c) => c.field.endsWith('fullName') && c.valueType === 'person_name');
 
   for (const claim of released) {
     const channel = CHANNEL_OF[claim.valueType];

@@ -53,7 +53,12 @@ export const contactOwnershipGate: Gate = {
   name: 'contact_ownership',
   band: 'A',
   async evaluate(claim: Claim, ctx: GateContext): Promise<GateResult> {
-    if (!['email', 'phone', 'postal'].includes(claim.valueType)) {
+    // profile_url is included so a profile route can be evidenced at all. The
+    // division of labour matters: this gate proves the route is bound to the
+    // person's evidence, while `identity` proves the slug actually names them.
+    // Neither alone is sufficient, which is why both must pass before a profile
+    // counts toward profile-assisted reachability.
+    if (!['email', 'phone', 'postal', 'profile_url'].includes(claim.valueType)) {
       return { gate: 'contact_ownership', outcome: 'skipped', band: 'A', detail: 'not a contact claim' };
     }
 

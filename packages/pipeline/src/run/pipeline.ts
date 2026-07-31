@@ -120,7 +120,31 @@ async function processObservation(
   await db.writeEvent(closed.event, closed.assertions, closed.attached);
   run.counts.created += closed.assertions.length;
 
-  const siblings = closed.assertions.map((a) => a.claim);
+  // Person-name claims already released for this entity, so a gate can verify a
+  // value against a name established by an EARLIER reading. The profile channel
+  // needs this: the slug check compares against a name that came from Companies
+  // House or ADV, not from the search result being read now.
+  //
+  // Scoped to name fields on purpose. `coherence` keys on the extraction event,
+  // so admitting older address parts as siblings would make every new address
+  // claim look assembled across readings. Names belong to no composite, so they
+  // cannot affect it.
+  const priorNames = (await db.sql`
+    SELECT id, entity_id, extraction_event_id, field, value_json, value_type, status,
+           confidence, refresh_policy, established_at
+    FROM s2_claim
+    WHERE entity_id = ${ent.id} AND status = 'released'
+      AND field LIKE '%fullName'`) as unknown as Array<Record<string, any>>;
+
+  const siblings = [
+    ...closed.assertions.map((a) => a.claim),
+    ...priorNames.map((r) => ({
+      id: r.id, entityId: r.entity_id, extractionEventId: r.extraction_event_id,
+      field: r.field, value: r.value_json, valueType: r.value_type, status: r.status,
+      confidence: r.confidence, refreshPolicy: r.refresh_policy,
+      establishedAt: new Date(r.established_at),
+    })) as Claim[],
+  ];
   const released: Claim[] = [];
   // Kept so contact promotion can see which gate actually proved ownership,
   // rather than re-deriving it from the claim and guessing.
@@ -166,7 +190,7 @@ async function processObservation(
   }
 
   // Contacts and reachability, before the commercial assessment reads them.
-  const reach = await syncContacts(ent.id, released, evidenceByClaim, resultsByClaim);
+  const reach = await syncContacts(ent.id, released, evidenceByClaim, resultsByClaim, priorNames.length > 0);
   if (reach.created) {
     await run.log('info', 'contacts_synced', {
       entity: ent.id, routes: reach.created,
