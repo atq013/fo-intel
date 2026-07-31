@@ -14,7 +14,18 @@ import type {
  * else in the codebase. A claim that is released was released by this call, so
  * "how did this reach the customer?" always has exactly one answer.
  */
-export const POLICY_VERSION = '2025-07-30.1';
+/**
+ * Bumped when the standard changes. The `contract` job re-judges every claim
+ * that has no decision at the current version, so a bump makes the scheduled
+ * runs re-evaluate the whole file unattended.
+ *
+ * 2025-07-31.1 — attribution no longer strips a value that is entirely
+ * stopwords. Oregon's state code "OR" was being filtered as the English
+ * conjunction, leaving nothing to compare, and a correct claim was quarantined.
+ * Previously quarantined claims are re-admitted by re-evaluation, not by an
+ * UPDATE: the decision row records that it changed and why.
+ */
+export const POLICY_VERSION = '2025-07-31.1';
 
 export function releaseDecision(
   claim: Claim,

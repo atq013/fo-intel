@@ -77,7 +77,13 @@ export function checkAttribution(
   const hard = hardTokens(vTokens);
   const missingHard = hard.filter((t) => !sTokens.has(t));
 
-  const content = vTokens.filter((t) => !STOPWORDS.has(t));
+  // A value can consist entirely of stopwords: Oregon's state code is "OR",
+  // which the list filters as the English conjunction. Stripping it leaves
+  // nothing to compare and the claim fails a check it should have passed.
+  // Stopwords exist to stop prose overlapping by accident, not to erase short
+  // values, so when filtering empties the value the raw tokens are used.
+  const stripped = vTokens.filter((t) => !STOPWORDS.has(t));
+  const content = stripped.length ? stripped : vTokens;
   const present = content.filter((t) => sTokens.has(t));
   const coverage = content.length ? present.length / content.length : 0;
 

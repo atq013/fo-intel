@@ -75,3 +75,17 @@ test('derivation · non-derived methods are unaffected', () => {
   const bad = checkAttribution('701 CARLSON PARKWAY', SEC_SPAN, 'read from the filing');
   assert.equal(bad.outcome, 'failed');
 });
+
+test('attribution · a value that is entirely stopwords still resolves', () => {
+  // "OR" is Oregon's state code and an English conjunction. Filtering it as a
+  // stopword left nothing to compare, and a correct claim was quarantined.
+  const span = 'COVERPAGE.FILINGMANAGER_STATEORCOUNTRY: OR';
+  const r = checkAttribution('OR', span, 'the state given on the filing cover page');
+  assert.equal(r.outcome, 'passed', r.detail);
+});
+
+test('attribution · a stopword-only value absent from the span still fails', () => {
+  const span = 'COVERPAGE.FILINGMANAGER_STATEORCOUNTRY: CA';
+  const r = checkAttribution('OR', span, 'the state given on the filing cover page');
+  assert.equal(r.outcome, 'failed');
+});

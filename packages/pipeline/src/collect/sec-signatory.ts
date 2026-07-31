@@ -199,8 +199,21 @@ export interface FilerUnit {
  * created this way are `unconfirmed` and must earn a classification from
  * evidence like any other. That distinction is the Stage 1 correction: a
  * structural signal is a reason to look, not a finding.
+ *
+ * Widened from `FAMILY + vehicle word` to any `FAMILY`/`FAMILIES` after
+ * measuring the census: the narrow form matched 27 filers carrying an
+ * individually-owned route, the wide form matches 56. The 29 it was missing are
+ * names like "Colony Family Offices, LLC", "West Family Investments, Inc." and
+ * "Omnia Family Wealth, LLC" -- self-declared family vehicles that simply do not
+ * use one of seven enumerated nouns.
+ *
+ * It is still a NAME test, deliberately. The census holds 6,944 filers with an
+ * individually-owned route; the other 6,888 are ordinary asset managers and are
+ * not collected, because having a reachable signatory is not evidence of being a
+ * family office. 56 is this channel's honest ceiling, not a number to widen
+ * until it reaches a target.
  */
-const FAMILY_FILER = /\b(FAMILY\s+(OFFICE|INVESTMENT|CAPITAL|HOLDINGS?|PARTNERS|TRUST|FUND)|FAMILY\s+LLC|FAMILY\s+LP)\b/i;
+const FAMILY_FILER = /\b(FAMILY|FAMILIES)\b/i;
 
 export function filerUnits(candidatesPath: string, dir = SEC_DIR): FilerUnit[] {
   const cand = JSON.parse(readFileSync(candidatesPath, 'utf8')) as {
