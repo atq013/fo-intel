@@ -199,7 +199,23 @@ async function processObservation(
     });
   }
 
-  const commercial = assessEntity(entity, released);
+  // Commercial sufficiency is a question about the WHOLE record.
+  //
+  // `released` holds only what THIS reading produced. For a collector that adds
+  // one value to an existing entity -- the profile channel adds a single URL --
+  // assessing that alone judged a complete record as though it had one field and
+  // withheld it. The entity's full released set is the only correct input.
+  const allReleased = (await db.sql`
+    SELECT id, entity_id, extraction_event_id, field, value_json, value_type, status,
+           confidence, refresh_policy, established_at
+    FROM s2_claim WHERE entity_id = ${ent.id}
+      AND status = 'released'`) as unknown as Array<Record<string, any>>;
+
+  const commercial = assessEntity(entity, allReleased.map((r) => ({
+    id: r.id, entityId: r.entity_id, extractionEventId: r.extraction_event_id, field: r.field,
+    value: r.value_json, valueType: r.value_type, status: r.status, confidence: r.confidence,
+    refreshPolicy: r.refresh_policy, establishedAt: new Date(r.established_at),
+  })) as Claim[]);
   await db.sql`UPDATE s2_entity SET commercial_state = ${commercial.commercialState}, updated_at = now()
                WHERE id = ${ent.id}`;
   await run.decision('classify', {
