@@ -79,7 +79,13 @@ export async function search_firms(input: ShortlistQuery): Promise<ToolResult<un
   const r = await shortlist({ ...input, limit: Math.min(input.limit ?? 10, 25) });
   return {
     data: r.results.map((x) => ({
-      entityId: x.entityId, name: x.name, score: x.score,
+      entityId: x.entityId, name: x.name,
+      // Renamed from `score`. The agent presented the old name as a confidence
+      // score -- "Colony Family Offices, LLC: 0.9993" -- for a healthcare-LP fit
+      // question the dataset cannot answer. It is a ranking weight over fit,
+      // evidence grade, freshness and reachability. It is not a probability and
+      // says nothing about any particular question.
+      relevanceScore: x.score,
       strictReachable: x.strictReachable, profileAssistedReachable: x.profileAssistedReachable,
       contact: x.contact ?? null, matched: x.matched, missing: x.missing,
       lastObservedAt: x.lastObservedAt, bestSourceTier: x.bestSourceTier,
@@ -89,6 +95,11 @@ export async function search_firms(input: ShortlistQuery): Promise<ToolResult<un
       matched: r.scope.matched,
       returned: r.scope.returned,
       appliedFilters: r.scope.appliedFilters,
+      relevanceScoreMeaning:
+        'relevanceScore ranks how well a record matches the FILTERS APPLIED. It is not a ' +
+        'confidence, probability, certainty, likelihood or evidence-strength value, and must ' +
+        'never be presented as one. Confidence in any specific question comes from whether the ' +
+        'fields that question needs are present -- see each result\'s `missing` list.',
       // Spelled out because a model that reads the array length as "the number
       // of firms" understates the answer. Observed doing exactly that: it
       // reported 10 (the page size) when 24 matched.
@@ -157,8 +168,43 @@ export async function count_matching(input: {
   };
 }
 
+/**
+ * The fields the extractors actually emit.
+ *
+ * `check_evidence` previously accepted any string. Asked about a contact route
+ * the agent invented `contactRoute`, received an empty successful result, and
+ * concluded "validation gates did not refuse to publish any information" -- a
+ * claim about absence drawn from a query that could not have found anything.
+ * An unknown field now fails closed.
+ */
+export const SUPPORTED_EVIDENCE_FIELDS = [
+  'legalName', 'companyNumber', 'companyStatus', 'incorporatedOn', 'cik', 'crd',
+  'street', 'city', 'region', 'postcode', 'country',
+  'principal.fullName', 'principal.title', 'principal.phone', 'principal.linkedinUrl',
+  'officer.fullName', 'officer.postalAddress', 'controller.entityName',
+  'latestObservedFilingDate', 'entityClassification',
+] as const;
+
 export async function check_evidence(input: { entityId: string; field?: string }): Promise<ToolResult<unknown>> {
+  // Validated before the connection is opened: an unknown field is a caller
+  // error, and answering it should not require a database at all.
+  if (input.field && !SUPPORTED_EVIDENCE_FIELDS.includes(input.field as never)) {
+    // A validation error, not an empty result. Zero rows for a field that does
+    // not exist is not evidence that nothing was withheld.
+    return {
+      data: { error: 'unknown_field', requested: input.field, supportedFields: SUPPORTED_EVIDENCE_FIELDS },
+      scope: { entityId: input.entityId, field: input.field, validationError: true },
+      excluded: [],
+      limits: [
+        `"${input.field}" is not a field in this dataset, so nothing was checked.`,
+        'This result says NOTHING about whether values were withheld for this firm. ' +
+        'Re-run with a supported field, or call get_firm first to see which fields exist.',
+      ],
+    };
+  }
+
   const sql = db();
+
   // Only the verdict under the newest policy the claim was judged under. An
   // older verdict is history, not the system's current position, and returning
   // both would let the agent quote a superseded outcome as current.

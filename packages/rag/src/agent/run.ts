@@ -2,6 +2,7 @@ import { generateJson } from '../llm.js';
 import { TOOLS, TOOL_SCHEMAS, type ToolResult } from './tools.js';
 import { resolveNames } from './names.js';
 import { newMetrics, recordMetrics, resolveCounts, tokenRoster } from './counts.js';
+import { auditClaims, confidenceBlockMessage } from './claims-guard.js';
 
 /**
  * The bounded agent (spec §8).
@@ -46,6 +47,10 @@ export interface AgentAnswer {
   nameCorrections: Array<{ wrote: string; stored: string }>;
   /** every number in the answer, and the tool metric it came from */
   countsResolved: Array<{ token: string; value: number }>;
+  /** relevance scores the draft presented as confidence, if any */
+  relevanceAsConfidence: Array<{ value: number; context: string }>;
+  /** tool internals the draft leaked into prose, if any */
+  toolInternalsLeaked: string[];
 }
 
 interface Plan {
@@ -138,6 +143,18 @@ ${counts || '  (no counts available)'}
   yourself is a guess, and a wrong count is a fabricated fact.
 - Numbers that are NOT dataset counts — phone numbers, postcodes, dates, values
   quoted inside evidence — you may write normally.
+- relevanceScore is a RANKING WEIGHT over the filters applied. NEVER call it
+  confidence, probability, certainty, likelihood or evidence strength, and never
+  convert it to a percentage and present it as one.
+- If asked how confident you are, confidence comes from whether the fields THAT
+  QUESTION needs are present. If the evidence for the specific question is absent
+  — no mandate, sector, allocation, cheque size or LP data — say confidence is
+  low, or that fit cannot be confidently determined, and say which evidence is
+  missing. Do not invent a percentage.
+- You may offer a narrowed proxy shortlist ONLY after stating plainly what was
+  unavailable and which narrower criteria you actually used instead.
+- Write for a non-technical buyer. Never expose tool internals: no "rows",
+  "dataLength", "entityId", "null", "0 data" or similar.
 - If a firm is missing a field, say it is missing. Do not estimate it.
 - Be concise and specific. No preamble.
 
@@ -178,6 +195,7 @@ export async function runAgent(question: string): Promise<AgentAnswer> {
   const collected: string[] = [];
   const canonical = new Map<string, string>();
   const metrics = newMetrics();
+  const relevanceScores: number[] = [];
   let callIndex = 0;
 
   const runTool = async (tool: string, input: Record<string, unknown>) => {
@@ -190,6 +208,11 @@ export async function runAgent(question: string): Promise<AgentAnswer> {
       push('tool', { tool, input, scope: r.scope, excluded: r.excluded, rows: Array.isArray(r.data) ? r.data.length : 1 });
       harvest(r.data, canonical);
       recordMetrics(metrics, tool, ++callIndex, r.scope, r.excluded, r.data);
+      if (Array.isArray(r.data)) {
+        for (const row of r.data as Array<Record<string, unknown>>) {
+          if (typeof row?.relevanceScore === 'number') relevanceScores.push(row.relevanceScore);
+        }
+      }
       collected.push(
         `TOOL ${tool}(${JSON.stringify(input)})\n` +
         `scope: ${JSON.stringify(r.scope)}\n` +
@@ -242,7 +265,7 @@ export async function runAgent(question: string): Promise<AgentAnswer> {
     const answer =
       'I could not retrieve anything for this question. No tool call succeeded, so I have nothing to base an answer on.';
     push('compose', { answer, reason: 'no tool results' });
-    return { answer, unhonouredConstraints: unhonoured, blocked: false, toolsUsed, scope, trace, nameCorrections: [], countsResolved: [] };
+    return { answer, unhonouredConstraints: unhonoured, blocked: false, toolsUsed, scope, trace, nameCorrections: [], countsResolved: [], relevanceAsConfidence: [], toolInternalsLeaked: [] };
   }
 
   // ---- compose -----------------------------------------------------------
@@ -282,6 +305,17 @@ export async function runAgent(question: string): Promise<AgentAnswer> {
     });
   }
 
+  // ---- claims audit: relevance-as-confidence, and leaked internals --------
+  const claims = auditClaims(answer, relevanceScores);
+  const relevanceAsConfidence = claims.relevanceAsConfidence;
+  const toolInternalsLeaked = claims.internals;
+  if (relevanceAsConfidence.length || toolInternalsLeaked.length) {
+    push('block', {
+      stage: 'claims-audit',
+      relevanceAsConfidence, toolInternalsLeaked,
+    });
+  }
+
   // ---- the constraint-preservation check, in control flow ----------------
   //
   // Not a prompt instruction and not a suggestion. If the planner recorded a
@@ -289,6 +323,19 @@ export async function runAgent(question: string): Promise<AgentAnswer> {
   // not ship. This is the check Stage 1 did not have.
   let blocked = false;
   let blockReason: string | undefined;
+
+  // A ranking weight presented as confidence is a fabricated certainty, and
+  // tool internals are unreadable to a buyer. Either blocks the answer.
+  if (relevanceAsConfidence.length || toolInternalsLeaked.length) {
+    blocked = true;
+    blockReason =
+      (relevanceAsConfidence.length ? 'composer presented a relevance score as a confidence value' : '') +
+      (relevanceAsConfidence.length && toolInternalsLeaked.length ? '; ' : '') +
+      (toolInternalsLeaked.length ? 'composer exposed internal tool output in customer-facing prose' : '');
+    answer = confidenceBlockMessage(claims);
+    return { answer, unhonouredConstraints: unhonoured, blocked, blockReason, toolsUsed, scope, trace,
+      nameCorrections, countsResolved, relevanceAsConfidence, toolInternalsLeaked };
+  }
 
   // A dataset count the tools did not produce is a fabricated fact.
   if (counts.unresolvedTokens.length || counts.unsupported.length) {
@@ -301,7 +348,7 @@ export async function runAgent(question: string): Promise<AgentAnswer> {
       [...counts.unsupported.map(String), ...counts.unresolvedTokens].map((c) => `"${c}"`).join(', ') +
       ' as a figure from the data, but no tool returned it. Rather than show you a ' +
       'number I cannot trace, I am declining the answer.';
-    return { answer, unhonouredConstraints: unhonoured, blocked, blockReason, toolsUsed, scope, trace, nameCorrections, countsResolved };
+    return { answer, unhonouredConstraints: unhonoured, blocked, blockReason, toolsUsed, scope, trace, nameCorrections, countsResolved, relevanceAsConfidence, toolInternalsLeaked };
   }
 
   // A firm-like name with no counterpart in the tool output is a fabricated
@@ -316,7 +363,7 @@ export async function runAgent(question: string): Promise<AgentAnswer> {
       [...resolved.fabricated, ...resolved.unresolvedTokens].map((f) => `"${f}"`).join(', ') +
       ', which does not appear in the data I retrieved. Rather than show you a firm ' +
       'that may not exist, I am declining the answer.';
-    return { answer, unhonouredConstraints: unhonoured, blocked, blockReason, toolsUsed, scope, trace, nameCorrections, countsResolved };
+    return { answer, unhonouredConstraints: unhonoured, blocked, blockReason, toolsUsed, scope, trace, nameCorrections, countsResolved, relevanceAsConfidence, toolInternalsLeaked };
   }
 
   if (unhonoured.length) {
@@ -333,7 +380,7 @@ export async function runAgent(question: string): Promise<AgentAnswer> {
     }
   }
 
-  return { answer, unhonouredConstraints: unhonoured, blocked, blockReason, toolsUsed, scope, trace, nameCorrections, countsResolved };
+  return { answer, unhonouredConstraints: unhonoured, blocked, blockReason, toolsUsed, scope, trace, nameCorrections, countsResolved, relevanceAsConfidence, toolInternalsLeaked };
 }
 
 /**
