@@ -29,6 +29,7 @@ const CHANNEL_OF: Record<string, ContactChannel> = {
   phone: 'phone',
   email: 'email',
   profile_url: 'linkedin',
+  postal: 'postal',
 };
 
 export async function syncContacts(
@@ -36,7 +37,7 @@ export async function syncContacts(
   released: Claim[],
   evidenceByClaim: Map<string, Evidence>,
   gateResultsByClaim: Map<string, GateResult[]>,
-): Promise<{ created: number; strict: boolean; profileAssisted: boolean }> {
+): Promise<{ created: number; strict: boolean; profileAssisted: boolean; postal: boolean }> {
   let created = 0;
 
   // A route is personal only if this entity also has a released person name.
@@ -65,26 +66,32 @@ export async function syncContacts(
     // A profile can only ever be profile-assisted; the database refuses
     // counts_strict on a linkedin row, and this mirrors that rule in code so the
     // intent is legible rather than only enforced.
-    const countsStrict = counts && channel !== 'linkedin';
-    const countsProfileAssisted = counts &&
+    // Three metrics, three separate booleans, and each channel can only ever
+    // satisfy the one it actually is. ADR-11 and ADR-12: they are never summed
+    // into a single headline, because the count swings on judgements a reviewer
+    // may not share.
+    const countsStrict = counts && channel !== 'linkedin' && channel !== 'postal';
+    const countsProfileAssisted = counts && channel !== 'postal' &&
       (channel !== 'linkedin' || identity?.outcome === 'passed');
+    const countsPostal = counts && channel === 'postal';
 
     await sql`
       INSERT INTO s2_contact (id, entity_id, person_claim_id, channel, value, reaches,
                               ownership_evidence_id, verification_method, verified_at, status,
-                              counts_strict, counts_profile_assisted)
+                              counts_strict, counts_profile_assisted, counts_postal)
       VALUES (${`ct_${randomUUID()}`}, ${entityId},
               ${released.find((c) => c.field.endsWith('fullName'))?.id ?? null},
               ${channel}, ${String(claim.value)}, ${reaches},
               ${counts ? evidence!.id : null},
               ${ownership?.detail ?? null}, ${counts ? new Date() : null},
-              ${'released'}, ${countsStrict}, ${countsProfileAssisted})
+              ${'released'}, ${countsStrict}, ${countsProfileAssisted}, ${countsPostal})
       ON CONFLICT (entity_id, channel, value) DO UPDATE SET
         reaches = EXCLUDED.reaches,
         ownership_evidence_id = EXCLUDED.ownership_evidence_id,
         verification_method = EXCLUDED.verification_method,
         counts_strict = EXCLUDED.counts_strict,
         counts_profile_assisted = EXCLUDED.counts_profile_assisted,
+        counts_postal = EXCLUDED.counts_postal,
         updated_at = now()`;
     created++;
   }
@@ -92,18 +99,21 @@ export async function syncContacts(
   // Recomputed from the contact rows rather than accumulated, so a demotion
   // lowers the metric instead of leaving a stale true behind.
   const rows = (await sql`
-    SELECT bool_or(counts_strict) AS strict, bool_or(counts_profile_assisted) AS assisted
+    SELECT bool_or(counts_strict) AS strict, bool_or(counts_profile_assisted) AS assisted,
+           bool_or(counts_postal) AS postal
     FROM s2_contact WHERE entity_id = ${entityId} AND status = 'released'`) as unknown as
-    Array<{ strict: boolean | null; assisted: boolean | null }>;
+    Array<{ strict: boolean | null; assisted: boolean | null; postal: boolean | null }>;
 
   const strict = rows[0]?.strict ?? false;
   const profileAssisted = rows[0]?.assisted ?? false;
+  const postal = rows[0]?.postal ?? false;
 
   await sql`
     UPDATE s2_entity SET strict_reachable = ${strict},
                          profile_assisted_reachable = ${profileAssisted},
+                         postal_reachable = ${postal},
                          updated_at = now()
     WHERE id = ${entityId}`;
 
-  return { created, strict, profileAssisted };
+  return { created, strict, profileAssisted, postal };
 }

@@ -7,6 +7,7 @@ import {
   companiesHouseExtractor,
 } from '../collect/companies-house.js';
 import { connect } from '../../../db/src/connect.js';
+import { buildAddressIndex } from '../collect/uk-director-address.js';
 import type { Observation } from '@fo/core/contract/index.js';
 
 /**
@@ -27,6 +28,7 @@ import type { Observation } from '@fo/core/contract/index.js';
  */
 
 const sql = connect();
+buildAddressIndex(new URL('../../../../data/candidates-uk.json', import.meta.url).pathname.replace(/%20/g, ' '));
 
 const BATCH = Number(process.env.REFRESH_BATCH ?? 25);
 

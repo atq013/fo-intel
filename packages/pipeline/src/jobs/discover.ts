@@ -9,6 +9,7 @@ import {
   companiesHouseCollector,
   companiesHouseExtractor,
 } from '../collect/companies-house.js';
+import { buildAddressIndex } from '../collect/uk-director-address.js';
 import type { Observation } from '@fo/core/contract/index.js';
 
 /**
@@ -47,6 +48,11 @@ function loadCandidates(): string[] {
 }
 
 const numbers = loadCandidates();
+
+// The cross-company address census, built once before any extraction. Without
+// it a formation agent's address used by twenty companies would adjudicate to
+// an individual for each of them.
+buildAddressIndex(root + 'data/candidates-uk.json');
 
 function entityFor(observation: Observation) {
   const doc = JSON.parse(observation.body ?? '{}') as { companyNumber: string; profile?: { company_name?: string } };

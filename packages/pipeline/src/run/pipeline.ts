@@ -171,6 +171,7 @@ async function processObservation(
     await run.log('info', 'contacts_synced', {
       entity: ent.id, routes: reach.created,
       strictReachable: reach.strict, profileAssistedReachable: reach.profileAssisted,
+      postalReachable: reach.postal,
     });
   }
 

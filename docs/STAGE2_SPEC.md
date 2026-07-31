@@ -594,6 +594,32 @@ Stage 1's SFO-1 rule proved family control, not family-office function. Twenty
 records qualified on it. Splitting the category is honest reclassification rather
 than relabelling. *Cost:* the qualifying count drops before it rises.
 
+**ADR-12 · A statutory service address is a third reachability metric, never folded into the other two.**
+
+Companies House requires every director to file a service address: the address at
+which they personally accept legal documents. Adjudicated the same way SEC phone
+numbers are -- rejected if it is the registered office, if another company uses
+it, or if a second director at the firm shares it -- it survives at a rate of 206
+from 641 on the Stage 1 candidate file. The 435 rejections are the point: an
+unadjudicated count would be three times larger and mean nothing.
+
+On the brief's wording it qualifies. A route counts if it reaches the named
+individual, and the exclusions named are shared inboxes, contact forms,
+switchboards and pattern-generated addresses. An adjudicated service address is
+none of those, is filed by the individual, and is statutory tier-1 evidence.
+
+It is also **commercially weaker than a phone or a personal email**, and a
+reviewer recomputing our reachable count would be within their rights to say a
+postal address is not a usable route for a fund manager seeking LPs. That
+disagreement is legitimate, and the number must survive it.
+
+So `postal_reachable` is stored and reported as its own figure. The database
+refuses `counts_strict` or `counts_profile_assisted` on a postal row, so the
+separation is enforced rather than remembered. Every report gives the three
+metrics separately plus a breakdown by route type, and never a single blended
+"reachable" number -- which would raise the headline by changing what the
+headline means, the exact label inflation Correction 4 was about.
+
 **ADR-11 · Reachability is reported as two metrics and they are never merged.**
 Assumption A1 — that a verified personal profile is a contact route — is a
 judgement the brief does not settle, and the reachability count swings from ~60 to

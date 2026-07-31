@@ -53,7 +53,7 @@ export const contactOwnershipGate: Gate = {
   name: 'contact_ownership',
   band: 'A',
   async evaluate(claim: Claim, ctx: GateContext): Promise<GateResult> {
-    if (claim.valueType !== 'email' && claim.valueType !== 'phone') {
+    if (!['email', 'phone', 'postal'].includes(claim.valueType)) {
       return { gate: 'contact_ownership', outcome: 'skipped', band: 'A', detail: 'not a contact claim' };
     }
 

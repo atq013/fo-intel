@@ -1,6 +1,7 @@
 import { createHash, randomUUID } from 'node:crypto';
 import { fetchJson, sleep } from '../lib/http.js';
 import { derivedMethod } from '../gates/derivation.js';
+import { adjudicateDirectorAddress, normaliseAddress } from './uk-director-address.js';
 import type {
   Collector,
   Extractor,
@@ -214,12 +215,35 @@ export function companiesHouseExtractor(entityIdFor: (doc: CompanyDocument) => s
         );
       }
 
-      for (const item of (doc.officers?.items ?? []) as Array<Record<string, any>>) {
+      const officers = (doc.officers?.items ?? []) as Array<Record<string, any>>;
+      const activeDirectors = officers.filter(
+        (o) => !o.resigned_on && /director/i.test(String(o.officer_role ?? '')),
+      );
+      const siblingAddresses = activeDirectors.map((o) => normaliseAddress(o.address)).filter(Boolean);
+
+      for (const item of officers) {
         if (item.resigned_on) continue;
         if (!/director|secretary|llp/i.test(String(item.officer_role ?? ''))) continue;
         say('officer.fullName', item.name, 'person_name',
           cited('officers.items[].name', item.name),
           `appointed ${item.officer_role} on the register`);
+
+        // Postal route, adjudicated. Asserted only when the address survives the
+        // ownership tests -- a rejected one is simply not claimed, rather than
+        // claimed and labelled weakly.
+        if (!/director/i.test(String(item.officer_role ?? ''))) continue;
+        const verdict = adjudicateDirectorAddress({
+          companyNumber: doc.companyNumber,
+          personName: String(item.name ?? ''),
+          address: item.address,
+          registeredOffice: p.registered_office_address,
+          siblingDirectorAddresses: siblingAddresses,
+        });
+        if (verdict.ownership === 'individual') {
+          say('officer.postalAddress', verdict.normalised.replace(/\|/g, ', '), 'postal',
+            `officers.items[].address for ${item.name}: ${verdict.normalised.replace(/\|/g, ', ')}`,
+            verdict.reason);
+        }
       }
     },
   };
