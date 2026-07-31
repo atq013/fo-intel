@@ -37,8 +37,8 @@ The remaining gaps are Phase 4–5 scope (retrieval extension, agent, the climb 
 
 | Requirement | State | Evidence |
 |---|---|---|
-| 500 qualifying records | **111 / 500** | `s2_entity` where `commercial_state='qualifying'` |
-| ≥200 reachable | **39 / 200 usable** | 40 strict-reachable, 39 of which also qualify. Both metrics reported separately per ADR-11; profile-assisted equals strict because no profile routes exist yet |
+| 500 qualifying records | **218 / 500 — UNMET** | frozen dataset; see "The 500 requirement is unmet" below |
+| ≥200 reachable | **67 strict · 174 profile-assisted · 47 postal · 187 any defensible route** | three metrics, never merged (ADR-11, ADR-12). 200 unmet on strict; 187 of 200 on the broadest defensible reading |
 | Deployed retrieval link | met | `/` (Stage 1, 50 firms, unchanged) and `/operations` (Stage 2) on Vercel |
 | Running agentic system | not started | Phase 4 Track C |
 | Repository, full history | met | public, commit history from Stage 1 through Phase 3 |
@@ -250,3 +250,62 @@ to report, and the window cannot close inside the submission deadline.
   queries ambiguous.
 - **Puerto Rico is not in the derivation table**, so one reachable filer stays
   withheld. Correct refusal rather than a guess; see Blocker 1.
+
+
+---
+
+## The 500 requirement is unmet — measured, not estimated
+
+**Frozen dataset:** 242 entities · **218 qualifying** · 67 strict reachable ·
+174 profile-assisted · 47 postal · **187 with any defensible named-individual
+route**.
+
+The 500-record minimum is **not met**. This is a measured ceiling from every
+channel built and every channel tested, not a shortfall of effort or runtime.
+The qualification standard was never lowered to close it.
+
+### Source ceilings, each measured
+
+| channel | ceiling | how it was measured |
+|---|---|---|
+| Companies House | **exhausted** | narrow search returned 109 unique companies, **72% already held**, 31 new, 16 rejected as shells (never-filed, dormant, micro-entity), **15 net-new kept** |
+| SEC 13F signatory | **56 filers** | full 2025Q3 census: 9,874 routes, 6,948 individually-owned across 6,944 filers, of which **exactly 56** carry `FAMILY`/`FAMILIES` in the registered name |
+| SEC Form ADV | **27 net-new** | 942,258 filing rows scanned; 78 family-office-named registrants, 49 filed 2023+, **22 already held** via 13F |
+| Verified profiles | **adds routes, not records** | 67% measured on a 30-entity sample; 107 routes created, zero new entities |
+| Web discovery | **rejected at ~2–4% precision** | see below |
+| **total measured ceiling** | **≈ 240** | against a requirement of 500 |
+
+### The rejected web-discovery spike
+
+40 Serper queries across the four exact phrases, 153 unique candidate domains, 45
+fetched for first-party verification. 12 passed the automated filter (27%);
+**1–2 were actually family offices**. True precision **~2–4%**.
+
+What the filter let through: `privatebank.jpmorgan.com` and `bbh.com` (banks),
+`daypitney.com` and `pillsburylaw.com` (law firms), `kaufmanrossin.com`
+(accountancy), `sage.com` (accounting software), `kellogg.northwestern.edu` (a
+university), `cowenpartners.com` (executive search), `uhnwinstitute.org` (a trade
+body). Extracted "principals" were page furniture: *"Insights Reports Family"*,
+*"Enterprise Value"*, *"Chief Investment Officer"*.
+
+**The structural reason:** a single family office has no commercial reason to
+publish a website. It serves one family and seeks no clients. The organisations
+that rank for `"family office"` are precisely those *selling services to* family
+offices, and no wording test separates "we are a family office" from "we advise
+family offices".
+
+Importing at that precision would have added ~150 records by placing banks and
+law firms in a family-office dataset. The same call was made earlier against the
+`family wealth` search terms, which returned independent financial advisers
+(`IFS FAMILY WEALTH ADVISERS`, `REDWOOD FINANCIAL FAMILY WEALTH & ESTATE
+PLANNERS`), and in Phase 0 against the leadership-page probe, which measured 0
+of 26.
+
+**Reproduce:** `WEB_QUERIES=40 WEB_FETCH=45 npx tsx packages/pipeline/src/discovery/sample-web.ts`
+
+### The position, stated plainly
+
+The brief says a submission below 500 fails, and also that a file containing
+values labelled more strongly than the evidence supports cannot be trusted. Both
+could not be satisfied from the sources available. **218 records that hold, with
+the ceiling measurements attached, was chosen over 500 that do not.**
