@@ -22,6 +22,22 @@
  * "Validation gates did not refuse to publish any information, with 0 rows and
  * 0 data." A non-technical buyer cannot read that, and the brief requires every
  * user-visible state to be understandable to one.
+ *
+ * ### 3. A failed check is not a clean result
+ *
+ * Same Goal 3 answer, the part that survived the first fix. The agent called
+ * `check_evidence` with an invented field, got nothing back, and reported that
+ * nothing had been withheld. Making the tool fail closed stopped it returning a
+ * misleading empty success -- and the composer wrote the same conclusion anyway,
+ * now on top of an explicit validation error.
+ *
+ * Absence is the hardest thing for a retrieval system to assert honestly and the
+ * most damaging to get wrong: "nothing was withheld" is a stronger claim than
+ * any value the system publishes, and here it was a claim about a query that
+ * could not have found anything. So it is no longer left to the composer. An
+ * absence-of-withholding sentence is permitted only when a `check_evidence` call
+ * actually completed for that firm, and the run repairs the failed call before
+ * composing rather than composing around the hole.
  */
 
 const CONFIDENCE_WORD =
@@ -37,11 +53,39 @@ const TOOL_INTERNALS = [
   /\[\[|\]\]/,
 ];
 
+/**
+ * Sentences asserting that nothing was refused, withheld, blocked or quarantined.
+ *
+ * Matched on the pairing of a negation with a withholding verb, so "nothing was
+ * withheld" and "no values were refused" are caught while "nine values were
+ * withheld" -- a true, supported statement -- is not.
+ */
+// `n't` carries no leading word boundary -- in "didn't" the preceding character
+// is a word character, so \bn't\b never matches. Contractions are how a model
+// most naturally phrases this, so missing them would miss the common case.
+const NEGATION = String.raw`(?:\b(?:no|nothing|none|not|never)\b|n't)`;
+const WITHHOLD = String.raw`\b(?:withheld|withhold|withholding|refused|refuse|refusing|blocked|block|blocking|quarantined|quarantine|suppressed|suppress|held back|kept back|excluded|exclude)\b`;
+
+const ABSENCE_OF_WITHHOLDING = new RegExp(
+  `${NEGATION}[^.;!?]{0,80}${WITHHOLD}` +
+  `|${WITHHOLD}[^.;!?]{0,40}\\b(?:nothing|no (?:values?|claims?|fields?|information|data)|none)\\b`,
+  'i',
+);
+
+export interface EvidenceCheck {
+  entityId: string;
+  /** false when the call returned a validation error and checked nothing */
+  completed: boolean;
+  field?: string;
+}
+
 export interface ClaimsAudit {
   /** relevance values presented as confidence */
   relevanceAsConfidence: Array<{ value: number; context: string }>;
   /** tool internals leaking into prose */
   internals: string[];
+  /** an assertion that nothing was withheld, with no completed check behind it */
+  unsupportedAbsence: string[];
 }
 
 /**
@@ -56,7 +100,11 @@ export interface ClaimsAudit {
  * enough to span "Confidence scores are X: 0.9993, Y: 0.9984" without reaching
  * into an unrelated sentence.
  */
-export function auditClaims(answer: string, relevanceScores: number[]): ClaimsAudit {
+export function auditClaims(
+  answer: string,
+  relevanceScores: number[],
+  evidenceChecks: EvidenceCheck[] = [],
+): ClaimsAudit {
   const relevanceAsConfidence: Array<{ value: number; context: string }> = [];
   const seen = new Set<number>();
 
@@ -90,7 +138,18 @@ export function auditClaims(answer: string, relevanceScores: number[]): ClaimsAu
     if (hit && !internals.includes(hit[0])) internals.push(hit[0]);
   }
 
-  return { relevanceAsConfidence, internals };
+  // An absence claim needs a check that ran. A check that errored is not weaker
+  // evidence of absence -- it is none, and the two must not be treated alike.
+  // When no check_evidence call was attempted at all this stays silent: that is
+  // a different answer shape, judged by the tool-coverage rules, not here.
+  const unsupportedAbsence: string[] = [];
+  if (evidenceChecks.length && !evidenceChecks.some((c) => c.completed)) {
+    for (const sentence of answer.split(/(?<=[.!?])\s+/)) {
+      if (ABSENCE_OF_WITHHOLDING.test(sentence)) unsupportedAbsence.push(sentence.trim());
+    }
+  }
+
+  return { relevanceAsConfidence, internals, unsupportedAbsence };
 }
 
 /**
@@ -111,6 +170,14 @@ export function confidenceBlockMessage(audit: ClaimsAudit): string {
   }
   if (audit.internals.length) {
     parts.push(`It also exposed internal tool output (${audit.internals.join(', ')}) rather than plain language.`);
+  }
+  if (audit.unsupportedAbsence.length) {
+    parts.push(
+      'It stated that nothing had been withheld — ' +
+      `"${audit.unsupportedAbsence[0]}" — when the check that would establish that did not run. ` +
+      'I do not know whether anything was withheld for this firm, and saying otherwise would be ' +
+      'the one claim in this system a buyer could not verify for themselves.',
+    );
   }
   return parts.join(' ');
 }

@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 
-import { auditClaims, confidenceBlockMessage } from './claims-guard.js';
+import { auditClaims, confidenceBlockMessage, type EvidenceCheck } from './claims-guard.js';
 import { SUPPORTED_EVIDENCE_FIELDS, check_evidence } from './tools.js';
 
 /**
@@ -81,4 +81,51 @@ test('evidence fields · the supported list covers the fields the extractors emi
     assert.ok(SUPPORTED_EVIDENCE_FIELDS.includes(f as never), `${f} must be supported`);
   }
   assert.ok(!SUPPORTED_EVIDENCE_FIELDS.includes('contactRoute' as never));
+});
+
+/**
+ * Absence. The attempt-2 residue: the tool was made to fail closed and the
+ * composer wrote the same conclusion on top of the error.
+ */
+
+const FAILED: EvidenceCheck[] = [{ entityId: 'ent_sec_n_boston_family_office', field: 'contactRoute', completed: false }];
+const RAN: EvidenceCheck[] = [{ entityId: 'ent_sec_n_boston_family_office', completed: true }];
+
+test('claims · THE GOAL 3 RESIDUE: "nothing was withheld" after a failed check is blocked', () => {
+  const answer =
+    'BOSTON FAMILY OFFICE LLC holds a phone number reaching George Beal, its Managing Partner. ' +
+    'The validation gates did not refuse to publish any information about this firm.';
+  const a = auditClaims(answer, SCORES, FAILED);
+  assert.equal(a.unsupportedAbsence.length, 1);
+  assert.match(confidenceBlockMessage(a), /the check that would establish that did not run/);
+});
+
+test('claims · the same claim is allowed once a check actually completed', () => {
+  // The guard is about whether the check ran, not about the wording.
+  const answer = 'The validation gates did not refuse to publish any information about this firm.';
+  assert.deepEqual(auditClaims(answer, SCORES, RAN).unsupportedAbsence, []);
+  // A failed call followed by the repaired one is also fine: something ran.
+  assert.deepEqual(auditClaims(answer, SCORES, [...FAILED, ...RAN]).unsupportedAbsence, []);
+});
+
+test('claims · reporting what WAS withheld is never blocked', () => {
+  const answer = 'Two values were withheld for this firm: both failed the identity gate.';
+  assert.deepEqual(auditClaims(answer, SCORES, FAILED).unsupportedAbsence, []);
+});
+
+test('claims · an answer that never claimed a check is left alone', () => {
+  // No check_evidence call at all is a different shape and not this guard's job.
+  const answer = 'Nothing was withheld.';
+  assert.deepEqual(auditClaims(answer, SCORES, []).unsupportedAbsence, []);
+  assert.equal(auditClaims(answer, SCORES, FAILED).unsupportedAbsence.length, 1);
+});
+
+test('claims · other absence phrasings are caught too', () => {
+  for (const a of [
+    'No claims were quarantined for this firm.',
+    "The gates didn't block anything here.",
+    'None of the values were refused publication.',
+  ]) {
+    assert.equal(auditClaims(a, SCORES, FAILED).unsupportedAbsence.length, 1, a);
+  }
 });

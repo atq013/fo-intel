@@ -27,25 +27,44 @@ export interface ProcessOptions {
   entityFor: (observation: Observation) => { id: string; canonicalName: string; entityType?: string };
   /** stop after this many units; the budget guard, in its simplest form */
   maxUnits?: number;
+  /**
+   * Stop after this much wall time, whichever budget binds first.
+   *
+   * A unit count cannot bound a run's duration: a shell company costs one API
+   * call and a substantive one costs three, so the same 250 units run in 15
+   * minutes or 45 depending on what the pool happens to hold. Without this the
+   * scheduled job is killed by the runner's timeout instead of halting -- and a
+   * killed job writes no `budget_halt`, so the operating record shows a failure
+   * where there was only a full budget. The checkpoint survives either way; the
+   * honest log does not.
+   */
+  maxMs?: number;
   resume?: boolean;
 }
 
 export async function processSource(opts: ProcessOptions): Promise<void> {
   const { run, source, collector, extractor, entityFor } = opts;
   const maxUnits = opts.maxUnits ?? Number(process.env.MAX_UNITS ?? 40);
+  const maxMs = opts.maxMs ?? Number(process.env.MAX_RUN_MS ?? 0);
+  const startedAt = Date.now();
 
   await db.upsertSource(source);
   const cursor = opts.resume === false ? undefined : (await run.readCheckpoint(source.id)) ?? undefined;
-  await run.log('info', 'source_started', { source: source.id, resumeFrom: cursor ?? null, maxUnits });
+  await run.log('info', 'source_started', { source: source.id, resumeFrom: cursor ?? null, maxUnits, maxMs: maxMs || null });
 
   let units = 0;
 
   for await (const { observation, cursor: next } of collector.collect(source, cursor)) {
-    if (units >= maxUnits) {
-      await run.log('info', 'budget_halt', { source: source.id, units, reason: 'maxUnits reached' });
+    const elapsed = Date.now() - startedAt;
+    const overTime = maxMs > 0 && elapsed >= maxMs;
+    if (units >= maxUnits || overTime) {
+      const rule = overTime ? 'max_run_ms' : 'max_units_per_run';
+      await run.log('info', 'budget_halt', { source: source.id, units, elapsedMs: elapsed, reason: rule });
       await run.decision('budget_halt', {
-        rule: 'max_units_per_run',
-        reason: `stopped after ${units} units to stay inside the run budget`,
+        rule,
+        reason: overTime
+          ? `stopped after ${units} units and ${Math.round(elapsed / 1000)}s to stay inside the run's wall-clock budget`
+          : `stopped after ${units} units to stay inside the run budget`,
         after: { cursor: next },
       });
       break;

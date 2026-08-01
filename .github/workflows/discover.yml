@@ -22,7 +22,7 @@ concurrency:
 jobs:
   discover:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 50
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -36,7 +36,12 @@ jobs:
           COMPANIES_HOUSE_API_KEY: ${{ secrets.COMPANIES_HOUSE_API_KEY }}
           GITHUB_EVENT_NAME: ${{ github.event_name }}
           GITHUB_SHA: ${{ github.sha }}
-          MAX_UNITS: '60'
+          # Two budgets, and whichever binds first ends the run cleanly with a
+          # checkpoint and a logged decision. 250 units is the cheap case; the
+          # 40-minute wall clock is what actually holds when the pool is dense
+          # with substantive companies, which cost three API calls each.
+          MAX_UNITS: '250'
+          MAX_RUN_MS: '2400000'
         run: npx tsx packages/pipeline/src/jobs/discover.ts
 
       # The reachability channel. Runs second and unconditionally (`if: always()`)

@@ -44,21 +44,39 @@ function loadCandidates(): string[] {
   // The narrow pool: explicit family-office terms only. Collected separately
   // after the broad terms were measured and rejected for returning independent
   // financial advisers rather than family offices.
-  let narrow: string[] = [];
-  try {
-    const n = JSON.parse(readFileSync(root + 'data/candidates-uk-narrow.json', 'utf8')) as {
-      companies: Array<{ companyNumber: string }>;
-    };
-    const seen = new Set([...inStage1, ...rest]);
-    narrow = n.companies.map((c) => c.companyNumber).filter((c) => !seen.has(c));
-  } catch {
-    // Absent file simply means the narrow collection has not been run.
+  const seen = new Set([...inStage1, ...rest]);
+  const extra: string[] = [];
+
+  for (const file of ['data/candidates-uk-narrow.json', 'data/candidates-uk-expanded.json']) {
+    try {
+      const n = JSON.parse(readFileSync(root + file, 'utf8')) as {
+        companies: Array<{ companyNumber: string; matchedTerm?: string }>;
+      };
+      // Ordered by how strongly the name self-describes. "family office" is an
+      // unambiguous claim; "family holdings" is a broader family-wealth vehicle
+      // and many are property companies. Both are collected -- the gates and the
+      // commercial floor decide -- but the stronger ones are read first so an
+      // interrupted climb keeps the better records.
+      const rank = (m?: string) =>
+        m?.includes('family office') ? 0 : m?.includes('family investment') ? 1 : 2;
+      for (const c of [...n.companies].sort((a, b) => rank(a.matchedTerm) - rank(b.matchedTerm))) {
+        if (seen.has(c.companyNumber)) continue;
+        seen.add(c.companyNumber);
+        extra.push(c.companyNumber);
+      }
+    } catch {
+      // An absent file simply means that collection has not been run.
+    }
   }
+
+  // No pre-filtering for substance here: the collector reads the profile and
+  // skips shells itself, so one rule applies to every company number regardless
+  // of which list it arrived on.
 
   // Shells are excluded from the tail but never from the Stage 1 set: a record
   // we already shipped must be re-judged on the new standard, not quietly
   // dropped because it would fail. Dropping it would hide the correction.
-  return [...inStage1, ...rest, ...narrow];
+  return [...inStage1, ...rest, ...extra];
 }
 
 const numbers = loadCandidates();
