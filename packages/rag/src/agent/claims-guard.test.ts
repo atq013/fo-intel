@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
+import 'dotenv/config';
 
 import { auditClaims, confidenceBlockMessage, type EvidenceCheck } from './claims-guard.js';
 import { SUPPORTED_EVIDENCE_FIELDS, check_evidence } from './tools.js';
@@ -128,4 +129,24 @@ test('claims · other absence phrasings are caught too', () => {
   ]) {
     assert.equal(auditClaims(a, SCORES, FAILED).unsupportedAbsence.length, 1, a);
   }
+});
+
+test('claims · THE ATTEMPT-3 BLOCK: the tool-shaped noun came from the scope key', async () => {
+  // The composer emitted the sanctioned count token and wrote the metric's own
+  // name around it: "the evidence check found [[count:check_evidence.rows]] rows
+  // of evidence". Resolved, that is "54 rows" -- blocked, correctly, as tool
+  // language. The model was following the naming it was given.
+  assert.ok(auditClaims('the evidence check found 54 rows of evidence', SCORES).internals.length > 0);
+
+  // check_evidence no longer offers `rows` as the noun to copy.
+  const r = await check_evidence({ entityId: 'ent_sec_n_boston_family_office' });
+  const scope = r.scope as Record<string, unknown>;
+  assert.equal(scope.rows, undefined, 'the tool-shaped key is gone');
+  assert.equal(typeof scope.gateOutcomes, 'number');
+  assert.match(String(scope.gateOutcomesNote), /never as rows, records or data/);
+
+  // And the phrasing the new name leads to passes.
+  const a = auditClaims(
+    `The validation gates recorded ${scope.gateOutcomes} gate outcomes for this firm.`, SCORES);
+  assert.deepEqual(a.internals, []);
 });

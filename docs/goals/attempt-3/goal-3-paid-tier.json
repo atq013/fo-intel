@@ -1,0 +1,392 @@
+{
+  "goal": "Goal 3 · Paid-tier case",
+  "goalId": "goal-3-paid-tier",
+  "submittedPrompt": "I am about to contact BOSTON FAMILY OFFICE LLC. What does the system hold on them, what evidence backs the contact route, and what did the validation gates refuse to publish about them and why?",
+  "productionUrl": "https://fo-intel-web.vercel.app/api/agent",
+  "agentUiUrl": "https://fo-intel-web.vercel.app/agent",
+  "submittedAtUtc": "2026-08-01T13:32:33.355Z",
+  "latencyMs": 2559,
+  "httpStatus": 200,
+  "whyThisGoal": "A one-time export cannot tell a buyer what was refused and why. The gate outcomes and the evidence span behind each value are the paid-tier product; the record itself is the free part.",
+  "manualRetrievalEquivalent": {
+    "url": "https://fo-intel-web.vercel.app/api/shortlist?q=Boston%20Family%20Office&limit=5",
+    "httpStatus": 200,
+    "scope": {
+      "searched": 664,
+      "matched": 1,
+      "returned": 1,
+      "excluded": [
+        {
+          "reason": "name did not match the query text",
+          "count": 613
+        },
+        {
+          "reason": "below the commercial floor",
+          "count": 50
+        }
+      ],
+      "appliedFilters": [
+        "name contains \"Boston Family Office\""
+      ]
+    },
+    "limits": [
+      "Ranks only over released claims. Candidate, held and quarantined values are invisible to this query by design.",
+      "Text matching is substring on the firm name, not semantic. A firm whose name does not contain the query text will not appear even if it fits.",
+      "Freshness measures when the source was last observed, not whether it changed. An unchanged source is not stale.",
+      "Reachability is reported as two separate figures and never merged (ADR-11). Strict excludes personal profiles; profile-assisted includes them under assumption A1, which a reviewer may reject.",
+      "No AUM, sector or mandate scoring: most single-family offices do not publish those, and a fabricated band would be worse than a blank."
+    ],
+    "results": [
+      {
+        "entityId": "ent_sec_n_boston_family_office",
+        "name": "BOSTON FAMILY OFFICE LLC",
+        "score": 0.9971,
+        "contact": {
+          "channel": "phone",
+          "value": "617-624-0800",
+          "reaches": "individual",
+          "method": "route appears in evidence naming the individual"
+        },
+        "matched": [
+          "a route that reaches a named individual, profiles excluded",
+          "every value traced to a statutory source or the firm itself",
+          "source re-observed 1d ago",
+          "9 released claims, each with establishing evidence"
+        ],
+        "missing": []
+      }
+    ]
+  },
+  "agentAnswer": "I cannot give this answer as drafted. It also exposed internal tool output (54 rows, rows) rather than plain language.",
+  "blocked": true,
+  "blockReason": "composer exposed internal tool output in customer-facing prose",
+  "unhonouredConstraints": [
+    "Specific fields or data about the firm — Dataset cannot express specific fields or data without a name substring"
+  ],
+  "abstained": true,
+  "nameCorrections": [],
+  "relevanceAsConfidence": [],
+  "toolInternalsLeaked": [
+    "54 rows",
+    "rows"
+  ],
+  "countsResolvedFromToolOutput": [
+    {
+      "token": "search_firms.searched",
+      "value": 664
+    },
+    {
+      "token": "search_firms.matched",
+      "value": 1
+    },
+    {
+      "token": "get_firm.releasedClaims",
+      "value": 9
+    },
+    {
+      "token": "check_evidence.rows",
+      "value": 54
+    }
+  ],
+  "toolsUsed": [
+    "search_firms",
+    "get_firm",
+    "check_evidence",
+    "check_evidence",
+    "check_evidence"
+  ],
+  "scopePerTool": [
+    {
+      "tool": "search_firms",
+      "searched": 664,
+      "matched": 1,
+      "returned": 1,
+      "appliedFilters": [
+        "name contains \"BOSTON FAMILY OFFICE LLC\""
+      ],
+      "relevanceScoreMeaning": "relevanceScore ranks how well a record matches the FILTERS APPLIED. It is not a confidence, probability, certainty, likelihood or evidence-strength value, and must never be presented as one. Confidence in any specific question comes from whether the fields that question needs are present -- see each result's `missing` list.",
+      "countNote": "1 firms matched; the data array holds only the top 1. Report 1 as the count, never the array length."
+    },
+    {
+      "tool": "get_firm",
+      "entityId": "ent_sec_n_boston_family_office",
+      "releasedClaims": 9
+    },
+    {
+      "tool": "check_evidence",
+      "entityId": "ent_sec_n_boston_family_office",
+      "field": "contactRoute",
+      "validationError": true
+    },
+    {
+      "tool": "check_evidence",
+      "entityId": "ent_sec_n_boston_family_office",
+      "field": "validationGatesRefusal",
+      "validationError": true
+    },
+    {
+      "tool": "check_evidence",
+      "entityId": "ent_sec_n_boston_family_office",
+      "field": "all",
+      "rows": 54
+    }
+  ],
+  "entityIdsUsed": [
+    "ent_sec_n_boston_family_office"
+  ],
+  "rawTrace": [
+    {
+      "step": 1,
+      "kind": "plan",
+      "detail": {
+        "constraints": [
+          {
+            "constraint": "Contact BOSTON FAMILY OFFICE LLC",
+            "honourable": true,
+            "why": "Substring match on firm name"
+          },
+          {
+            "constraint": "Evidence for contact route",
+            "honourable": true,
+            "why": "Gate outcomes and evidence for one claim"
+          },
+          {
+            "constraint": "Validation gates refusal to publish",
+            "honourable": true,
+            "why": "Gate outcomes and evidence for one claim"
+          },
+          {
+            "constraint": "Specific fields or data about the firm",
+            "honourable": false,
+            "why": "Dataset cannot express specific fields or data without a name substring"
+          }
+        ],
+        "calls": [
+          {
+            "tool": "get_firm",
+            "input": {
+              "entityId": "BOSTON FAMILY OFFICE LLC"
+            },
+            "because": "Retrieve firm's released claims with evidence"
+          },
+          {
+            "tool": "check_evidence",
+            "input": {
+              "entityId": "BOSTON FAMILY OFFICE LLC",
+              "field": "contactRoute"
+            },
+            "because": "Check evidence for contact route claim"
+          },
+          {
+            "tool": "check_evidence",
+            "input": {
+              "entityId": "BOSTON FAMILY OFFICE LLC",
+              "field": "validationGatesRefusal"
+            },
+            "because": "Check evidence for validation gates refusal"
+          },
+          {
+            "tool": "search_firms",
+            "input": {
+              "q": "BOSTON FAMILY OFFICE LLC",
+              "requireStrictReachable": false,
+              "requireProfileAssisted": false,
+              "requiredFields": [],
+              "freshWithinDays": 0,
+              "maxSourceTier": 0,
+              "limit": 1
+            },
+            "because": "Search for firm by name"
+          }
+        ]
+      },
+      "at": "2026-08-01T13:32:34.660Z"
+    },
+    {
+      "step": 2,
+      "kind": "tool",
+      "detail": {
+        "tool": "search_firms",
+        "input": {
+          "q": "BOSTON FAMILY OFFICE LLC",
+          "requireStrictReachable": false,
+          "requireProfileAssisted": false,
+          "requiredFields": [],
+          "freshWithinDays": 0,
+          "maxSourceTier": 0,
+          "limit": 1
+        },
+        "scope": {
+          "searched": 664,
+          "matched": 1,
+          "returned": 1,
+          "appliedFilters": [
+            "name contains \"BOSTON FAMILY OFFICE LLC\""
+          ],
+          "relevanceScoreMeaning": "relevanceScore ranks how well a record matches the FILTERS APPLIED. It is not a confidence, probability, certainty, likelihood or evidence-strength value, and must never be presented as one. Confidence in any specific question comes from whether the fields that question needs are present -- see each result's `missing` list.",
+          "countNote": "1 firms matched; the data array holds only the top 1. Report 1 as the count, never the array length."
+        },
+        "excluded": [
+          {
+            "reason": "name did not match the query text",
+            "count": 613
+          },
+          {
+            "reason": "below the commercial floor",
+            "count": 50
+          }
+        ],
+        "rows": 1
+      },
+      "at": "2026-08-01T13:32:34.803Z"
+    },
+    {
+      "step": 3,
+      "kind": "tool",
+      "detail": {
+        "tool": "get_firm",
+        "rebound": {
+          "from": "BOSTON FAMILY OFFICE LLC",
+          "to": "ent_sec_n_boston_family_office"
+        },
+        "why": "planner supplied a placeholder or unknown id"
+      },
+      "at": "2026-08-01T13:32:34.803Z"
+    },
+    {
+      "step": 4,
+      "kind": "tool",
+      "detail": {
+        "tool": "get_firm",
+        "input": {
+          "entityId": "ent_sec_n_boston_family_office"
+        },
+        "scope": {
+          "entityId": "ent_sec_n_boston_family_office",
+          "releasedClaims": 9
+        },
+        "excluded": [],
+        "rows": 1
+      },
+      "at": "2026-08-01T13:32:34.864Z"
+    },
+    {
+      "step": 5,
+      "kind": "tool",
+      "detail": {
+        "tool": "check_evidence",
+        "rebound": {
+          "from": "BOSTON FAMILY OFFICE LLC",
+          "to": "ent_sec_n_boston_family_office"
+        },
+        "why": "planner supplied a placeholder or unknown id"
+      },
+      "at": "2026-08-01T13:32:34.864Z"
+    },
+    {
+      "step": 6,
+      "kind": "tool",
+      "detail": {
+        "tool": "check_evidence",
+        "input": {
+          "entityId": "ent_sec_n_boston_family_office",
+          "field": "contactRoute"
+        },
+        "scope": {
+          "entityId": "ent_sec_n_boston_family_office",
+          "field": "contactRoute",
+          "validationError": true
+        },
+        "excluded": [],
+        "rows": 1
+      },
+      "at": "2026-08-01T13:32:34.864Z"
+    },
+    {
+      "step": 7,
+      "kind": "tool",
+      "detail": {
+        "tool": "check_evidence",
+        "rebound": {
+          "from": "BOSTON FAMILY OFFICE LLC",
+          "to": "ent_sec_n_boston_family_office"
+        },
+        "why": "planner supplied a placeholder or unknown id"
+      },
+      "at": "2026-08-01T13:32:34.864Z"
+    },
+    {
+      "step": 8,
+      "kind": "tool",
+      "detail": {
+        "tool": "check_evidence",
+        "input": {
+          "entityId": "ent_sec_n_boston_family_office",
+          "field": "validationGatesRefusal"
+        },
+        "scope": {
+          "entityId": "ent_sec_n_boston_family_office",
+          "field": "validationGatesRefusal",
+          "validationError": true
+        },
+        "excluded": [],
+        "rows": 1
+      },
+      "at": "2026-08-01T13:32:34.864Z"
+    },
+    {
+      "step": 9,
+      "kind": "tool",
+      "detail": {
+        "tool": "check_evidence",
+        "repaired": {
+          "from": "contactRoute",
+          "to": "(all fields)"
+        },
+        "why": "the requested field does not exist, so nothing was checked; re-running the supported form"
+      },
+      "at": "2026-08-01T13:32:34.864Z"
+    },
+    {
+      "step": 10,
+      "kind": "tool",
+      "detail": {
+        "tool": "check_evidence",
+        "input": {
+          "entityId": "ent_sec_n_boston_family_office"
+        },
+        "scope": {
+          "entityId": "ent_sec_n_boston_family_office",
+          "field": "all",
+          "rows": 54
+        },
+        "excluded": [],
+        "rows": 54
+      },
+      "at": "2026-08-01T13:32:34.893Z"
+    },
+    {
+      "step": 11,
+      "kind": "compose",
+      "detail": {
+        "answer": "I could not determine specific fields or data about the firm because the dataset cannot express specific fields or data without a name substring. I could not provide evidence about the contact route or validation gates refusal for the same reason. The system searched [[count:search_firms.searched]] firms, and [[count:search_firms.matched]] firm matched the query. The firm [[ent_sec_n_boston_family_office]] has [[count:get_firm.releasedClaims]] released claims, and the evidence check found [[count:check_evidence.rows]] rows of evidence. The contact information for the firm includes a phone number, 617-624-0800, which reaches an individual, and the principal's name is George Beal, with the title Managing Partner."
+      },
+      "at": "2026-08-01T13:32:35.883Z"
+    },
+    {
+      "step": 12,
+      "kind": "block",
+      "detail": {
+        "stage": "claims-audit",
+        "relevanceAsConfidence": [],
+        "toolInternalsLeaked": [
+          "54 rows",
+          "rows"
+        ],
+        "unsupportedAbsence": []
+      },
+      "at": "2026-08-01T13:32:35.883Z"
+    }
+  ],
+  "error": null
+}

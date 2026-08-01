@@ -51,7 +51,9 @@ export function recordMetrics(
     reg.known.add(value);
   };
 
-  for (const field of ['searched', 'matched', 'returned', 'releasedClaims', 'rows']) {
+  // `rows` stays registered: older traces and any tool still reporting it must
+  // keep resolving. `gateOutcomes` is what check_evidence reports now.
+  for (const field of ['searched', 'matched', 'returned', 'releasedClaims', 'rows', 'gateOutcomes']) {
     put(field, scope[field]);
   }
   if (data && typeof data === 'object' && !Array.isArray(data)) {

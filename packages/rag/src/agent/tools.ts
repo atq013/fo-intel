@@ -226,7 +226,21 @@ export async function check_evidence(input: { entityId: string; field?: string }
       field: r.field, claimStatus: r.status, gate: r.gate,
       outcome: r.outcome, detail: r.detail, policyVersion: r.policy_version,
     })),
-    scope: { entityId: input.entityId, field: input.field ?? 'all', rows: rows.length },
+    scope: {
+      entityId: input.entityId,
+      field: input.field ?? 'all',
+      // Named for what it IS, not for its shape in the database. The composer
+      // writes the metric's own name into its prose -- given `rows` it wrote
+      // "the evidence check found 54 rows of evidence", which is tool-shaped
+      // language a buyer cannot read, and the output guard blocked the whole
+      // answer over it. The model was not misbehaving: it emitted the sanctioned
+      // count token and the noun came from the key. Same fix as `score` ->
+      // `relevanceScore`: change what it is called, not what it may say.
+      gateOutcomes: rows.length,
+      gateOutcomesNote:
+        `${rows.length} gate outcomes were recorded across the values checked for this firm. ` +
+        'Describe them as "gate outcomes" or "validation checks", never as rows, records or data.',
+    },
     excluded: [],
     limits: [
       'Reports what the gates recorded and nothing beyond it. A passed gate means that specific check passed, not that the value is true.',
