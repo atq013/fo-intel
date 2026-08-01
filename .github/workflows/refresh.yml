@@ -19,7 +19,7 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 50
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -33,5 +33,9 @@ jobs:
           COMPANIES_HOUSE_API_KEY: ${{ secrets.COMPANIES_HOUSE_API_KEY }}
           GITHUB_EVENT_NAME: ${{ github.event_name }}
           GITHUB_SHA: ${{ github.sha }}
-          REFRESH_BATCH: '40'
+          # 546 Companies House entities and two runs a day. At 140 a run the
+          # file is swept in about two days, so a real filing change is found by
+          # a scheduled run rather than waiting on luck.
+          REFRESH_BATCH: '140'
+          MAX_RUN_MS: '2400000'
         run: npx tsx packages/pipeline/src/jobs/refresh.ts

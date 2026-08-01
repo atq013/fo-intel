@@ -9,6 +9,7 @@ import {
 import { connect } from '../../../db/src/connect.js';
 import { buildAddressIndex } from '../collect/uk-director-address.js';
 import type { Observation } from '@fo/core/contract/index.js';
+import { selectRotation } from './refresh-rotation.js';
 
 /**
  * `refresh` — re-observe what we already hold, oldest first.
@@ -32,22 +33,34 @@ buildAddressIndex(new URL('../../../../data/candidates-uk.json', import.meta.url
 
 const BATCH = Number(process.env.REFRESH_BATCH ?? 25);
 
+/**
+ * Least-recently-observed first, and both halves of that mattered.
+ *
+ * `DISTINCT ON (e.id) ... ORDER BY e.id, o.fetched_at ASC` picks each entity's
+ * OLDEST reading, which is not when we last looked at it -- an entity read three
+ * times still reports its first reading and looks permanently overdue. What
+ * decides rotation is the MOST RECENT reading, so that is what is selected.
+ *
+ * The rows then still arrive ordered by entity id, and the batch was taken
+ * straight off the top of that. A comment said the sort happened here in JS; it
+ * did not. So every run re-read the same head of the list: 3 of 546 Companies
+ * House URLs had ever been re-read, and the other 543 never once. All 3 that
+ * were re-read had genuinely changed, which is the measure of what the broken
+ * rotation was hiding rather than a reason to trust it.
+ *
+ * Sorting ascending by last reading is what makes the budget sweep the file.
+ */
 const rows = (await sql`
-  SELECT DISTINCT ON (e.id) e.id, o.url
+  SELECT DISTINCT ON (e.id) e.id, o.url, o.fetched_at
   FROM s2_entity e
   JOIN s2_claim c        ON c.entity_id = e.id
   JOIN s2_extraction_event xe ON xe.id = c.extraction_event_id
   JOIN s2_observation o  ON o.id = xe.observation_id
   WHERE e.id LIKE 'ent_ch_%' AND e.trust_state = 'active'
-  ORDER BY e.id, o.fetched_at ASC`) as unknown as Array<{ id: string; url: string }>;
+  ORDER BY e.id, o.fetched_at DESC`) as unknown as
+  Array<{ id: string; url: string; fetched_at: string }>;
 
-// Oldest observation first, then take the batch. Sorting in SQL alongside
-// DISTINCT ON would order by the wrong key, so it is done here.
-const numbers = rows
-  .map((r) => ({ number: r.url.split('/company/')[1] ?? '', id: r.id }))
-  .filter((r) => r.number)
-  .slice(0, BATCH)
-  .map((r) => r.number);
+const numbers = selectRotation(rows, BATCH);
 
 function entityFor(observation: Observation) {
   const doc = JSON.parse(observation.body ?? '{}') as { companyNumber: string; profile?: { company_name?: string } };
@@ -59,7 +72,15 @@ function entityFor(observation: Observation) {
 }
 
 await withRun('refresh', process.env.GITHUB_EVENT_NAME === 'schedule' ? 'schedule' : 'manual', async (run) => {
-  await run.log('info', 'refresh_scope', { entities: rows.length, batch: numbers.length });
+  const oldest = rows.length ? new Date(Math.min(...rows.map((r) => new Date(r.fetched_at).getTime()))) : null;
+  await run.log('info', 'refresh_scope', {
+    entities: rows.length,
+    batch: numbers.length,
+    leastRecentlyObserved: oldest?.toISOString() ?? null,
+    // Logged so a reviewer can see the rotation actually sweeping rather than
+    // taking it on trust: this is how long a full pass over the file takes.
+    fullSweepRuns: numbers.length ? Math.ceil(rows.length / numbers.length) : 0,
+  });
   if (!numbers.length) {
     await run.log('info', 'nothing_to_refresh');
     return;
