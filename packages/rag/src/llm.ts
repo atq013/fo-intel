@@ -15,6 +15,7 @@ import {
   EMBEDDING_DIMS,
   VERIFIER_MODEL,
   QUERY_PARSE_MODEL,
+  recordModelCall,
 } from '@fo/core';
 
 export async function embed(text: string): Promise<number[]> {
@@ -108,12 +109,24 @@ async function groq<T>(prompt: string, model: string, attempts = 3): Promise<T> 
     });
 
     if (res.ok) {
-      const json = (await res.json()) as { choices: Array<{ message: { content: string } }> };
+      const json = (await res.json()) as {
+        choices: Array<{ message: { content: string } }>;
+        usage?: { prompt_tokens?: number; completion_tokens?: number };
+      };
+      // The provider returns exact token counts on every call and this code
+      // threw them away. They are the only measured input to the cost figures.
+      recordModelCall(model, {
+        promptTokens: json.usage?.prompt_tokens,
+        completionTokens: json.usage?.completion_tokens,
+      });
       return JSON.parse(json.choices[0]!.message.content) as T;
     }
 
     const body = (await res.text()).slice(0, 300);
     last = `${res.status} ${body}`;
+    // A rejected call still consumed a round trip and often the input tokens.
+    // Counting only successes would understate what a run costs to complete.
+    recordModelCall(model, {}, true);
     // 429 and 5xx clear on their own; anything else will not.
     if (res.status !== 429 && res.status < 500) throw new Error(`groq ${res.status}: ${body}`);
   }

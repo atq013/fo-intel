@@ -2,6 +2,7 @@ import { generateJson } from '../llm.js';
 import { TOOLS, TOOL_SCHEMAS, type ToolResult } from './tools.js';
 import { resolveNames } from './names.js';
 import { newMetrics, recordMetrics, resolveCounts, tokenRoster } from './counts.js';
+import { meterSnapshot, resetMeter } from '@fo/core';
 import { auditClaims, confidenceBlockMessage, type EvidenceCheck } from './claims-guard.js';
 
 /**
@@ -53,6 +54,8 @@ export interface AgentAnswer {
   toolInternalsLeaked: string[];
   /** absence-of-withholding claims with no completed check behind them */
   unsupportedAbsence: string[];
+  /** measured spend and wall time for this answer -- see @fo/core/meter */
+  cost: Record<string, unknown>;
 }
 
 interface Plan {
@@ -163,10 +166,16 @@ ${counts || '  (no counts available)'}
 Return JSON: {"answer":"..."}`;
 
 export async function runAgent(question: string): Promise<AgentAnswer> {
+  // Per-answer, so a goal trace carries what that goal actually cost rather than
+  // a share of some daily total. Reset first: the process is long-lived on
+  // Vercel and would otherwise accumulate across unrelated questions.
+  resetMeter();
+  const startedAt = Date.now();
   const trace: AgentTrace[] = [];
   const now = () => new Date().toISOString();
   const push = (kind: AgentTrace['kind'], detail: unknown) =>
     trace.push({ step: trace.length + 1, kind, detail, at: now() });
+  const cost = () => ({ ...meterSnapshot(), wallMs: Date.now() - startedAt });
 
   // ---- plan --------------------------------------------------------------
   const plan = await generateJson<Plan>(PLAN_PROMPT(question), {
@@ -326,7 +335,7 @@ export async function runAgent(question: string): Promise<AgentAnswer> {
     const answer =
       'I could not retrieve anything for this question. No tool call succeeded, so I have nothing to base an answer on.';
     push('compose', { answer, reason: 'no tool results' });
-    return { answer, unhonouredConstraints: unhonoured, blocked: false, toolsUsed, scope, trace, nameCorrections: [], countsResolved: [], relevanceAsConfidence: [], toolInternalsLeaked: [], unsupportedAbsence: [] };
+    return { answer, unhonouredConstraints: unhonoured, blocked: false, toolsUsed, scope, trace, nameCorrections: [], countsResolved: [], relevanceAsConfidence: [], toolInternalsLeaked: [], unsupportedAbsence: [], cost: cost() };
   }
 
   // ---- compose -----------------------------------------------------------
@@ -398,7 +407,7 @@ export async function runAgent(question: string): Promise<AgentAnswer> {
       (unsupportedAbsence.length ? 'composer asserted nothing was withheld with no completed evidence check behind it' : '');
     answer = confidenceBlockMessage(claims);
     return { answer, unhonouredConstraints: unhonoured, blocked, blockReason, toolsUsed, scope, trace,
-      nameCorrections, countsResolved, relevanceAsConfidence, toolInternalsLeaked, unsupportedAbsence };
+      nameCorrections, countsResolved, relevanceAsConfidence, toolInternalsLeaked, unsupportedAbsence, cost: cost() };
   }
 
   // A dataset count the tools did not produce is a fabricated fact.
@@ -412,7 +421,7 @@ export async function runAgent(question: string): Promise<AgentAnswer> {
       [...counts.unsupported.map(String), ...counts.unresolvedTokens].map((c) => `"${c}"`).join(', ') +
       ' as a figure from the data, but no tool returned it. Rather than show you a ' +
       'number I cannot trace, I am declining the answer.';
-    return { answer, unhonouredConstraints: unhonoured, blocked, blockReason, toolsUsed, scope, trace, nameCorrections, countsResolved, relevanceAsConfidence, toolInternalsLeaked, unsupportedAbsence };
+    return { answer, unhonouredConstraints: unhonoured, blocked, blockReason, toolsUsed, scope, trace, nameCorrections, countsResolved, relevanceAsConfidence, toolInternalsLeaked, unsupportedAbsence, cost: cost() };
   }
 
   // A firm-like name with no counterpart in the tool output is a fabricated
@@ -427,7 +436,7 @@ export async function runAgent(question: string): Promise<AgentAnswer> {
       [...resolved.fabricated, ...resolved.unresolvedTokens].map((f) => `"${f}"`).join(', ') +
       ', which does not appear in the data I retrieved. Rather than show you a firm ' +
       'that may not exist, I am declining the answer.';
-    return { answer, unhonouredConstraints: unhonoured, blocked, blockReason, toolsUsed, scope, trace, nameCorrections, countsResolved, relevanceAsConfidence, toolInternalsLeaked, unsupportedAbsence };
+    return { answer, unhonouredConstraints: unhonoured, blocked, blockReason, toolsUsed, scope, trace, nameCorrections, countsResolved, relevanceAsConfidence, toolInternalsLeaked, unsupportedAbsence, cost: cost() };
   }
 
   if (unhonoured.length) {
@@ -444,7 +453,7 @@ export async function runAgent(question: string): Promise<AgentAnswer> {
     }
   }
 
-  return { answer, unhonouredConstraints: unhonoured, blocked, blockReason, toolsUsed, scope, trace, nameCorrections, countsResolved, relevanceAsConfidence, toolInternalsLeaked, unsupportedAbsence };
+  return { answer, unhonouredConstraints: unhonoured, blocked, blockReason, toolsUsed, scope, trace, nameCorrections, countsResolved, relevanceAsConfidence, toolInternalsLeaked, unsupportedAbsence, cost: cost() };
 }
 
 /**

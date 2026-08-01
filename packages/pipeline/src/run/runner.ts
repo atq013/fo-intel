@@ -1,3 +1,4 @@
+import { meterSnapshot, resetMeter } from '@fo/core';
 import { randomUUID } from 'node:crypto';
 import { execSync } from 'node:child_process';
 import { connect, withRetry } from '../../../db/src/connect.js';
@@ -130,14 +131,23 @@ export async function withRun(
   trigger: RunTrigger,
   fn: (run: RunHandle) => Promise<void>,
 ): Promise<RunHandle> {
+  // Cleared at the start rather than the end, so a previous run that died
+  // without finishing cannot bleed its spend into this one's figures.
+  resetMeter();
+  const startedAt = Date.now();
   const run = await startRun(job, trigger);
+
+  // A failed run's cost is the interesting one -- it is what a retry will cost
+  // again -- so the snapshot is taken on both paths.
+  const cost = () => ({ ...meterSnapshot(), wallMs: Date.now() - startedAt });
+
   try {
     await fn(run);
-    await run.finish(run.failures.length ? 'completed' : 'completed');
+    await run.finish('completed', cost());
   } catch (err) {
     run.failures.push({ fatal: true, message: err instanceof Error ? err.message : String(err) });
     await run.log('error', 'run_failed', { message: err instanceof Error ? err.message : String(err) });
-    await run.finish('failed');
+    await run.finish('failed', cost());
     throw err;
   }
   return run;

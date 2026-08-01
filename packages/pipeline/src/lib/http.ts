@@ -1,3 +1,4 @@
+import { recordHostCall } from '@fo/core';
 import pLimit from 'p-limit';
 import { installResilientDns } from './dns.js';
 
@@ -45,6 +46,7 @@ export async function fetchText(url: string, opts: FetchOptions = {}): Promise<s
       }
       const ac = new AbortController();
       const timer = setTimeout(() => ac.abort(), timeoutMs);
+      const startedAt = Date.now();
 
       try {
         const res = await fetch(url, {
@@ -60,6 +62,11 @@ export async function fetchText(url: string, opts: FetchOptions = {}): Promise<s
         if (res.status === 403 && isSec) {
           throw new Error(`SEC rejected the request (403). Set SEC_USER_AGENT to "Name email@domain".`);
         }
+        // Every attempt is counted, including the ones a retry later fixes.
+        // A run that succeeded on the third try still made three calls, and the
+        // rate limit at 5,000 records binds on attempts, not on successes.
+        recordHostCall(host, Date.now() - startedAt, !res.ok);
+
         if (res.status === 429 || res.status >= 500) {
           lastErr = new Error(`${res.status} from ${host}`);
           continue;
@@ -69,6 +76,11 @@ export async function fetchText(url: string, opts: FetchOptions = {}): Promise<s
         }
         return await res.text();
       } catch (err) {
+        // A throw before the response arrived -- timeout, DNS, connection reset.
+        // It cost wall time and no bytes, and it is still a call that happened.
+        if (!(err instanceof Error && err.message.includes('SEC rejected'))) {
+          recordHostCall(host, Date.now() - startedAt, true);
+        }
         lastErr = err;
         if (err instanceof Error && err.message.includes('SEC rejected')) throw err;
         // ENOTFOUND / EAI_AGAIN are transient here - the resolver is flaky, not the host.
