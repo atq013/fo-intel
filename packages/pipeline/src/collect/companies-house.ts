@@ -1,6 +1,6 @@
 import { createHash, randomUUID } from 'node:crypto';
 import { fetchJson, sleep } from '../lib/http.js';
-import { derivedMethod } from '../gates/derivation.js';
+import { derivedMethod, getRule } from '../gates/derivation.js';
 import { adjudicateDirectorAddress, normaliseAddress } from './uk-director-address.js';
 import type {
   Collector,
@@ -240,6 +240,32 @@ export function companiesHouseExtractor(entityIdFor: (doc: CompanyDocument) => s
           cited('psc.items[].name', item.name),
           `named on the PSC register as ${item.kind ?? 'a person with significant control'}`,
         );
+      }
+
+      // Classification, as a derivation the gate re-runs rather than trusts.
+      //
+      // SFO-1 needs two values from this same filing: a PSC individual, and the
+      // company name. So the span cites both fields and quotes both literally,
+      // and `method` names the rule. If the rule cannot reproduce the label from
+      // that pairing, gate 2 refuses it -- which is what stops the extractor
+      // asserting a classification the register does not support.
+      //
+      // No match means no claim. An absent classification is honest; a guessed
+      // one is the failure mode this whole contract exists to prevent, and
+      // Stage 1 shipped twenty records misclassified on family control alone.
+      for (const item of (doc.psc?.items ?? []) as Array<Record<string, any>>) {
+        if (item.ceased_on) continue;
+        const isCorporate = String(item.kind ?? '').includes('corporate') ||
+          String(item.kind ?? '').includes('legal-person');
+        if (isCorporate || !item.name || !p.company_name) continue;
+
+        const pairing = `${item.name} || ${p.company_name}`;
+        if (getRule('family_surname_control')?.apply(pairing) !== 'single_family_office') continue;
+
+        say('entityClassification', 'single_family_office', 'string',
+          `psc.items[].name + company_profile.company_name: ${pairing}`,
+          derivedMethod('family_surname_control', pairing), 'derived');
+        break;
       }
 
       const officers = (doc.officers?.items ?? []) as Array<Record<string, any>>;

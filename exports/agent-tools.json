@@ -1,0 +1,98 @@
+{
+ "generatedAt": "2026-08-01T19:39:15.304Z",
+ "note": "The interfaces the agent can call. Every tool returns { data, scope, excluded, limits }: scope states what was searched and what matched, excluded states what was deliberately left out and why, and limits state what the tool cannot tell you. Every tool reads released claims only -- candidate, held, quarantined and withheld data is not reachable from here, which is not a filter the agent applies and could forget but the only data these queries select.",
+ "tools": [
+  {
+   "name": "search_firms",
+   "description": "Shortlist firms over released claims, ranked on fit, evidence, freshness and reachability. Returns why each matched and what it is missing.",
+   "input_schema": {
+    "type": "object",
+    "properties": {
+     "q": {
+      "type": "string",
+      "description": "substring match on firm name; NOT semantic"
+     },
+     "requireStrictReachable": {
+      "type": "boolean",
+      "description": "a route reaching a named individual, profiles excluded"
+     },
+     "requireProfileAssisted": {
+      "type": "boolean",
+      "description": "as above, counting verified personal profiles (assumption A1)"
+     },
+     "requiredFields": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      },
+      "description": "e.g. [\"principal.fullName\",\"principal.phone\"]"
+     },
+     "freshWithinDays": {
+      "type": "number"
+     },
+     "maxSourceTier": {
+      "type": "number",
+      "description": "1 statutory/self, 2 press, 3 aggregator, 4 unranked"
+     },
+     "limit": {
+      "type": "number"
+     }
+    }
+   }
+  },
+  {
+   "name": "get_firm",
+   "description": "One firm's released claims with the evidence span establishing each. Cannot invent absent fields.",
+   "input_schema": {
+    "type": "object",
+    "properties": {
+     "entityId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "entityId"
+    ]
+   }
+  },
+  {
+   "name": "count_matching",
+   "description": "Exact count of firms matching a filter. Never an estimate.",
+   "input_schema": {
+    "type": "object",
+    "properties": {
+     "requireStrictReachable": {
+      "type": "boolean"
+     },
+     "requireProfileAssisted": {
+      "type": "boolean"
+     },
+     "requiredFields": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    }
+   }
+  },
+  {
+   "name": "check_evidence",
+   "description": "The gate outcomes and evidence for one claim. Asserts nothing beyond what the gates recorded.",
+   "input_schema": {
+    "type": "object",
+    "properties": {
+     "entityId": {
+      "type": "string"
+     },
+     "field": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "entityId"
+    ]
+   }
+  }
+ ]
+}

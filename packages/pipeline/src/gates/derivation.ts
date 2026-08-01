@@ -55,7 +55,68 @@ export const US_STATE_CODES = new Set(Object.keys(US_STATES));
 /** UK home nations are countries in the register's sense and one country in ISO's. */
 const UK_NATIONS = new Set(['england', 'wales', 'scotland', 'northern ireland', 'great britain', 'united kingdom', 'gb', 'uk']);
 
+/**
+ * Words that carry no family identity, so a match on one proves nothing.
+ *
+ * Without this, "FAMILY" in a person's name field or a shared token like
+ * "HOLDINGS" would classify half the register as a single family office.
+ */
+const NOT_A_FAMILY_NAME = new Set([
+  'family', 'office', 'offices', 'holdings', 'holding', 'investment', 'investments',
+  'capital', 'partners', 'group', 'limited', 'ltd', 'llp', 'plc', 'company', 'trust',
+  'trustees', 'management', 'ventures', 'properties', 'property', 'estates', 'assets',
+  'wealth', 'advisors', 'advisers', 'services', 'international', 'the', 'and',
+  'mr', 'mrs', 'ms', 'miss', 'dr', 'sir', 'lord', 'lady', 'prof',
+]);
+
+/** The surname, matching gates/identity's reading of `SURNAME, FIRST, MIDDLE`. */
+function surnameFrom(personName: string): string {
+  const clean = personName.trim();
+  const head = clean.includes(',') ? clean.split(',')[0]! : clean;
+  const tokens = head.toLowerCase().replace(/[^a-z ]/g, ' ').split(/\s+/).filter((t) => t.length > 1);
+  return tokens[tokens.length - 1] ?? '';
+}
+
 const RULES: DerivationRule[] = [
+  {
+    /**
+     * SFO-1 from the inclusion rubric, as a re-runnable rule.
+     *
+     * A statutory control register naming an individual whose surname is also in
+     * the company name is the strongest evidence in the build: it is a legal
+     * filing about who controls the entity, not a firm describing itself.
+     *
+     * Both inputs come from the same filing and the span cites both fields, so
+     * the gate re-derives this from the register rather than trusting the
+     * extractor. A classification that cannot be reproduced does not release.
+     *
+     * It says single-family OFFICE and not merely family-controlled, which is a
+     * real inferential step: the register proves control, and the name claiming
+     * "family office" is the firm's own description. Both are required here.
+     * Control alone was Stage 1's SFO-1 error -- twenty records qualified on
+     * family control that were not family offices.
+     */
+    id: 'family_surname_control',
+    describes: 'a PSC individual and the company name, from the same filing',
+    apply: (input) => {
+      const [person, company] = input.split('||').map((x) => x.trim());
+      if (!person || !company) return null;
+
+      const surname = surnameFrom(person);
+      if (!surname || surname.length < 3 || NOT_A_FAMILY_NAME.has(surname)) return null;
+
+      // Whole-token match. A substring test made "curti" match "curtis" once
+      // already; the same mistake here would invent family control.
+      const companyTokens = company.toLowerCase().replace(/[^a-z ]/g, ' ').split(/\s+/);
+      if (!companyTokens.includes(surname)) return null;
+
+      // The firm must also describe itself as a family office. Control without
+      // that is a family-owned company, which is a different thing.
+      const text = company.toLowerCase();
+      if (/\bfamily\s+(office|investment|holdings?)\b/.test(text)) return 'single_family_office';
+      return null;
+    },
+  },
   {
     id: 'us_state_to_country',
     describes: 'a two-letter US state code',

@@ -20,6 +20,7 @@ export async function GET(req: Request) {
     freshWithinDays: p.get('freshDays') ? Number(p.get('freshDays')) : undefined,
     maxSourceTier: p.get('tier') ? (Number(p.get('tier')) as 1 | 2 | 3 | 4) : undefined,
     limit: p.get('limit') ? Number(p.get('limit')) : undefined,
+    offset: p.get('offset') ? Number(p.get('offset')) : undefined,
   };
   try {
     return NextResponse.json(await shortlist(query));

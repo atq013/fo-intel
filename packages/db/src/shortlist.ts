@@ -43,6 +43,15 @@ export interface ShortlistQuery {
   /** 1 statutory/self · 2 press · 3 aggregator · 4 unranked */
   maxSourceTier?: 1 | 2 | 3 | 4;
   limit?: number;
+  /**
+   * Skip this many matches before returning.
+   *
+   * Without it the file is only inspectable down to the first page: 614
+   * qualifying records behind a hard cap of 100 leaves a reviewer unable to see
+   * most of what the dataset claims to hold, which is the same as asking them to
+   * take the count on trust.
+   */
+  offset?: number;
 }
 
 export interface ShortlistResult {
@@ -78,6 +87,10 @@ export interface ShortlistResponse {
     searched: number;
     matched: number;
     returned: number;
+    /** how many matches were skipped before this page */
+    offset: number;
+    /** the offset for the next page, or null when this is the last one */
+    nextOffset: number | null;
     excluded: Array<{ reason: string; count: number }>;
     appliedFilters: string[];
   };
@@ -106,6 +119,7 @@ export async function shortlist(raw: ShortlistQuery): Promise<ShortlistResponse>
     q: raw.q?.trim() || undefined,
   };
   const limit = Math.min(query.limit ?? 25, 100);
+  const offset = Math.max(query.offset ?? 0, 0);
   const sql = db();
 
   // One pass over released claims per entity. Everything downstream scores in
@@ -236,11 +250,15 @@ export async function shortlist(raw: ShortlistQuery): Promise<ShortlistResponse>
   kept.sort((a, b) => b.score - a.score);
 
   return {
-    results: kept.slice(0, limit),
+    results: kept.slice(offset, offset + limit),
     scope: {
       searched,
       matched: kept.length,
-      returned: Math.min(kept.length, limit),
+      returned: Math.max(Math.min(kept.length - offset, limit), 0),
+      offset,
+      // Spelled out because the agent read a page size as the answer to "how
+      // many" once already, and paging gives it a second way to do that.
+      nextOffset: offset + limit < kept.length ? offset + limit : null,
       excluded: excluded.sort((a, b) => b.count - a.count),
       appliedFilters,
     },
