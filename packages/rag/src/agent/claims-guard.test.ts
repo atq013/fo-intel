@@ -150,3 +150,25 @@ test('claims · THE ATTEMPT-3 BLOCK: the tool-shaped noun came from the scope ke
     `The validation gates recorded ${scope.gateOutcomes} gate outcomes for this firm.`, SCORES);
   assert.deepEqual(a.internals, []);
 });
+
+test('claims · a repaired check still supports an absence statement', () => {
+  // Withdrawing the superseded failure must not weaken the absence guard: what
+  // licenses the statement is that a check COMPLETED, regardless of what failed
+  // before it.
+  const answer = 'The validation gates did not refuse to publish anything for this firm.';
+  assert.deepEqual(
+    auditClaims(answer, SCORES, [
+      { entityId: 'ent_x', field: 'contactRoute', completed: false },
+      { entityId: 'ent_x', completed: true },
+    ]).unsupportedAbsence,
+    [],
+  );
+  // But two failures and no repair still blocks it.
+  assert.equal(
+    auditClaims(answer, SCORES, [
+      { entityId: 'ent_x', field: 'contactRoute', completed: false },
+      { entityId: 'ent_x', field: 'gatesRefusal', completed: false },
+    ]).unsupportedAbsence.length,
+    1,
+  );
+});

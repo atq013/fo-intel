@@ -201,7 +201,7 @@ export async function runAgent(question: string): Promise<AgentAnswer> {
   // What check_evidence actually managed to check. A call that returned a
   // validation error checked nothing, and the difference decides whether the
   // answer may say anything about what was withheld.
-  const evidenceChecks: EvidenceCheck[] = [];
+  const evidenceChecks: Array<EvidenceCheck & { collectedAt?: number }> = [];
   let callIndex = 0;
 
   const runTool = async (tool: string, input: Record<string, unknown>) => {
@@ -218,6 +218,9 @@ export async function runAgent(question: string): Promise<AgentAnswer> {
           entityId: String(input.entityId ?? ''),
           field: input.field === undefined ? undefined : String(input.field),
           completed: (r.scope as Record<string, unknown>).validationError !== true,
+          // Where this call's text lands in `collected`, so a superseded failure
+          // can be withdrawn from what the composer reads.
+          collectedAt: collected.length,
         });
       }
       recordMetrics(metrics, tool, ++callIndex, r.scope, r.excluded, r.data);
@@ -289,6 +292,34 @@ export async function runAgent(question: string): Promise<AgentAnswer> {
       why: 'the requested field does not exist, so nothing was checked; re-running the supported form',
     });
     await runTool('check_evidence', { entityId: c.entityId });
+  }
+
+  // Withdraw superseded failures from what the composer reads.
+  //
+  // A failed call's text is emphatic by design -- "this result says NOTHING
+  // about whether values were withheld" -- and it appeared once per invented
+  // field. Against two of those, the single repaired result lost: the composer
+  // reported "I could not determine what the gates refused, the dataset does not
+  // support those fields" while holding 54 real gate outcomes it had just been
+  // handed. Honest, and wrong about what it knew.
+  //
+  // A superseded failure is not a finding. It stays in the trace, which is the
+  // audit record; `collected` is the working set, and a question that was
+  // answered on the second attempt was answered.
+  const superseded = new Set<number>();
+  for (const c of evidenceChecks) {
+    if (c.completed || c.collectedAt === undefined) continue;
+    if (evidenceChecks.some((x) => x.entityId === c.entityId && x.completed)) {
+      superseded.add(c.collectedAt);
+    }
+  }
+  if (superseded.size) {
+    const withdrawn = [...superseded].sort((a, b) => b - a);
+    for (const i of withdrawn) collected.splice(i, 1);
+    push('compose', {
+      withdrewSupersededResults: withdrawn.length,
+      why: 'a failed check that was repaired is not a finding; it stays in the trace, not in the answer',
+    });
   }
 
   if (!collected.length) {
