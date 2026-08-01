@@ -77,7 +77,37 @@ export interface EvidenceCheck {
   /** false when the call returned a validation error and checked nothing */
   completed: boolean;
   field?: string;
+  /** gates that actually ran and passed */
+  passed?: number;
+  /** gates that did not run at all */
+  skipped?: number;
 }
+
+/**
+ * Treating a gate that did not run as one that cleared the value.
+ *
+ * Two shapes, both produced in the same sentence: an all-clear that names
+ * skipping as one of its grounds ("all checks were either passed or skipped"),
+ * and a count of what was "checked" that only reconciles if skips are counted
+ * as checks.
+ *
+ * PTC-2 keeps `skipped` and `passed` apart in the database. This keeps them
+ * apart in the sentence a buyer reads, which is the only place it matters to
+ * them.
+ */
+const SKIP_AS_CLEARANCE =
+  /\b(pass(?:ed|es)?|clear(?:ed)?|fine|ok|satisfactor\w+|success\w*)\b[^.;!?]{0,30}\bor\b[^.;!?]{0,20}\bskip(?:ped)?\b|\bskip(?:ped)?\b[^.;!?]{0,30}\bor\b[^.;!?]{0,20}\b(pass(?:ed|es)?|clear(?:ed)?)\b/i;
+
+/**
+ * A sentence that names the skips as not having run is the honest form, not the
+ * defect. "A further 84 did not run, so those aspects are unverified" states
+ * exactly what this guard is trying to force, and must not be blocked for
+ * containing a number larger than the pass count.
+ */
+const NAMES_THE_SKIP =
+  /\b(did ?n[o']t run|did not run|were not run|was not run|never ran|not (?:checked|run|verified|validated|performed)|skipped|unverified|unchecked|no[t]? applicable)\b/i;
+
+const CHECKED_A_COUNT = /\b(check\w*|validat\w*|verif\w*|review\w*|examin\w*|assess\w*)\b[^.;!?]{0,40}?(\d+)|(\d+)\s+[^.;!?]{0,30}?\b(checks?|aspects?|validations?|gates?)\b/i;
 
 export interface ClaimsAudit {
   /** relevance values presented as confidence */
@@ -86,6 +116,8 @@ export interface ClaimsAudit {
   internals: string[];
   /** an assertion that nothing was withheld, with no completed check behind it */
   unsupportedAbsence: string[];
+  /** a skipped gate presented as one that checked or cleared the value */
+  skippedAsChecked: string[];
 }
 
 /**
@@ -149,7 +181,27 @@ export function auditClaims(
     }
   }
 
-  return { relevanceAsConfidence, internals, unsupportedAbsence };
+  // Only meaningful when gates were actually skipped. With no skips there is
+  // nothing to misrepresent, and "all checks passed" is simply true.
+  const skipped = evidenceChecks.reduce((n, c) => n + (c.skipped ?? 0), 0);
+  const passed = evidenceChecks.reduce((n, c) => n + (c.passed ?? 0), 0);
+  const skippedAsChecked: string[] = [];
+  if (skipped > 0) {
+    for (const sentence of answer.split(/(?<=[.!?])\s+/)) {
+      if (SKIP_AS_CLEARANCE.test(sentence)) {
+        skippedAsChecked.push(sentence.trim());
+        continue;
+      }
+      // A count of what was "checked" is only honest at the number that passed.
+      // Anything larger is reconciling by counting gates that never ran.
+      if (NAMES_THE_SKIP.test(sentence)) continue;
+      const m = CHECKED_A_COUNT.exec(sentence);
+      const n = m ? Number(m[2] ?? m[3]) : NaN;
+      if (Number.isFinite(n) && n > passed) skippedAsChecked.push(sentence.trim());
+    }
+  }
+
+  return { relevanceAsConfidence, internals, unsupportedAbsence, skippedAsChecked };
 }
 
 /**
@@ -170,6 +222,13 @@ export function confidenceBlockMessage(audit: ClaimsAudit): string {
   }
   if (audit.internals.length) {
     parts.push(`It also exposed internal tool output (${audit.internals.join(', ')}) rather than plain language.`);
+  }
+  if (audit.skippedAsChecked.length) {
+    parts.push(
+      `It reported gates that did not run as though they had cleared the record — ` +
+      `"${audit.skippedAsChecked[0]}". A skipped gate is the absence of a check, not a passing one, ` +
+      'and counting it toward an all-clear is the one thing this system must never do.',
+    );
   }
   if (audit.unsupportedAbsence.length) {
     parts.push(

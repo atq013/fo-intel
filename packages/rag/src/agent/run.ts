@@ -54,6 +54,8 @@ export interface AgentAnswer {
   toolInternalsLeaked: string[];
   /** absence-of-withholding claims with no completed check behind them */
   unsupportedAbsence: string[];
+  /** skipped gates presented as checks that cleared the record */
+  skippedAsChecked: string[];
   /** measured spend and wall time for this answer -- see @fo/core/meter */
   cost: Record<string, unknown>;
 }
@@ -335,7 +337,7 @@ export async function runAgent(question: string): Promise<AgentAnswer> {
     const answer =
       'I could not retrieve anything for this question. No tool call succeeded, so I have nothing to base an answer on.';
     push('compose', { answer, reason: 'no tool results' });
-    return { answer, unhonouredConstraints: unhonoured, blocked: false, toolsUsed, scope, trace, nameCorrections: [], countsResolved: [], relevanceAsConfidence: [], toolInternalsLeaked: [], unsupportedAbsence: [], cost: cost() };
+    return { answer, unhonouredConstraints: unhonoured, blocked: false, toolsUsed, scope, trace, nameCorrections: [], countsResolved: [], relevanceAsConfidence: [], toolInternalsLeaked: [], unsupportedAbsence: [], skippedAsChecked: [], cost: cost() };
   }
 
   // ---- compose -----------------------------------------------------------
@@ -380,10 +382,11 @@ export async function runAgent(question: string): Promise<AgentAnswer> {
   const relevanceAsConfidence = claims.relevanceAsConfidence;
   const toolInternalsLeaked = claims.internals;
   const unsupportedAbsence = claims.unsupportedAbsence;
-  if (relevanceAsConfidence.length || toolInternalsLeaked.length || unsupportedAbsence.length) {
+  const skippedAsChecked = claims.skippedAsChecked;
+  if (relevanceAsConfidence.length || toolInternalsLeaked.length || unsupportedAbsence.length || skippedAsChecked.length) {
     push('block', {
       stage: 'claims-audit',
-      relevanceAsConfidence, toolInternalsLeaked, unsupportedAbsence,
+      relevanceAsConfidence, toolInternalsLeaked, unsupportedAbsence, skippedAsChecked,
     });
   }
 
@@ -397,17 +400,19 @@ export async function runAgent(question: string): Promise<AgentAnswer> {
 
   // A ranking weight presented as confidence is a fabricated certainty, and
   // tool internals are unreadable to a buyer. Either blocks the answer.
-  if (relevanceAsConfidence.length || toolInternalsLeaked.length || unsupportedAbsence.length) {
+  if (relevanceAsConfidence.length || toolInternalsLeaked.length || unsupportedAbsence.length || skippedAsChecked.length) {
     blocked = true;
     blockReason =
       (relevanceAsConfidence.length ? 'composer presented a relevance score as a confidence value' : '') +
       (relevanceAsConfidence.length && toolInternalsLeaked.length ? '; ' : '') +
       (toolInternalsLeaked.length ? 'composer exposed internal tool output in customer-facing prose' : '') +
       ((relevanceAsConfidence.length || toolInternalsLeaked.length) && unsupportedAbsence.length ? '; ' : '') +
-      (unsupportedAbsence.length ? 'composer asserted nothing was withheld with no completed evidence check behind it' : '');
+      (unsupportedAbsence.length ? 'composer asserted nothing was withheld with no completed evidence check behind it' : '') +
+      ((relevanceAsConfidence.length || toolInternalsLeaked.length || unsupportedAbsence.length) && skippedAsChecked.length ? '; ' : '') +
+      (skippedAsChecked.length ? 'composer counted gates that did not run as checks that cleared the record' : '');
     answer = confidenceBlockMessage(claims);
     return { answer, unhonouredConstraints: unhonoured, blocked, blockReason, toolsUsed, scope, trace,
-      nameCorrections, countsResolved, relevanceAsConfidence, toolInternalsLeaked, unsupportedAbsence, cost: cost() };
+      nameCorrections, countsResolved, relevanceAsConfidence, toolInternalsLeaked, unsupportedAbsence, skippedAsChecked, cost: cost() };
   }
 
   // A dataset count the tools did not produce is a fabricated fact.
@@ -421,7 +426,7 @@ export async function runAgent(question: string): Promise<AgentAnswer> {
       [...counts.unsupported.map(String), ...counts.unresolvedTokens].map((c) => `"${c}"`).join(', ') +
       ' as a figure from the data, but no tool returned it. Rather than show you a ' +
       'number I cannot trace, I am declining the answer.';
-    return { answer, unhonouredConstraints: unhonoured, blocked, blockReason, toolsUsed, scope, trace, nameCorrections, countsResolved, relevanceAsConfidence, toolInternalsLeaked, unsupportedAbsence, cost: cost() };
+    return { answer, unhonouredConstraints: unhonoured, blocked, blockReason, toolsUsed, scope, trace, nameCorrections, countsResolved, relevanceAsConfidence, toolInternalsLeaked, unsupportedAbsence, skippedAsChecked, cost: cost() };
   }
 
   // A firm-like name with no counterpart in the tool output is a fabricated
@@ -436,7 +441,7 @@ export async function runAgent(question: string): Promise<AgentAnswer> {
       [...resolved.fabricated, ...resolved.unresolvedTokens].map((f) => `"${f}"`).join(', ') +
       ', which does not appear in the data I retrieved. Rather than show you a firm ' +
       'that may not exist, I am declining the answer.';
-    return { answer, unhonouredConstraints: unhonoured, blocked, blockReason, toolsUsed, scope, trace, nameCorrections, countsResolved, relevanceAsConfidence, toolInternalsLeaked, unsupportedAbsence, cost: cost() };
+    return { answer, unhonouredConstraints: unhonoured, blocked, blockReason, toolsUsed, scope, trace, nameCorrections, countsResolved, relevanceAsConfidence, toolInternalsLeaked, unsupportedAbsence, skippedAsChecked, cost: cost() };
   }
 
   if (unhonoured.length) {
@@ -453,7 +458,7 @@ export async function runAgent(question: string): Promise<AgentAnswer> {
     }
   }
 
-  return { answer, unhonouredConstraints: unhonoured, blocked, blockReason, toolsUsed, scope, trace, nameCorrections, countsResolved, relevanceAsConfidence, toolInternalsLeaked, unsupportedAbsence, cost: cost() };
+  return { answer, unhonouredConstraints: unhonoured, blocked, blockReason, toolsUsed, scope, trace, nameCorrections, countsResolved, relevanceAsConfidence, toolInternalsLeaked, unsupportedAbsence, skippedAsChecked, cost: cost() };
 }
 
 /**

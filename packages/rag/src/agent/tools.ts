@@ -236,10 +236,28 @@ export async function check_evidence(input: { entityId: string; field?: string }
       // answer over it. The model was not misbehaving: it emitted the sanctioned
       // count token and the noun came from the key. Same fix as `score` ->
       // `relevanceScore`: change what it is called, not what it may say.
-      gateOutcomes: rows.length,
+      //
+      // Reported as a breakdown and NOT as one total, because a single number is
+      // collapsible and the composer collapsed it: given `gateOutcomes: 54` it
+      // wrote "the validation gates checked 54 aspects ... all checks were
+      // either passed or skipped", for a firm where 84 of 162 outcomes were
+      // skipped. Both halves of that are wrong in the same direction -- a
+      // skipped gate was not an aspect that got checked, and "passed or
+      // skipped" is not a clean bill of health. PTC-2 exists to stop exactly
+      // this, and it has to hold in the prose, not only in the database.
+      //
+      // So the counts arrive already separated. There is no total to quote.
+      gatesPassed: rows.filter((r) => r.outcome === 'passed').length,
+      gatesSkipped: rows.filter((r) => r.outcome === 'skipped').length,
+      gatesFailed: rows.filter((r) => r.outcome === 'failed' || r.outcome === 'error').length,
       gateOutcomesNote:
-        `${rows.length} gate outcomes were recorded across the values checked for this firm. ` +
-        'Describe them as "gate outcomes" or "validation checks", never as rows, records or data.',
+        'These are three separate figures and must never be added together or ' +
+        'described as one count of checks performed. Only `gatesPassed` were ' +
+        'actually checked and passed. A skipped gate DID NOT RUN: it is not ' +
+        'evidence of anything, it is the absence of evidence, and it must never ' +
+        'be presented alongside passes as though the value had been cleared. ' +
+        'Describe these as "gate outcomes" or "validation checks", never as ' +
+        'rows, records or data.',
     },
     excluded: [],
     limits: [
