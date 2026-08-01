@@ -43,6 +43,31 @@ export function contractWriter(connectionString: string) {
         ON CONFLICT (id) DO NOTHING`;
     },
 
+    /**
+     * Upsert an entity's IDENTITY. It must never write its assessment.
+     *
+     * `commercial_state`, `strict_reachable`, `profile_assisted_reachable` and
+     * `postal_reachable` are derived: the commercial floor sets the first, the
+     * contact adjudicator sets the rest, and both run after the claims exist.
+     * Every caller of this function passes the same placeholders -- `unassessed`,
+     * `false`, `false` -- because at upsert time nothing is known yet. Those are
+     * correct as INSERT defaults and destructive as an UPDATE.
+     *
+     * The old ON CONFLICT wrote them anyway, so re-touching a qualifying entity
+     * reset it to unassessed and unreachable, and it only became qualifying again
+     * if the rest of the unit ran to completion. It does not always: the caller
+     * returns early when an extraction yields no assertions, which is the normal
+     * outcome of a profile search that finds nobody. A record that was qualifying
+     * and postal-reachable was then silently left unassessed, dropping out of
+     * every count while all its released claims sat untouched underneath.
+     *
+     * Caught with one record in that state (PCR FAMILY HOLDINGS LIMITED) during a
+     * profile run. It is also the shape of the qualifying-count oscillation seen
+     * earlier in the build.
+     *
+     * So the conflict path updates the identity columns only. Derived state is
+     * written by the code that derives it, and by nothing else.
+     */
     async upsertEntity(e: Entity): Promise<void> {
       await sql`
         INSERT INTO s2_entity (id, canonical_name, entity_type, trust_state, commercial_state,
@@ -51,10 +76,6 @@ export function contractWriter(connectionString: string) {
                 ${e.strictReachable}, ${e.profileAssistedReachable})
         ON CONFLICT (id) DO UPDATE SET
           canonical_name = EXCLUDED.canonical_name,
-          trust_state = EXCLUDED.trust_state,
-          commercial_state = EXCLUDED.commercial_state,
-          strict_reachable = EXCLUDED.strict_reachable,
-          profile_assisted_reachable = EXCLUDED.profile_assisted_reachable,
           updated_at = now()`;
     },
 
