@@ -51,9 +51,20 @@ export function recordMetrics(
     reg.known.add(value);
   };
 
-  // `rows` stays registered: older traces and any tool still reporting it must
-  // keep resolving. `gateOutcomes` is what check_evidence reports now.
-  for (const field of ['searched', 'matched', 'returned', 'releasedClaims', 'rows', 'gateOutcomes']) {
+  // Every count a tool exposes must be registered here or the composer cannot
+  // quote it: it emits the token, the resolver does not know the name, and the
+  // whole answer is refused for citing an untraceable figure.
+  //
+  // That refusal is correct and it caught a rename. Splitting `gateOutcomes`
+  // into passed/skipped/failed -- so a skipped gate could not be counted as a
+  // check -- left the new names unregistered, and Goal 3 blocked on tokens the
+  // tool was itself offering. Superseded names stay registered so older traces
+  // still resolve.
+  for (const field of [
+    'searched', 'matched', 'returned', 'releasedClaims', 'offset',
+    'gatesPassed', 'gatesSkipped', 'gatesFailed',
+    'rows', 'gateOutcomes',
+  ]) {
     put(field, scope[field]);
   }
   if (data && typeof data === 'object' && !Array.isArray(data)) {

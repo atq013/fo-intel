@@ -134,6 +134,11 @@ for (const g of GOALS) {
     nameCorrections: b.nameCorrections ?? [],
     relevanceAsConfidence: b.relevanceAsConfidence ?? [],
     toolInternalsLeaked: b.toolInternalsLeaked ?? [],
+    unsupportedAbsence: b.unsupportedAbsence ?? [],
+    skippedAsChecked: b.skippedAsChecked ?? [],
+    // Measured spend for THIS answer, so the cost figures in the architecture
+    // notes come from the same run the trace records rather than an average.
+    cost: b.cost ?? null,
     countsResolvedFromToolOutput: b.countsResolved ?? [],
     toolsUsed: b.toolsUsed ?? [],
     scopePerTool: b.scope ?? [],
@@ -152,6 +157,10 @@ for (const g of GOALS) {
   console.log(`  tools       : ${JSON.stringify(record.toolsUsed)}`);
   console.log(`  entity ids  : ${record.entityIdsUsed.length}`);
   console.log(`  trace steps : ${record.rawTrace.length}`);
+  const c = (b.cost ?? {}) as Record<string, any>;
+  console.log(`  cost        : ${c.totals?.modelCalls ?? 0} model calls, ` +
+    `${(c.totals?.promptTokens ?? 0) + (c.totals?.completionTokens ?? 0)} tokens, ` +
+    `$${c.estimatedUsd?.total ?? 0}, ${c.wallMs ?? 0}ms`);
   console.log(`  manual scope: ${JSON.stringify(record.manualRetrievalEquivalent.scope)}`);
   console.log(`  answer      : ${String(record.agentAnswer ?? '').slice(0, 300)}`);
 

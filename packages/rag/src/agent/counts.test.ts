@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 
 import { newMetrics, recordMetrics, resolveCounts, tokenRoster } from './counts.js';
+import { check_evidence } from './tools.js';
 
 /**
  * The production defect, pinned.
@@ -90,4 +91,22 @@ test('counts · zero-valued filter sentinels do not silently exclude everything'
   const plain = await shortlist({ q: 'family office', limit: 1 });
   assert.equal(zeroed.scope.matched, plain.scope.matched);
   assert.ok(!zeroed.scope.appliedFilters.some((f) => /within 0d|tier <= 0/.test(f)));
+});
+
+test('counts · every count check_evidence exposes is resolvable', async () => {
+  // Goal 3 blocked in production because `gateOutcomes` was split into three
+  // fields and the new names were never registered. The composer emitted tokens
+  // the tool itself was offering and the answer was refused for citing an
+  // untraceable figure. The registry and the tool must not drift again.
+  const r = await check_evidence({ entityId: 'ent_sec_n_boston_family_office' });
+  const scope = r.scope as Record<string, unknown>;
+  const m = newMetrics();
+  recordMetrics(m, 'check_evidence', 1, scope, r.excluded, r.data);
+
+  for (const field of Object.keys(scope)) {
+    if (typeof scope[field] !== 'number') continue;
+    const out = resolveCounts(`value is [[count:check_evidence.${field}]].`, m);
+    assert.deepEqual(out.unresolvedTokens, [], `check_evidence.${field} must resolve`);
+    assert.deepEqual(out.unsupported, []);
+  }
 });
