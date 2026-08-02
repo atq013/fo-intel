@@ -388,3 +388,25 @@ test('claims · sharing the prompt’s domain vocabulary is not a leak', () => {
   const reciting = 'You MUST state this plainly in your answer, in the first two sentences.';
   assert.ok(auditClaims(reciting, SCORES, [], prompt).promptLeak.length > 0);
 });
+
+test('claims · camelCase is not English and never reaches a buyer', () => {
+  // "I could not honor the requireProfileAssisted=true constraint or the
+  // freshWithinDays=0 constraint" reached production. One rule covers every
+  // tool parameter and scope key, including ones added later.
+  for (const bad of [
+    'I could not honor the requireProfileAssisted=true constraint or the freshWithinDays=0 constraint.',
+    'The relevanceScore for this firm is high.',
+    'We searched 664 firms. The excluded total is 597.',
+  ]) {
+    assert.ok(auditClaims(bad, SCORES).internals.length > 0, bad);
+  }
+
+  // The same points in language a buyer can read.
+  for (const good of [
+    'I could not filter on verified personal profiles or on how recently the source was read.',
+    'RiverGlades Family Offices LLC is reachable on 617-624-0800; 597 firms were excluded.',
+    'All 26 gates that were run passed, and 28 did not run.',
+  ]) {
+    assert.deepEqual(auditClaims(good, SCORES).internals, [], good);
+  }
+});

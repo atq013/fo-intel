@@ -4,8 +4,8 @@
   "submittedPrompt": "I am about to contact BOSTON FAMILY OFFICE LLC. What does the system hold on them, what evidence backs the contact route, and what did the validation gates refuse to publish about them and why?",
   "productionUrl": "https://fo-intel-web.vercel.app/api/agent",
   "agentUiUrl": "https://fo-intel-web.vercel.app/agent",
-  "submittedAtUtc": "2026-08-02T10:45:58.232Z",
-  "latencyMs": 14257,
+  "submittedAtUtc": "2026-08-02T10:53:25.603Z",
+  "latencyMs": 14824,
   "httpStatus": 200,
   "whyThisGoal": "A one-time export cannot tell a buyer what was refused and why. The gate outcomes and the evidence span behind each value are the paid-tier product; the record itself is the free part.",
   "manualRetrievalEquivalent": {
@@ -112,7 +112,7 @@
       "rateCard": "published rates as of 2026-08-01",
       "note": "Tokens and call counts are measured. Money is derived from the rate card and is an estimate: re-price the same tokens if the rates have moved. External cost is 0 because every source used is free at this volume -- Companies House and SEC EDGAR are free, Neon and Vercel are free tier, Serper stays inside its free allowance. Call counts are recorded anyway, since those are what rate limits bind on and what would carry a price at 5,000 records."
     },
-    "wallMs": 13897
+    "wallMs": 14204
   },
   "countsResolvedFromToolOutput": [
     {
@@ -268,7 +268,7 @@
           }
         ]
       },
-      "at": "2026-08-02T10:46:05.041Z"
+      "at": "2026-08-02T10:53:32.725Z"
     },
     {
       "step": 2,
@@ -312,7 +312,7 @@
         ],
         "rows": 1
       },
-      "at": "2026-08-02T10:46:05.209Z"
+      "at": "2026-08-02T10:53:32.928Z"
     },
     {
       "step": 3,
@@ -325,7 +325,7 @@
         },
         "why": "planner supplied a placeholder or unknown id"
       },
-      "at": "2026-08-02T10:46:05.209Z"
+      "at": "2026-08-02T10:53:32.928Z"
     },
     {
       "step": 4,
@@ -342,7 +342,7 @@
         "excluded": [],
         "rows": 1
       },
-      "at": "2026-08-02T10:46:05.313Z"
+      "at": "2026-08-02T10:53:33.027Z"
     },
     {
       "step": 5,
@@ -355,7 +355,7 @@
         },
         "why": "planner supplied a placeholder or unknown id"
       },
-      "at": "2026-08-02T10:46:05.313Z"
+      "at": "2026-08-02T10:53:33.028Z"
     },
     {
       "step": 6,
@@ -374,7 +374,7 @@
         "excluded": [],
         "rows": 1
       },
-      "at": "2026-08-02T10:46:05.313Z"
+      "at": "2026-08-02T10:53:33.028Z"
     },
     {
       "step": 7,
@@ -387,7 +387,7 @@
         },
         "why": "planner supplied a placeholder or unknown id"
       },
-      "at": "2026-08-02T10:46:05.313Z"
+      "at": "2026-08-02T10:53:33.028Z"
     },
     {
       "step": 8,
@@ -406,7 +406,7 @@
         "excluded": [],
         "rows": 1
       },
-      "at": "2026-08-02T10:46:05.313Z"
+      "at": "2026-08-02T10:53:33.028Z"
     },
     {
       "step": 9,
@@ -419,7 +419,7 @@
         },
         "why": "the requested field does not exist, so nothing was checked; re-running the supported form"
       },
-      "at": "2026-08-02T10:46:05.313Z"
+      "at": "2026-08-02T10:53:33.028Z"
     },
     {
       "step": 10,
@@ -440,7 +440,7 @@
         "excluded": [],
         "rows": 54
       },
-      "at": "2026-08-02T10:46:05.332Z"
+      "at": "2026-08-02T10:53:33.049Z"
     },
     {
       "step": 11,
@@ -449,7 +449,7 @@
         "withdrewSupersededResults": 2,
         "why": "a failed check that was repaired is not a finding; it stays in the trace, not in the answer"
       },
-      "at": "2026-08-02T10:46:05.333Z"
+      "at": "2026-08-02T10:53:33.049Z"
     },
     {
       "step": 12,
@@ -457,7 +457,7 @@
       "detail": {
         "answer": "I could not honor the requireProfileAssisted=true constraint or the freshWithinDays=0 constraint. Instead, I used the data returned by the search_firms and get_firm calls. The search examined [[count:search_firms.searched]] firms and found [[count:search_firms.matched]] match. The system holds a contact route for [[ent_sec_n_boston_family_office]] that reaches an individual via phone 617-624-0800. The evidence for this route comes from the signature block in Form 13F accession 0001039807-25-000013, which lists the principal’s name, title, and phone number. Validation gates: all [[count:check_evidence.gatesPassed]] gates that were run passed, and [[count:check_evidence.gatesSkipped]] gates were skipped because the claims were not applicable to those checks. No gates failed, so no data was refused or withheld. The system therefore does not refuse to publish any information about [[ent_sec_n_boston_family_office]]."
       },
-      "at": "2026-08-02T10:46:12.554Z"
+      "at": "2026-08-02T10:53:40.484Z"
     }
   ],
   "error": null

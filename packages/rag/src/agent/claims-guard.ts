@@ -50,6 +50,13 @@ const TOOL_INTERNALS = [
   // because these are real words. "a qualifying firm with a commercial state"
   // and "listed in the 'missing' field for each firm" both reached production:
   // the first is a column name, the second tells a buyer to read a JSON key.
+  // camelCase is not English. Every tool parameter and scope key is written this
+  // way and none of them mean anything to a buyer: "I could not honor the
+  // requireProfileAssisted=true constraint or the freshWithinDays=0 constraint"
+  // reached production. One rule covers the whole class, including keys added
+  // later, which a hand-maintained list would keep missing.
+  /\b[a-z]+[A-Z][a-zA-Z]*\b/,
+  /\bexcluded total\b/i,
   /\bcommercial[_ ]?state\b/i,
   /\btrust[_ ]?state\b/i,
   /\bcommercial floor\b/i,

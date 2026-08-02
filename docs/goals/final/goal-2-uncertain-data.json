@@ -4,8 +4,8 @@
   "submittedPrompt": "Identify the family offices in the dataset that are the best fit for a lower-middle-market healthcare services fund seeking limited partners, and tell me how confident you are in each.",
   "productionUrl": "https://fo-intel-web.vercel.app/api/agent",
   "agentUiUrl": "https://fo-intel-web.vercel.app/agent",
-  "submittedAtUtc": "2026-08-02T10:45:50.276Z",
-  "latencyMs": 7448,
+  "submittedAtUtc": "2026-08-02T10:53:15.824Z",
+  "latencyMs": 9093,
   "httpStatus": 200,
   "whyThisGoal": "The dataset holds no mandate, sector or AUM evidence. A strong system says so rather than inferring fit from a firm name. This goal exists to see whether it does.",
   "manualRetrievalEquivalent": {
@@ -506,10 +506,10 @@
     "models": [
       {
         "model": "llama-3.1-8b-instant",
-        "calls": 4,
+        "calls": 5,
         "promptTokens": 612,
         "completionTokens": 279,
-        "failures": 3
+        "failures": 4
       },
       {
         "model": "openai/gpt-oss-20b",
@@ -521,7 +521,7 @@
     ],
     "hosts": [],
     "totals": {
-      "modelCalls": 5,
+      "modelCalls": 6,
       "promptTokens": 2307,
       "completionTokens": 430,
       "externalCalls": 0,
@@ -534,7 +534,7 @@
       "rateCard": "published rates as of 2026-08-01",
       "note": "Tokens and call counts are measured. Money is derived from the rate card and is an estimate: re-price the same tokens if the rates have moved. External cost is 0 because every source used is free at this volume -- Companies House and SEC EDGAR are free, Neon and Vercel are free tier, Serper stays inside its free allowance. Call counts are recorded anyway, since those are what rate limits bind on and what would carry a price at 5,000 records."
     },
-    "wallMs": 6909
+    "wallMs": 8803
   },
   "countsResolvedFromToolOutput": [],
   "toolsUsed": [
@@ -608,7 +608,7 @@
           }
         ]
       },
-      "at": "2026-08-02T10:45:51.432Z"
+      "at": "2026-08-02T10:53:18.635Z"
     },
     {
       "step": 2,
@@ -647,7 +647,7 @@
         ],
         "rows": 3
       },
-      "at": "2026-08-02T10:45:51.596Z"
+      "at": "2026-08-02T10:53:18.822Z"
     },
     {
       "step": 3,
@@ -655,7 +655,7 @@
       "detail": {
         "answer": "I cannot assess market size, investment sector, or limited partner suitability, so I cannot determine best fit or confidence. I used the available data, which shows 3 firms matched the search. The firms are [[ent_sec_n_colony_family_offices]], [[ent_sec_n_riverglades_family_offices]], and [[ent_sec_n_heritage_family_offices]]."
       },
-      "at": "2026-08-02T10:45:57.803Z"
+      "at": "2026-08-02T10:53:24.991Z"
     }
   ],
   "error": null
