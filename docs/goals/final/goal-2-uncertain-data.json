@@ -4,8 +4,8 @@
   "submittedPrompt": "Identify the family offices in the dataset that are the best fit for a lower-middle-market healthcare services fund seeking limited partners, and tell me how confident you are in each.",
   "productionUrl": "https://fo-intel-web.vercel.app/api/agent",
   "agentUiUrl": "https://fo-intel-web.vercel.app/agent",
-  "submittedAtUtc": "2026-08-02T09:20:53.450Z",
-  "latencyMs": 4026,
+  "submittedAtUtc": "2026-08-02T09:34:57.308Z",
+  "latencyMs": 3019,
   "httpStatus": 200,
   "whyThisGoal": "The dataset holds no mandate, sector or AUM evidence. A strong system says so rather than inferring fit from a firm name. This goal exists to see whether it does.",
   "manualRetrievalEquivalent": {
@@ -485,9 +485,9 @@
       }
     ]
   },
-  "agentAnswer": "The dataset cannot express market size, investment sector or mandate, or specific investment role, so the question about the best fit for a lower-middle-market healthcare services fund seeking limited partners could not be answered as requested. Instead, the search returned a list of family offices that matched the query. The scope of the search was 664 firms, with 128 matching the filters. The top 10 results are: Colony Family Offices, LLC, RiverGlades Family Offices LLC, Heritage Family Offices, LLP, Allie Family Office LLC, Duquesne Family Office LLC, Stokes Family Office, LLC, INTREPID FAMILY OFFICE LLC. Confidence in the fit of these family offices to the specific question is low due to the missing evidence on mandate, sector, and investment role. A narrowed proxy shortlist is offered based on the available data, but the actual fit cannot be confidently determined.",
-  "blocked": false,
-  "blockReason": null,
+  "agentAnswer": "I cannot give this answer as drafted. It quoted its own instructions back to you — \"...fit for a lower middle market healthcare services...\". That text was addressed to the system, not to you, and should never have appeared in an answer.",
+  "blocked": true,
+  "blockReason": "composer quoted its own instructions into the answer",
   "unhonouredConstraints": [
     "lower-middle-market — dataset cannot express market size",
     "healthcare services — dataset cannot express investment sector or mandate",
@@ -504,27 +504,27 @@
       {
         "model": "llama-3.3-70b-versatile",
         "calls": 2,
-        "promptTokens": 5556,
-        "completionTokens": 584,
+        "promptTokens": 4637,
+        "completionTokens": 586,
         "failures": 0
       }
     ],
     "hosts": [],
     "totals": {
       "modelCalls": 2,
-      "promptTokens": 5556,
-      "completionTokens": 584,
+      "promptTokens": 4637,
+      "completionTokens": 586,
       "externalCalls": 0,
       "externalMs": 0
     },
     "estimatedUsd": {
-      "model": 0.003739,
+      "model": 0.003199,
       "external": 0,
-      "total": 0.003739,
+      "total": 0.003199,
       "rateCard": "published rates as of 2026-08-01",
       "note": "Tokens and call counts are measured. Money is derived from the rate card and is an estimate: re-price the same tokens if the rates have moved. External cost is 0 because every source used is free at this volume -- Companies House and SEC EDGAR are free, Neon and Vercel are free tier, Serper stays inside its free allowance. Call counts are recorded anyway, since those are what rate limits bind on and what would carry a price at 5,000 records."
     },
-    "wallMs": 3073
+    "wallMs": 2696
   },
   "countsResolvedFromToolOutput": [
     {
@@ -534,18 +534,13 @@
     {
       "token": "search_firms.matched",
       "value": 128
-    },
-    {
-      "token": "search_firms.returned",
-      "value": 10
     }
   ],
   "toolsUsed": [
     "search_firms",
     "count_matching",
-    "get_firm",
-    "check_evidence",
-    "check_evidence"
+    "search_firms",
+    "get_firm"
   ],
   "scopePerTool": [
     {
@@ -565,24 +560,20 @@
       "appliedFilters": []
     },
     {
+      "tool": "search_firms",
+      "searched": 664,
+      "matched": 0,
+      "returned": 0,
+      "appliedFilters": [
+        "name contains \"healthcare\""
+      ],
+      "relevanceScoreMeaning": "relevanceScore ranks how well a record matches the FILTERS APPLIED. It is not a confidence, probability, certainty, likelihood or evidence-strength value, and must never be presented as one. Confidence in any specific question comes from whether the fields that question needs are present -- see each result's `missing` list.",
+      "countNote": "0 firms matched; the data array holds only the top 0. Report 0 as the count, never the array length."
+    },
+    {
       "tool": "get_firm",
       "entityId": "ent_sec_n_colony_family_offices",
       "releasedClaims": 9
-    },
-    {
-      "tool": "check_evidence",
-      "entityId": "ent_sec_n_colony_family_offices",
-      "field": "example_field",
-      "validationError": true
-    },
-    {
-      "tool": "check_evidence",
-      "entityId": "ent_sec_n_colony_family_offices",
-      "field": "all",
-      "gatesPassed": 26,
-      "gatesSkipped": 28,
-      "gatesFailed": 0,
-      "gateOutcomesNote": "These are three separate figures and must never be added together or described as one count of checks performed. Only `gatesPassed` were actually checked and passed. A skipped gate DID NOT RUN: it is not evidence of anything, it is the absence of evidence, and it must never be presented alongside passes as though the value had been cleared. Describe these as \"gate outcomes\" or \"validation checks\", never as rows, records or data."
     }
   ],
   "entityIdsUsed": [
@@ -627,7 +618,7 @@
               "maxSourceTier": null,
               "limit": 10
             },
-            "because": "find firms with 'family office' in name"
+            "because": "find family offices in the dataset"
           },
           {
             "tool": "count_matching",
@@ -636,7 +627,20 @@
               "requireProfileAssisted": false,
               "requiredFields": []
             },
-            "because": "count total firms"
+            "because": "count total family offices"
+          },
+          {
+            "tool": "search_firms",
+            "input": {
+              "q": "healthcare",
+              "requireStrictReachable": false,
+              "requireProfileAssisted": false,
+              "requiredFields": [],
+              "freshWithinDays": null,
+              "maxSourceTier": null,
+              "limit": 10
+            },
+            "because": "find firms with healthcare in name"
           },
           {
             "tool": "get_firm",
@@ -644,18 +648,10 @@
               "entityId": "example_id"
             },
             "because": "example of getting one firm's released claims"
-          },
-          {
-            "tool": "check_evidence",
-            "input": {
-              "entityId": "example_id",
-              "field": "example_field"
-            },
-            "because": "example of checking evidence for one claim"
           }
         ]
       },
-      "at": "2026-08-02T09:20:55.933Z"
+      "at": "2026-08-02T09:34:58.961Z"
     },
     {
       "step": 2,
@@ -693,7 +689,7 @@
         ],
         "rows": 10
       },
-      "at": "2026-08-02T09:20:56.099Z"
+      "at": "2026-08-02T09:34:59.112Z"
     },
     {
       "step": 3,
@@ -717,10 +713,48 @@
         ],
         "rows": 1
       },
-      "at": "2026-08-02T09:20:56.254Z"
+      "at": "2026-08-02T09:34:59.258Z"
     },
     {
       "step": 4,
+      "kind": "tool",
+      "detail": {
+        "tool": "search_firms",
+        "input": {
+          "q": "healthcare",
+          "requireStrictReachable": false,
+          "requireProfileAssisted": false,
+          "requiredFields": [],
+          "freshWithinDays": null,
+          "maxSourceTier": null,
+          "limit": 10
+        },
+        "scope": {
+          "searched": 664,
+          "matched": 0,
+          "returned": 0,
+          "appliedFilters": [
+            "name contains \"healthcare\""
+          ],
+          "relevanceScoreMeaning": "relevanceScore ranks how well a record matches the FILTERS APPLIED. It is not a confidence, probability, certainty, likelihood or evidence-strength value, and must never be presented as one. Confidence in any specific question comes from whether the fields that question needs are present -- see each result's `missing` list.",
+          "countNote": "0 firms matched; the data array holds only the top 0. Report 0 as the count, never the array length."
+        },
+        "excluded": [
+          {
+            "reason": "name did not match the query text",
+            "count": 614
+          },
+          {
+            "reason": "below the commercial floor",
+            "count": 50
+          }
+        ],
+        "rows": 0
+      },
+      "at": "2026-08-02T09:34:59.357Z"
+    },
+    {
+      "step": 5,
       "kind": "tool",
       "detail": {
         "tool": "get_firm",
@@ -730,10 +764,10 @@
         },
         "why": "planner supplied a placeholder or unknown id"
       },
-      "at": "2026-08-02T09:20:56.254Z"
+      "at": "2026-08-02T09:34:59.357Z"
     },
     {
-      "step": 5,
+      "step": 6,
       "kind": "tool",
       "detail": {
         "tool": "get_firm",
@@ -747,90 +781,30 @@
         "excluded": [],
         "rows": 1
       },
-      "at": "2026-08-02T09:20:56.310Z"
-    },
-    {
-      "step": 6,
-      "kind": "tool",
-      "detail": {
-        "tool": "check_evidence",
-        "rebound": {
-          "from": "example_id",
-          "to": "ent_sec_n_colony_family_offices"
-        },
-        "why": "planner supplied a placeholder or unknown id"
-      },
-      "at": "2026-08-02T09:20:56.310Z"
+      "at": "2026-08-02T09:34:59.454Z"
     },
     {
       "step": 7,
-      "kind": "tool",
+      "kind": "compose",
       "detail": {
-        "tool": "check_evidence",
-        "input": {
-          "entityId": "ent_sec_n_colony_family_offices",
-          "field": "example_field"
-        },
-        "scope": {
-          "entityId": "ent_sec_n_colony_family_offices",
-          "field": "example_field",
-          "validationError": true
-        },
-        "excluded": [],
-        "rows": 1
+        "answer": "The dataset cannot express market size, so the question of lower-middle-market could not be answered. The dataset also cannot express investment sector or mandate, so the question of healthcare services and limited partners could not be answered. Instead, the search was done for family offices. [[count:search_firms.searched]] firms were searched, and [[count:search_firms.matched]] firms matched the query. A list of family offices was returned, including [[ent_sec_n_colony_family_offices]], [[ent_sec_n_riverglades_family_offices]], [[ent_sec_n_heritage_family_offices]], [[ent_sec_n_allie_family_office]], [[ent_sec_0001536411]], [[ent_sec_n_stokes_family_office]], and [[ent_sec_n_intrepid_family_office]]. Confidence in their fit for a lower-middle-market healthcare services fund is low due to missing evidence on investment sector, mandate, and market size."
       },
-      "at": "2026-08-02T09:20:56.310Z"
+      "at": "2026-08-02T09:35:00.567Z"
     },
     {
       "step": 8,
-      "kind": "tool",
+      "kind": "block",
       "detail": {
-        "tool": "check_evidence",
-        "repaired": {
-          "from": "example_field",
-          "to": "(all fields)"
-        },
-        "why": "the requested field does not exist, so nothing was checked; re-running the supported form"
+        "stage": "claims-audit",
+        "relevanceAsConfidence": [],
+        "toolInternalsLeaked": [],
+        "unsupportedAbsence": [],
+        "skippedAsChecked": [],
+        "promptLeak": [
+          "fit for a lower middle market healthcare services"
+        ]
       },
-      "at": "2026-08-02T09:20:56.310Z"
-    },
-    {
-      "step": 9,
-      "kind": "tool",
-      "detail": {
-        "tool": "check_evidence",
-        "input": {
-          "entityId": "ent_sec_n_colony_family_offices"
-        },
-        "scope": {
-          "entityId": "ent_sec_n_colony_family_offices",
-          "field": "all",
-          "gatesPassed": 26,
-          "gatesSkipped": 28,
-          "gatesFailed": 0,
-          "gateOutcomesNote": "These are three separate figures and must never be added together or described as one count of checks performed. Only `gatesPassed` were actually checked and passed. A skipped gate DID NOT RUN: it is not evidence of anything, it is the absence of evidence, and it must never be presented alongside passes as though the value had been cleared. Describe these as \"gate outcomes\" or \"validation checks\", never as rows, records or data."
-        },
-        "excluded": [],
-        "rows": 54
-      },
-      "at": "2026-08-02T09:20:56.338Z"
-    },
-    {
-      "step": 10,
-      "kind": "compose",
-      "detail": {
-        "withdrewSupersededResults": 1,
-        "why": "a failed check that was repaired is not a finding; it stays in the trace, not in the answer"
-      },
-      "at": "2026-08-02T09:20:56.339Z"
-    },
-    {
-      "step": 11,
-      "kind": "compose",
-      "detail": {
-        "answer": "The dataset cannot express market size, investment sector or mandate, or specific investment role, so the question about the best fit for a lower-middle-market healthcare services fund seeking limited partners could not be answered as requested. Instead, the search returned a list of family offices that matched the query. The scope of the search was [[count:search_firms.searched]] firms, with [[count:search_firms.matched]] matching the filters. The top [[count:search_firms.returned]] results are: [[ent_sec_n_colony_family_offices]], [[ent_sec_n_riverglades_family_offices]], [[ent_sec_n_heritage_family_offices]], [[ent_sec_n_allie_family_office]], [[ent_sec_0001536411]], [[ent_sec_n_stokes_family_office]], [[ent_sec_n_intrepid_family_office]]. Confidence in the fit of these family offices to the specific question is low due to the missing evidence on mandate, sector, and investment role. A narrowed proxy shortlist is offered based on the available data, but the actual fit cannot be confidently determined."
-      },
-      "at": "2026-08-02T09:20:57.884Z"
+      "at": "2026-08-02T09:35:00.571Z"
     }
   ],
   "error": null

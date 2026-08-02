@@ -384,7 +384,10 @@ export async function runAgent(question: string): Promise<AgentAnswer> {
   }
 
   // ---- claims audit: relevance-as-confidence, and leaked internals --------
-  const claims = auditClaims(answer, relevanceScores, evidenceChecks, composePrompt);
+  // The answer must restate the unhonourable constraints and may restate the
+  // question; neither counts as quoting its instructions.
+  const claims = auditClaims(answer, relevanceScores, evidenceChecks, composePrompt,
+    [...unhonoured, question]);
   const relevanceAsConfidence = claims.relevanceAsConfidence;
   const toolInternalsLeaked = claims.internals;
   const unsupportedAbsence = claims.unsupportedAbsence;

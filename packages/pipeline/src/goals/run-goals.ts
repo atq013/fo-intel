@@ -136,6 +136,7 @@ for (const g of GOALS) {
     toolInternalsLeaked: b.toolInternalsLeaked ?? [],
     unsupportedAbsence: b.unsupportedAbsence ?? [],
     skippedAsChecked: b.skippedAsChecked ?? [],
+    promptLeak: b.promptLeak ?? [],
     // Measured spend for THIS answer, so the cost figures in the architecture
     // notes come from the same run the trace records rather than an average.
     cost: b.cost ?? null,

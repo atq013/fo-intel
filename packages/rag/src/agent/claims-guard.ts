@@ -138,12 +138,28 @@ const shingles = (text: string, n: number): Set<string> => {
 };
 
 /**
- * Runs of the prompt that appear verbatim in the answer, longest first.
- * `promptText` is whatever was sent to the model for this answer.
+ * Runs of the prompt that appear verbatim in the answer.
+ *
+ * `expectedEchoes` are the parts of the prompt the answer is SUPPOSED to
+ * reproduce: the unhonourable constraints, which it is required to state
+ * plainly, and the question itself. Those are content the prompt carries, not
+ * instructions it gives, and matching them is the guard working correctly at the
+ * wrong target -- it blocked Goals 2 and 3 for doing exactly what was asked.
+ * They are removed before comparison, so what remains to match against is the
+ * instruction scaffolding, which is the only part no reader should ever see.
  */
-export function findPromptLeak(answer: string, promptText: string): string[] {
+export function findPromptLeak(
+  answer: string,
+  promptText: string,
+  expectedEchoes: string[] = [],
+): string[] {
   if (!promptText) return [];
-  const fromPrompt = shingles(promptText, LEAK_WINDOW);
+  let instructionsOnly = promptText;
+  for (const echo of expectedEchoes) {
+    if (echo.trim().length < 4) continue;
+    instructionsOnly = instructionsOnly.split(echo).join(' ');
+  }
+  const fromPrompt = shingles(instructionsOnly, LEAK_WINDOW);
   const hits: string[] = [];
   for (const s of shingles(answer, LEAK_WINDOW)) {
     if (fromPrompt.has(s)) hits.push(s);
@@ -182,6 +198,7 @@ export function auditClaims(
   relevanceScores: number[],
   evidenceChecks: EvidenceCheck[] = [],
   promptText = '',
+  expectedEchoes: string[] = [],
 ): ClaimsAudit {
   const relevanceAsConfidence: Array<{ value: number; context: string }> = [];
   const seen = new Set<number>();
@@ -249,7 +266,7 @@ export function auditClaims(
 
   return {
     relevanceAsConfidence, internals, unsupportedAbsence, skippedAsChecked,
-    promptLeak: findPromptLeak(answer, promptText),
+    promptLeak: findPromptLeak(answer, promptText, expectedEchoes),
   };
 }
 

@@ -262,3 +262,22 @@ test('claims · short overlaps with the prompt are not leaks', () => {
 test('claims · with no prompt supplied the check is inert rather than guessing', () => {
   assert.deepEqual(auditClaims('any answer at all', SCORES, []).promptLeak, []);
 });
+
+test('claims · restating an unhonourable constraint is required, not a leak', () => {
+  // This blocked Goals 2 and 3 in production: the constraint text lives in the
+  // prompt and the answer is instructed to state it plainly. The guard was
+  // firing on the system doing exactly what it was told.
+  const unhonourable = 'lower-middle-market — dataset cannot express market size';
+  const prompt =
+    `You could NOT honour these constraints:\n- ${unhonourable}\n\nYou MUST state this plainly ` +
+    'in your answer, in the first two sentences, in plain words.';
+  const answer =
+    'I could not answer this as asked: lower-middle-market — dataset cannot express market size. ' +
+    'Here is what the dataset does hold instead.';
+  assert.deepEqual(auditClaims(answer, SCORES, [], prompt, [unhonourable]).promptLeak, []);
+
+  // The scaffolding around it is still caught.
+  const reciting =
+    'You MUST state this plainly in your answer, in the first two sentences, in plain words.';
+  assert.ok(auditClaims(reciting, SCORES, [], prompt, [unhonourable]).promptLeak.length > 0);
+});
