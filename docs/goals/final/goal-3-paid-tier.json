@@ -4,8 +4,8 @@
   "submittedPrompt": "I am about to contact BOSTON FAMILY OFFICE LLC. What does the system hold on them, what evidence backs the contact route, and what did the validation gates refuse to publish about them and why?",
   "productionUrl": "https://fo-intel-web.vercel.app/api/agent",
   "agentUiUrl": "https://fo-intel-web.vercel.app/agent",
-  "submittedAtUtc": "2026-08-02T10:31:17.181Z",
-  "latencyMs": 8392,
+  "submittedAtUtc": "2026-08-02T10:41:36.702Z",
+  "latencyMs": 7890,
   "httpStatus": 200,
   "whyThisGoal": "A one-time export cannot tell a buyer what was refused and why. The gate outcomes and the evidence span behind each value are the paid-tier product; the record itself is the free part.",
   "manualRetrievalEquivalent": {
@@ -59,64 +59,56 @@
       }
     ]
   },
-  "agentAnswer": "I could not determine other firm attributes such as assets under management or investment sector as the dataset does not support filtering by these attributes. Instead, I used the available data to find information about the BOSTON FAMILY OFFICE LLC. The system searched 664 firms and 1 matched the query. The BOSTON FAMILY OFFICE LLC has 9 released claims with establishing evidence. The contact route is backed by evidence that includes a phone number, 617-624-0800, which reaches an individual, and the validation gates passed 26 checks. Confidence in the contact information is high because the necessary fields are present, but confidence in other aspects such as investment strategy or assets under management is low due to missing evidence.",
-  "blocked": false,
-  "blockReason": null,
-  "unhonouredConstraints": [
-    "other firm attributes (e.g. assets under management, investment sector) — dataset does not support filtering by these attributes"
-  ],
+  "agentAnswer": "I cannot give this answer as drafted. It also exposed internal tool output (commercial state) rather than plain language. It said the system refused to publish something — \"The gates refused to publish about the firm's mandate, sector, allocation, cheque size, or LP data, as this information is not available in the system.\" — when nothing was refused for this firm. Those values were never collected, which is a different thing from being withheld, and reporting one as the other overstates what the checks did. It quoted its own instructions back to you — \"...mandate sector allocation cheque size or lp data...\". That text was addressed to the system, not to you, and should never have appeared in an answer.",
+  "blocked": true,
+  "blockReason": "composer exposed internal tool output in customer-facing prose; composer quoted its own instructions into the answer; composer said values were refused when nothing was refused",
+  "unhonouredConstraints": [],
   "abstained": true,
   "nameCorrections": [],
   "relevanceAsConfidence": [],
-  "toolInternalsLeaked": [],
+  "toolInternalsLeaked": [
+    "commercial state"
+  ],
   "unsupportedAbsence": [],
   "skippedAsChecked": [],
-  "promptLeak": [],
+  "promptLeak": [
+    "mandate sector allocation cheque size or lp data"
+  ],
   "cost": {
     "models": [
       {
         "model": "llama-3.3-70b-versatile",
         "calls": 4,
-        "promptTokens": 4412,
-        "completionTokens": 591,
-        "failures": 2
+        "promptTokens": 619,
+        "completionTokens": 357,
+        "failures": 3
+      },
+      {
+        "model": "llama-3.1-8b-instant",
+        "calls": 1,
+        "promptTokens": 3719,
+        "completionTokens": 127,
+        "failures": 0
       }
     ],
     "hosts": [],
     "totals": {
-      "modelCalls": 4,
-      "promptTokens": 4412,
-      "completionTokens": 591,
+      "modelCalls": 5,
+      "promptTokens": 4338,
+      "completionTokens": 484,
       "externalCalls": 0,
       "externalMs": 0
     },
     "estimatedUsd": {
-      "model": 0.00307,
+      "model": 0.000843,
       "external": 0,
-      "total": 0.00307,
+      "total": 0.000843,
       "rateCard": "published rates as of 2026-08-01",
       "note": "Tokens and call counts are measured. Money is derived from the rate card and is an estimate: re-price the same tokens if the rates have moved. External cost is 0 because every source used is free at this volume -- Companies House and SEC EDGAR are free, Neon and Vercel are free tier, Serper stays inside its free allowance. Call counts are recorded anyway, since those are what rate limits bind on and what would carry a price at 5,000 records."
     },
-    "wallMs": 8093
+    "wallMs": 7571
   },
-  "countsResolvedFromToolOutput": [
-    {
-      "token": "search_firms.searched",
-      "value": 664
-    },
-    {
-      "token": "search_firms.matched",
-      "value": 1
-    },
-    {
-      "token": "get_firm.releasedClaims",
-      "value": 9
-    },
-    {
-      "token": "check_evidence.gatesPassed",
-      "value": 26
-    }
-  ],
+  "countsResolvedFromToolOutput": [],
   "toolsUsed": [
     "search_firms",
     "get_firm",
@@ -145,13 +137,13 @@
     {
       "tool": "check_evidence",
       "entityId": "ent_sec_n_boston_family_office",
-      "field": "contact route",
+      "field": "contactRoute",
       "validationError": true
     },
     {
       "tool": "check_evidence",
       "entityId": "ent_sec_n_boston_family_office",
-      "field": "validation gates refusal reasons",
+      "field": "validationGatesRefusal",
       "validationError": true
     },
     {
@@ -181,17 +173,12 @@
           {
             "constraint": "contact route evidence",
             "honourable": true,
-            "why": "evidence for each claim can be retrieved"
+            "why": "evidence for contact route can be retrieved"
           },
           {
             "constraint": "validation gates refusal reasons",
             "honourable": true,
-            "why": "gate outcomes and evidence for one claim can be checked"
-          },
-          {
-            "constraint": "other firm attributes (e.g. assets under management, investment sector)",
-            "honourable": false,
-            "why": "dataset does not support filtering by these attributes"
+            "why": "gate outcomes and evidence for claims can be checked"
           }
         ],
         "calls": [
@@ -200,23 +187,23 @@
             "input": {
               "entityId": "BOSTON FAMILY OFFICE LLC"
             },
-            "because": "retrieve all released claims for the firm"
+            "because": "retrieve firm's released claims with evidence"
           },
           {
             "tool": "check_evidence",
             "input": {
               "entityId": "BOSTON FAMILY OFFICE LLC",
-              "field": "contact route"
+              "field": "contactRoute"
             },
-            "because": "check the evidence for the contact route claim"
+            "because": "check evidence for contact route claim"
           },
           {
             "tool": "check_evidence",
             "input": {
               "entityId": "BOSTON FAMILY OFFICE LLC",
-              "field": "validation gates refusal reasons"
+              "field": "validationGatesRefusal"
             },
-            "because": "check the gate outcomes and evidence for refusal reasons"
+            "because": "check validation gates refusal reasons"
           },
           {
             "tool": "search_firms",
@@ -225,15 +212,15 @@
               "requireStrictReachable": true,
               "requireProfileAssisted": false,
               "requiredFields": [],
-              "freshWithinDays": 0,
-              "maxSourceTier": 0,
+              "freshWithinDays": null,
+              "maxSourceTier": null,
               "limit": 1
             },
-            "because": "search for the firm by name and check reachability"
+            "because": "search for firm by name with strict reachability"
           }
         ]
       },
-      "at": "2026-08-02T10:31:18.677Z"
+      "at": "2026-08-02T10:41:38.034Z"
     },
     {
       "step": 2,
@@ -245,8 +232,8 @@
           "requireStrictReachable": true,
           "requireProfileAssisted": false,
           "requiredFields": [],
-          "freshWithinDays": 0,
-          "maxSourceTier": 0,
+          "freshWithinDays": null,
+          "maxSourceTier": null,
           "limit": 1
         },
         "scope": {
@@ -272,7 +259,7 @@
         ],
         "rows": 1
       },
-      "at": "2026-08-02T10:31:18.811Z"
+      "at": "2026-08-02T10:41:38.166Z"
     },
     {
       "step": 3,
@@ -285,7 +272,7 @@
         },
         "why": "planner supplied a placeholder or unknown id"
       },
-      "at": "2026-08-02T10:31:18.811Z"
+      "at": "2026-08-02T10:41:38.166Z"
     },
     {
       "step": 4,
@@ -302,7 +289,7 @@
         "excluded": [],
         "rows": 1
       },
-      "at": "2026-08-02T10:31:18.872Z"
+      "at": "2026-08-02T10:41:38.217Z"
     },
     {
       "step": 5,
@@ -315,7 +302,7 @@
         },
         "why": "planner supplied a placeholder or unknown id"
       },
-      "at": "2026-08-02T10:31:18.872Z"
+      "at": "2026-08-02T10:41:38.217Z"
     },
     {
       "step": 6,
@@ -324,17 +311,17 @@
         "tool": "check_evidence",
         "input": {
           "entityId": "ent_sec_n_boston_family_office",
-          "field": "contact route"
+          "field": "contactRoute"
         },
         "scope": {
           "entityId": "ent_sec_n_boston_family_office",
-          "field": "contact route",
+          "field": "contactRoute",
           "validationError": true
         },
         "excluded": [],
         "rows": 1
       },
-      "at": "2026-08-02T10:31:18.872Z"
+      "at": "2026-08-02T10:41:38.217Z"
     },
     {
       "step": 7,
@@ -347,7 +334,7 @@
         },
         "why": "planner supplied a placeholder or unknown id"
       },
-      "at": "2026-08-02T10:31:18.872Z"
+      "at": "2026-08-02T10:41:38.217Z"
     },
     {
       "step": 8,
@@ -356,17 +343,17 @@
         "tool": "check_evidence",
         "input": {
           "entityId": "ent_sec_n_boston_family_office",
-          "field": "validation gates refusal reasons"
+          "field": "validationGatesRefusal"
         },
         "scope": {
           "entityId": "ent_sec_n_boston_family_office",
-          "field": "validation gates refusal reasons",
+          "field": "validationGatesRefusal",
           "validationError": true
         },
         "excluded": [],
         "rows": 1
       },
-      "at": "2026-08-02T10:31:18.872Z"
+      "at": "2026-08-02T10:41:38.217Z"
     },
     {
       "step": 9,
@@ -374,12 +361,12 @@
       "detail": {
         "tool": "check_evidence",
         "repaired": {
-          "from": "contact route",
+          "from": "contactRoute",
           "to": "(all fields)"
         },
         "why": "the requested field does not exist, so nothing was checked; re-running the supported form"
       },
-      "at": "2026-08-02T10:31:18.872Z"
+      "at": "2026-08-02T10:41:38.217Z"
     },
     {
       "step": 10,
@@ -400,7 +387,7 @@
         "excluded": [],
         "rows": 54
       },
-      "at": "2026-08-02T10:31:18.891Z"
+      "at": "2026-08-02T10:41:38.236Z"
     },
     {
       "step": 11,
@@ -409,15 +396,35 @@
         "withdrewSupersededResults": 2,
         "why": "a failed check that was repaired is not a finding; it stays in the trace, not in the answer"
       },
-      "at": "2026-08-02T10:31:18.891Z"
+      "at": "2026-08-02T10:41:38.236Z"
     },
     {
       "step": 12,
       "kind": "compose",
       "detail": {
-        "answer": "I could not determine other firm attributes such as assets under management or investment sector as the dataset does not support filtering by these attributes. Instead, I used the available data to find information about the [[ent_sec_n_boston_family_office]]. The system searched [[count:search_firms.searched]] firms and [[count:search_firms.matched]] matched the query. The [[ent_sec_n_boston_family_office]] has [[count:get_firm.releasedClaims]] released claims with establishing evidence. The contact route is backed by evidence that includes a phone number, 617-624-0800, which reaches an individual, and the validation gates passed [[count:check_evidence.gatesPassed]] checks. Confidence in the contact information is high because the necessary fields are present, but confidence in other aspects such as investment strategy or assets under management is low due to missing evidence."
+        "answer": "BOSTON FAMILY OFFICE LLC is a qualifying firm with a commercial state. The system holds that it is a firm with a strict reachable status, profile-assisted reachable status, and a contact channel of phone with a value of 617-624-0800. The evidence backing the contact route includes a statutory source and the firm itself. The validation gates passed 26 checks, skipped 28 checks, and failed 0 checks. The gates refused to publish about the firm's mandate, sector, allocation, cheque size, or LP data, as this information is not available in the system."
       },
-      "at": "2026-08-02T10:31:25.707Z"
+      "at": "2026-08-02T10:41:44.636Z"
+    },
+    {
+      "step": 13,
+      "kind": "block",
+      "detail": {
+        "stage": "claims-audit",
+        "relevanceAsConfidence": [],
+        "toolInternalsLeaked": [
+          "commercial state"
+        ],
+        "unsupportedAbsence": [],
+        "skippedAsChecked": [],
+        "promptLeak": [
+          "mandate sector allocation cheque size or lp data"
+        ],
+        "unsupportedRefusal": [
+          "The gates refused to publish about the firm's mandate, sector, allocation, cheque size, or LP data, as this information is not available in the system."
+        ]
+      },
+      "at": "2026-08-02T10:41:44.641Z"
     }
   ],
   "error": null

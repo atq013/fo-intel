@@ -263,6 +263,11 @@ export async function check_evidence(input: { entityId: string; field?: string }
     limits: [
       'Reports what the gates recorded and nothing beyond it. A passed gate means that specific check passed, not that the value is true.',
       "`skipped` is not `passed`. A skipped gate means the check did not run.",
+      'A field this dataset never collects — mandate, sector, allocation, cheque size, AUM, LP ' +
+      'appetite — was never seen by a gate and therefore CANNOT have been refused, withheld or ' +
+      'blocked. If asked what was refused and nothing was, say so directly: nothing was refused ' +
+      'for this firm, and separately, the dataset does not hold those fields for any firm. ' +
+      'Calling never-collected data "refused" overstates what the checks did.',
     ],
   };
 }

@@ -391,10 +391,16 @@ export async function runAgent(question: string): Promise<AgentAnswer> {
   // ---- claims audit: relevance-as-confidence, and leaked internals --------
   // The answer must restate the unhonourable constraints and may restate the
   // question; neither counts as quoting its instructions.
+  // What the answer is SUPPOSED to reproduce, and therefore cannot be leaking:
+  // the tool results it exists to convey, the constraints it must state, and the
+  // question. Comparing against the whole prompt flagged an answer for quoting
+  // its own retrieved data, which is the opposite of a leak. What is left to
+  // match against is the instruction scaffolding -- the only part addressed to
+  // the system rather than the reader.
   const claims = auditClaims(
     answer, relevanceScores,
     evidenceChecks.map((c) => ({ ...c, withheldForEntity: withheldByEntity.get(c.entityId) ?? 0 })),
-    composePrompt, [...unhonoured, question]);
+    composePrompt, [...unhonoured, question, ...collected]);
   const relevanceAsConfidence = claims.relevanceAsConfidence;
   const toolInternalsLeaked = claims.internals;
   const unsupportedAbsence = claims.unsupportedAbsence;
