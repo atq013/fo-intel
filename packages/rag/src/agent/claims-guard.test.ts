@@ -335,3 +335,19 @@ test('claims · ordinary business phrasing of the same points passes', () => {
   const a = auditClaims(good, SCORES);
   assert.deepEqual(a.internals, []);
 });
+
+test('claims · the agent reporting its own inability is not a refusal claim', () => {
+  // This blocked Goal 3 in production. The sentence contains "refusal" and
+  // asserts the opposite of a refusal having happened: it is the agent stating
+  // its own limit, which is the behaviour the system wants.
+  const answer =
+    "I could not determine the validation gates' refusal reasons for BOSTON FAMILY OFFICE LLC " +
+    'as this information is not explicitly provided.';
+  assert.deepEqual(auditClaims(answer, SCORES, NOTHING_REFUSED).unsupportedRefusal, []);
+
+  // The sentence the guard exists for is still caught.
+  const asserting =
+    'The evidence that was refused to be published includes the mandate, sector and allocation, ' +
+    'as these fields are not present.';
+  assert.equal(auditClaims(asserting, SCORES, NOTHING_REFUSED).unsupportedRefusal.length, 1);
+});

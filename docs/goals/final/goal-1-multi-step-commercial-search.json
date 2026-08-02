@@ -4,8 +4,8 @@
   "submittedPrompt": "I am raising a fund and need a prioritised outreach list. Which family offices can I reach by phone at a named individual, how many are there in total, and for the ones you return, which have every value traced to a statutory source rather than an aggregator? Tell me which to approach first and what is missing from each.",
   "productionUrl": "https://fo-intel-web.vercel.app/api/agent",
   "agentUiUrl": "https://fo-intel-web.vercel.app/agent",
-  "submittedAtUtc": "2026-08-02T09:53:32.852Z",
-  "latencyMs": 3886,
+  "submittedAtUtc": "2026-08-02T10:27:18.662Z",
+  "latencyMs": 3330,
   "httpStatus": 200,
   "whyThisGoal": "No single retrieval call answers this: it needs a filtered shortlist, a separate exact count, per-record evidence grading, and a comparison composed into an outreach order.",
   "manualRetrievalEquivalent": {
@@ -492,11 +492,11 @@
       }
     ]
   },
-  "agentAnswer": "You could not honour the constraint that the dataset must only include family offices, as the dataset cannot express this constraint. Instead, the search was performed on a broader dataset and then filtered to include only those that have 'family office' in their name. The scope of the search was 664 firms, of which 27 matched the filters. Of these, 10 are returned here. The top firm to approach first is Colony Family Offices, LLC, which has a phone number of 704-285-7300 and every value traced to a statutory source. The fields that are missing from each firm are listed in the 'missing' field for each firm, but for the top firm, Colony Family Offices, LLC, no fields are missing. Confidence in the answer is high for Colony Family Offices, LLC because all the necessary fields are present, but for other firms, confidence may be lower due to missing fields.",
+  "agentAnswer": "I could not determine family offices based on semantic similarity, instead I searched for firms whose name contains the words 'family office'. I did not honour the constraint requiring semantic similarity. 664 firms were searched and 27 firms matched the applied filters. The top 10 firms are: Colony Family Offices, LLC, RiverGlades Family Offices LLC, Heritage Family Offices, LLP, Allie Family Office LLC, Duquesne Family Office LLC, Stokes Family Office, LLC, INTREPID FAMILY OFFICE LLC. All of these firms have a phone number that reaches a named individual and every value is traced to a statutory source. Approach Colony Family Offices, LLC first. None of the returned firms are missing any of the required fields.",
   "blocked": false,
   "blockReason": null,
   "unhonouredConstraints": [
-    "family office — dataset cannot express the constraint"
+    "family office — requires semantic similarity rather than a name substring"
   ],
   "abstained": true,
   "nameCorrections": [],
@@ -510,27 +510,27 @@
       {
         "model": "llama-3.3-70b-versatile",
         "calls": 2,
-        "promptTokens": 4906,
-        "completionTokens": 614,
+        "promptTokens": 4909,
+        "completionTokens": 611,
         "failures": 0
       }
     ],
     "hosts": [],
     "totals": {
       "modelCalls": 2,
-      "promptTokens": 4906,
-      "completionTokens": 614,
+      "promptTokens": 4909,
+      "completionTokens": 611,
       "externalCalls": 0,
       "externalMs": 0
     },
     "estimatedUsd": {
-      "model": 0.00338,
+      "model": 0.003379,
       "external": 0,
-      "total": 0.00338,
+      "total": 0.003379,
       "rateCard": "published rates as of 2026-08-01",
       "note": "Tokens and call counts are measured. Money is derived from the rate card and is an estimate: re-price the same tokens if the rates have moved. External cost is 0 because every source used is free at this volume -- Companies House and SEC EDGAR are free, Neon and Vercel are free tier, Serper stays inside its free allowance. Call counts are recorded anyway, since those are what rate limits bind on and what would carry a price at 5,000 records."
     },
-    "wallMs": 3430
+    "wallMs": 2839
   },
   "countsResolvedFromToolOutput": [
     {
@@ -558,7 +558,7 @@
       "searched": 664,
       "appliedFilters": [
         "strict reachability (profiles excluded)",
-        "holds principal.phone"
+        "holds principal.phone, principal.fullName"
       ]
     },
     {
@@ -569,7 +569,7 @@
       "appliedFilters": [
         "name contains \"family office\"",
         "strict reachability (profiles excluded)",
-        "holds principal.phone",
+        "holds principal.phone, principal.fullName",
         "source tier <= 1"
       ],
       "relevanceScoreMeaning": "relevanceScore ranks how well a record matches the FILTERS APPLIED. It is not a confidence, probability, certainty, likelihood or evidence-strength value, and must never be presented as one. Confidence in any specific question comes from whether the fields that question needs are present -- see each result's `missing` list.",
@@ -602,22 +602,22 @@
           {
             "constraint": "family office",
             "honourable": false,
-            "why": "dataset cannot express the constraint"
+            "why": "requires semantic similarity rather than a name substring"
           },
           {
             "constraint": "reachable by phone at a named individual",
             "honourable": true,
-            "why": "requireStrictReachable and requiredFields can filter for this"
+            "why": "can be expressed using requiredFields and requireStrictReachable"
           },
           {
             "constraint": "every value traced to a statutory source",
             "honourable": true,
-            "why": "maxSourceTier can filter for this"
+            "why": "can be expressed using maxSourceTier"
           },
           {
             "constraint": "prioritised outreach list",
             "honourable": true,
-            "why": "search_firms returns ranked results"
+            "why": "can be expressed using search_firms with default ranking"
           }
         ],
         "calls": [
@@ -627,7 +627,8 @@
               "requireStrictReachable": true,
               "requireProfileAssisted": false,
               "requiredFields": [
-                "principal.phone"
+                "principal.phone",
+                "principal.fullName"
               ]
             },
             "because": "get total count of reachable family offices"
@@ -639,31 +640,32 @@
               "requireStrictReachable": true,
               "requireProfileAssisted": false,
               "requiredFields": [
-                "principal.phone"
+                "principal.phone",
+                "principal.fullName"
               ],
               "maxSourceTier": 1,
               "limit": 10
             },
-            "because": "get prioritised list of family offices with phone and statutory source"
+            "because": "get prioritised list of reachable family offices with statutory sources"
           },
           {
             "tool": "get_firm",
             "input": {
-              "entityId": "<id_from_search_firms>"
+              "entityId": "{entityId from search_firms result}"
             },
-            "because": "get detailed information about each family office"
+            "because": "get detailed information about each firm"
           },
           {
             "tool": "check_evidence",
             "input": {
-              "entityId": "<id_from_search_firms>",
+              "entityId": "{entityId from search_firms result}",
               "field": "principal.phone"
             },
             "because": "verify evidence for phone number"
           }
         ]
       },
-      "at": "2026-08-02T09:53:34.737Z"
+      "at": "2026-08-02T10:27:20.458Z"
     },
     {
       "step": 2,
@@ -674,14 +676,15 @@
           "requireStrictReachable": true,
           "requireProfileAssisted": false,
           "requiredFields": [
-            "principal.phone"
+            "principal.phone",
+            "principal.fullName"
           ]
         },
         "scope": {
           "searched": 664,
           "appliedFilters": [
             "strict reachability (profiles excluded)",
-            "holds principal.phone"
+            "holds principal.phone, principal.fullName"
           ]
         },
         "excluded": [
@@ -696,7 +699,7 @@
         ],
         "rows": 1
       },
-      "at": "2026-08-02T09:53:34.947Z"
+      "at": "2026-08-02T10:27:20.648Z"
     },
     {
       "step": 3,
@@ -708,7 +711,8 @@
           "requireStrictReachable": true,
           "requireProfileAssisted": false,
           "requiredFields": [
-            "principal.phone"
+            "principal.phone",
+            "principal.fullName"
           ],
           "maxSourceTier": 1,
           "limit": 10
@@ -720,7 +724,7 @@
           "appliedFilters": [
             "name contains \"family office\"",
             "strict reachability (profiles excluded)",
-            "holds principal.phone",
+            "holds principal.phone, principal.fullName",
             "source tier <= 1"
           ],
           "relevanceScoreMeaning": "relevanceScore ranks how well a record matches the FILTERS APPLIED. It is not a confidence, probability, certainty, likelihood or evidence-strength value, and must never be presented as one. Confidence in any specific question comes from whether the fields that question needs are present -- see each result's `missing` list.",
@@ -742,7 +746,7 @@
         ],
         "rows": 10
       },
-      "at": "2026-08-02T09:53:35.120Z"
+      "at": "2026-08-02T10:27:20.825Z"
     },
     {
       "step": 4,
@@ -750,12 +754,12 @@
       "detail": {
         "tool": "get_firm",
         "rebound": {
-          "from": "<id_from_search_firms>",
+          "from": "{entityId from search_firms result}",
           "to": "ent_sec_n_colony_family_offices"
         },
         "why": "planner supplied a placeholder or unknown id"
       },
-      "at": "2026-08-02T09:53:35.121Z"
+      "at": "2026-08-02T10:27:20.825Z"
     },
     {
       "step": 5,
@@ -772,7 +776,7 @@
         "excluded": [],
         "rows": 1
       },
-      "at": "2026-08-02T09:53:35.213Z"
+      "at": "2026-08-02T10:27:20.918Z"
     },
     {
       "step": 6,
@@ -780,12 +784,12 @@
       "detail": {
         "tool": "check_evidence",
         "rebound": {
-          "from": "<id_from_search_firms>",
+          "from": "{entityId from search_firms result}",
           "to": "ent_sec_n_colony_family_offices"
         },
         "why": "planner supplied a placeholder or unknown id"
       },
-      "at": "2026-08-02T09:53:35.213Z"
+      "at": "2026-08-02T10:27:20.918Z"
     },
     {
       "step": 7,
@@ -807,15 +811,15 @@
         "excluded": [],
         "rows": 6
       },
-      "at": "2026-08-02T09:53:35.248Z"
+      "at": "2026-08-02T10:27:20.953Z"
     },
     {
       "step": 8,
       "kind": "compose",
       "detail": {
-        "answer": "You could not honour the constraint that the dataset must only include family offices, as the dataset cannot express this constraint. Instead, the search was performed on a broader dataset and then filtered to include only those that have 'family office' in their name. The scope of the search was [[count:search_firms.searched]] firms, of which [[count:search_firms.matched]] matched the filters. Of these, [[count:search_firms.returned]] are returned here. The top firm to approach first is [[ent_sec_n_colony_family_offices]], which has a phone number of 704-285-7300 and every value traced to a statutory source. The fields that are missing from each firm are listed in the 'missing' field for each firm, but for the top firm, [[ent_sec_n_colony_family_offices]], no fields are missing. Confidence in the answer is high for [[ent_sec_n_colony_family_offices]] because all the necessary fields are present, but for other firms, confidence may be lower due to missing fields."
+        "answer": "I could not determine family offices based on semantic similarity, instead I searched for firms whose name contains the words 'family office'. I did not honour the constraint requiring semantic similarity. [[count:search_firms.searched]] firms were searched and [[count:search_firms.matched]] firms matched the applied filters. The top [[count:search_firms.returned]] firms are: [[ent_sec_n_colony_family_offices]], [[ent_sec_n_riverglades_family_offices]], [[ent_sec_n_heritage_family_offices]], [[ent_sec_n_allie_family_office]], [[ent_sec_0001536411]], [[ent_sec_n_stokes_family_office]], [[ent_sec_n_intrepid_family_office]]. All of these firms have a phone number that reaches a named individual and every value is traced to a statutory source. Approach [[ent_sec_n_colony_family_offices]] first. None of the returned firms are missing any of the required fields."
       },
-      "at": "2026-08-02T09:53:36.929Z"
+      "at": "2026-08-02T10:27:22.126Z"
     }
   ],
   "error": null

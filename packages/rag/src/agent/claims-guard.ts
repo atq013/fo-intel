@@ -100,6 +100,22 @@ const ABSENCE_OF_WITHHOLDING = new RegExp(
  * the validation layer look busier than it was, which is why it needs a guard
  * rather than trust.
  */
+/**
+ * The agent saying it could not work something out.
+ *
+ * "I could not determine the validation gates' refusal reasons" contains the
+ * word `refusal` and asserts the opposite of a refusal having happened -- it is
+ * the agent reporting its own limit, which is the behaviour this system wants.
+ * Blocking it inverted the guard's purpose.
+ *
+ * Deliberately narrow: it needs the agent's own inability verb. The sentence
+ * this guard exists for -- "the evidence that WAS refused to be published
+ * includes the mandate, sector ..." -- contains no such construction and is
+ * still caught.
+ */
+const CANNOT_DETERMINE =
+  /\b(?:could\s*n[o']?t|couldn't|cannot|can't|unable to|not able to|do(?:es)?\s*n[o']?t know)\s+(?:\w+\s+){0,2}?(determine|establish|tell|find|say|report|provide|identify|verify)\b/i;
+
 const ASSERTS_REFUSAL =
   /\b(refus\w+|withh\w+|suppress\w+|blocked|quarantin\w+|declined to publish|held back|kept back)\b/i;
 
@@ -309,6 +325,9 @@ export function auditClaims(
   if (evidenceChecks.length && refused === 0) {
     for (const sentence of answer.split(/(?<=[.!?])\s+/)) {
       if (!ASSERTS_REFUSAL.test(sentence)) continue;
+      // The agent reporting that IT could not work something out is not a claim
+      // that the system refused anything.
+      if (CANNOT_DETERMINE.test(sentence)) continue;
       // "nothing was withheld" is the absence guard's business, not this one.
       if (ABSENCE_OF_WITHHOLDING.test(sentence)) continue;
       // No exemption for also mentioning absence. The production sentence said
