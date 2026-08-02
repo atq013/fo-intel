@@ -313,7 +313,13 @@ export function auditClaims(
       if (NAMES_THE_SKIP.test(sentence)) continue;
       const m = CHECKED_A_COUNT.exec(sentence);
       const n = m ? Number(m[2] ?? m[3]) : NaN;
-      if (Number.isFinite(n) && n > passed) skippedAsChecked.push(sentence.trim());
+      if (!Number.isFinite(n) || n <= passed) continue;
+      // "Of 54 validation checks, 26 passed" names the true total alongside the
+      // pass count, which discloses the gap rather than hiding it. Only a count
+      // larger than what passed AND presented without that context is inflation.
+      const inSentence = new Set((sentence.match(/\d+/g) ?? []).map(Number));
+      if (n === passed + skipped && inSentence.has(passed)) continue;
+      skippedAsChecked.push(sentence.trim());
     }
   }
 
@@ -336,6 +342,23 @@ export function auditClaims(
       // a self-contradicting one. The honest form does not use the word refused:
       // "the dataset does not record these, so there was nothing to publish".
       unsupportedRefusal.push(sentence.trim());
+    }
+  }
+
+  // Paired disclosure. Citing the pass count while silently dropping the skips
+  // is true and still misleading: "the validation gates passed 26 checks" reads
+  // as "this record was checked" when 28 of 54 never ran, and it does so in the
+  // one answer whose whole subject is what validation did.
+  //
+  // Numeric rather than lexical, on purpose -- the wording-based rules here have
+  // needed two corrections and this one only has to compare integers. Either the
+  // skip count or the total discloses the gap, so either satisfies it.
+  if (skipped > 0 && passed > 0) {
+    const numbers = new Set((answer.match(/\d+/g) ?? []).map(Number));
+    if (numbers.has(passed) && !numbers.has(skipped) && !numbers.has(passed + skipped)) {
+      skippedAsChecked.push(
+        `states ${passed} checks passed without disclosing the ${skipped} that did not run`,
+      );
     }
   }
 

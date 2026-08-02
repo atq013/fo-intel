@@ -206,9 +206,13 @@ test('claims · a count of "checked" larger than what passed is caught', () => {
   assert.equal(a.skippedAsChecked.length, 1);
 });
 
-test('claims · reporting only what passed is allowed', () => {
+test('claims · reporting ONLY what passed is no longer enough', () => {
+  // This test previously asserted the opposite. Reporting 78 passes while
+  // silently dropping 84 skips is true and still leaves a buyer believing the
+  // record was checked, in the one answer whose subject is what validation did.
+  // Either the skip count or the true total has to appear with it.
   const a = auditClaims('78 validation checks passed for this firm.', SCORES, WITH_SKIPS);
-  assert.deepEqual(a.skippedAsChecked, []);
+  assert.equal(a.skippedAsChecked.length, 1);
 });
 
 test('claims · naming the skips honestly is allowed', () => {
@@ -350,4 +354,20 @@ test('claims · the agent reporting its own inability is not a refusal claim', (
     'The evidence that was refused to be published includes the mandate, sector and allocation, ' +
     'as these fields are not present.';
   assert.equal(auditClaims(asserting, SCORES, NOTHING_REFUSED).unsupportedRefusal.length, 1);
+});
+
+test('claims · citing passes while dropping the skips is caught', () => {
+  // True and still misleading: "passed 26 checks" reads as "this record was
+  // checked" when 28 of 54 never ran -- in the one answer whose subject is
+  // what validation did. Either the skip count or the total discloses the gap.
+  // WITH_SKIPS is 78 passed, 84 skipped -- 162 outcomes in total.
+  assert.equal(auditClaims('The validation gates passed 78 checks.', SCORES, WITH_SKIPS)
+    .skippedAsChecked.length, 1);
+  assert.deepEqual(auditClaims('The gates passed 78 checks, skipped 84, and failed 0.', SCORES, WITH_SKIPS)
+    .skippedAsChecked, []);
+  assert.deepEqual(auditClaims('Of 162 validation checks, 78 passed.', SCORES, WITH_SKIPS)
+    .skippedAsChecked, []);
+  // With nothing skipped there is no gap to disclose.
+  assert.deepEqual(auditClaims('The validation gates passed 78 checks.', SCORES, NO_SKIPS)
+    .skippedAsChecked, []);
 });
