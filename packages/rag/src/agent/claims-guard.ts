@@ -174,12 +174,22 @@ const CHECKED_A_COUNT = /\b(check\w*|validat\w*|verif\w*|review\w*|examin\w*|ass
  * to the reader.
  *
  * Detected structurally rather than by phrase list, because the next leak will
- * be worded differently: any run of `LEAK_WINDOW` consecutive words shared
- * between the prompt and the answer is a quotation, not a coincidence. Short
- * overlaps are expected and ignored -- the answer legitimately reuses the
- * question's nouns.
+ * be worded differently: a run of `LEAK_WINDOW` consecutive words shared with
+ * the prompt is a quotation, not a coincidence.
+ *
+ * But a long overlap alone is not enough, and assuming it was produced a false
+ * block. The prompt's own rules name the fields whose absence the answer is
+ * supposed to report -- "no mandate, sector, allocation, cheque size or LP data"
+ * -- so an answer doing exactly that shares eight words with its instructions
+ * while leaking nothing. Domain vocabulary is shared by definition; what a
+ * reader must never see is the prompt's VOICE, so the overlap must also carry an
+ * imperative addressed to the system.
  */
 const LEAK_WINDOW = 8;
+
+/** Second-person direction. Present in scaffolding, absent from a noun list. */
+const INSTRUCTION_VOICE =
+  /\b(you must|you may not|you should|you will|never |do not |don't |always |must not|copied exactly|copied character|use these tokens|say which|state the scope|refer to each|return json|your answer|in your answer)\b/i;
 
 const shingles = (text: string, n: number): Set<string> => {
   const words = text.toLowerCase().replace(/[^a-z0-9 ]/g, ' ').split(/\s+/).filter(Boolean);
@@ -213,7 +223,10 @@ export function findPromptLeak(
   const fromPrompt = shingles(instructionsOnly, LEAK_WINDOW);
   const hits: string[] = [];
   for (const s of shingles(answer, LEAK_WINDOW)) {
-    if (fromPrompt.has(s)) hits.push(s);
+    if (!fromPrompt.has(s)) continue;
+    // Shared wording only matters when it carries the instruction's voice.
+    if (!INSTRUCTION_VOICE.test(s)) continue;
+    hits.push(s);
   }
   // Overlapping shingles describe one leak; report the distinct starts only.
   return hits.filter((h, i) => !hits.some((o, j) => j < i && o.includes(h.split(' ')[0]!))).slice(0, 3);

@@ -4,8 +4,8 @@
   "submittedPrompt": "I am raising a fund and need a prioritised outreach list. Which family offices can I reach by phone at a named individual, how many are there in total, and for the ones you return, which have every value traced to a statutory source rather than an aggregator? Tell me which to approach first and what is missing from each.",
   "productionUrl": "https://fo-intel-web.vercel.app/api/agent",
   "agentUiUrl": "https://fo-intel-web.vercel.app/agent",
-  "submittedAtUtc": "2026-08-02T10:41:28.440Z",
-  "latencyMs": 3722,
+  "submittedAtUtc": "2026-08-02T10:45:39.863Z",
+  "latencyMs": 9594,
   "httpStatus": 200,
   "whyThisGoal": "No single retrieval call answers this: it needs a filtered shortlist, a separate exact count, per-record evidence grading, and a comparison composed into an outreach order.",
   "manualRetrievalEquivalent": {
@@ -492,11 +492,11 @@
       }
     ]
   },
-  "agentAnswer": "I could not determine family offices based on semantic similarity, instead I searched for firms whose name contains the phrase 'family office'. I did this because the tool requires a substring match on the firm name, not a semantic match. The search found 664 firms, of which 27 matched the filters. 10 firms are returned. All returned firms have a phone number that reaches a named individual and every value is traced to a statutory source. The firms are: Colony Family Offices, LLC, RiverGlades Family Offices LLC, Heritage Family Offices, LLP, Allie Family Office LLC, Duquesne Family Office LLC, Stokes Family Office, LLC, and INTREPID FAMILY OFFICE LLC. Approach Colony Family Offices, LLC first. None of the returned firms are missing any of the required fields.",
-  "blocked": false,
-  "blockReason": null,
+  "agentAnswer": "I cannot give this answer as drafted. It quoted its own instructions back to you — \"...mandate sector allocation cheque size or lp data...\". That text was addressed to the system, not to you, and should never have appeared in an answer.",
+  "blocked": true,
+  "blockReason": "composer quoted its own instructions into the answer",
   "unhonouredConstraints": [
-    "family office — requires semantic similarity rather than a name substring"
+    "family office — no semantic filtering available"
   ],
   "abstained": true,
   "nameCorrections": [],
@@ -504,48 +504,44 @@
   "toolInternalsLeaked": [],
   "unsupportedAbsence": [],
   "skippedAsChecked": [],
-  "promptLeak": [],
+  "promptLeak": [
+    "mandate sector allocation cheque size or lp data"
+  ],
   "cost": {
     "models": [
       {
         "model": "llama-3.3-70b-versatile",
-        "calls": 2,
-        "promptTokens": 4909,
-        "completionTokens": 634,
+        "calls": 4,
+        "promptTokens": 644,
+        "completionTokens": 381,
+        "failures": 3
+      },
+      {
+        "model": "llama-3.1-8b-instant",
+        "calls": 1,
+        "promptTokens": 4340,
+        "completionTokens": 270,
         "failures": 0
       }
     ],
     "hosts": [],
     "totals": {
-      "modelCalls": 2,
-      "promptTokens": 4909,
-      "completionTokens": 634,
+      "modelCalls": 5,
+      "promptTokens": 4984,
+      "completionTokens": 651,
       "externalCalls": 0,
       "externalMs": 0
     },
     "estimatedUsd": {
-      "model": 0.003397,
+      "model": 0.00092,
       "external": 0,
-      "total": 0.003397,
+      "total": 0.00092,
       "rateCard": "published rates as of 2026-08-01",
       "note": "Tokens and call counts are measured. Money is derived from the rate card and is an estimate: re-price the same tokens if the rates have moved. External cost is 0 because every source used is free at this volume -- Companies House and SEC EDGAR are free, Neon and Vercel are free tier, Serper stays inside its free allowance. Call counts are recorded anyway, since those are what rate limits bind on and what would carry a price at 5,000 records."
     },
-    "wallMs": 2942
+    "wallMs": 8884
   },
-  "countsResolvedFromToolOutput": [
-    {
-      "token": "search_firms.searched",
-      "value": 664
-    },
-    {
-      "token": "search_firms.matched",
-      "value": 27
-    },
-    {
-      "token": "search_firms.returned",
-      "value": 10
-    }
-  ],
+  "countsResolvedFromToolOutput": [],
   "toolsUsed": [
     "count_matching",
     "search_firms",
@@ -558,7 +554,7 @@
       "searched": 664,
       "appliedFilters": [
         "strict reachability (profiles excluded)",
-        "holds principal.phone, principal.fullName"
+        "holds principal.phone"
       ]
     },
     {
@@ -569,7 +565,7 @@
       "appliedFilters": [
         "name contains \"family office\"",
         "strict reachability (profiles excluded)",
-        "holds principal.phone, principal.fullName",
+        "holds principal.phone",
         "source tier <= 1"
       ],
       "relevanceScoreMeaning": "relevanceScore ranks how well a record matches the FILTERS APPLIED. It is not a confidence, probability, certainty, likelihood or evidence-strength value, and must never be presented as one. Confidence in any specific question comes from whether the fields that question needs are present -- see each result's `missing` list.",
@@ -602,22 +598,22 @@
           {
             "constraint": "family office",
             "honourable": false,
-            "why": "requires semantic similarity rather than a name substring"
+            "why": "no semantic filtering available"
           },
           {
             "constraint": "reachable by phone at a named individual",
             "honourable": true,
-            "why": "can be expressed using requiredFields and requireStrictReachable"
+            "why": "can filter by required fields and reachability"
           },
           {
             "constraint": "every value traced to a statutory source",
             "honourable": true,
-            "why": "can be expressed using maxSourceTier"
+            "why": "can filter by source tier"
           },
           {
             "constraint": "prioritised outreach list",
             "honourable": true,
-            "why": "can be expressed using search_firms with default ranking"
+            "why": "search firms returns ranked results"
           }
         ],
         "calls": [
@@ -627,8 +623,7 @@
               "requireStrictReachable": true,
               "requireProfileAssisted": false,
               "requiredFields": [
-                "principal.phone",
-                "principal.fullName"
+                "principal.phone"
               ]
             },
             "because": "get total count of reachable family offices"
@@ -640,8 +635,7 @@
               "requireStrictReachable": true,
               "requireProfileAssisted": false,
               "requiredFields": [
-                "principal.phone",
-                "principal.fullName"
+                "principal.phone"
               ],
               "maxSourceTier": 1,
               "limit": 10
@@ -651,21 +645,21 @@
           {
             "tool": "get_firm",
             "input": {
-              "entityId": "{id of top-ranked firm from search_firms}"
+              "entityId": "{id from search firms result}"
             },
-            "because": "get detailed information about top-ranked firm"
+            "because": "get detailed information about each firm"
           },
           {
             "tool": "check_evidence",
             "input": {
-              "entityId": "{id of top-ranked firm from search_firms}",
+              "entityId": "{id from search firms result}",
               "field": "principal.phone"
             },
-            "because": "verify evidence for phone number of top-ranked firm"
+            "because": "verify evidence for phone number"
           }
         ]
       },
-      "at": "2026-08-02T10:41:30.502Z"
+      "at": "2026-08-02T10:45:41.950Z"
     },
     {
       "step": 2,
@@ -676,15 +670,14 @@
           "requireStrictReachable": true,
           "requireProfileAssisted": false,
           "requiredFields": [
-            "principal.phone",
-            "principal.fullName"
+            "principal.phone"
           ]
         },
         "scope": {
           "searched": 664,
           "appliedFilters": [
             "strict reachability (profiles excluded)",
-            "holds principal.phone, principal.fullName"
+            "holds principal.phone"
           ]
         },
         "excluded": [
@@ -699,7 +692,7 @@
         ],
         "rows": 1
       },
-      "at": "2026-08-02T10:41:30.692Z"
+      "at": "2026-08-02T10:45:42.154Z"
     },
     {
       "step": 3,
@@ -711,8 +704,7 @@
           "requireStrictReachable": true,
           "requireProfileAssisted": false,
           "requiredFields": [
-            "principal.phone",
-            "principal.fullName"
+            "principal.phone"
           ],
           "maxSourceTier": 1,
           "limit": 10
@@ -724,7 +716,7 @@
           "appliedFilters": [
             "name contains \"family office\"",
             "strict reachability (profiles excluded)",
-            "holds principal.phone, principal.fullName",
+            "holds principal.phone",
             "source tier <= 1"
           ],
           "relevanceScoreMeaning": "relevanceScore ranks how well a record matches the FILTERS APPLIED. It is not a confidence, probability, certainty, likelihood or evidence-strength value, and must never be presented as one. Confidence in any specific question comes from whether the fields that question needs are present -- see each result's `missing` list.",
@@ -746,7 +738,7 @@
         ],
         "rows": 10
       },
-      "at": "2026-08-02T10:41:30.842Z"
+      "at": "2026-08-02T10:45:42.330Z"
     },
     {
       "step": 4,
@@ -754,12 +746,12 @@
       "detail": {
         "tool": "get_firm",
         "rebound": {
-          "from": "{id of top-ranked firm from search_firms}",
+          "from": "{id from search firms result}",
           "to": "ent_sec_n_colony_family_offices"
         },
         "why": "planner supplied a placeholder or unknown id"
       },
-      "at": "2026-08-02T10:41:30.842Z"
+      "at": "2026-08-02T10:45:42.330Z"
     },
     {
       "step": 5,
@@ -776,7 +768,7 @@
         "excluded": [],
         "rows": 1
       },
-      "at": "2026-08-02T10:41:30.897Z"
+      "at": "2026-08-02T10:45:42.392Z"
     },
     {
       "step": 6,
@@ -784,12 +776,12 @@
       "detail": {
         "tool": "check_evidence",
         "rebound": {
-          "from": "{id of top-ranked firm from search_firms}",
+          "from": "{id from search firms result}",
           "to": "ent_sec_n_colony_family_offices"
         },
         "why": "planner supplied a placeholder or unknown id"
       },
-      "at": "2026-08-02T10:41:30.897Z"
+      "at": "2026-08-02T10:45:42.392Z"
     },
     {
       "step": 7,
@@ -811,15 +803,31 @@
         "excluded": [],
         "rows": 6
       },
-      "at": "2026-08-02T10:41:30.913Z"
+      "at": "2026-08-02T10:45:42.411Z"
     },
     {
       "step": 8,
       "kind": "compose",
       "detail": {
-        "answer": "I could not determine family offices based on semantic similarity, instead I searched for firms whose name contains the phrase 'family office'. I did this because the tool requires a substring match on the firm name, not a semantic match. The search found [[count:search_firms.searched]] firms, of which [[count:search_firms.matched]] matched the filters. [[count:search_firms.returned]] firms are returned. All returned firms have a phone number that reaches a named individual and every value is traced to a statutory source. The firms are: [[ent_sec_n_colony_family_offices]], [[ent_sec_n_riverglades_family_offices]], [[ent_sec_n_heritage_family_offices]], [[ent_sec_n_allie_family_office]], [[ent_sec_0001536411]], [[ent_sec_n_stokes_family_office]], and [[ent_sec_n_intrepid_family_office]]. Approach [[ent_sec_n_colony_family_offices]] first. None of the returned firms are missing any of the required fields."
+        "answer": "We could not honour the constraint of semantic filtering for family offices. Instead, we used text matching on the firm name. We searched 664 firms, matched 27, and returned 10. The firms with a strictly reachable route and a named individual are: [[ent_sec_n_colony_family_offices]], [[ent_sec_n_riverglades_family_offices]], [[ent_sec_n_heritage_family_offices]], [[ent_sec_n_allie_family_office]], [[ent_sec_0001536411]], [[ent_sec_n_stokes_family_office]], and [[ent_sec_n_intrepid_family_office]]. We could not determine the confidence for the specific question of mandate, sector, allocation, cheque size, or LP data. The evidence for these fields is missing. We recommend approaching [[ent_sec_n_colony_family_offices]] first, as it has the highest relevance score. The missing fields for each firm are: [[ent_sec_n_riverglades_family_offices]] (none), [[ent_sec_n_heritage_family_offices]] (none), [[ent_sec_n_allie_family_office]] (none), [[ent_sec_0001536411]] (none), [[ent_sec_n_stokes_family_office]] (none), [[ent_sec_n_intrepid_family_office]] (none)."
       },
-      "at": "2026-08-02T10:41:32.166Z"
+      "at": "2026-08-02T10:45:49.529Z"
+    },
+    {
+      "step": 9,
+      "kind": "block",
+      "detail": {
+        "stage": "claims-audit",
+        "relevanceAsConfidence": [],
+        "toolInternalsLeaked": [],
+        "unsupportedAbsence": [],
+        "skippedAsChecked": [],
+        "promptLeak": [
+          "mandate sector allocation cheque size or lp data"
+        ],
+        "unsupportedRefusal": []
+      },
+      "at": "2026-08-02T10:45:49.534Z"
     }
   ],
   "error": null

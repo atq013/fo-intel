@@ -371,3 +371,20 @@ test('claims · citing passes while dropping the skips is caught', () => {
   assert.deepEqual(auditClaims('The validation gates passed 78 checks.', SCORES, NO_SKIPS)
     .skippedAsChecked, []);
 });
+
+test('claims · sharing the prompt’s domain vocabulary is not a leak', () => {
+  // This blocked Goal 1. The prompt's own rules name the fields whose absence
+  // the answer is supposed to report, so an answer doing exactly that shares
+  // eight words with its instructions while leaking nothing. The overlap has to
+  // carry the instruction's voice, not just its nouns.
+  const prompt =
+    'You MUST state this plainly in your answer, in the first two sentences. If the evidence ' +
+    'for the specific question is absent — no mandate, sector, allocation, cheque size or LP ' +
+    'data — say confidence is low.';
+  const sharing =
+    'The system does not hold mandate, sector, allocation, cheque size or LP data for any firm.';
+  assert.deepEqual(auditClaims(sharing, SCORES, [], prompt).promptLeak, []);
+
+  const reciting = 'You MUST state this plainly in your answer, in the first two sentences.';
+  assert.ok(auditClaims(reciting, SCORES, [], prompt).promptLeak.length > 0);
+});

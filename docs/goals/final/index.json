@@ -1,14 +1,14 @@
 {
   "attempt": "final",
-  "producedAtUtc": "2026-08-02T10:41:44.593Z",
+  "producedAtUtc": "2026-08-02T10:46:12.491Z",
   "productionBase": "https://fo-intel-web.vercel.app",
   "note": "Unedited production output. Nothing was corrected after execution.",
   "goals": [
     {
       "goal": "Goal 1 · Multi-step commercial search",
       "file": "docs/goals/final/goal-1-multi-step-commercial-search.json",
-      "submittedAtUtc": "2026-08-02T10:41:28.440Z",
-      "blocked": false,
+      "submittedAtUtc": "2026-08-02T10:45:39.863Z",
+      "blocked": true,
       "abstained": true,
       "tools": [
         "count_matching",
@@ -16,27 +16,24 @@
         "get_firm",
         "check_evidence"
       ],
-      "traceSteps": 8
+      "traceSteps": 9
     },
     {
       "goal": "Goal 2 · Uncertain-data case (verbatim from the brief)",
       "file": "docs/goals/final/goal-2-uncertain-data.json",
-      "submittedAtUtc": "2026-08-02T10:41:32.863Z",
+      "submittedAtUtc": "2026-08-02T10:45:50.276Z",
       "blocked": false,
       "abstained": true,
       "tools": [
-        "search_firms",
-        "count_matching",
-        "search_firms",
-        "get_firm"
+        "search_firms"
       ],
-      "traceSteps": 7
+      "traceSteps": 3
     },
     {
       "goal": "Goal 3 · Paid-tier case",
       "file": "docs/goals/final/goal-3-paid-tier.json",
-      "submittedAtUtc": "2026-08-02T10:41:36.702Z",
-      "blocked": true,
+      "submittedAtUtc": "2026-08-02T10:45:58.232Z",
+      "blocked": false,
       "abstained": true,
       "tools": [
         "search_firms",
@@ -45,7 +42,7 @@
         "check_evidence",
         "check_evidence"
       ],
-      "traceSteps": 13
+      "traceSteps": 12
     }
   ]
 }
