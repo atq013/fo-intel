@@ -4,8 +4,8 @@
   "submittedPrompt": "I am raising a fund and need a prioritised outreach list. Which family offices can I reach by phone at a named individual, how many are there in total, and for the ones you return, which have every value traced to a statutory source rather than an aggregator? Tell me which to approach first and what is missing from each.",
   "productionUrl": "https://fo-intel-web.vercel.app/api/agent",
   "agentUiUrl": "https://fo-intel-web.vercel.app/agent",
-  "submittedAtUtc": "2026-08-02T09:34:53.112Z",
-  "latencyMs": 3474,
+  "submittedAtUtc": "2026-08-02T09:53:32.852Z",
+  "latencyMs": 3886,
   "httpStatus": 200,
   "whyThisGoal": "No single retrieval call answers this: it needs a filtered shortlist, a separate exact count, per-record evidence grading, and a comparison composed into an outreach order.",
   "manualRetrievalEquivalent": {
@@ -43,7 +43,7 @@
       {
         "entityId": "ent_sec_n_american_family_investments",
         "name": "American Family Investments, Inc.",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "6083453458",
@@ -61,7 +61,7 @@
       {
         "entityId": "ent_sec_n_pinnacle_family_advisors",
         "name": "Pinnacle Family Advisors, LLC",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "417-886-6590",
@@ -79,7 +79,7 @@
       {
         "entityId": "ent_sec_n_family_management",
         "name": "Family Management Corp",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "212-872-9637",
@@ -97,7 +97,7 @@
       {
         "entityId": "ent_sec_n_colony_family_offices",
         "name": "Colony Family Offices, LLC",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "704-285-7300",
@@ -115,7 +115,7 @@
       {
         "entityId": "ent_sec_n_corus_family_wealth_advisors",
         "name": "Corus Family Wealth Advisors",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "972-422-1010",
@@ -133,7 +133,7 @@
       {
         "entityId": "ent_sec_n_family_legacy",
         "name": "Family Legacy, Inc.",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "8642330808",
@@ -151,7 +151,7 @@
       {
         "entityId": "ent_sec_n_george_kaiser_family_foundation",
         "name": "George Kaiser Family Foundation",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "(918) 392-1612",
@@ -169,7 +169,7 @@
       {
         "entityId": "ent_sec_n_rpg_family_wealth_advisory",
         "name": "RPg Family Wealth Advisory, LLC",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "7819168176",
@@ -187,7 +187,7 @@
       {
         "entityId": "ent_sec_n_mosaic_family_wealth_partners",
         "name": "MOSAIC FAMILY WEALTH PARTNERS, LLC",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "314-627-5220",
@@ -205,7 +205,7 @@
       {
         "entityId": "ent_sec_n_riverglades_family_offices",
         "name": "RiverGlades Family Offices LLC",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "2392634079",
@@ -223,7 +223,7 @@
       {
         "entityId": "ent_sec_n_michels_family_financial",
         "name": "Michels Family Financial, LLC",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "361-226-3360",
@@ -241,7 +241,7 @@
       {
         "entityId": "ent_sec_n_strategic_family_wealth_counselors",
         "name": "Strategic Family Wealth Counselors, L.L.C.",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "973-575-3444",
@@ -259,7 +259,7 @@
       {
         "entityId": "ent_sec_n_horizon_family_wealth",
         "name": "Horizon Family Wealth, Inc.",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "312-442-9192",
@@ -277,7 +277,7 @@
       {
         "entityId": "ent_sec_n_omnia_family_wealth",
         "name": "Omnia Family Wealth, LLC",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "(305) 602-9080",
@@ -295,7 +295,7 @@
       {
         "entityId": "ent_sec_n_fusion_family_wealth",
         "name": "Fusion Family Wealth LLC",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "(516) 206-1320",
@@ -313,7 +313,7 @@
       {
         "entityId": "ent_sec_n_atlantic_family_wealth",
         "name": "ATLANTIC FAMILY WEALTH, LLC",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "305-222-0977",
@@ -331,7 +331,7 @@
       {
         "entityId": "ent_sec_n_strengthening_families_communities",
         "name": "Strengthening Families & Communities, LLC",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "6175301693",
@@ -349,7 +349,7 @@
       {
         "entityId": "ent_sec_n_forthright_family_wealth_advisory",
         "name": "Forthright Family Wealth Advisory LLC",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "713-510-3510",
@@ -367,7 +367,7 @@
       {
         "entityId": "ent_sec_n_oak_family_advisors",
         "name": "OAK FAMILY ADVISORS, LLC",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "312-373-7223",
@@ -385,7 +385,7 @@
       {
         "entityId": "ent_sec_n_avantra_family_wealth",
         "name": "Avantra Family Wealth, Inc.",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "(717) 276-1501",
@@ -403,7 +403,7 @@
       {
         "entityId": "ent_sec_n_noble_family_wealth",
         "name": "Noble Family Wealth, LLC",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "727-674-1462",
@@ -421,7 +421,7 @@
       {
         "entityId": "ent_sec_n_morton_brown_family_wealth",
         "name": "Morton Brown Family Wealth, LLC",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "610.709.5072",
@@ -439,7 +439,7 @@
       {
         "entityId": "ent_sec_n_petros_family_wealth",
         "name": "Petros Family Wealth, LLC",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "612-643-9909",
@@ -457,7 +457,7 @@
       {
         "entityId": "ent_sec_n_brady_family_wealth",
         "name": "BRADY FAMILY WEALTH, LLC",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "(314) 919-9151",
@@ -475,7 +475,7 @@
       {
         "entityId": "ent_sec_n_heritage_family_offices",
         "name": "Heritage Family Offices, LLP",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "602-775-5400",
@@ -492,11 +492,11 @@
       }
     ]
   },
-  "agentAnswer": "I could not determine which family offices are a semantic match for \"family office\" because the search requires a name substring match instead. I searched for firms whose name contains the text \"family office\" and found 664 firms, of which 27 matched the filters. 10 firms are returned, all of which have a phone number for a named individual and every value traced to a statutory source. The firms are: Colony Family Offices, LLC, RiverGlades Family Offices LLC, Heritage Family Offices, LLP, Allie Family Office LLC, Duquesne Family Office LLC, Stokes Family Office, LLC, INTREPID FAMILY OFFICE LLC. You may want to approach Colony Family Offices, LLC first. None of the returned firms are missing any fields. In total, 67 firms have a strictly reachable route and hold principal.phone and principal.fullName.",
+  "agentAnswer": "You could not honour the constraint that the dataset must only include family offices, as the dataset cannot express this constraint. Instead, the search was performed on a broader dataset and then filtered to include only those that have 'family office' in their name. The scope of the search was 664 firms, of which 27 matched the filters. Of these, 10 are returned here. The top firm to approach first is Colony Family Offices, LLC, which has a phone number of 704-285-7300 and every value traced to a statutory source. The fields that are missing from each firm are listed in the 'missing' field for each firm, but for the top firm, Colony Family Offices, LLC, no fields are missing. Confidence in the answer is high for Colony Family Offices, LLC because all the necessary fields are present, but for other firms, confidence may be lower due to missing fields.",
   "blocked": false,
   "blockReason": null,
   "unhonouredConstraints": [
-    "family office — requires semantic similarity rather than a name substring"
+    "family office — dataset cannot express the constraint"
   ],
   "abstained": true,
   "nameCorrections": [],
@@ -504,32 +504,33 @@
   "toolInternalsLeaked": [],
   "unsupportedAbsence": [],
   "skippedAsChecked": [],
+  "promptLeak": [],
   "cost": {
     "models": [
       {
         "model": "llama-3.3-70b-versatile",
         "calls": 2,
-        "promptTokens": 3121,
-        "completionTokens": 553,
+        "promptTokens": 4906,
+        "completionTokens": 614,
         "failures": 0
       }
     ],
     "hosts": [],
     "totals": {
       "modelCalls": 2,
-      "promptTokens": 3121,
-      "completionTokens": 553,
+      "promptTokens": 4906,
+      "completionTokens": 614,
       "externalCalls": 0,
       "externalMs": 0
     },
     "estimatedUsd": {
-      "model": 0.002278,
+      "model": 0.00338,
       "external": 0,
-      "total": 0.002278,
+      "total": 0.00338,
       "rateCard": "published rates as of 2026-08-01",
       "note": "Tokens and call counts are measured. Money is derived from the rate card and is an estimate: re-price the same tokens if the rates have moved. External cost is 0 because every source used is free at this volume -- Companies House and SEC EDGAR are free, Neon and Vercel are free tier, Serper stays inside its free allowance. Call counts are recorded anyway, since those are what rate limits bind on and what would carry a price at 5,000 records."
     },
-    "wallMs": 2779
+    "wallMs": 3430
   },
   "countsResolvedFromToolOutput": [
     {
@@ -543,17 +544,23 @@
     {
       "token": "search_firms.returned",
       "value": 10
-    },
-    {
-      "token": "count_matching.count",
-      "value": 67
     }
   ],
   "toolsUsed": [
+    "count_matching",
     "search_firms",
-    "count_matching"
+    "get_firm",
+    "check_evidence"
   ],
   "scopePerTool": [
+    {
+      "tool": "count_matching",
+      "searched": 664,
+      "appliedFilters": [
+        "strict reachability (profiles excluded)",
+        "holds principal.phone"
+      ]
+    },
     {
       "tool": "search_firms",
       "searched": 664,
@@ -562,22 +569,30 @@
       "appliedFilters": [
         "name contains \"family office\"",
         "strict reachability (profiles excluded)",
-        "holds principal.phone, principal.fullName",
+        "holds principal.phone",
         "source tier <= 1"
       ],
       "relevanceScoreMeaning": "relevanceScore ranks how well a record matches the FILTERS APPLIED. It is not a confidence, probability, certainty, likelihood or evidence-strength value, and must never be presented as one. Confidence in any specific question comes from whether the fields that question needs are present -- see each result's `missing` list.",
       "countNote": "27 firms matched; the data array holds only the top 10. Report 27 as the count, never the array length."
     },
     {
-      "tool": "count_matching",
-      "searched": 664,
-      "appliedFilters": [
-        "strict reachability (profiles excluded)",
-        "holds principal.phone, principal.fullName"
-      ]
+      "tool": "get_firm",
+      "entityId": "ent_sec_n_colony_family_offices",
+      "releasedClaims": 9
+    },
+    {
+      "tool": "check_evidence",
+      "entityId": "ent_sec_n_colony_family_offices",
+      "field": "principal.phone",
+      "gatesPassed": 4,
+      "gatesSkipped": 2,
+      "gatesFailed": 0,
+      "gateOutcomesNote": "These are three separate figures and must never be added together or described as one count of checks performed. Only `gatesPassed` were actually checked and passed. A skipped gate DID NOT RUN: it is not evidence of anything, it is the absence of evidence, and it must never be presented alongside passes as though the value had been cleared. Describe these as \"gate outcomes\" or \"validation checks\", never as rows, records or data."
     }
   ],
-  "entityIdsUsed": [],
+  "entityIdsUsed": [
+    "ent_sec_n_colony_family_offices"
+  ],
   "rawTrace": [
     {
       "step": 1,
@@ -587,65 +602,113 @@
           {
             "constraint": "family office",
             "honourable": false,
-            "why": "requires semantic similarity rather than a name substring"
+            "why": "dataset cannot express the constraint"
           },
           {
             "constraint": "reachable by phone at a named individual",
             "honourable": true,
-            "why": "can be implemented using requiredFields and requireStrictReachable"
+            "why": "requireStrictReachable and requiredFields can filter for this"
           },
           {
             "constraint": "every value traced to a statutory source",
             "honourable": true,
-            "why": "can be implemented using maxSourceTier"
+            "why": "maxSourceTier can filter for this"
           },
           {
             "constraint": "prioritised outreach list",
             "honourable": true,
-            "why": "can be implemented using search_firms with default ranking"
+            "why": "search_firms returns ranked results"
           }
         ],
         "calls": [
+          {
+            "tool": "count_matching",
+            "input": {
+              "requireStrictReachable": true,
+              "requireProfileAssisted": false,
+              "requiredFields": [
+                "principal.phone"
+              ]
+            },
+            "because": "get total count of reachable family offices"
+          },
           {
             "tool": "search_firms",
             "input": {
               "q": "family office",
               "requireStrictReachable": true,
+              "requireProfileAssisted": false,
               "requiredFields": [
-                "principal.phone",
-                "principal.fullName"
+                "principal.phone"
               ],
               "maxSourceTier": 1,
               "limit": 10
             },
-            "because": "to get a list of family offices that can be reached by phone at a named individual, with values from statutory sources"
+            "because": "get prioritised list of family offices with phone and statutory source"
           },
           {
-            "tool": "count_matching",
+            "tool": "get_firm",
             "input": {
-              "requireStrictReachable": true,
-              "requiredFields": [
-                "principal.phone",
-                "principal.fullName"
-              ]
+              "entityId": "<id_from_search_firms>"
             },
-            "because": "to get the total number of family offices that can be reached by phone at a named individual"
+            "because": "get detailed information about each family office"
+          },
+          {
+            "tool": "check_evidence",
+            "input": {
+              "entityId": "<id_from_search_firms>",
+              "field": "principal.phone"
+            },
+            "because": "verify evidence for phone number"
           }
         ]
       },
-      "at": "2026-08-02T09:34:55.214Z"
+      "at": "2026-08-02T09:53:34.737Z"
     },
     {
       "step": 2,
+      "kind": "tool",
+      "detail": {
+        "tool": "count_matching",
+        "input": {
+          "requireStrictReachable": true,
+          "requireProfileAssisted": false,
+          "requiredFields": [
+            "principal.phone"
+          ]
+        },
+        "scope": {
+          "searched": 664,
+          "appliedFilters": [
+            "strict reachability (profiles excluded)",
+            "holds principal.phone"
+          ]
+        },
+        "excluded": [
+          {
+            "reason": "no strictly-reachable route",
+            "count": 547
+          },
+          {
+            "reason": "below the commercial floor",
+            "count": 50
+          }
+        ],
+        "rows": 1
+      },
+      "at": "2026-08-02T09:53:34.947Z"
+    },
+    {
+      "step": 3,
       "kind": "tool",
       "detail": {
         "tool": "search_firms",
         "input": {
           "q": "family office",
           "requireStrictReachable": true,
+          "requireProfileAssisted": false,
           "requiredFields": [
-            "principal.phone",
-            "principal.fullName"
+            "principal.phone"
           ],
           "maxSourceTier": 1,
           "limit": 10
@@ -657,7 +720,7 @@
           "appliedFilters": [
             "name contains \"family office\"",
             "strict reachability (profiles excluded)",
-            "holds principal.phone, principal.fullName",
+            "holds principal.phone",
             "source tier <= 1"
           ],
           "relevanceScoreMeaning": "relevanceScore ranks how well a record matches the FILTERS APPLIED. It is not a confidence, probability, certainty, likelihood or evidence-strength value, and must never be presented as one. Confidence in any specific question comes from whether the fields that question needs are present -- see each result's `missing` list.",
@@ -679,48 +742,80 @@
         ],
         "rows": 10
       },
-      "at": "2026-08-02T09:34:55.402Z"
-    },
-    {
-      "step": 3,
-      "kind": "tool",
-      "detail": {
-        "tool": "count_matching",
-        "input": {
-          "requireStrictReachable": true,
-          "requiredFields": [
-            "principal.phone",
-            "principal.fullName"
-          ]
-        },
-        "scope": {
-          "searched": 664,
-          "appliedFilters": [
-            "strict reachability (profiles excluded)",
-            "holds principal.phone, principal.fullName"
-          ]
-        },
-        "excluded": [
-          {
-            "reason": "no strictly-reachable route",
-            "count": 547
-          },
-          {
-            "reason": "below the commercial floor",
-            "count": 50
-          }
-        ],
-        "rows": 1
-      },
-      "at": "2026-08-02T09:34:55.591Z"
+      "at": "2026-08-02T09:53:35.120Z"
     },
     {
       "step": 4,
+      "kind": "tool",
+      "detail": {
+        "tool": "get_firm",
+        "rebound": {
+          "from": "<id_from_search_firms>",
+          "to": "ent_sec_n_colony_family_offices"
+        },
+        "why": "planner supplied a placeholder or unknown id"
+      },
+      "at": "2026-08-02T09:53:35.121Z"
+    },
+    {
+      "step": 5,
+      "kind": "tool",
+      "detail": {
+        "tool": "get_firm",
+        "input": {
+          "entityId": "ent_sec_n_colony_family_offices"
+        },
+        "scope": {
+          "entityId": "ent_sec_n_colony_family_offices",
+          "releasedClaims": 9
+        },
+        "excluded": [],
+        "rows": 1
+      },
+      "at": "2026-08-02T09:53:35.213Z"
+    },
+    {
+      "step": 6,
+      "kind": "tool",
+      "detail": {
+        "tool": "check_evidence",
+        "rebound": {
+          "from": "<id_from_search_firms>",
+          "to": "ent_sec_n_colony_family_offices"
+        },
+        "why": "planner supplied a placeholder or unknown id"
+      },
+      "at": "2026-08-02T09:53:35.213Z"
+    },
+    {
+      "step": 7,
+      "kind": "tool",
+      "detail": {
+        "tool": "check_evidence",
+        "input": {
+          "entityId": "ent_sec_n_colony_family_offices",
+          "field": "principal.phone"
+        },
+        "scope": {
+          "entityId": "ent_sec_n_colony_family_offices",
+          "field": "principal.phone",
+          "gatesPassed": 4,
+          "gatesSkipped": 2,
+          "gatesFailed": 0,
+          "gateOutcomesNote": "These are three separate figures and must never be added together or described as one count of checks performed. Only `gatesPassed` were actually checked and passed. A skipped gate DID NOT RUN: it is not evidence of anything, it is the absence of evidence, and it must never be presented alongside passes as though the value had been cleared. Describe these as \"gate outcomes\" or \"validation checks\", never as rows, records or data."
+        },
+        "excluded": [],
+        "rows": 6
+      },
+      "at": "2026-08-02T09:53:35.248Z"
+    },
+    {
+      "step": 8,
       "kind": "compose",
       "detail": {
-        "answer": "I could not determine which family offices are a semantic match for \"family office\" because the search requires a name substring match instead. I searched for firms whose name contains the text \"family office\" and found [[count:search_firms.searched]] firms, of which [[count:search_firms.matched]] matched the filters. [[count:search_firms.returned]] firms are returned, all of which have a phone number for a named individual and every value traced to a statutory source. The firms are: [[ent_sec_n_colony_family_offices]], [[ent_sec_n_riverglades_family_offices]], [[ent_sec_n_heritage_family_offices]], [[ent_sec_n_allie_family_office]], [[ent_sec_0001536411]], [[ent_sec_n_stokes_family_office]], [[ent_sec_n_intrepid_family_office]]. You may want to approach [[ent_sec_n_colony_family_offices]] first. None of the returned firms are missing any fields. In total, [[count:count_matching.count]] firms have a strictly reachable route and hold principal.phone and principal.fullName."
+        "answer": "You could not honour the constraint that the dataset must only include family offices, as the dataset cannot express this constraint. Instead, the search was performed on a broader dataset and then filtered to include only those that have 'family office' in their name. The scope of the search was [[count:search_firms.searched]] firms, of which [[count:search_firms.matched]] matched the filters. Of these, [[count:search_firms.returned]] are returned here. The top firm to approach first is [[ent_sec_n_colony_family_offices]], which has a phone number of 704-285-7300 and every value traced to a statutory source. The fields that are missing from each firm are listed in the 'missing' field for each firm, but for the top firm, [[ent_sec_n_colony_family_offices]], no fields are missing. Confidence in the answer is high for [[ent_sec_n_colony_family_offices]] because all the necessary fields are present, but for other firms, confidence may be lower due to missing fields."
       },
-      "at": "2026-08-02T09:34:56.831Z"
+      "at": "2026-08-02T09:53:36.929Z"
     }
   ],
   "error": null

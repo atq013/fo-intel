@@ -281,3 +281,57 @@ test('claims · restating an unhonourable constraint is required, not a leak', (
     'You MUST state this plainly in your answer, in the first two sentences, in plain words.';
   assert.ok(auditClaims(reciting, SCORES, [], prompt, [unhonourable]).promptLeak.length > 0);
 });
+
+/**
+ * Refusal asserted where nothing was refused, and database vocabulary in prose.
+ * Both from the production Goal 3 and Goal 1 answers, verbatim.
+ */
+
+const NOTHING_REFUSED: EvidenceCheck[] = [
+  { entityId: 'ent_sec_n_boston_family_office', completed: true, passed: 26, skipped: 28, failed: 0, withheldForEntity: 0 },
+];
+const SOMETHING_REFUSED: EvidenceCheck[] = [
+  { entityId: 'ent_x', completed: true, passed: 26, skipped: 28, failed: 2, withheldForEntity: 3 },
+];
+
+test('claims · THE GOAL 3 FALSE REFUSAL: never-collected reported as withheld', () => {
+  // Boston holds 9 claims, all released, none quarantined; no firm anywhere has
+  // a mandate or sector field. The gates cannot have refused what they never saw.
+  const answer =
+    'The evidence that was refused to be published includes the mandate, sector, allocation, ' +
+    'cheque size, and LP data.';
+  const a = auditClaims(answer, SCORES, NOTHING_REFUSED);
+  assert.equal(a.unsupportedRefusal.length, 1);
+  assert.match(confidenceBlockMessage(a), /never collected, which is a different thing/);
+});
+
+test('claims · naming those fields as absent rather than refused is allowed', () => {
+  const answer =
+    'Mandate, sector and allocation are not present in the dataset for any firm, so nothing ' +
+    'could be published about them.';
+  assert.deepEqual(auditClaims(answer, SCORES, NOTHING_REFUSED).unsupportedRefusal, []);
+});
+
+test('claims · a refusal claim is allowed when something really was refused', () => {
+  const answer = 'Two values were withheld for this firm after failing the identity gate.';
+  assert.deepEqual(auditClaims(answer, SCORES, SOMETHING_REFUSED).unsupportedRefusal, []);
+});
+
+test('claims · database vocabulary in buyer prose is caught', () => {
+  for (const bad of [
+    'BOSTON FAMILY OFFICE LLC is a qualifying firm with a commercial state.',
+    "The fields that are missing are listed in the 'missing' field for each firm.",
+    'You could not honour the constraint that the dataset must only include family offices.',
+  ]) {
+    assert.ok(auditClaims(bad, SCORES).internals.length > 0, bad);
+  }
+});
+
+test('claims · ordinary business phrasing of the same points passes', () => {
+  const good =
+    'BOSTON FAMILY OFFICE LLC meets the inclusion standard. Each firm below lists what it does ' +
+    'not have. I could not filter on sector, because the dataset does not record it. ' +
+    'You may want to approach Colony first.';
+  const a = auditClaims(good, SCORES);
+  assert.deepEqual(a.internals, []);
+});

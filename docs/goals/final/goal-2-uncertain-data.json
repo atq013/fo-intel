@@ -4,8 +4,8 @@
   "submittedPrompt": "Identify the family offices in the dataset that are the best fit for a lower-middle-market healthcare services fund seeking limited partners, and tell me how confident you are in each.",
   "productionUrl": "https://fo-intel-web.vercel.app/api/agent",
   "agentUiUrl": "https://fo-intel-web.vercel.app/agent",
-  "submittedAtUtc": "2026-08-02T09:34:57.308Z",
-  "latencyMs": 3019,
+  "submittedAtUtc": "2026-08-02T09:53:37.445Z",
+  "latencyMs": 2957,
   "httpStatus": 200,
   "whyThisGoal": "The dataset holds no mandate, sector or AUM evidence. A strong system says so rather than inferring fit from a firm name. This goal exists to see whether it does.",
   "manualRetrievalEquivalent": {
@@ -36,7 +36,7 @@
       {
         "entityId": "ent_sec_n_american_family_investments",
         "name": "American Family Investments, Inc.",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "6083453458",
@@ -54,7 +54,7 @@
       {
         "entityId": "ent_sec_n_pinnacle_family_advisors",
         "name": "Pinnacle Family Advisors, LLC",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "417-886-6590",
@@ -72,7 +72,7 @@
       {
         "entityId": "ent_sec_n_family_management",
         "name": "Family Management Corp",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "212-872-9637",
@@ -90,7 +90,7 @@
       {
         "entityId": "ent_sec_n_colony_family_offices",
         "name": "Colony Family Offices, LLC",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "704-285-7300",
@@ -108,7 +108,7 @@
       {
         "entityId": "ent_sec_n_corus_family_wealth_advisors",
         "name": "Corus Family Wealth Advisors",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "972-422-1010",
@@ -126,7 +126,7 @@
       {
         "entityId": "ent_sec_n_family_legacy",
         "name": "Family Legacy, Inc.",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "8642330808",
@@ -144,7 +144,7 @@
       {
         "entityId": "ent_sec_n_george_kaiser_family_foundation",
         "name": "George Kaiser Family Foundation",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "(918) 392-1612",
@@ -162,7 +162,7 @@
       {
         "entityId": "ent_sec_n_rpg_family_wealth_advisory",
         "name": "RPg Family Wealth Advisory, LLC",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "7819168176",
@@ -180,7 +180,7 @@
       {
         "entityId": "ent_sec_n_mosaic_family_wealth_partners",
         "name": "MOSAIC FAMILY WEALTH PARTNERS, LLC",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "314-627-5220",
@@ -198,7 +198,7 @@
       {
         "entityId": "ent_sec_n_riverglades_family_offices",
         "name": "RiverGlades Family Offices LLC",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "2392634079",
@@ -216,7 +216,7 @@
       {
         "entityId": "ent_sec_n_michels_family_financial",
         "name": "Michels Family Financial, LLC",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "361-226-3360",
@@ -234,7 +234,7 @@
       {
         "entityId": "ent_sec_n_strategic_family_wealth_counselors",
         "name": "Strategic Family Wealth Counselors, L.L.C.",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "973-575-3444",
@@ -252,7 +252,7 @@
       {
         "entityId": "ent_sec_n_horizon_family_wealth",
         "name": "Horizon Family Wealth, Inc.",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "312-442-9192",
@@ -270,7 +270,7 @@
       {
         "entityId": "ent_sec_n_omnia_family_wealth",
         "name": "Omnia Family Wealth, LLC",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "(305) 602-9080",
@@ -288,7 +288,7 @@
       {
         "entityId": "ent_sec_n_fusion_family_wealth",
         "name": "Fusion Family Wealth LLC",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "(516) 206-1320",
@@ -306,7 +306,7 @@
       {
         "entityId": "ent_sec_n_atlantic_family_wealth",
         "name": "ATLANTIC FAMILY WEALTH, LLC",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "305-222-0977",
@@ -324,7 +324,7 @@
       {
         "entityId": "ent_sec_n_strengthening_families_communities",
         "name": "Strengthening Families & Communities, LLC",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "6175301693",
@@ -342,7 +342,7 @@
       {
         "entityId": "ent_sec_n_forthright_family_wealth_advisory",
         "name": "Forthright Family Wealth Advisory LLC",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "713-510-3510",
@@ -360,7 +360,7 @@
       {
         "entityId": "ent_sec_n_oak_family_advisors",
         "name": "OAK FAMILY ADVISORS, LLC",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "312-373-7223",
@@ -378,7 +378,7 @@
       {
         "entityId": "ent_sec_n_avantra_family_wealth",
         "name": "Avantra Family Wealth, Inc.",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "(717) 276-1501",
@@ -396,7 +396,7 @@
       {
         "entityId": "ent_sec_n_noble_family_wealth",
         "name": "Noble Family Wealth, LLC",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "727-674-1462",
@@ -414,7 +414,7 @@
       {
         "entityId": "ent_sec_n_morton_brown_family_wealth",
         "name": "Morton Brown Family Wealth, LLC",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "610.709.5072",
@@ -432,7 +432,7 @@
       {
         "entityId": "ent_sec_n_petros_family_wealth",
         "name": "Petros Family Wealth, LLC",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "612-643-9909",
@@ -450,7 +450,7 @@
       {
         "entityId": "ent_sec_n_brady_family_wealth",
         "name": "BRADY FAMILY WEALTH, LLC",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "(314) 919-9151",
@@ -468,7 +468,7 @@
       {
         "entityId": "ent_sec_n_heritage_family_offices",
         "name": "Heritage Family Offices, LLP",
-        "score": 0.9966,
+        "score": 0.9965,
         "contact": {
           "channel": "phone",
           "value": "602-775-5400",
@@ -485,9 +485,9 @@
       }
     ]
   },
-  "agentAnswer": "I cannot give this answer as drafted. It quoted its own instructions back to you — \"...fit for a lower middle market healthcare services...\". That text was addressed to the system, not to you, and should never have appeared in an answer.",
-  "blocked": true,
-  "blockReason": "composer quoted its own instructions into the answer",
+  "agentAnswer": "The dataset cannot express market size, so the question of lower-middle-market could not be answered. The dataset also cannot express investment sector or mandate, or specific investment role, so the question of healthcare services and limited partners could not be answered. The search was done over 664 firms, with 128 matching the query. The top 10 results are: Colony Family Offices, LLC, RiverGlades Family Offices LLC, Heritage Family Offices, LLP, BOSTON FAMILY OFFICE LLC, Arrowroot Family Office, LLC, Timonier Family Office, LTD., and Virtus Family Office LLC. Confidence in their fit is low due to missing evidence on mandate, sector, and allocation. Instead, these family offices were selected based on their relevance score and reachability.",
+  "blocked": false,
+  "blockReason": null,
   "unhonouredConstraints": [
     "lower-middle-market — dataset cannot express market size",
     "healthcare services — dataset cannot express investment sector or mandate",
@@ -499,32 +499,33 @@
   "toolInternalsLeaked": [],
   "unsupportedAbsence": [],
   "skippedAsChecked": [],
+  "promptLeak": [],
   "cost": {
     "models": [
       {
         "model": "llama-3.3-70b-versatile",
         "calls": 2,
-        "promptTokens": 4637,
-        "completionTokens": 586,
+        "promptTokens": 4820,
+        "completionTokens": 555,
         "failures": 0
       }
     ],
     "hosts": [],
     "totals": {
       "modelCalls": 2,
-      "promptTokens": 4637,
-      "completionTokens": 586,
+      "promptTokens": 4820,
+      "completionTokens": 555,
       "externalCalls": 0,
       "externalMs": 0
     },
     "estimatedUsd": {
-      "model": 0.003199,
+      "model": 0.003282,
       "external": 0,
-      "total": 0.003199,
+      "total": 0.003282,
       "rateCard": "published rates as of 2026-08-01",
       "note": "Tokens and call counts are measured. Money is derived from the rate card and is an estimate: re-price the same tokens if the rates have moved. External cost is 0 because every source used is free at this volume -- Companies House and SEC EDGAR are free, Neon and Vercel are free tier, Serper stays inside its free allowance. Call counts are recorded anyway, since those are what rate limits bind on and what would carry a price at 5,000 records."
     },
-    "wallMs": 2696
+    "wallMs": 2428
   },
   "countsResolvedFromToolOutput": [
     {
@@ -534,13 +535,17 @@
     {
       "token": "search_firms.matched",
       "value": 128
+    },
+    {
+      "token": "search_firms.returned",
+      "value": 10
     }
   ],
   "toolsUsed": [
     "search_firms",
     "count_matching",
-    "search_firms",
-    "get_firm"
+    "get_firm",
+    "check_evidence"
   ],
   "scopePerTool": [
     {
@@ -560,20 +565,18 @@
       "appliedFilters": []
     },
     {
-      "tool": "search_firms",
-      "searched": 664,
-      "matched": 0,
-      "returned": 0,
-      "appliedFilters": [
-        "name contains \"healthcare\""
-      ],
-      "relevanceScoreMeaning": "relevanceScore ranks how well a record matches the FILTERS APPLIED. It is not a confidence, probability, certainty, likelihood or evidence-strength value, and must never be presented as one. Confidence in any specific question comes from whether the fields that question needs are present -- see each result's `missing` list.",
-      "countNote": "0 firms matched; the data array holds only the top 0. Report 0 as the count, never the array length."
-    },
-    {
       "tool": "get_firm",
       "entityId": "ent_sec_n_colony_family_offices",
       "releasedClaims": 9
+    },
+    {
+      "tool": "check_evidence",
+      "entityId": "ent_sec_n_colony_family_offices",
+      "field": "principal.fullName",
+      "gatesPassed": 3,
+      "gatesSkipped": 3,
+      "gatesFailed": 0,
+      "gateOutcomesNote": "These are three separate figures and must never be added together or described as one count of checks performed. Only `gatesPassed` were actually checked and passed. A skipped gate DID NOT RUN: it is not evidence of anything, it is the absence of evidence, and it must never be presented alongside passes as though the value had been cleared. Describe these as \"gate outcomes\" or \"validation checks\", never as rows, records or data."
     }
   ],
   "entityIdsUsed": [
@@ -630,28 +633,23 @@
             "because": "count total family offices"
           },
           {
-            "tool": "search_firms",
-            "input": {
-              "q": "healthcare",
-              "requireStrictReachable": false,
-              "requireProfileAssisted": false,
-              "requiredFields": [],
-              "freshWithinDays": null,
-              "maxSourceTier": null,
-              "limit": 10
-            },
-            "because": "find firms with healthcare in name"
-          },
-          {
             "tool": "get_firm",
             "input": {
               "entityId": "example_id"
             },
-            "because": "example of getting one firm's released claims"
+            "because": "get one family office's released claims"
+          },
+          {
+            "tool": "check_evidence",
+            "input": {
+              "entityId": "example_id",
+              "field": "principal.fullName"
+            },
+            "because": "check evidence for one claim"
           }
         ]
       },
-      "at": "2026-08-02T09:34:58.961Z"
+      "at": "2026-08-02T09:53:39.075Z"
     },
     {
       "step": 2,
@@ -689,7 +687,7 @@
         ],
         "rows": 10
       },
-      "at": "2026-08-02T09:34:59.112Z"
+      "at": "2026-08-02T09:53:39.212Z"
     },
     {
       "step": 3,
@@ -713,48 +711,10 @@
         ],
         "rows": 1
       },
-      "at": "2026-08-02T09:34:59.258Z"
+      "at": "2026-08-02T09:53:39.354Z"
     },
     {
       "step": 4,
-      "kind": "tool",
-      "detail": {
-        "tool": "search_firms",
-        "input": {
-          "q": "healthcare",
-          "requireStrictReachable": false,
-          "requireProfileAssisted": false,
-          "requiredFields": [],
-          "freshWithinDays": null,
-          "maxSourceTier": null,
-          "limit": 10
-        },
-        "scope": {
-          "searched": 664,
-          "matched": 0,
-          "returned": 0,
-          "appliedFilters": [
-            "name contains \"healthcare\""
-          ],
-          "relevanceScoreMeaning": "relevanceScore ranks how well a record matches the FILTERS APPLIED. It is not a confidence, probability, certainty, likelihood or evidence-strength value, and must never be presented as one. Confidence in any specific question comes from whether the fields that question needs are present -- see each result's `missing` list.",
-          "countNote": "0 firms matched; the data array holds only the top 0. Report 0 as the count, never the array length."
-        },
-        "excluded": [
-          {
-            "reason": "name did not match the query text",
-            "count": 614
-          },
-          {
-            "reason": "below the commercial floor",
-            "count": 50
-          }
-        ],
-        "rows": 0
-      },
-      "at": "2026-08-02T09:34:59.357Z"
-    },
-    {
-      "step": 5,
       "kind": "tool",
       "detail": {
         "tool": "get_firm",
@@ -764,10 +724,10 @@
         },
         "why": "planner supplied a placeholder or unknown id"
       },
-      "at": "2026-08-02T09:34:59.357Z"
+      "at": "2026-08-02T09:53:39.354Z"
     },
     {
-      "step": 6,
+      "step": 5,
       "kind": "tool",
       "detail": {
         "tool": "get_firm",
@@ -781,30 +741,50 @@
         "excluded": [],
         "rows": 1
       },
-      "at": "2026-08-02T09:34:59.454Z"
+      "at": "2026-08-02T09:53:39.412Z"
+    },
+    {
+      "step": 6,
+      "kind": "tool",
+      "detail": {
+        "tool": "check_evidence",
+        "rebound": {
+          "from": "example_id",
+          "to": "ent_sec_n_colony_family_offices"
+        },
+        "why": "planner supplied a placeholder or unknown id"
+      },
+      "at": "2026-08-02T09:53:39.412Z"
     },
     {
       "step": 7,
-      "kind": "compose",
+      "kind": "tool",
       "detail": {
-        "answer": "The dataset cannot express market size, so the question of lower-middle-market could not be answered. The dataset also cannot express investment sector or mandate, so the question of healthcare services and limited partners could not be answered. Instead, the search was done for family offices. [[count:search_firms.searched]] firms were searched, and [[count:search_firms.matched]] firms matched the query. A list of family offices was returned, including [[ent_sec_n_colony_family_offices]], [[ent_sec_n_riverglades_family_offices]], [[ent_sec_n_heritage_family_offices]], [[ent_sec_n_allie_family_office]], [[ent_sec_0001536411]], [[ent_sec_n_stokes_family_office]], and [[ent_sec_n_intrepid_family_office]]. Confidence in their fit for a lower-middle-market healthcare services fund is low due to missing evidence on investment sector, mandate, and market size."
+        "tool": "check_evidence",
+        "input": {
+          "entityId": "ent_sec_n_colony_family_offices",
+          "field": "principal.fullName"
+        },
+        "scope": {
+          "entityId": "ent_sec_n_colony_family_offices",
+          "field": "principal.fullName",
+          "gatesPassed": 3,
+          "gatesSkipped": 3,
+          "gatesFailed": 0,
+          "gateOutcomesNote": "These are three separate figures and must never be added together or described as one count of checks performed. Only `gatesPassed` were actually checked and passed. A skipped gate DID NOT RUN: it is not evidence of anything, it is the absence of evidence, and it must never be presented alongside passes as though the value had been cleared. Describe these as \"gate outcomes\" or \"validation checks\", never as rows, records or data."
+        },
+        "excluded": [],
+        "rows": 6
       },
-      "at": "2026-08-02T09:35:00.567Z"
+      "at": "2026-08-02T09:53:39.434Z"
     },
     {
       "step": 8,
-      "kind": "block",
+      "kind": "compose",
       "detail": {
-        "stage": "claims-audit",
-        "relevanceAsConfidence": [],
-        "toolInternalsLeaked": [],
-        "unsupportedAbsence": [],
-        "skippedAsChecked": [],
-        "promptLeak": [
-          "fit for a lower middle market healthcare services"
-        ]
+        "answer": "The dataset cannot express market size, so the question of lower-middle-market could not be answered. The dataset also cannot express investment sector or mandate, or specific investment role, so the question of healthcare services and limited partners could not be answered. The search was done over [[count:search_firms.searched]] firms, with [[count:search_firms.matched]] matching the query. The top [[count:search_firms.returned]] results are: [[ent_sec_n_colony_family_offices]], [[ent_sec_n_riverglades_family_offices]], [[ent_sec_n_heritage_family_offices]], [[ent_sec_n_boston_family_office]], [[ent_sec_n_arrowroot_family_office]], [[ent_sec_n_timonier_family_office]], and [[ent_sec_0001913482]]. Confidence in their fit is low due to missing evidence on mandate, sector, and allocation. Instead, these family offices were selected based on their relevance score and reachability."
       },
-      "at": "2026-08-02T09:35:00.571Z"
+      "at": "2026-08-02T09:53:40.607Z"
     }
   ],
   "error": null

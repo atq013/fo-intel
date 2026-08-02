@@ -58,6 +58,8 @@ export interface AgentAnswer {
   skippedAsChecked: string[];
   /** the composer's own instructions quoted back to the reader */
   promptLeak: string[];
+  /** a refusal asserted where nothing was actually refused */
+  unsupportedRefusal: string[];
   /** measured spend and wall time for this answer -- see @fo/core/meter */
   cost: Record<string, unknown>;
 }
@@ -215,6 +217,9 @@ export async function runAgent(question: string): Promise<AgentAnswer> {
   // validation error checked nothing, and the difference decides whether the
   // answer may say anything about what was withheld.
   const evidenceChecks: Array<EvidenceCheck & { collectedAt?: number }> = [];
+  // Only get_firm knows what was quarantined or held for an entity, and that
+  // is what decides whether a refusal claim is supportable.
+  const withheldByEntity = new Map<string, number>();
   let callIndex = 0;
 
   const runTool = async (tool: string, input: Record<string, unknown>) => {
@@ -339,7 +344,7 @@ export async function runAgent(question: string): Promise<AgentAnswer> {
     const answer =
       'I could not retrieve anything for this question. No tool call succeeded, so I have nothing to base an answer on.';
     push('compose', { answer, reason: 'no tool results' });
-    return { answer, unhonouredConstraints: unhonoured, blocked: false, toolsUsed, scope, trace, nameCorrections: [], countsResolved: [], relevanceAsConfidence: [], toolInternalsLeaked: [], unsupportedAbsence: [], skippedAsChecked: [], promptLeak: [], cost: cost() };
+    return { answer, unhonouredConstraints: unhonoured, blocked: false, toolsUsed, scope, trace, nameCorrections: [], countsResolved: [], relevanceAsConfidence: [], toolInternalsLeaked: [], unsupportedAbsence: [], skippedAsChecked: [], promptLeak: [], unsupportedRefusal: [], cost: cost() };
   }
 
   // ---- compose -----------------------------------------------------------
@@ -386,17 +391,20 @@ export async function runAgent(question: string): Promise<AgentAnswer> {
   // ---- claims audit: relevance-as-confidence, and leaked internals --------
   // The answer must restate the unhonourable constraints and may restate the
   // question; neither counts as quoting its instructions.
-  const claims = auditClaims(answer, relevanceScores, evidenceChecks, composePrompt,
-    [...unhonoured, question]);
+  const claims = auditClaims(
+    answer, relevanceScores,
+    evidenceChecks.map((c) => ({ ...c, withheldForEntity: withheldByEntity.get(c.entityId) ?? 0 })),
+    composePrompt, [...unhonoured, question]);
   const relevanceAsConfidence = claims.relevanceAsConfidence;
   const toolInternalsLeaked = claims.internals;
   const unsupportedAbsence = claims.unsupportedAbsence;
   const skippedAsChecked = claims.skippedAsChecked;
   const promptLeak = claims.promptLeak;
-  if (relevanceAsConfidence.length || toolInternalsLeaked.length || unsupportedAbsence.length || skippedAsChecked.length || promptLeak.length) {
+  const unsupportedRefusal = claims.unsupportedRefusal;
+  if (relevanceAsConfidence.length || toolInternalsLeaked.length || unsupportedAbsence.length || skippedAsChecked.length || promptLeak.length || unsupportedRefusal.length) {
     push('block', {
       stage: 'claims-audit',
-      relevanceAsConfidence, toolInternalsLeaked, unsupportedAbsence, skippedAsChecked, promptLeak,
+      relevanceAsConfidence, toolInternalsLeaked, unsupportedAbsence, skippedAsChecked, promptLeak, unsupportedRefusal,
     });
   }
 
@@ -410,7 +418,7 @@ export async function runAgent(question: string): Promise<AgentAnswer> {
 
   // A ranking weight presented as confidence is a fabricated certainty, and
   // tool internals are unreadable to a buyer. Either blocks the answer.
-  if (relevanceAsConfidence.length || toolInternalsLeaked.length || unsupportedAbsence.length || skippedAsChecked.length || promptLeak.length) {
+  if (relevanceAsConfidence.length || toolInternalsLeaked.length || unsupportedAbsence.length || skippedAsChecked.length || promptLeak.length || unsupportedRefusal.length) {
     blocked = true;
     blockReason =
       (relevanceAsConfidence.length ? 'composer presented a relevance score as a confidence value' : '') +
@@ -421,10 +429,12 @@ export async function runAgent(question: string): Promise<AgentAnswer> {
       ((relevanceAsConfidence.length || toolInternalsLeaked.length || unsupportedAbsence.length) && skippedAsChecked.length ? '; ' : '') +
       (skippedAsChecked.length ? 'composer counted gates that did not run as checks that cleared the record' : '') +
       ((relevanceAsConfidence.length || toolInternalsLeaked.length || unsupportedAbsence.length || skippedAsChecked.length) && promptLeak.length ? '; ' : '') +
-      (promptLeak.length ? 'composer quoted its own instructions into the answer' : '');
+      (promptLeak.length ? 'composer quoted its own instructions into the answer' : '') +
+      (promptLeak.length && unsupportedRefusal.length ? '; ' : '') +
+      (unsupportedRefusal.length ? 'composer said values were refused when nothing was refused' : '');
     answer = confidenceBlockMessage(claims);
     return { answer, unhonouredConstraints: unhonoured, blocked, blockReason, toolsUsed, scope, trace,
-      nameCorrections, countsResolved, relevanceAsConfidence, toolInternalsLeaked, unsupportedAbsence, skippedAsChecked, promptLeak, cost: cost() };
+      nameCorrections, countsResolved, relevanceAsConfidence, toolInternalsLeaked, unsupportedAbsence, skippedAsChecked, promptLeak, unsupportedRefusal, cost: cost() };
   }
 
   // A dataset count the tools did not produce is a fabricated fact.
@@ -438,7 +448,7 @@ export async function runAgent(question: string): Promise<AgentAnswer> {
       [...counts.unsupported.map(String), ...counts.unresolvedTokens].map((c) => `"${c}"`).join(', ') +
       ' as a figure from the data, but no tool returned it. Rather than show you a ' +
       'number I cannot trace, I am declining the answer.';
-    return { answer, unhonouredConstraints: unhonoured, blocked, blockReason, toolsUsed, scope, trace, nameCorrections, countsResolved, relevanceAsConfidence, toolInternalsLeaked, unsupportedAbsence, skippedAsChecked, promptLeak, cost: cost() };
+    return { answer, unhonouredConstraints: unhonoured, blocked, blockReason, toolsUsed, scope, trace, nameCorrections, countsResolved, relevanceAsConfidence, toolInternalsLeaked, unsupportedAbsence, skippedAsChecked, promptLeak, unsupportedRefusal, cost: cost() };
   }
 
   // A firm-like name with no counterpart in the tool output is a fabricated
@@ -453,7 +463,7 @@ export async function runAgent(question: string): Promise<AgentAnswer> {
       [...resolved.fabricated, ...resolved.unresolvedTokens].map((f) => `"${f}"`).join(', ') +
       ', which does not appear in the data I retrieved. Rather than show you a firm ' +
       'that may not exist, I am declining the answer.';
-    return { answer, unhonouredConstraints: unhonoured, blocked, blockReason, toolsUsed, scope, trace, nameCorrections, countsResolved, relevanceAsConfidence, toolInternalsLeaked, unsupportedAbsence, skippedAsChecked, promptLeak, cost: cost() };
+    return { answer, unhonouredConstraints: unhonoured, blocked, blockReason, toolsUsed, scope, trace, nameCorrections, countsResolved, relevanceAsConfidence, toolInternalsLeaked, unsupportedAbsence, skippedAsChecked, promptLeak, unsupportedRefusal, cost: cost() };
   }
 
   if (unhonoured.length) {
@@ -470,7 +480,7 @@ export async function runAgent(question: string): Promise<AgentAnswer> {
     }
   }
 
-  return { answer, unhonouredConstraints: unhonoured, blocked, blockReason, toolsUsed, scope, trace, nameCorrections, countsResolved, relevanceAsConfidence, toolInternalsLeaked, unsupportedAbsence, skippedAsChecked, promptLeak, cost: cost() };
+  return { answer, unhonouredConstraints: unhonoured, blocked, blockReason, toolsUsed, scope, trace, nameCorrections, countsResolved, relevanceAsConfidence, toolInternalsLeaked, unsupportedAbsence, skippedAsChecked, promptLeak, unsupportedRefusal, cost: cost() };
 }
 
 /**

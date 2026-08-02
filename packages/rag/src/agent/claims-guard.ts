@@ -46,6 +46,18 @@ const CONFIDENCE_WORD =
 /** Tool-shaped phrasing that must never reach a customer. */
 const TOOL_INTERNALS = [
   /\b\d+\s+rows?\b/i,
+  // Database vocabulary in plain English, which the token list above misses
+  // because these are real words. "a qualifying firm with a commercial state"
+  // and "listed in the 'missing' field for each firm" both reached production:
+  // the first is a column name, the second tells a buyer to read a JSON key.
+  /\bcommercial[_ ]?state\b/i,
+  /\btrust[_ ]?state\b/i,
+  /\bcommercial floor\b/i,
+  /\b['"`]?missing['"`]?\s+field\b/i,
+  /\bthe\s+['"`]\w+['"`]\s+field\b/i,
+  // The system's own action attributed to the reader: "You could not honour the
+  // constraint" tells a buyer that THEY failed at something.
+  /\byou\s+(?:could\s*n[o']?t|couldn't|did\s*n[o']?t|didn't|cannot|can't|were\s+unable\s+to)\s+(?:honour|honor|determine|answer|provide|retrieve|express)\b/i,
   /\b(rows?|dataLength|releasedClaims|excludedTotal|appliedFilters|entityId|value_?type|claim_?id|policy_?version)\b/,
   /\b0\s+data\b/i,
   /\bnull\b/,
@@ -72,6 +84,25 @@ const ABSENCE_OF_WITHHOLDING = new RegExp(
   'i',
 );
 
+/**
+ * Claiming the system refused something it never had.
+ *
+ * Production, Goal 3: *"The evidence that was refused to be published includes
+ * the mandate, sector, allocation, cheque size, and LP data, as these fields are
+ * not present."* Boston holds 9 claims, all released, none quarantined, and no
+ * firm anywhere in the dataset has a mandate, sector or allocation field. The
+ * gates never saw those values, so they cannot have refused them.
+ *
+ * This is the mirror of the absence defect and it fails the brief's own test
+ * from the other side: *"not found through the sources attempted" may not be
+ * shown as "does not exist"* -- and equally, never collected may not be shown as
+ * withheld. It is the more flattering direction to be wrong in, because it makes
+ * the validation layer look busier than it was, which is why it needs a guard
+ * rather than trust.
+ */
+const ASSERTS_REFUSAL =
+  /\b(refus\w+|withh\w+|suppress\w+|blocked|quarantin\w+|declined to publish|held back|kept back)\b/i;
+
 export interface EvidenceCheck {
   entityId: string;
   /** false when the call returned a validation error and checked nothing */
@@ -81,6 +112,10 @@ export interface EvidenceCheck {
   passed?: number;
   /** gates that did not run at all */
   skipped?: number;
+  /** gates that actually failed -- the only thing that refuses a value */
+  failed?: number;
+  /** claims quarantined or held for this entity, from get_firm's `excluded` */
+  withheldForEntity?: number;
 }
 
 /**
@@ -179,6 +214,8 @@ export interface ClaimsAudit {
   skippedAsChecked: string[];
   /** runs of the composer's own instructions quoted back to the reader */
   promptLeak: string[];
+  /** a refusal asserted where nothing was actually refused */
+  unsupportedRefusal: string[];
 }
 
 /**
@@ -264,8 +301,27 @@ export function auditClaims(
     }
   }
 
+  // A refusal claim is only supportable when something was actually refused: a
+  // gate that failed, or a claim quarantined or held. With neither, the sentence
+  // is describing data that was never collected.
+  const refused = evidenceChecks.reduce((n, c) => n + (c.failed ?? 0) + (c.withheldForEntity ?? 0), 0);
+  const unsupportedRefusal: string[] = [];
+  if (evidenceChecks.length && refused === 0) {
+    for (const sentence of answer.split(/(?<=[.!?])\s+/)) {
+      if (!ASSERTS_REFUSAL.test(sentence)) continue;
+      // "nothing was withheld" is the absence guard's business, not this one.
+      if (ABSENCE_OF_WITHHOLDING.test(sentence)) continue;
+      // No exemption for also mentioning absence. The production sentence said
+      // the values were "refused to be published ... as these fields are not
+      // present" -- both at once, which is not a softer version of the claim but
+      // a self-contradicting one. The honest form does not use the word refused:
+      // "the dataset does not record these, so there was nothing to publish".
+      unsupportedRefusal.push(sentence.trim());
+    }
+  }
+
   return {
-    relevanceAsConfidence, internals, unsupportedAbsence, skippedAsChecked,
+    relevanceAsConfidence, internals, unsupportedAbsence, skippedAsChecked, unsupportedRefusal,
     promptLeak: findPromptLeak(answer, promptText, expectedEchoes),
   };
 }
@@ -288,6 +344,13 @@ export function confidenceBlockMessage(audit: ClaimsAudit): string {
   }
   if (audit.internals.length) {
     parts.push(`It also exposed internal tool output (${audit.internals.join(', ')}) rather than plain language.`);
+  }
+  if (audit.unsupportedRefusal.length) {
+    parts.push(
+      `It said the system refused to publish something — "${audit.unsupportedRefusal[0]}" — when ` +
+      'nothing was refused for this firm. Those values were never collected, which is a different ' +
+      'thing from being withheld, and reporting one as the other overstates what the checks did.',
+    );
   }
   if (audit.promptLeak.length) {
     parts.push(
