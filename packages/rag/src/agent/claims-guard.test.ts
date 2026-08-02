@@ -223,3 +223,42 @@ test('claims · with nothing skipped, an all-clear is simply true', () => {
   const answer = 'All 78 checks passed and nothing was refused.';
   assert.deepEqual(auditClaims(answer, SCORES, NO_SKIPS).skippedAsChecked, []);
 });
+
+/**
+ * The answer quoting its own instructions. Production Goal 3, verbatim.
+ */
+
+const COMPOSE_FRAGMENT =
+  'You could NOT honour these constraints:\n- Unpublished information — Dataset cannot express ' +
+  'unpublished information\n\nYou MUST state this plainly in your answer, in the first two ' +
+  'sentences, in plain words. Say which part of the question you could not do and what you did ' +
+  'instead. An answer that quietly ignores these is worse than no answer.';
+
+test('claims · THE GOAL 3 PROMPT LEAK: instructions quoted to the buyer are caught', () => {
+  const answer =
+    'I could not honour these constraints: You could NOT honour these constraints: - Unpublished ' +
+    'information — Dataset cannot express unpublished information. You MUST state this plainly in ' +
+    'your answer, in the first two sentences, in plain words. Say which part of the question you ' +
+    'could not do and what you did instead.';
+  const a = auditClaims(answer, SCORES, [], COMPOSE_FRAGMENT);
+  assert.ok(a.promptLeak.length > 0, 'must catch the quoted instruction');
+  assert.match(confidenceBlockMessage(a), /quoted its own instructions back to you/);
+});
+
+test('claims · saying the same thing in its own words is allowed', () => {
+  // The behaviour the instruction is asking for, without reciting it.
+  const answer =
+    'I could not tell you what the system has not published, because the dataset does not hold ' +
+    'unpublished information. What I can give you is what it does hold and what the gates refused.';
+  assert.deepEqual(auditClaims(answer, SCORES, [], COMPOSE_FRAGMENT).promptLeak, []);
+});
+
+test('claims · short overlaps with the prompt are not leaks', () => {
+  // An answer legitimately reuses the question's nouns.
+  const answer = 'Unpublished information is not held for this firm.';
+  assert.deepEqual(auditClaims(answer, SCORES, [], COMPOSE_FRAGMENT).promptLeak, []);
+});
+
+test('claims · with no prompt supplied the check is inert rather than guessing', () => {
+  assert.deepEqual(auditClaims('any answer at all', SCORES, []).promptLeak, []);
+});

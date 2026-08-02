@@ -109,6 +109,49 @@ const NAMES_THE_SKIP =
 
 const CHECKED_A_COUNT = /\b(check\w*|validat\w*|verif\w*|review\w*|examin\w*|assess\w*)\b[^.;!?]{0,40}?(\d+)|(\d+)\s+[^.;!?]{0,30}?\b(checks?|aspects?|validations?|gates?)\b/i;
 
+/**
+ * The answer quoting its own instructions.
+ *
+ * Production, Goal 3: *"I could not honour these constraints: You could NOT
+ * honour these constraints: - Unpublished information ... You MUST state this
+ * plainly in your answer, in the first two sentences, in plain words. Say which
+ * part of the question you could not do and what you did instead."*
+ *
+ * A buyer was shown the prompt. Nothing else caught it: the internals guard
+ * looks for tool-shaped tokens and this is English, the absence guard had
+ * nothing to fire on, and the sentence is not false -- it is just not addressed
+ * to the reader.
+ *
+ * Detected structurally rather than by phrase list, because the next leak will
+ * be worded differently: any run of `LEAK_WINDOW` consecutive words shared
+ * between the prompt and the answer is a quotation, not a coincidence. Short
+ * overlaps are expected and ignored -- the answer legitimately reuses the
+ * question's nouns.
+ */
+const LEAK_WINDOW = 8;
+
+const shingles = (text: string, n: number): Set<string> => {
+  const words = text.toLowerCase().replace(/[^a-z0-9 ]/g, ' ').split(/\s+/).filter(Boolean);
+  const out = new Set<string>();
+  for (let i = 0; i + n <= words.length; i++) out.add(words.slice(i, i + n).join(' '));
+  return out;
+};
+
+/**
+ * Runs of the prompt that appear verbatim in the answer, longest first.
+ * `promptText` is whatever was sent to the model for this answer.
+ */
+export function findPromptLeak(answer: string, promptText: string): string[] {
+  if (!promptText) return [];
+  const fromPrompt = shingles(promptText, LEAK_WINDOW);
+  const hits: string[] = [];
+  for (const s of shingles(answer, LEAK_WINDOW)) {
+    if (fromPrompt.has(s)) hits.push(s);
+  }
+  // Overlapping shingles describe one leak; report the distinct starts only.
+  return hits.filter((h, i) => !hits.some((o, j) => j < i && o.includes(h.split(' ')[0]!))).slice(0, 3);
+}
+
 export interface ClaimsAudit {
   /** relevance values presented as confidence */
   relevanceAsConfidence: Array<{ value: number; context: string }>;
@@ -118,6 +161,8 @@ export interface ClaimsAudit {
   unsupportedAbsence: string[];
   /** a skipped gate presented as one that checked or cleared the value */
   skippedAsChecked: string[];
+  /** runs of the composer's own instructions quoted back to the reader */
+  promptLeak: string[];
 }
 
 /**
@@ -136,6 +181,7 @@ export function auditClaims(
   answer: string,
   relevanceScores: number[],
   evidenceChecks: EvidenceCheck[] = [],
+  promptText = '',
 ): ClaimsAudit {
   const relevanceAsConfidence: Array<{ value: number; context: string }> = [];
   const seen = new Set<number>();
@@ -201,7 +247,10 @@ export function auditClaims(
     }
   }
 
-  return { relevanceAsConfidence, internals, unsupportedAbsence, skippedAsChecked };
+  return {
+    relevanceAsConfidence, internals, unsupportedAbsence, skippedAsChecked,
+    promptLeak: findPromptLeak(answer, promptText),
+  };
 }
 
 /**
@@ -222,6 +271,12 @@ export function confidenceBlockMessage(audit: ClaimsAudit): string {
   }
   if (audit.internals.length) {
     parts.push(`It also exposed internal tool output (${audit.internals.join(', ')}) rather than plain language.`);
+  }
+  if (audit.promptLeak.length) {
+    parts.push(
+      `It quoted its own instructions back to you — "...${audit.promptLeak[0]}...". ` +
+      'That text was addressed to the system, not to you, and should never have appeared in an answer.',
+    );
   }
   if (audit.skippedAsChecked.length) {
     parts.push(

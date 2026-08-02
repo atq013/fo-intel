@@ -4,8 +4,8 @@
   "submittedPrompt": "I am raising a fund and need a prioritised outreach list. Which family offices can I reach by phone at a named individual, how many are there in total, and for the ones you return, which have every value traced to a statutory source rather than an aggregator? Tell me which to approach first and what is missing from each.",
   "productionUrl": "https://fo-intel-web.vercel.app/api/agent",
   "agentUiUrl": "https://fo-intel-web.vercel.app/agent",
-  "submittedAtUtc": "2026-08-01T19:59:16.317Z",
-  "latencyMs": 3821,
+  "submittedAtUtc": "2026-08-02T09:20:49.458Z",
+  "latencyMs": 3546,
   "httpStatus": 200,
   "whyThisGoal": "No single retrieval call answers this: it needs a filtered shortlist, a separate exact count, per-record evidence grading, and a comparison composed into an outreach order.",
   "manualRetrievalEquivalent": {
@@ -43,7 +43,7 @@
       {
         "entityId": "ent_sec_n_american_family_investments",
         "name": "American Family Investments, Inc.",
-        "score": 0.9975,
+        "score": 0.9966,
         "contact": {
           "channel": "phone",
           "value": "6083453458",
@@ -53,7 +53,7 @@
         "matched": [
           "a route that reaches a named individual, profiles excluded",
           "every value traced to a statutory source or the firm itself",
-          "source re-observed 1d ago",
+          "source re-observed 2d ago",
           "9 released claims, each with establishing evidence"
         ],
         "missing": []
@@ -61,7 +61,7 @@
       {
         "entityId": "ent_sec_n_pinnacle_family_advisors",
         "name": "Pinnacle Family Advisors, LLC",
-        "score": 0.9975,
+        "score": 0.9966,
         "contact": {
           "channel": "phone",
           "value": "417-886-6590",
@@ -71,7 +71,7 @@
         "matched": [
           "a route that reaches a named individual, profiles excluded",
           "every value traced to a statutory source or the firm itself",
-          "source re-observed 1d ago",
+          "source re-observed 2d ago",
           "9 released claims, each with establishing evidence"
         ],
         "missing": []
@@ -79,7 +79,7 @@
       {
         "entityId": "ent_sec_n_family_management",
         "name": "Family Management Corp",
-        "score": 0.9975,
+        "score": 0.9966,
         "contact": {
           "channel": "phone",
           "value": "212-872-9637",
@@ -89,7 +89,7 @@
         "matched": [
           "a route that reaches a named individual, profiles excluded",
           "every value traced to a statutory source or the firm itself",
-          "source re-observed 1d ago",
+          "source re-observed 2d ago",
           "9 released claims, each with establishing evidence"
         ],
         "missing": []
@@ -97,7 +97,7 @@
       {
         "entityId": "ent_sec_n_colony_family_offices",
         "name": "Colony Family Offices, LLC",
-        "score": 0.9975,
+        "score": 0.9966,
         "contact": {
           "channel": "phone",
           "value": "704-285-7300",
@@ -107,7 +107,7 @@
         "matched": [
           "a route that reaches a named individual, profiles excluded",
           "every value traced to a statutory source or the firm itself",
-          "source re-observed 1d ago",
+          "source re-observed 2d ago",
           "9 released claims, each with establishing evidence"
         ],
         "missing": []
@@ -115,7 +115,7 @@
       {
         "entityId": "ent_sec_n_corus_family_wealth_advisors",
         "name": "Corus Family Wealth Advisors",
-        "score": 0.9975,
+        "score": 0.9966,
         "contact": {
           "channel": "phone",
           "value": "972-422-1010",
@@ -125,7 +125,7 @@
         "matched": [
           "a route that reaches a named individual, profiles excluded",
           "every value traced to a statutory source or the firm itself",
-          "source re-observed 1d ago",
+          "source re-observed 2d ago",
           "9 released claims, each with establishing evidence"
         ],
         "missing": []
@@ -133,7 +133,7 @@
       {
         "entityId": "ent_sec_n_family_legacy",
         "name": "Family Legacy, Inc.",
-        "score": 0.9975,
+        "score": 0.9966,
         "contact": {
           "channel": "phone",
           "value": "8642330808",
@@ -143,7 +143,7 @@
         "matched": [
           "a route that reaches a named individual, profiles excluded",
           "every value traced to a statutory source or the firm itself",
-          "source re-observed 1d ago",
+          "source re-observed 2d ago",
           "9 released claims, each with establishing evidence"
         ],
         "missing": []
@@ -151,7 +151,7 @@
       {
         "entityId": "ent_sec_n_george_kaiser_family_foundation",
         "name": "George Kaiser Family Foundation",
-        "score": 0.9975,
+        "score": 0.9966,
         "contact": {
           "channel": "phone",
           "value": "(918) 392-1612",
@@ -161,7 +161,7 @@
         "matched": [
           "a route that reaches a named individual, profiles excluded",
           "every value traced to a statutory source or the firm itself",
-          "source re-observed 1d ago",
+          "source re-observed 2d ago",
           "9 released claims, each with establishing evidence"
         ],
         "missing": []
@@ -169,7 +169,7 @@
       {
         "entityId": "ent_sec_n_rpg_family_wealth_advisory",
         "name": "RPg Family Wealth Advisory, LLC",
-        "score": 0.9975,
+        "score": 0.9966,
         "contact": {
           "channel": "phone",
           "value": "7819168176",
@@ -179,7 +179,7 @@
         "matched": [
           "a route that reaches a named individual, profiles excluded",
           "every value traced to a statutory source or the firm itself",
-          "source re-observed 1d ago",
+          "source re-observed 2d ago",
           "9 released claims, each with establishing evidence"
         ],
         "missing": []
@@ -187,7 +187,7 @@
       {
         "entityId": "ent_sec_n_mosaic_family_wealth_partners",
         "name": "MOSAIC FAMILY WEALTH PARTNERS, LLC",
-        "score": 0.9975,
+        "score": 0.9966,
         "contact": {
           "channel": "phone",
           "value": "314-627-5220",
@@ -197,7 +197,7 @@
         "matched": [
           "a route that reaches a named individual, profiles excluded",
           "every value traced to a statutory source or the firm itself",
-          "source re-observed 1d ago",
+          "source re-observed 2d ago",
           "9 released claims, each with establishing evidence"
         ],
         "missing": []
@@ -205,7 +205,7 @@
       {
         "entityId": "ent_sec_n_riverglades_family_offices",
         "name": "RiverGlades Family Offices LLC",
-        "score": 0.9975,
+        "score": 0.9966,
         "contact": {
           "channel": "phone",
           "value": "2392634079",
@@ -215,7 +215,7 @@
         "matched": [
           "a route that reaches a named individual, profiles excluded",
           "every value traced to a statutory source or the firm itself",
-          "source re-observed 1d ago",
+          "source re-observed 2d ago",
           "9 released claims, each with establishing evidence"
         ],
         "missing": []
@@ -223,7 +223,7 @@
       {
         "entityId": "ent_sec_n_michels_family_financial",
         "name": "Michels Family Financial, LLC",
-        "score": 0.9975,
+        "score": 0.9966,
         "contact": {
           "channel": "phone",
           "value": "361-226-3360",
@@ -233,7 +233,7 @@
         "matched": [
           "a route that reaches a named individual, profiles excluded",
           "every value traced to a statutory source or the firm itself",
-          "source re-observed 1d ago",
+          "source re-observed 2d ago",
           "9 released claims, each with establishing evidence"
         ],
         "missing": []
@@ -241,7 +241,7 @@
       {
         "entityId": "ent_sec_n_strategic_family_wealth_counselors",
         "name": "Strategic Family Wealth Counselors, L.L.C.",
-        "score": 0.9975,
+        "score": 0.9966,
         "contact": {
           "channel": "phone",
           "value": "973-575-3444",
@@ -251,7 +251,7 @@
         "matched": [
           "a route that reaches a named individual, profiles excluded",
           "every value traced to a statutory source or the firm itself",
-          "source re-observed 1d ago",
+          "source re-observed 2d ago",
           "9 released claims, each with establishing evidence"
         ],
         "missing": []
@@ -259,7 +259,7 @@
       {
         "entityId": "ent_sec_n_horizon_family_wealth",
         "name": "Horizon Family Wealth, Inc.",
-        "score": 0.9975,
+        "score": 0.9966,
         "contact": {
           "channel": "phone",
           "value": "312-442-9192",
@@ -269,7 +269,7 @@
         "matched": [
           "a route that reaches a named individual, profiles excluded",
           "every value traced to a statutory source or the firm itself",
-          "source re-observed 1d ago",
+          "source re-observed 2d ago",
           "9 released claims, each with establishing evidence"
         ],
         "missing": []
@@ -277,7 +277,7 @@
       {
         "entityId": "ent_sec_n_omnia_family_wealth",
         "name": "Omnia Family Wealth, LLC",
-        "score": 0.9975,
+        "score": 0.9966,
         "contact": {
           "channel": "phone",
           "value": "(305) 602-9080",
@@ -287,7 +287,7 @@
         "matched": [
           "a route that reaches a named individual, profiles excluded",
           "every value traced to a statutory source or the firm itself",
-          "source re-observed 1d ago",
+          "source re-observed 2d ago",
           "9 released claims, each with establishing evidence"
         ],
         "missing": []
@@ -295,7 +295,7 @@
       {
         "entityId": "ent_sec_n_fusion_family_wealth",
         "name": "Fusion Family Wealth LLC",
-        "score": 0.9975,
+        "score": 0.9966,
         "contact": {
           "channel": "phone",
           "value": "(516) 206-1320",
@@ -305,7 +305,7 @@
         "matched": [
           "a route that reaches a named individual, profiles excluded",
           "every value traced to a statutory source or the firm itself",
-          "source re-observed 1d ago",
+          "source re-observed 2d ago",
           "9 released claims, each with establishing evidence"
         ],
         "missing": []
@@ -313,7 +313,7 @@
       {
         "entityId": "ent_sec_n_atlantic_family_wealth",
         "name": "ATLANTIC FAMILY WEALTH, LLC",
-        "score": 0.9975,
+        "score": 0.9966,
         "contact": {
           "channel": "phone",
           "value": "305-222-0977",
@@ -323,7 +323,7 @@
         "matched": [
           "a route that reaches a named individual, profiles excluded",
           "every value traced to a statutory source or the firm itself",
-          "source re-observed 1d ago",
+          "source re-observed 2d ago",
           "9 released claims, each with establishing evidence"
         ],
         "missing": []
@@ -331,7 +331,7 @@
       {
         "entityId": "ent_sec_n_strengthening_families_communities",
         "name": "Strengthening Families & Communities, LLC",
-        "score": 0.9975,
+        "score": 0.9966,
         "contact": {
           "channel": "phone",
           "value": "6175301693",
@@ -341,7 +341,7 @@
         "matched": [
           "a route that reaches a named individual, profiles excluded",
           "every value traced to a statutory source or the firm itself",
-          "source re-observed 1d ago",
+          "source re-observed 2d ago",
           "9 released claims, each with establishing evidence"
         ],
         "missing": []
@@ -349,7 +349,7 @@
       {
         "entityId": "ent_sec_n_forthright_family_wealth_advisory",
         "name": "Forthright Family Wealth Advisory LLC",
-        "score": 0.9975,
+        "score": 0.9966,
         "contact": {
           "channel": "phone",
           "value": "713-510-3510",
@@ -359,7 +359,7 @@
         "matched": [
           "a route that reaches a named individual, profiles excluded",
           "every value traced to a statutory source or the firm itself",
-          "source re-observed 1d ago",
+          "source re-observed 2d ago",
           "9 released claims, each with establishing evidence"
         ],
         "missing": []
@@ -367,7 +367,7 @@
       {
         "entityId": "ent_sec_n_oak_family_advisors",
         "name": "OAK FAMILY ADVISORS, LLC",
-        "score": 0.9975,
+        "score": 0.9966,
         "contact": {
           "channel": "phone",
           "value": "312-373-7223",
@@ -377,7 +377,7 @@
         "matched": [
           "a route that reaches a named individual, profiles excluded",
           "every value traced to a statutory source or the firm itself",
-          "source re-observed 1d ago",
+          "source re-observed 2d ago",
           "9 released claims, each with establishing evidence"
         ],
         "missing": []
@@ -385,7 +385,7 @@
       {
         "entityId": "ent_sec_n_avantra_family_wealth",
         "name": "Avantra Family Wealth, Inc.",
-        "score": 0.9975,
+        "score": 0.9966,
         "contact": {
           "channel": "phone",
           "value": "(717) 276-1501",
@@ -395,7 +395,7 @@
         "matched": [
           "a route that reaches a named individual, profiles excluded",
           "every value traced to a statutory source or the firm itself",
-          "source re-observed 1d ago",
+          "source re-observed 2d ago",
           "9 released claims, each with establishing evidence"
         ],
         "missing": []
@@ -403,7 +403,7 @@
       {
         "entityId": "ent_sec_n_noble_family_wealth",
         "name": "Noble Family Wealth, LLC",
-        "score": 0.9975,
+        "score": 0.9966,
         "contact": {
           "channel": "phone",
           "value": "727-674-1462",
@@ -413,7 +413,7 @@
         "matched": [
           "a route that reaches a named individual, profiles excluded",
           "every value traced to a statutory source or the firm itself",
-          "source re-observed 1d ago",
+          "source re-observed 2d ago",
           "9 released claims, each with establishing evidence"
         ],
         "missing": []
@@ -421,7 +421,7 @@
       {
         "entityId": "ent_sec_n_morton_brown_family_wealth",
         "name": "Morton Brown Family Wealth, LLC",
-        "score": 0.9975,
+        "score": 0.9966,
         "contact": {
           "channel": "phone",
           "value": "610.709.5072",
@@ -431,7 +431,7 @@
         "matched": [
           "a route that reaches a named individual, profiles excluded",
           "every value traced to a statutory source or the firm itself",
-          "source re-observed 1d ago",
+          "source re-observed 2d ago",
           "9 released claims, each with establishing evidence"
         ],
         "missing": []
@@ -439,7 +439,7 @@
       {
         "entityId": "ent_sec_n_petros_family_wealth",
         "name": "Petros Family Wealth, LLC",
-        "score": 0.9975,
+        "score": 0.9966,
         "contact": {
           "channel": "phone",
           "value": "612-643-9909",
@@ -449,7 +449,7 @@
         "matched": [
           "a route that reaches a named individual, profiles excluded",
           "every value traced to a statutory source or the firm itself",
-          "source re-observed 1d ago",
+          "source re-observed 2d ago",
           "9 released claims, each with establishing evidence"
         ],
         "missing": []
@@ -457,7 +457,7 @@
       {
         "entityId": "ent_sec_n_brady_family_wealth",
         "name": "BRADY FAMILY WEALTH, LLC",
-        "score": 0.9975,
+        "score": 0.9966,
         "contact": {
           "channel": "phone",
           "value": "(314) 919-9151",
@@ -467,7 +467,7 @@
         "matched": [
           "a route that reaches a named individual, profiles excluded",
           "every value traced to a statutory source or the firm itself",
-          "source re-observed 1d ago",
+          "source re-observed 2d ago",
           "9 released claims, each with establishing evidence"
         ],
         "missing": []
@@ -475,7 +475,7 @@
       {
         "entityId": "ent_sec_n_heritage_family_offices",
         "name": "Heritage Family Offices, LLP",
-        "score": 0.9975,
+        "score": 0.9966,
         "contact": {
           "channel": "phone",
           "value": "602-775-5400",
@@ -485,14 +485,14 @@
         "matched": [
           "a route that reaches a named individual, profiles excluded",
           "every value traced to a statutory source or the firm itself",
-          "source re-observed 1d ago",
+          "source re-observed 2d ago",
           "9 released claims, each with establishing evidence"
         ],
         "missing": []
       }
     ]
   },
-  "agentAnswer": "I could not determine family offices based on semantic similarity, instead I searched for firms whose name contains the substring 'family office'. I did not assess the firms' actual business activities or investment focus. The search scope included 664 firms, of which 27 matched the filters. The top 10 matching firms are: Colony Family Offices, LLC, RiverGlades Family Offices LLC, Heritage Family Offices, LLP, Allie Family Office LLC, Duquesne Family Office LLC, Stokes Family Office, LLC, INTREPID FAMILY OFFICE LLC. All of these firms have a phone number that reaches a named individual and every value is traced to a statutory source. You may want to approach Colony Family Offices, LLC first. None of the returned firms are missing any of the required fields.",
+  "agentAnswer": "I could not determine family offices based on semantic similarity, instead I searched for firms whose name contains the words 'family office'. I did not honour the constraint that requires semantic similarity. The search scope included 664 firms, of which 27 matched the filters. 10 firms are returned. The top firm to approach first is Colony Family Offices, LLC. All returned firms have every value traced to a statutory source. The firms returned have the following information: Colony Family Offices, LLC has phone number 704-285-7300, RiverGlades Family Offices LLC has phone number 2392634079, Heritage Family Offices, LLP has phone number 602-775-5400, Allie Family Office LLC has phone number 7866357162, Duquesne Family Office LLC has phone number 212-830-6500, Stokes Family Office, LLC has phone number 504-399-4100, INTREPID FAMILY OFFICE LLC has phone number (203) 862-3372. None of the returned firms are missing any information.",
   "blocked": false,
   "blockReason": null,
   "unhonouredConstraints": [
@@ -509,27 +509,27 @@
       {
         "model": "llama-3.3-70b-versatile",
         "calls": 2,
-        "promptTokens": 4863,
-        "completionTokens": 631,
+        "promptTokens": 4909,
+        "completionTokens": 694,
         "failures": 0
       }
     ],
     "hosts": [],
     "totals": {
       "modelCalls": 2,
-      "promptTokens": 4863,
-      "completionTokens": 631,
+      "promptTokens": 4909,
+      "completionTokens": 694,
       "externalCalls": 0,
       "externalMs": 0
     },
     "estimatedUsd": {
-      "model": 0.003368,
+      "model": 0.003445,
       "external": 0,
-      "total": 0.003368,
+      "total": 0.003445,
       "rateCard": "published rates as of 2026-08-01",
       "note": "Tokens and call counts are measured. Money is derived from the rate card and is an estimate: re-price the same tokens if the rates have moved. External cost is 0 because every source used is free at this volume -- Companies House and SEC EDGAR are free, Neon and Vercel are free tier, Serper stays inside its free allowance. Call counts are recorded anyway, since those are what rate limits bind on and what would carry a price at 5,000 records."
     },
-    "wallMs": 3228
+    "wallMs": 2997
   },
   "countsResolvedFromToolOutput": [
     {
@@ -664,7 +664,7 @@
           }
         ]
       },
-      "at": "2026-08-01T19:59:18.314Z"
+      "at": "2026-08-02T09:20:51.630Z"
     },
     {
       "step": 2,
@@ -698,7 +698,7 @@
         ],
         "rows": 1
       },
-      "at": "2026-08-01T19:59:18.497Z"
+      "at": "2026-08-02T09:20:51.778Z"
     },
     {
       "step": 3,
@@ -745,7 +745,7 @@
         ],
         "rows": 10
       },
-      "at": "2026-08-01T19:59:18.682Z"
+      "at": "2026-08-02T09:20:51.945Z"
     },
     {
       "step": 4,
@@ -758,7 +758,7 @@
         },
         "why": "planner supplied a placeholder or unknown id"
       },
-      "at": "2026-08-01T19:59:18.682Z"
+      "at": "2026-08-02T09:20:51.945Z"
     },
     {
       "step": 5,
@@ -775,7 +775,7 @@
         "excluded": [],
         "rows": 1
       },
-      "at": "2026-08-01T19:59:18.769Z"
+      "at": "2026-08-02T09:20:52.043Z"
     },
     {
       "step": 6,
@@ -788,7 +788,7 @@
         },
         "why": "planner supplied a placeholder or unknown id"
       },
-      "at": "2026-08-01T19:59:18.770Z"
+      "at": "2026-08-02T09:20:52.043Z"
     },
     {
       "step": 7,
@@ -810,15 +810,15 @@
         "excluded": [],
         "rows": 6
       },
-      "at": "2026-08-01T19:59:18.790Z"
+      "at": "2026-08-02T09:20:52.076Z"
     },
     {
       "step": 8,
       "kind": "compose",
       "detail": {
-        "answer": "I could not determine family offices based on semantic similarity, instead I searched for firms whose name contains the substring 'family office'. I did not assess the firms' actual business activities or investment focus. The search scope included [[count:search_firms.searched]] firms, of which [[count:search_firms.matched]] matched the filters. The top [[count:search_firms.returned]] matching firms are: [[ent_sec_n_colony_family_offices]], [[ent_sec_n_riverglades_family_offices]], [[ent_sec_n_heritage_family_offices]], [[ent_sec_n_allie_family_office]], [[ent_sec_0001536411]], [[ent_sec_n_stokes_family_office]], [[ent_sec_n_intrepid_family_office]]. All of these firms have a phone number that reaches a named individual and every value is traced to a statutory source. You may want to approach [[ent_sec_n_colony_family_offices]] first. None of the returned firms are missing any of the required fields."
+        "answer": "I could not determine family offices based on semantic similarity, instead I searched for firms whose name contains the words 'family office'. I did not honour the constraint that requires semantic similarity. The search scope included [[count:search_firms.searched]] firms, of which [[count:search_firms.matched]] matched the filters. [[count:search_firms.returned]] firms are returned. The top firm to approach first is [[ent_sec_n_colony_family_offices]]. All returned firms have every value traced to a statutory source. The firms returned have the following information: [[ent_sec_n_colony_family_offices]] has phone number 704-285-7300, [[ent_sec_n_riverglades_family_offices]] has phone number 2392634079, [[ent_sec_n_heritage_family_offices]] has phone number 602-775-5400, [[ent_sec_n_allie_family_office]] has phone number 7866357162, [[ent_sec_0001536411]] has phone number 212-830-6500, [[ent_sec_n_stokes_family_office]] has phone number 504-399-4100, [[ent_sec_n_intrepid_family_office]] has phone number (203) 862-3372. None of the returned firms are missing any information."
       },
-      "at": "2026-08-01T19:59:20.220Z"
+      "at": "2026-08-02T09:20:53.418Z"
     }
   ],
   "error": null

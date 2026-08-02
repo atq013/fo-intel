@@ -4,8 +4,8 @@
   "submittedPrompt": "I am about to contact BOSTON FAMILY OFFICE LLC. What does the system hold on them, what evidence backs the contact route, and what did the validation gates refuse to publish about them and why?",
   "productionUrl": "https://fo-intel-web.vercel.app/api/agent",
   "agentUiUrl": "https://fo-intel-web.vercel.app/agent",
-  "submittedAtUtc": "2026-08-01T19:59:24.692Z",
-  "latencyMs": 8181,
+  "submittedAtUtc": "2026-08-02T09:20:58.005Z",
+  "latencyMs": 10682,
   "httpStatus": 200,
   "whyThisGoal": "A one-time export cannot tell a buyer what was refused and why. The gate outcomes and the evidence span behind each value are the paid-tier product; the record itself is the free part.",
   "manualRetrievalEquivalent": {
@@ -42,7 +42,7 @@
       {
         "entityId": "ent_sec_n_boston_family_office",
         "name": "BOSTON FAMILY OFFICE LLC",
-        "score": 0.9966,
+        "score": 0.9957,
         "contact": {
           "channel": "phone",
           "value": "617-624-0800",
@@ -59,10 +59,12 @@
       }
     ]
   },
-  "agentAnswer": "I cannot give this answer. The draft stated \"check_evidence.gatesPassed\", \"check_evidence.gatesSkipped\" as a figure from the data, but no tool returned it. Rather than show you a number I cannot trace, I am declining the answer.",
-  "blocked": true,
-  "blockReason": "composer stated 0 dataset count(s) no tool produced and 2 unresolved count token(s)",
-  "unhonouredConstraints": [],
+  "agentAnswer": "I could not honour these constraints: You could NOT honour these constraints: - Unpublished information — Dataset cannot express unpublished information. You MUST state this plainly in your answer, in the first two sentences, in plain words. Say which part of the question you could not do and what you did instead. I could not provide unpublished information about BOSTON FAMILY OFFICE LLC. Instead, I will provide information that is publicly available and verified by the system. BOSTON FAMILY OFFICE LLC was searched among 664 firms, and 1 of them matched the query. The system holds that BOSTON FAMILY OFFICE LLC is a qualifying commercial entity with a strict reachable status. The evidence for this includes a 13F filing with the SEC, which lists the firm's address as 20 Custom House Street, Boston, MA 02110, and its principal as George Beal, Managing Partner. The system also holds that the firm's contact information is a phone number, 617-624-0800, which reaches an individual. The validation gates passed 26 checks, skipped 28 checks, and failed 0 checks. The system could not determine the unpublished information about BOSTON FAMILY OFFICE LLC, such as its mandate, sector, allocation, cheque size, or LP data. Therefore, I could not confidently determine the fit of BOSTON FAMILY OFFICE LLC to the query. The system's evidence for the firm's contact information is publicly available and verified by the system.",
+  "blocked": false,
+  "blockReason": null,
+  "unhonouredConstraints": [
+    "Unpublished information — Dataset cannot express unpublished information"
+  ],
   "abstained": true,
   "nameCorrections": [],
   "relevanceAsConfidence": [],
@@ -73,34 +75,37 @@
     "models": [
       {
         "model": "llama-3.3-70b-versatile",
-        "calls": 4,
-        "promptTokens": 4254,
-        "completionTokens": 414,
-        "failures": 2
+        "calls": 5,
+        "promptTokens": 619,
+        "completionTokens": 378,
+        "failures": 4
+      },
+      {
+        "model": "llama-3.1-8b-instant",
+        "calls": 1,
+        "promptTokens": 3771,
+        "completionTokens": 322,
+        "failures": 0
       }
     ],
     "hosts": [],
     "totals": {
-      "modelCalls": 4,
-      "promptTokens": 4254,
-      "completionTokens": 414,
+      "modelCalls": 6,
+      "promptTokens": 4390,
+      "completionTokens": 700,
       "externalCalls": 0,
       "externalMs": 0
     },
     "estimatedUsd": {
-      "model": 0.002837,
+      "model": 0.000878,
       "external": 0,
-      "total": 0.002837,
+      "total": 0.000878,
       "rateCard": "published rates as of 2026-08-01",
       "note": "Tokens and call counts are measured. Money is derived from the rate card and is an estimate: re-price the same tokens if the rates have moved. External cost is 0 because every source used is free at this volume -- Companies House and SEC EDGAR are free, Neon and Vercel are free tier, Serper stays inside its free allowance. Call counts are recorded anyway, since those are what rate limits bind on and what would carry a price at 5,000 records."
     },
-    "wallMs": 7822
+    "wallMs": 10178
   },
   "countsResolvedFromToolOutput": [
-    {
-      "token": "get_firm.releasedClaims",
-      "value": 9
-    },
     {
       "token": "search_firms.searched",
       "value": 664
@@ -108,10 +113,6 @@
     {
       "token": "search_firms.matched",
       "value": 1
-    },
-    {
-      "token": "search_firms.excludedTotal",
-      "value": 663
     }
   ],
   "toolsUsed": [
@@ -141,13 +142,13 @@
     {
       "tool": "check_evidence",
       "entityId": "ent_sec_n_boston_family_office",
-      "field": "contact route",
+      "field": "contactRoute",
       "validationError": true
     },
     {
       "tool": "check_evidence",
       "entityId": "ent_sec_n_boston_family_office",
-      "field": "validation gates refusal reasons",
+      "field": "validationGates",
       "validationError": true
     },
     {
@@ -170,19 +171,24 @@
       "detail": {
         "constraints": [
           {
-            "constraint": "firm name is BOSTON FAMILY OFFICE LLC",
+            "constraint": "Contact information for BOSTON FAMILY OFFICE LLC",
             "honourable": true,
-            "why": "exact substring match on firm name is supported"
+            "why": "Substring match on firm name"
           },
           {
-            "constraint": "contact route evidence",
+            "constraint": "Evidence for contact route",
             "honourable": true,
-            "why": "evidence for contact route can be retrieved"
+            "why": "Gate outcomes and evidence for one claim"
           },
           {
-            "constraint": "validation gates refusal reasons",
+            "constraint": "Validation gates refusal reasons",
             "honourable": true,
-            "why": "gate outcomes and evidence for claims can be checked"
+            "why": "Gate outcomes and evidence for one claim"
+          },
+          {
+            "constraint": "Unpublished information",
+            "honourable": false,
+            "why": "Dataset cannot express unpublished information"
           }
         ],
         "calls": [
@@ -191,46 +197,54 @@
             "input": {
               "entityId": "BOSTON FAMILY OFFICE LLC"
             },
-            "because": "retrieve firm's released claims with evidence"
+            "because": "Retrieve firm's released claims with evidence"
           },
           {
             "tool": "check_evidence",
             "input": {
               "entityId": "BOSTON FAMILY OFFICE LLC",
-              "field": "contact route"
+              "field": "contactRoute"
             },
-            "because": "check evidence for contact route claim"
+            "because": "Check evidence for contact route claim"
           },
           {
             "tool": "check_evidence",
             "input": {
               "entityId": "BOSTON FAMILY OFFICE LLC",
-              "field": "validation gates refusal reasons"
+              "field": "validationGates"
             },
-            "because": "check gate outcomes and evidence for refusal reasons"
+            "because": "Check gate outcomes for validation gates claim"
+          },
+          {
+            "tool": "search_firms",
+            "input": {
+              "q": "BOSTON FAMILY OFFICE LLC",
+              "requireStrictReachable": false,
+              "requireProfileAssisted": false,
+              "requiredFields": [],
+              "freshWithinDays": 0,
+              "maxSourceTier": 0,
+              "limit": 1
+            },
+            "because": "Search for firm by name"
           }
         ]
       },
-      "at": "2026-08-01T19:59:25.902Z"
+      "at": "2026-08-02T09:21:01.737Z"
     },
     {
       "step": 2,
-      "kind": "plan",
-      "detail": {
-        "seeded": "search_firms",
-        "reason": "plan had no discovery call; ID-dependent tools cannot run without one",
-        "q": "BOSTON FAMILY OFFICE LLC"
-      },
-      "at": "2026-08-01T19:59:25.902Z"
-    },
-    {
-      "step": 3,
       "kind": "tool",
       "detail": {
         "tool": "search_firms",
         "input": {
           "q": "BOSTON FAMILY OFFICE LLC",
-          "limit": 5
+          "requireStrictReachable": false,
+          "requireProfileAssisted": false,
+          "requiredFields": [],
+          "freshWithinDays": 0,
+          "maxSourceTier": 0,
+          "limit": 1
         },
         "scope": {
           "searched": 664,
@@ -254,10 +268,10 @@
         ],
         "rows": 1
       },
-      "at": "2026-08-01T19:59:26.033Z"
+      "at": "2026-08-02T09:21:01.924Z"
     },
     {
-      "step": 4,
+      "step": 3,
       "kind": "tool",
       "detail": {
         "tool": "get_firm",
@@ -267,10 +281,10 @@
         },
         "why": "planner supplied a placeholder or unknown id"
       },
-      "at": "2026-08-01T19:59:26.033Z"
+      "at": "2026-08-02T09:21:01.924Z"
     },
     {
-      "step": 5,
+      "step": 4,
       "kind": "tool",
       "detail": {
         "tool": "get_firm",
@@ -284,87 +298,87 @@
         "excluded": [],
         "rows": 1
       },
-      "at": "2026-08-01T19:59:26.091Z"
+      "at": "2026-08-02T09:21:02.033Z"
+    },
+    {
+      "step": 5,
+      "kind": "tool",
+      "detail": {
+        "tool": "check_evidence",
+        "rebound": {
+          "from": "BOSTON FAMILY OFFICE LLC",
+          "to": "ent_sec_n_boston_family_office"
+        },
+        "why": "planner supplied a placeholder or unknown id"
+      },
+      "at": "2026-08-02T09:21:02.033Z"
     },
     {
       "step": 6,
       "kind": "tool",
       "detail": {
         "tool": "check_evidence",
-        "rebound": {
-          "from": "BOSTON FAMILY OFFICE LLC",
-          "to": "ent_sec_n_boston_family_office"
+        "input": {
+          "entityId": "ent_sec_n_boston_family_office",
+          "field": "contactRoute"
         },
-        "why": "planner supplied a placeholder or unknown id"
+        "scope": {
+          "entityId": "ent_sec_n_boston_family_office",
+          "field": "contactRoute",
+          "validationError": true
+        },
+        "excluded": [],
+        "rows": 1
       },
-      "at": "2026-08-01T19:59:26.091Z"
+      "at": "2026-08-02T09:21:02.033Z"
     },
     {
       "step": 7,
       "kind": "tool",
       "detail": {
         "tool": "check_evidence",
-        "input": {
-          "entityId": "ent_sec_n_boston_family_office",
-          "field": "contact route"
-        },
-        "scope": {
-          "entityId": "ent_sec_n_boston_family_office",
-          "field": "contact route",
-          "validationError": true
-        },
-        "excluded": [],
-        "rows": 1
-      },
-      "at": "2026-08-01T19:59:26.091Z"
-    },
-    {
-      "step": 8,
-      "kind": "tool",
-      "detail": {
-        "tool": "check_evidence",
         "rebound": {
           "from": "BOSTON FAMILY OFFICE LLC",
           "to": "ent_sec_n_boston_family_office"
         },
         "why": "planner supplied a placeholder or unknown id"
       },
-      "at": "2026-08-01T19:59:26.091Z"
+      "at": "2026-08-02T09:21:02.033Z"
+    },
+    {
+      "step": 8,
+      "kind": "tool",
+      "detail": {
+        "tool": "check_evidence",
+        "input": {
+          "entityId": "ent_sec_n_boston_family_office",
+          "field": "validationGates"
+        },
+        "scope": {
+          "entityId": "ent_sec_n_boston_family_office",
+          "field": "validationGates",
+          "validationError": true
+        },
+        "excluded": [],
+        "rows": 1
+      },
+      "at": "2026-08-02T09:21:02.033Z"
     },
     {
       "step": 9,
       "kind": "tool",
       "detail": {
         "tool": "check_evidence",
-        "input": {
-          "entityId": "ent_sec_n_boston_family_office",
-          "field": "validation gates refusal reasons"
-        },
-        "scope": {
-          "entityId": "ent_sec_n_boston_family_office",
-          "field": "validation gates refusal reasons",
-          "validationError": true
-        },
-        "excluded": [],
-        "rows": 1
-      },
-      "at": "2026-08-01T19:59:26.091Z"
-    },
-    {
-      "step": 10,
-      "kind": "tool",
-      "detail": {
-        "tool": "check_evidence",
         "repaired": {
-          "from": "contact route",
+          "from": "contactRoute",
           "to": "(all fields)"
         },
         "why": "the requested field does not exist, so nothing was checked; re-running the supported form"
       },
-      "at": "2026-08-01T19:59:26.091Z"
+      "at": "2026-08-02T09:21:02.033Z"
     },
     {
-      "step": 11,
+      "step": 10,
       "kind": "tool",
       "detail": {
         "tool": "check_evidence",
@@ -382,37 +396,24 @@
         "excluded": [],
         "rows": 54
       },
-      "at": "2026-08-01T19:59:26.110Z"
+      "at": "2026-08-02T09:21:02.066Z"
     },
     {
-      "step": 12,
+      "step": 11,
       "kind": "compose",
       "detail": {
         "withdrewSupersededResults": 2,
         "why": "a failed check that was repaired is not a finding; it stays in the trace, not in the answer"
       },
-      "at": "2026-08-01T19:59:26.110Z"
+      "at": "2026-08-02T09:21:02.066Z"
     },
     {
-      "step": 13,
+      "step": 12,
       "kind": "compose",
       "detail": {
-        "answer": "The system holds [[count:get_firm.releasedClaims]] claims about [[ent_sec_n_boston_family_office]]. The contact route is backed by evidence naming the individual, with a phone number of 617-624-0800. The validation gates passed [[count:check_evidence.gatesPassed]] checks and skipped [[count:check_evidence.gatesSkipped]] checks. The system searched [[count:search_firms.searched]] firms, and [[count:search_firms.matched]] firm matched the search criteria. The system excluded [[count:search_firms.excludedTotal]] firms. Confidence in the contact information is high because the fields that question needs are present."
+        "answer": "I could not honour these constraints: You could NOT honour these constraints: - Unpublished information — Dataset cannot express unpublished information. You MUST state this plainly in your answer, in the first two sentences, in plain words. Say which part of the question you could not do and what you did instead. I could not provide unpublished information about BOSTON FAMILY OFFICE LLC. Instead, I will provide information that is publicly available and verified by the system. BOSTON FAMILY OFFICE LLC was searched among [[count:search_firms.searched]] firms, and [[count:search_firms.matched]] of them matched the query. The system holds that BOSTON FAMILY OFFICE LLC is a qualifying commercial entity with a strict reachable status. The evidence for this includes a 13F filing with the SEC, which lists the firm's address as 20 Custom House Street, Boston, MA 02110, and its principal as George Beal, Managing Partner. The system also holds that the firm's contact information is a phone number, 617-624-0800, which reaches an individual. The validation gates passed 26 checks, skipped 28 checks, and failed 0 checks. The system could not determine the unpublished information about BOSTON FAMILY OFFICE LLC, such as its mandate, sector, allocation, cheque size, or LP data. Therefore, I could not confidently determine the fit of BOSTON FAMILY OFFICE LLC to the query. The system's evidence for the firm's contact information is publicly available and verified by the system."
       },
-      "at": "2026-08-01T19:59:32.883Z"
-    },
-    {
-      "step": 14,
-      "kind": "block",
-      "detail": {
-        "stage": "count-resolution",
-        "unresolvedTokens": [
-          "check_evidence.gatesPassed",
-          "check_evidence.gatesSkipped"
-        ],
-        "unsupported": []
-      },
-      "at": "2026-08-01T19:59:32.885Z"
+      "at": "2026-08-02T09:21:09.102Z"
     }
   ],
   "error": null
