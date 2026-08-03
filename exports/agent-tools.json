@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-08-01T19:39:15.304Z",
+ "generatedAt": "2026-08-03T10:36:17.182Z",
  "note": "The interfaces the agent can call. Every tool returns { data, scope, excluded, limits }: scope states what was searched and what matched, excluded states what was deliberately left out and why, and limits state what the tool cannot tell you. Every tool reads released claims only -- candidate, held, quarantined and withheld data is not reachable from here, which is not a filter the agent applies and could forget but the only data these queries select.",
  "tools": [
   {

@@ -71,6 +71,34 @@ export function releaseDecision(
  * a withheld entity needs more enrichment. Conflating them sends us hunting for
  * evidence defects in records whose only fault is thinness.
  */
+/**
+ * Institution classes that are not family offices, whatever their name says.
+ *
+ * Rubric rule X-2 already excluded banks, insurers, brokers, pensions,
+ * universities and public institutions. A qualification review of all 614
+ * records found the list too short: it let through two insurance companies, two
+ * family LAW firms, a tax practice, an IFA, a consultancy and two grantmaking
+ * foundations -- all carrying "family" in the name and none of them a family
+ * office. A firm that advises families is not a family office, and a firm that
+ * litigates their divorces certainly is not.
+ *
+ * The law pattern is "family law", not "law", because THE LAW FAMILY OFFICE LLP
+ * is the Law family's office and a greedier rule excluded it.
+ *
+ * Deliberately NOT extended to multi-family offices or registered advisers. The
+ * brief is explicit that records ambiguous between SFO, MFO and adviser must
+ * stay visible with their status unresolved rather than be cleaned away, and
+ * removing them would be answering Goal 2 by deleting its difficulty.
+ */
+const EXCLUDED_INSTITUTION =
+  /\b(insurance|insurer|assurance|mutual holding|bancorp|bank|banking|building society|credit union|pension (fund|scheme|trust)|university|college|hospital|council|law firm|family law|solicitors?|barristers?|tax (llp|practice|advis\w+)|accountan\w+|independent financial advis\w+|consultanc\w+|consulting|foundation)\b/i;
+
+/** The rule, exported so the audit can report what it would exclude. */
+export function excludedInstitution(name: string): string | null {
+  const m = EXCLUDED_INSTITUTION.exec(name);
+  return m ? m[0].toLowerCase() : null;
+}
+
 export function assessEntity(
   entity: Entity,
   released: Claim[],
@@ -82,6 +110,20 @@ export function assessEntity(
 
   const missing = [...required.filter((f) => !has(f)), ...commercial.filter((f) => !has(f))];
   const meetsFloor = required.every(has) && commercial.filter(has).length >= 2;
+
+  // An excluded institution fails regardless of how complete its record is.
+  // Completeness is not the question here -- an insurance company with every
+  // field filled is still not a family office.
+  const excluded = excludedInstitution(entity.canonicalName);
+  if (excluded) {
+    return {
+      entityId: entity.id,
+      commercialState: 'withheld',
+      reason: `excluded institution class: the name identifies a "${excluded}", which is not a family office`,
+      missing,
+      policyVersion,
+    };
+  }
 
   return {
     entityId: entity.id,

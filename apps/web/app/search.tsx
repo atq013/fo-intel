@@ -34,11 +34,19 @@ interface Result {
   error?: string;
 }
 
+/**
+ * Questions this corpus can actually answer, plus one it deliberately cannot.
+ *
+ * The old list included "Which firms have filed recently?", which reads as a
+ * freshness question the records do not carry. The last item here is kept
+ * precisely because the answer is a refusal: no record holds an AUM figure, and
+ * saying so is the behaviour worth showing.
+ */
 const EXAMPLES = [
   'Single-family offices in the United Kingdom',
-  'Which firms have filed recently?',
-  'Family offices I can actually reach by phone',
+  'Family offices I can reach by phone at a named person',
   'Who runs Duquesne Family Office?',
+  'Which family offices manage over $1bn?',
 ];
 
 const TYPE_LABEL: Record<string, string> = {

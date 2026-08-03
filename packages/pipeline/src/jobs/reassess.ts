@@ -20,9 +20,18 @@ import type { Claim, Entity } from '@fo/core/contract/index.js';
 
 const sql = connect();
 
+/**
+ * `ALL=1` re-applies the commercial floor to EVERY entity rather than only the
+ * ones left unassessed. Needed whenever the floor itself changes -- the excluded
+ * institution rule added after the qualification review reclassifies records
+ * that were already qualifying, and they will never be revisited otherwise.
+ */
+const all = process.env.ALL === '1';
+
 const stranded = (await sql`
   SELECT DISTINCT e.id FROM s2_entity e
-  WHERE e.commercial_state = 'unassessed'
+  WHERE e.merged_into_id IS NULL
+    AND (${all}::boolean OR e.commercial_state = 'unassessed')
     AND EXISTS (SELECT 1 FROM s2_claim c WHERE c.entity_id = e.id AND c.status = 'released')
   ORDER BY e.id`) as unknown as Array<{ id: string }>;
 
@@ -43,8 +52,13 @@ for (const { id } of stranded) {
     refreshPolicy: r.refresh_policy, establishedAt: new Date(r.established_at),
   })) as Claim[];
 
+  // The real name, because the excluded-institution rule reads it. Passing the
+  // id here would make every name-based rule silently inert.
+  const [row] = (await sql`SELECT canonical_name FROM s2_entity WHERE id = ${id}`) as unknown as
+    Array<{ canonical_name: string }>;
+
   const entity: Entity = {
-    id, canonicalName: id, entityType: 'unconfirmed', firstSeenAt: new Date(),
+    id, canonicalName: row?.canonical_name ?? id, entityType: 'unconfirmed', firstSeenAt: new Date(),
     trustState: 'active', commercialState: 'unassessed',
     strictReachable: false, profileAssistedReachable: false,
   };
@@ -52,7 +66,9 @@ for (const { id } of stranded) {
   await sql`UPDATE s2_entity SET commercial_state = ${commercial.commercialState}, updated_at = now()
             WHERE id = ${id}`;
   if (commercial.commercialState === 'qualifying') qualifying++; else withheld++;
-  console.log(`  ${id}  ${rows.length} released claims -> ${commercial.commercialState}`);
+  if (commercial.commercialState !== 'qualifying') {
+    console.log(`  withheld: ${row?.canonical_name ?? id} — ${commercial.reason}`);
+  }
 }
 
 console.log(`reassessed ${stranded.length}: ${qualifying} qualifying, ${withheld} withheld`);

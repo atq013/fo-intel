@@ -149,7 +149,9 @@ export async function shortlist(raw: ShortlistQuery): Promise<ShortlistResponse>
       WHERE entity_id = e.id AND status = 'released' AND counts_profile_assisted
       ORDER BY counts_strict DESC LIMIT 1
     ) ct ON TRUE
-    WHERE e.trust_state = 'active'
+    -- Merged duplicates are excluded here as they are everywhere else; the
+    -- product reported 664 searched against a file of 663 without this.
+    WHERE e.trust_state = 'active' AND e.merged_into_id IS NULL
   `) as unknown as Array<Record<string, any>>;
 
   const searched = rows.length;
