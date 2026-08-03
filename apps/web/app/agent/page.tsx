@@ -31,8 +31,8 @@ export default function AgentPage() {
           recorded <span className="mono">reaches</span> value.
         </p>
         <p className="note">
-          <strong>Must refuse:</strong> naming a firm not in the dataset; upgrading a label
-          — a company inbox is not a principal&apos;s email, &ldquo;not found&rdquo; is not
+          <strong>Must refuse:</strong> naming a firm not in the dataset; upgrading a label,
+          a company inbox is not a principal&apos;s email, &ldquo;not found&rdquo; is not
           &ldquo;does not exist&rdquo;; and answering a narrower question than the one asked
           without saying so.
         </p>

@@ -40,7 +40,7 @@ export default async function Shortlist({
         <h1 className="brand">Sightline · shortlist</h1>
         <p className="tagline">
           Filter and rank on fit, evidence grade, freshness and principal-level
-          reachability at once — and see why each firm matched and what it is missing.
+          reachability at once and see why each firm matched and what it is missing.
         </p>
       </header>
 
@@ -50,8 +50,8 @@ export default async function Shortlist({
           {([
             ['all qualifying', href({ strict: undefined, assisted: undefined, fields: undefined, freshDays: undefined, tier: undefined }),
               !sp.strict && !sp.assisted && !sp.fields && !sp.tier && !sp.freshDays],
-            ['reachable — strict', href({ strict: '1', assisted: undefined }), sp.strict === '1'],
-            ['reachable — incl. profiles', href({ assisted: '1', strict: undefined }), sp.assisted === '1'],
+            ['reachable - strict', href({ strict: '1', assisted: undefined }), sp.strict === '1'],
+            ['reachable - incl. profiles', href({ assisted: '1', strict: undefined }), sp.assisted === '1'],
             ['has a principal phone', href({ fields: 'principal.phone' }), sp.fields === 'principal.phone'],
             ['statutory sources only', href({ tier: '1' }), sp.tier === '1'],
             ['observed in last 1d', href({ freshDays: '1' }), sp.freshDays === '1'],
@@ -74,7 +74,7 @@ export default async function Shortlist({
         {res.scope.excluded.length > 0 && (
           <p className="note">
             <strong>Excluded, with reasons.</strong>{' '}
-            {res.scope.excluded.map((e) => `${e.count} — ${e.reason}`).join(' · ')}
+            {res.scope.excluded.map((e) => `${e.count} - ${e.reason}`).join(' · ')}
           </p>
         )}
       </section>
@@ -83,7 +83,7 @@ export default async function Shortlist({
         <h2>Results</h2>
         {res.results.length === 0 && (
           <p className="note">
-            Nothing matched. That is an answer, not an error — the exclusion reasons above
+            Nothing matched. That is an answer, not an error but the exclusion reasons above
             say exactly what was filtered out and why.
           </p>
         )}
@@ -106,7 +106,7 @@ export default async function Shortlist({
                 <span className="mono">{r.contact.value}</span>{' '}
                 <span className="statNote">
                   ({r.contact.channel}, reaches {r.contact.reaches}
-                  {r.contact.method && <> — {r.contact.method}</>})
+                  {r.contact.method && <> - {r.contact.method}</>})
                 </span>
               </div>
             )}

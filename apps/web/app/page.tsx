@@ -27,13 +27,26 @@ export default async function Page() {
         <p className="tagline">
           Family office intelligence for capital allocators. Ask in plain English.
         </p>
+        {/*
+          Leads with the strictest figure, not the largest.
+          The previous wording put "reachable at a named individual" in front of
+          all three numbers, so a reader skimming could take 388 as the
+          reachability count. Only the first meets the definition Stage 1 used --
+          a direct phone or verified email -- and that is the one a reviewer
+          recomputes from the file. The other two are named as weaker routes
+          rather than as bigger versions of the same thing.
+        */}
         <p className="coverage">
           <strong>{dataset.qualifying}</strong> qualifying firms, every value carrying the
-          evidence that established it. Reachable at a named individual:{' '}
-          <strong>{dataset.strictReachable}</strong> by phone or personal email,{' '}
-          <strong>{dataset.profileAssistedReachable}</strong> counting verified personal
-          profiles, <strong>{dataset.postalReachable}</strong> by adjudicated service address.
-          These three are reported separately and never added together.
+          evidence that established it.
+        </p>
+        <p className="coverage">
+          <strong>{dataset.strictReachable}</strong> are reachable by direct phone or
+          personal email at a named individual — the definition used throughout. A further{' '}
+          <strong>{dataset.profileAssistedReachable}</strong> have a verified personal
+          profile and <strong>{dataset.postalReachable}</strong> an adjudicated statutory
+          service address. Those two are weaker routes, reported separately and never
+          added into the first.
         </p>
         <p className="coverage">
           The plain-English search below answers over the original {corpus.total}-record
