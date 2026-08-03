@@ -11,66 +11,46 @@ claims, 59,646 gate outcomes.
 
 Stage 1 answered questions about firms; it could not answer questions about
 *evidence*. The extension is an evidence-aware shortlist
-(`packages/db/src/shortlist.ts`) returning per record why it matched, what a
-buyer would want and it lacks (`missing`), best source tier, and last
-observation — plus `check_evidence` (`packages/rag/src/agent/tools.ts`), which
-exposes gate outcomes: which checks ran, passed, or were skipped, under which
-policy version.
+(`packages/db/src/shortlist.ts`) returning per record why it matched, what it
+lacks, best source tier and last observation — plus `check_evidence`
+(`agent/tools.ts`), exposing which gates ran, passed or were skipped under which
+policy version. The new answerable question is *"what did you refuse to tell me,
+and why?"*: Stage 1 could return a phone number but not say it was adjudicated as
+reaching a named individual rather than a switchboard, which gate proved it, or
+that 84 of 162 checks on that firm never ran.
 
-**New answerable question:** *"what did you refuse to tell me, and why?"* Stage 1
-could return a phone number. It could not say the number was adjudicated as
-reaching a named individual rather than a switchboard, which gate proved it
-(`contact_ownership`), or that 84 of 162 checks on that firm never ran. A CSV
-export cannot carry that.
+**Rejected.** Semantic search — pgvector is in the schema, but with no mandate or
+sector text to embed, similarity over 581 names ranks confidently over nothing;
+the agent reports the limitation instead. LLM re-ranking, same reason. Web
+enrichment for website/description/AUM, measured at 2–4% precision
+(`docs/SPIKE_REACHABILITY.md`); those columns ship blank.
 
-**Rejected.** *Semantic search* — pgvector is in the schema, but with no mandate
-or sector text to embed, similarity over 581 names produces confident ranking
-over nothing. The agent reports the limitation instead: see `unhonoured` in
-`docs/goals/final/goal-1-…json` — *"requires semantic similarity rather than a
-name substring"*. *LLM re-ranking* — same reason; it would rank on the model's
-prior, not the data. *Web enrichment* for `website`/`description`/`AUM` —
-measured at 2–4% precision (`docs/SPIKE_REACHABILITY.md`); those columns ship
-blank rather than plausible.
-
-| Source | Strong enough for | Not strong enough for | Records |
-|---|---|---|---|
-| Companies House (profile/officers/PSC) | identity, incorporation, statutory control, service address, family-control classification | contact route to a person, mandate, AUM | 546 |
-| SEC 13F | filer existence, signatory, cover-page address, phone | whether the filer is a family office at all | 85 |
-| SEC ADV | registered-adviser identity, Schedule A decision-makers | SFO status — by law an SFO cannot appear here | 24 |
-| Verified profiles | a route to a named individual (assumption A1) | identity itself; the slug must corroborate a name established elsewhere | 388 routes |
-
-**Blind spots.** **UK-weighted** — 546 of 740 from one registry; a good source of
-family-controlled entities, a poor sample of the global market, and the file's
-largest weakness. **No mandate, sector or AUM evidence anywhere** — which is why
-Goal 2 abstains. **`strict` reachability is 54 against a requirement of 200, and
-this is the file's largest unmet gap.** Stage 1 defined a confirmed contact route
-as a direct phone or verified email — its submission reports "10 of 50 for direct
-phone lines and 4 for email" and holds a postal address separately as "a slower
-contact route rather than no contact route" — so `strict` is the metric the
-requirement is measured against, not `profileAssisted`.
-
-Every source was tested and the ceiling is a property of the sources, not of the
-effort:
-
-| source | individual contact data | result |
+| Source | Strong enough for | Not strong enough for |
 |---|---|---|
-| SEC 13F signature block | signatory name **and direct phone** | the only one that works; exhausted across four quarters, ~30 family-office-named filers per quarter and the set barely changes |
-| SEC ADV roster (17,018 advisers) | main office telephone only | a switchboard, which the brief excludes by name |
-| IAPD firm API | none — identity and address only | dead |
-| Companies House | none | dead |
-| Hunter.io | would need domains this file does not hold | 50 lookups/month, resetting after the deadline |
+| Companies House | identity, incorporation, statutory control, service address, family-control classification | contact route to a person, mandate, AUM |
+| SEC 13F | filer existence, signatory, address, **personal phone** | whether the filer is a family office |
+| SEC ADV / IAPD | registered-adviser identity, Schedule A control persons | SFO status (Rule 202(a)(11)(G)-1 excludes them); no individual contact data |
+| Verified profiles | a route to a named individual (assumption A1) | identity itself |
 
-The count could have been 68. Eleven hedge funds, a VC firm, a PE manager, a large
-RIA and a grantmaking foundation all carry 13F phone numbers and all qualified
-under the earlier floor. They are withheld, because a phone number is not evidence
-that a firm is a family office — and the shape of that trade is worth naming: the
-firms most likely to publish a direct line are the ones least likely to be family
-offices. Stage 1 measured the same thing from the other end, finding 9 family
-offices among 332 phone-carrying SEC firms. **Classification covers 280 of
-581**; the rest have no PSC individual, a corporate PSC, or a non-matching
-surname, and are left blank.
+**Blind spots.** UK-weighted — most records from one registry, a poor sample of the
+global market. No mandate, sector or AUM evidence anywhere, which is why Goal 2
+abstains. 301 of 581 carry no classification and rest on a registered
+family-wealth-vehicle name (`docs/INCLUSION_RUBRIC.md`, tier C).
 
----
+**`strict` reachability is 54 against a requirement of 200 — the largest unmet
+gap.** Stage 1 defined a confirmed contact route as direct phone or verified email
+("10 of 50 for direct phone lines and 4 for email", holding postal separately as
+"a slower contact route"), so `strict` is the metric measured. The ceiling belongs
+to the sources: SEC 13F signature blocks are the only free statutory source
+publishing a personal phone beside a named signatory and were exhausted across
+four quarters (~30 family-office-named filers each, barely changing); the SEC
+adviser roster gives main-office numbers, which the brief excludes as
+switchboards; IAPD and Companies House publish no individual contact data; Hunter
+needs domains this file lacks. The count could have been 68 by re-admitting eleven
+hedge funds, a VC firm, a PE manager, a large RIA and a foundation carrying 13F
+phones — refused, because a phone number is not evidence of being a family office.
+Stage 1 measured the same tension from the other end: 9 family offices among 332
+phone-carrying SEC firms.
 
 ## 2 · Agentic vs deterministic boundary
 
@@ -99,51 +79,33 @@ and recorded as skipped.
 
 ## 3 · Authority boundary
 
-**Decides alone:** which tools to call, ranking order, phrasing (subject to
-guards). **Must escalate:** any constraint the data cannot express — Goal 2's
-trace records three (*lower-middle-market*, *healthcare services*, *limited
-partners*) and says so rather than inferring fit from a firm's name.
+**Decides alone:** which tools to call, ranking order, phrasing — subject to the
+guards. **Must escalate:** any constraint the data cannot express; Goal 2's trace
+records three and says so rather than inferring fit from a firm's name.
 
-**Must refuse.** Seven deterministic guards, each written against a real
-production failure preserved in `docs/goals/`:
-
-1. **Relevance score as confidence** — attempt-1 wrote *"Confidence scores are
-   Colony Family Offices, LLC: 0.9993"* for a question the dataset cannot answer.
-2. **Tool internals in buyer-facing prose** — *"…with 0 rows and 0 data."*
-3. **Absence from a failed check** — an invented field returned nothing and the
-   agent concluded nothing was withheld. The tool now fails closed, the failed
-   call is *repaired* in the trace, and an absence claim with no completed check
-   behind it is blocked.
-4. **A skipped gate as a check that cleared the record** — *"checked 54 aspects…
-   all checks were either passed or skipped"*, where 84 of 162 never ran.
-   `check_evidence` no longer returns a collapsible total, and citing the pass
-   count without the skips is blocked too.
-5. **The answer quoting its own instructions** — *"You MUST state this plainly in
-   your answer, in the first two sentences"* reached a buyer. Caught as an
-   eight-word overlap with the prompt that also carries its imperative voice.
-6. **A refusal asserted where nothing was refused** — *"the evidence that was
-   refused to be published includes the mandate, sector…"* for a firm with nine
-   claims, all released, none quarantined, and no firm anywhere holding those
-   fields. Never collected is not withheld.
-7. **Database vocabulary in buyer-facing prose** — `commercial state`, *"the
-   'missing' field"*, `requireProfileAssisted=true`. camelCase is not English.
-
-Four of the seven needed correcting after they first shipped — too permissive,
-then too aggressive, then comparing against the wrong text. Each correction came
-from real production output rather than review, and each left a regression test.
-The numeric guards (paired disclosure, count resolution) have needed none, which
-is the honest lesson: lexical rules over generated prose are the fragile kind.
+**Must refuse.** Seven deterministic guards in `agent/claims-guard.ts`, each
+written against a real production failure preserved in `docs/goals/`: a relevance
+score presented as confidence (*"Confidence scores are Colony Family Offices, LLC:
+0.9993"*); tool internals in buyer prose (*"with 0 rows and 0 data"*); absence
+asserted from a check that errored; a skipped gate reported as one that cleared
+the record (*"checked 54 aspects... all passed or skipped"*, where 84 of 162 never
+ran), plus citing passes without the skips; the answer quoting its own
+instructions; a refusal claimed where nothing was refused (never-collected is not
+withheld); and database vocabulary reaching the reader — `commercial state`, *"the
+'missing' field"*, `requireProfileAssisted=true`.
 
 Prompts are not the control: each is a branch in `run.ts` that replaces the
-answer, with regression tests that fail when reverted.
+answer, with regression tests that fail when reverted. **Four of the seven needed
+correcting after they shipped** — too permissive, then too aggressive, then
+comparing against the wrong text, then firing on shared vocabulary. Each
+correction came from production output, not review. The numeric guards have needed
+none, which is the honest lesson: lexical rules over generated prose are the
+fragile kind.
 
-**Refusing correctly is not answering.** In the final Goal 3 run the agent blocked
-itself for citing `check_evidence.gatesPassed` — a count the tool genuinely
-offered, whose name I split without registering in `counts.ts`. The refusal was
-right; the cause was my regression. Fixed, with a drift test asserting every
-numeric field the tool exposes resolves.
-
----
+**Refusing correctly is not answering.** In one final run the agent blocked itself
+for citing `check_evidence.gatesPassed` — a count the tool offered, whose name I
+split without registering in `counts.ts`. The refusal was right; the cause was my
+regression. Fixed, with a drift test asserting every numeric field resolves.
 
 ## 4 · State, replay, idempotency
 
@@ -179,49 +141,39 @@ failure, not on `SIGKILL`. Two such rows are in the exported log, not hidden.
 ## 5 · Cost and latency
 
 Measured, not estimated (`packages/core/src/meter.ts`): provider-returned token
-counts and every external call by host, on success *and* failure paths — a run
-that succeeded on its third attempt made three calls. Money is derived from a
-dated rate card kept separate, so a stale price cannot corrupt a measurement.
+counts and every external call by host, on success *and* failure — a run that
+succeeded on its third attempt made three calls. Money is derived from a dated
+rate card kept separate, so a stale price cannot corrupt a measurement.
 
 | Goal | Model calls | Tokens | Tools | Wall | Est. cost |
 |---|---|---|---|---|---|
-| 1 · multi-step search | 2 | 5,494 | 4 | 3.2s | $0.0034 |
-| 2 · uncertain data | 2 | 3,533 | 2 | 2.2s | $0.0022 |
-| 3 · paid tier | 4 | 4,668 | 5 | 7.8s | $0.0028 |
+| 1 · multi-step search | 2 | 5,509 | 4 | 2.7s | $0.0034 |
+| 2 · uncertain data | 2 | 3,494 | 2 | 2.1s | $0.0022 |
+| 3 · paid tier | 4 | 4,939 | 5 | 7.6s | $0.0030 |
 
-**Per record**, from a 25-record refresh: **75 external calls (exactly 3/record),
-45.0s external, 64.2s wall** → 3 calls, ~2.6s per record, **no model calls**
-(extraction is deterministic parsing). Refresh one record: 3 calls, ~2.6s, $0.00.
-Refresh all 581: **~1,743 calls, ~26 min, $0.00**.
+**Per record**, from a 25-record refresh: 75 external calls (exactly 3/record),
+45.0s external, 64.2s wall — ~2.6s and **no model calls**, extraction being
+deterministic parsing. Refresh all 581: ~1,743 calls, ~25 min, **$0.00**.
 
 **External cost is $0 — a result, not a gap.** Companies House and SEC EDGAR are
-free; Neon, Vercel free tier; Serper inside its allowance. Call counts are still
-recorded, because those are what rate limits bind on.
+free; Neon and Vercel free tier; Serper inside its allowance. Call counts are
+still recorded, because those are what rate limits bind on.
 
-**Cacheable:** the shortlist behind the agent — Goals 1 and 2 issue the same
-unfiltered query and the data changes twice a day. **Downgradable:** the planner
-call, which is structured extraction, not reasoning; the 8B model already serves
-as fallback. **Deferred (already done):** officers and PSC are fetched only after
-the profile shows the company is not a shell — cut the climb from ~4,400 calls to
-~2,900. **Removable:** Goal 3's third `check_evidence` is a repair of a failed
-call; fixing the planner's field vocabulary removes it.
+**Cacheable:** the shortlist behind the agent. **Downgradable:** the planner call,
+structured extraction rather than reasoning. **Already deferred:** officers and PSC
+are fetched only after the profile shows the company is not a shell — cut the
+climb from ~4,400 calls to ~2,900.
 
-**At 5,000 records, what breaks first: the shortlist query, at roughly
-1,500–2,000 entities.** Component: `shortlist()` in `packages/db/src/shortlist.ts`.
-Failure mode: linear in *total* entities, not in the page returned — it fetches
-every entity with correlated subqueries, scores all of them in TypeScript, then
-slices. Evidence: at 740 entities `limit: 1` takes **803ms** and `limit: 25`
-takes **1,293ms** — the limit barely changes the cost, the signature of
-scoring-before-slicing. Extrapolated, 5,000 entities is **6–10s per call**, past
-interactive tolerance well before then, and the agent issues 2–4 per answer.
-
-Second, further out: `s2_validation_result` is **51,798 rows for 8,633 claims**
-(6.0/claim) → ~390,000 rows at 5,000 records, and `check_evidence` runs a
-`DISTINCT ON` lateral per claim (247ms for one firm today). The fix for both, not
-implemented: push filtering and ranking into SQL with an index on
+**At 5,000 records, what breaks first: the shortlist query, at roughly 1,500–2,000
+entities.** `shortlist()` is linear in *total* entities, not the page returned — it
+fetches every entity with correlated subqueries, scores all of them in TypeScript,
+then slices. Evidence: at 664 entities `limit: 1` took 803ms and `limit: 25`
+1,293ms — the limit barely changes the cost, the signature of scoring before
+slicing. Extrapolated, 5,000 entities is 6–10s per call, and the agent issues 2–4
+per answer. Second, further out: `s2_validation_result` holds 59,646 rows for
+9,941 claims, and `check_evidence` runs a `DISTINCT ON` lateral per claim. The fix
+for both, not implemented: push filtering and ranking into SQL with an index on
 `(commercial_state, strict_reachable)`, and materialise a per-entity summary.
-
----
 
 ## 6 · What broke while building
 
@@ -248,43 +200,29 @@ re-read once.**
 ## 7 · Commercial tier logic
 
 **Tier and price.** Paid tier at **$2,000 per team per month, or $20,000
-annually**, with an optional **$3,000 onboarding and custom-source setup** fee for
-buyers who want a registry or filing source added to the pipeline.
+annually**, with an optional **$3,000 onboarding and custom-source setup** fee.
 
 **Who pays.** A fund or placement agent running outbound to family offices, where
-a wrong contact costs reputation rather than time, and where the cost of one
-mis-addressed approach exceeds a month of subscription.
+one mis-addressed approach costs more in reputation than a month of subscription.
 
-**The gap between manual retrieval and the agent.** Manual retrieval answers *who
-matches*. It cannot answer *what did you refuse to tell me, and why* — that needs
-gate outcomes per value, which a CSV cannot carry. From the final traces: the
-manual equivalent of Goal 1 (`/api/shortlist?strict=1&tier=1&limit=25`) returns 54
-records. The agent returns those plus an exact total, per-record evidence grading,
-and an explicit statement that it could not honour "family office" semantically
-and matched a name substring instead.
+**The gap.** Manual retrieval answers *who matches*; it cannot answer *what did you
+refuse to tell me, and why*, which needs gate outcomes per value. The manual
+equivalent of Goal 1 (`/api/shortlist?strict=1&tier=1&limit=25`) returns 54
+records; the agent returns those plus an exact total, per-record evidence grading,
+and an explicit statement that it matched a name substring rather than semantically.
 
-**Why a buyer keeps paying.** Four things, in the order they matter commercially:
+**Why a buyer keeps paying.** Continuous refresh — sources are re-read on a
+schedule and content hashes compared, so a changed record is re-derived rather
+than left to rot; a one-time export is stale the week after purchase. Change
+monitoring against a held position, because every value carries the hash it was
+read at. Traceable agent workflows — each answer carries its full tool trace, so a
+forwarded shortlist shows where each value came from. And reduced revalidation:
+the evidence span, source tier and gate outcomes are the diligence a buyer would
+otherwise redo. Refusals contribute to that trust — Goal 2 abstains rather than
+ranking 581 firms on evidence it lacks — but they are a property of the product,
+not the whole of its value.
 
-1. **Continuous refresh.** Family office data decays — decision-makers move,
-   sources go dark. The system re-reads its own sources on a schedule and
-   compares content hashes, so a record that changed is re-derived rather than
-   left to rot. A one-time export is stale the week after purchase.
-2. **Change monitoring against a held position.** Because every value carries the
-   content hash it was read from, "this changed" is a fact the system can state,
-   not an inference the buyer has to make by re-checking manually.
-3. **Traceable agent workflows.** Every answer carries its full tool trace —
-   which tools ran, in what order, what each returned, what was refused. A buyer
-   forwarding a shortlist internally can show where each value came from.
-4. **Reduced revalidation.** The evidence span, source tier and gate outcomes per
-   value are the work a diligent buyer would otherwise redo themselves. That is
-   the labour the subscription displaces.
-
-Refusals contribute to that trust — Goal 2 abstains rather than ranking 581 firms
-for a healthcare mandate it has no evidence for — but they are a property of the
-product, not the whole of its value.
-
-**What it is not worth charging for yet, stated plainly.** Coverage. 546 of 740
-records come from one UK registry, strict reachability is 54, and there is no
-mandate or sector data at all. A buyer paying for *breadth* would be
-disappointed, and the price above is set against evidence quality and freshness
-rather than record count.
+**Not worth charging for yet.** Coverage. Most records come from one UK registry,
+strict reachability is 54, 301 records carry no classification, and there is no
+mandate or sector data. The price is set against evidence quality and freshness,
+not record count.
