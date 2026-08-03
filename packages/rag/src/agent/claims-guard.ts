@@ -264,7 +264,7 @@ export interface ClaimsAudit {
  * either as the raw value (0.9993) or as a percentage (99.93). It counts as
  * *presented as confidence* if a confidence word appears within 120 characters —
  * enough to span "Confidence scores are X: 0.9993, Y: 0.9984" without reaching
- * into an unrelated sentence.
+ * into an unrelated sentence..
  */
 export function auditClaims(
   answer: string,
