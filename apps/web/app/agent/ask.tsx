@@ -53,47 +53,38 @@ export default function Ask() {
   return (
     <>
       <section>
-        <form
-          onSubmit={(e) => { e.preventDefault(); void ask(question); }}
-          style={{ display: 'flex', gap: '.5rem', flexWrap: 'wrap' }}
-        >
+        {/*
+          These controls used to carry inline styles referencing `var(--line)`,
+          a variable that does not exist in the stylesheet. Every one of them
+          silently fell back to a hardcoded dark grey, which is why this page
+          looked unlike the rest of the product in light mode. They now use the
+          same classes as the search form.
+        */}
+        <form onSubmit={(e) => { e.preventDefault(); void ask(question); }}>
           <input
+            type="search"
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
             placeholder="Ask about the family office dataset"
-            style={{
-              flex: '1 1 320px', padding: '.55rem .7rem', fontSize: '.9rem',
-              background: 'transparent', color: 'inherit',
-              border: '1px solid var(--line, #2a2a2a)', borderRadius: '6px',
-            }}
+            aria-label="Ask about the family office dataset"
           />
-          <button
-            type="submit"
-            disabled={busy}
-            style={{
-              padding: '.55rem 1rem', fontSize: '.9rem', borderRadius: '6px', cursor: 'pointer',
-              border: '1px solid var(--line, #2a2a2a)', background: 'transparent', color: 'inherit',
-            }}
-          >
-            {busy ? 'working…' : 'ask'}
+          <button type="submit" disabled={busy}>
+            {busy ? 'Working…' : 'Ask'}
           </button>
         </form>
 
-        <p className="note" style={{ marginTop: '.6rem' }}>
+        {/* The same chips the search page uses; these were underlined text. */}
+        <div className="examples">
           {EXAMPLES.map((ex) => (
             <button
               key={ex}
+              type="button"
               onClick={() => { setQuestion(ex); void ask(ex); }}
-              style={{
-                display: 'block', textAlign: 'left', marginBottom: '.25rem', padding: 0,
-                background: 'none', border: 'none', color: 'inherit', opacity: 0.75,
-                cursor: 'pointer', fontSize: '.82rem', textDecoration: 'underline',
-              }}
             >
               {ex}
             </button>
           ))}
-        </p>
+        </div>
         <p className="note">
           The third example is deliberate: the dataset holds no AUM claim, so the agent
           must say so rather than answer a different question. That refusal is the
@@ -158,13 +149,7 @@ export default function Ask() {
           </p>
 
           {showTrace && (
-            <pre
-              className="mono"
-              style={{
-                overflowX: 'auto', fontSize: '.7rem', lineHeight: 1.5, padding: '.6rem',
-                border: '1px solid var(--line, #2a2a2a)', borderRadius: '6px',
-              }}
-            >
+            <pre className="mono trace">
               {res.trace.map((t) => `#${t.step} ${t.kind} @${t.at}\n${JSON.stringify(t.detail, null, 2)}`).join('\n\n')}
             </pre>
           )}

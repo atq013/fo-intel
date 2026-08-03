@@ -1,0 +1,960 @@
+url,source,tier,httpStatus,ok,note
+https://adviserinfo.sec.gov/firm/summary/801-100393,sec.gov/form-adv-archive/20111105-20241231,1,200,true,resolves
+https://adviserinfo.sec.gov/firm/summary/801-111938,sec.gov/form-adv-archive/20111105-20241231,1,200,true,resolves
+https://adviserinfo.sec.gov/firm/summary/801-115046,sec.gov/form-adv-archive/20111105-20241231,1,200,true,resolves
+https://adviserinfo.sec.gov/firm/summary/801-116725,sec.gov/form-adv-archive/20111105-20241231,1,200,true,resolves
+https://adviserinfo.sec.gov/firm/summary/801-116726,sec.gov/form-adv-archive/20111105-20241231,1,200,true,resolves
+https://adviserinfo.sec.gov/firm/summary/801-118157,sec.gov/form-adv-archive/20111105-20241231,1,200,true,resolves
+https://adviserinfo.sec.gov/firm/summary/801-118235,sec.gov/form-adv-archive/20111105-20241231,1,200,true,resolves
+https://adviserinfo.sec.gov/firm/summary/801-118396,sec.gov/form-adv-archive/20111105-20241231,1,200,true,resolves
+https://adviserinfo.sec.gov/firm/summary/801-119576,sec.gov/form-adv-archive/20111105-20241231,1,200,true,resolves
+https://adviserinfo.sec.gov/firm/summary/801-121953,sec.gov/form-adv-archive/20111105-20241231,1,200,true,resolves
+https://adviserinfo.sec.gov/firm/summary/801-122258,sec.gov/form-adv-archive/20111105-20241231,1,200,true,resolves
+https://adviserinfo.sec.gov/firm/summary/801-122766,sec.gov/form-adv-archive/20111105-20241231,1,200,true,resolves
+https://adviserinfo.sec.gov/firm/summary/801-123712,sec.gov/form-adv-archive/20111105-20241231,1,200,true,resolves
+https://adviserinfo.sec.gov/firm/summary/801-127012,sec.gov/form-adv-archive/20111105-20241231,1,200,true,resolves
+https://adviserinfo.sec.gov/firm/summary/801-127146,sec.gov/form-adv-archive/20111105-20241231,1,200,true,resolves
+https://adviserinfo.sec.gov/firm/summary/801-127476,sec.gov/form-adv-archive/20111105-20241231,1,200,true,resolves
+https://adviserinfo.sec.gov/firm/summary/801-128023,sec.gov/form-adv-archive/20111105-20241231,1,200,true,resolves
+https://adviserinfo.sec.gov/firm/summary/801-128127,sec.gov/form-adv-archive/20111105-20241231,1,200,true,resolves
+https://adviserinfo.sec.gov/firm/summary/801-129455,sec.gov/form-adv-archive/20111105-20241231,1,200,true,resolves
+https://adviserinfo.sec.gov/firm/summary/801-130221,sec.gov/form-adv-archive/20111105-20241231,1,200,true,resolves
+https://adviserinfo.sec.gov/firm/summary/801-130947,sec.gov/form-adv-archive/20111105-20241231,1,200,true,resolves
+https://adviserinfo.sec.gov/firm/summary/801-131066,sec.gov/form-adv-archive/20111105-20241231,1,200,true,resolves
+https://adviserinfo.sec.gov/firm/summary/801-131739,sec.gov/form-adv-archive/20111105-20241231,1,200,true,resolves
+https://adviserinfo.sec.gov/firm/summary/801-61413,sec.gov/form-adv-archive/20111105-20241231,1,200,true,resolves
+https://adviserinfo.sec.gov/firm/summary/801-71580,sec.gov/form-adv-archive/20111105-20241231,1,200,true,resolves
+https://adviserinfo.sec.gov/firm/summary/801-71914,sec.gov/form-adv-archive/20111105-20241231,1,200,true,resolves
+https://adviserinfo.sec.gov/firm/summary/801-72840,sec.gov/form-adv-archive/20111105-20241231,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/00392482,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/00490503,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/00533151,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/00581290,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/00790103,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/00813307,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/00837751,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/01132033,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/01150304,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/01315306,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/01317804,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/01331161,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/01435797,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/01718875,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/01847361,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/01915516,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/02142152,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/02257387,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/02926825,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/03208172,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/03419689,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/03585991,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/03610982,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/03722036,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/03824685,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/04090261,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/04126971,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/04397963,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/04426067,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/04683645,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/05012244,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/05064449,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/05462651,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/05843174,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/06121114,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/06254698,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/06307078,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/06934623,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/07042858,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/07103745,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/07232493,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/07398800,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/07565150,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/07579815,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/07599185,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/07613248,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/07697113,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/07732945,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/07741390,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/07775307,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/07790616,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/07918146,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/07931194,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/07951596,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/08159313,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/08255687,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/08285184,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/08364250,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/08480238,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/08501446,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/08552261,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/08643772,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/08722653,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/08733330,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/08741581,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/08973373,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/09092103,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/09109625,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/09117053,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/09191775,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/09205509,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/09216450,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/09250656,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/09260947,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/09268005,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/09318104,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/09319634,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/09344469,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/09365153,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/09366188,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/09448681,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/09462136,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/09464732,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/09473311,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/09519529,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/09578499,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/09586417,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/09597855,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/09657170,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/09686568,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/09730061,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/09738826,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/09759092,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/09879171,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/09892011,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/09928539,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/09972720,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/09984032,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10000047,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10026579,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10038201,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10097690,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10136930,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10146912,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10168000,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10178432,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10262751,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10305447,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10317212,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10324130,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10337310,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10363573,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10368156,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10394434,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10440096,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10448375,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10449161,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10496304,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10520318,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10524866,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10527864,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10531604,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10545665,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10549738,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10560236,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10576309,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10602471,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10603668,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10621693,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10626560,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10626745,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10639305,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10639321,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10644150,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10651264,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10662882,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10673941,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10677389,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10688862,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10690127,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10696753,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10729416,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10733196,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10741878,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10751826,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10757193,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10788562,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10793032,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10797364,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10811839,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10815714,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10816140,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10876208,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10896880,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10899982,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10906075,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10906179,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10906185,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10909023,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10931193,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10937176,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10937186,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10943288,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10945840,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/10955775,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11031775,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11037136,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11048242,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11057096,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11065001,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11084807,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11118419,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11137409,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11137710,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11165342,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11213617,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11241871,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11251210,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11260750,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11265787,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11266953,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11268917,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11274256,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11292956,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11303983,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11306066,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11341103,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11346129,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11359934,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11363024,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11363148,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11405722,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11422798,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11439436,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11445498,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11450308,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11454185,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11454380,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11454750,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11459757,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11511262,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11522146,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11529611,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11529655,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11566618,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11567605,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11582260,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11586460,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11599401,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11602778,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11627659,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11628891,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11631993,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11638670,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11638984,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11667140,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11676465,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11692247,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11698256,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11721803,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11723488,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11739601,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11746968,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11796660,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11862115,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11872294,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11876443,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11889867,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11897012,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11915326,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11935580,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11953499,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11962500,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11966761,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11986090,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/11986920,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12010223,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12012880,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12047051,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12061108,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12111382,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12112241,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12120974,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12129918,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12146845,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12161447,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12166977,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12167015,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12176541,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12186556,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12190235,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12200715,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12215924,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12223389,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12248005,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12282102,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12298182,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12304686,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12336957,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12350680,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12351966,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12353486,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12355318,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12362997,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12367716,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12372588,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12407751,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12409606,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12409902,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12410715,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12429558,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12432275,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12434727,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12436381,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12460408,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12476534,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12505476,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12509031,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12526289,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12530501,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12574812,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12640988,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12645837,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12647352,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12682173,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12706913,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12715461,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12777718,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12795539,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12905506,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12911663,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12912696,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12913893,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12917742,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12965932,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12980963,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12982776,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/12996672,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13045971,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13058071,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13060984,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13063240,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13074207,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13091951,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13099349,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13136021,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13138268,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13142989,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13150239,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13156746,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13159175,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13163553,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13164702,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13189797,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13193375,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13208943,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13222383,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13230265,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13231874,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13235105,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13261412,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13283128,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13299347,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13304139,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13320038,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13321312,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13323014,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13335864,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13341137,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13347221,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13370900,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13429642,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13438371,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13441560,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13441570,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13450258,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13476266,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13502578,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13503920,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13510572,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13516862,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13522669,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13536845,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13538627,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13545587,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13577189,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13590042,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13606048,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13607817,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13642654,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13692510,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13702458,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13710215,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13723609,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13735132,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13763370,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13790774,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13806550,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13816954,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13833224,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13836698,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13844767,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13847464,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13853900,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13888048,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13891996,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13909617,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13916919,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13925566,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13949938,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13955002,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13986221,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13986226,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/13997741,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14002824,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14003231,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14003807,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14045368,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14046216,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14077344,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14103903,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14110261,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14124986,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14126520,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14127058,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14148354,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14159473,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14173108,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14181657,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14183201,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14225018,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14245354,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14254343,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14290128,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14307671,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14397355,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14399266,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14404201,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14436123,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14439639,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14478487,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14487873,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14506701,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14516277,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14519807,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14539221,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14540398,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14567942,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14568277,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14578402,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14587156,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14604511,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14631840,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14634052,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14645536,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14653484,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14695938,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14707786,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14737303,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14742055,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14758327,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14763546,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14766096,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14781766,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14783314,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14791614,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14792629,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14805705,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14817981,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14823039,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14831486,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14846008,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14858794,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14868656,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14890991,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14898937,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14905096,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14926942,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14952707,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14955492,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14957225,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14964155,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14967803,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/14982565,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15002441,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15014088,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15058153,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15062968,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15120179,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15142854,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15155672,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15160048,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15172123,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15198072,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15219502,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15229269,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15251398,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15280114,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15298042,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15335777,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15341733,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15349699,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15354483,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15368092,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15384815,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15399803,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15406592,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15411636,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15412173,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15497552,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15526802,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15528427,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15559379,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15588322,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15590556,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15595129,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15597475,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15608787,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15657981,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15662264,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15719636,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15766097,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15772387,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15794629,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15800562,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15810589,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15840786,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15844033,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15848391,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15850256,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15852779,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15852865,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15863427,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15917302,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15923647,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/15970732,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/16016681,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/16033118,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/16095654,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/16224030,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/16292879,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/16324237,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/16364862,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/16369858,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/16426395,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/NI629892,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/NI634385,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/NI648981,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/NI654643,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/NI659605,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/NI674782,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/NI677823,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/NI683986,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/NI712411,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/OC350440,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/OC390165,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/OC396732,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/OC414080,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/OC421753,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/OC428315,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/OC435993,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/OC436226,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/OC444089,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/OC450252,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/OC453146,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/SC497921,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/SC521563,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/SC533193,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/SC592622,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/SC598475,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/SC609578,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/SC630095,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/SC630935,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/SC631974,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/SC633205,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/SC688215,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/SC688216,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/SC705402,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/SC716072,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/SC718109,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/SC741739,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/SC743302,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/SC757740,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/SC763213,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/SC839261,gov.uk/companies-house,1,200,true,resolves
+https://api.company-information.service.gov.uk/company/SO308027,gov.uk/companies-house,1,200,true,resolves
+https://au.linkedin.com/in/almcbain,serper/linkedin-profile-verification,3,999,true,"LinkedIn 999: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://au.linkedin.com/in/niharika-tyagi-33673b87,serper/linkedin-profile-verification,3,200,true,resolves
+https://au.linkedin.com/in/peter-bacon-mdea-191a3020,serper/linkedin-profile-verification,3,999,true,"LinkedIn 999: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://br.linkedin.com/in/julianafilippetti,serper/linkedin-profile-verification,3,999,true,"LinkedIn 999: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://ca.linkedin.com/in/allen-leroy-a790972,serper/linkedin-profile-verification,3,999,true,"LinkedIn 999: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://ca.linkedin.com/in/andrea-readman-6baaa6116,serper/linkedin-profile-verification,3,999,true,"LinkedIn 999: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://ca.linkedin.com/in/john-m-white-6b594849,serper/linkedin-profile-verification,3,999,true,"LinkedIn 999: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://ca.linkedin.com/in/neil-boden-40356186,serper/linkedin-profile-verification,3,999,true,"LinkedIn 999: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://ch.linkedin.com/in/ariel-sergio-davidoff-lawyer-board-advisor,serper/linkedin-profile-verification,3,200,true,resolves
+https://ch.linkedin.com/in/manucer-alexander-david-27923456,serper/linkedin-profile-verification,3,999,true,"LinkedIn 999: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://cr.linkedin.com/in/josie-green-8932b875,serper/linkedin-profile-verification,3,999,true,"LinkedIn 999: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://fr.linkedin.com/in/jean-jacques-augier-45788a16,serper/linkedin-profile-verification,3,999,true,"LinkedIn 999: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://hk.linkedin.com/in/kuldeep-singh-buttar-148b4613,serper/linkedin-profile-verification,3,999,true,"LinkedIn 999: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://ie.linkedin.com/in/clare-alexander-5209941a6,serper/linkedin-profile-verification,3,999,true,"LinkedIn 999: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://ie.linkedin.com/in/donalbolgerblg,serper/linkedin-profile-verification,3,999,true,"LinkedIn 999: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://in.linkedin.com/in/ayub-patel-22b84a154,serper/linkedin-profile-verification,3,999,true,"LinkedIn 999: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://in.linkedin.com/in/geeta-desai-70078a14,serper/linkedin-profile-verification,3,999,true,"LinkedIn 999: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://in.linkedin.com/in/paramdeep-singh-ghuman-4b11321a,serper/linkedin-profile-verification,3,999,true,"LinkedIn 999: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://in.linkedin.com/in/shamim-ahmad-ip,serper/linkedin-profile-verification,3,999,true,"LinkedIn 999: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://in.linkedin.com/in/tejinder-singh-jassal,serper/linkedin-profile-verification,3,200,true,resolves
+https://in.linkedin.com/in/varunmalhotra2,serper/linkedin-profile-verification,3,999,true,"LinkedIn 999: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://it.linkedin.com/in/antonietta-sellitto-9a952a76,serper/linkedin-profile-verification,3,999,true,"LinkedIn 999: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://jo.linkedin.com/in/shaker-fakhouri-24741447,serper/linkedin-profile-verification,3,999,true,"LinkedIn 999: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://mm.linkedin.com/in/tin-lwin-5178a3135,serper/linkedin-profile-verification,3,999,true,"LinkedIn 999: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://ng.linkedin.com/in/adedayobadejo,serper/linkedin-profile-verification,3,999,true,"LinkedIn 999: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://ng.linkedin.com/in/dove-edwin-3a714112b,serper/linkedin-profile-verification,3,999,true,"LinkedIn 999: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://nz.linkedin.com/in/colin-harrison-34337450,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://nz.linkedin.com/in/klobban,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://nz.linkedin.com/in/rhodrithomas,serper/linkedin-profile-verification,3,999,true,"LinkedIn 999: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://pk.linkedin.com/in/fatimashamim00,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://sa.linkedin.com/in/hamad-alsalloom-835a2326b,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/adam-seymour-349b72259,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/adrian-potter-2345892b,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/alastair-fothergill-5b747917b,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/alessandromele1971,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/alexander-wade-45970812,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/alice-dalton-mcbain-6b3763a2,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/amie-cook-2a81301a7,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/andrew-burgess-94a48082,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/andrew-dodd-013283b1,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/andrew-donnelly-770b60b5,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/andrew-latham-7ab40396,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/andrew-wills-180a18a8,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/andrewjstrong,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/anita-barton-04217b112,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/anthony-james-doyle-155202255,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/avni-kapoor-8961761a7,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/barry-golding,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/benjamin-teale-b02a8b24,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/beverley-wright-9a243114,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/brian-fenn-651695b8,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/carole-kennedy-9871768,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/caroline-baker-37238383,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/catherine-langham-b230759a,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/christopher-fooks-3498361a4,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/colin-davies-6968b9100,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/daharman,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/david-alexander-f-r-s-a-25a544,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/david-bowles-62034483,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/david-chennells-271aba51,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/david-tatton-0901b8a,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/david-walton-1933362b,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/dean-attwell-38675b1,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/denise-claydon-435bb019,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/edfowler,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/edward-bateman-2627811,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/edward-hathaway,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/edward-power-6365b0aa,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/edwardplaskow,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/emily-raye-almond,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/emma-clark-9aa211ba,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/emma-regan-9ba78640,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/emmawilkinson,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/garry-crawford-3b7997176,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/gavin-hill-85767748,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/graham-smith-bernal-a915a79,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/hannah-kent-60519422,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/harri-k-jones,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/ian-yuill-215ba63,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/jack-gates-44923b159,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/jan-ralph-440673389,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/jane-cheshire-631aa013,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/jennifer-evans-bab47a65,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/jill-may-a5b22a41,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/jochen-schaefer-suren-67948612,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/john-douch,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/john-nobbs-54244010,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/john-worth-a3167099,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/johncooper5,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/jonathan-hutchins-b979793b,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/joppe-sikma-6ab637146,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/julian-bond-97304810,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/junaid-safiullah-43608569,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/karin-brown-3138a7128,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/karuna-rooplal-a10510207,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/konstanze-graham-33981740,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/krysta-allen-ma-cipd-l7-817681a7,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/laura-maitland-brain-3385a615,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/lee-penson-214a2b1,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/louis-julienne-84b9a539,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/lucasjhunter,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/lucinda-lewis-a7552a123,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/manjikerai,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/mark-brogan-02260347,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/mark-devereux-75660414,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/mark-jepp-31a0601b2,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/markestcourt,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/martin-mccarron-7996a520,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/martinmthomas,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/mehedi-alam-601a3b3,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/mia-madesclaire,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/michael-fordham-a3a32026,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/mornabunce,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/navtejmadhok,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/nmissaghi,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/nuala-watts-9b301872,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/patricia-mascari-327b5571,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/patrick-mcginley-536ba4115,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/paul-culshaw-5811a619,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/paul-day-4951344a,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/paul-moors-6798a54,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/peter-bachmann-20260737,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/peter-clarke-2b6b777,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/philburgan,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/rashid-masood-mirza-39407922b,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/rhiannon-quinn-124010117,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/richardkarlwood,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/robert-dalziel-08a4312,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/robertforbessf,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/robin-swailes-7326b1185,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/rosemary-millard-38230b12,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/roy-millard-00369921,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/sarah-clark-4850b6a3,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/sarah-jane-taylor-493a81327,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/sarah-jayne-hayward-8805b798,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/sbouhabib,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/sebastian-lyle-94954550,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/shovlin,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/simon-cook-99534b21,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/simon-joseph-b523a112b,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/simon-reeves-74a41a16b,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/simon-shaw-42485750,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/simonzutshi,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/sofia-de-lucia-207255257,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/stephen-carson-9203789,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/stuart-bradford-25a84614,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/sukhpal-singh-ahluwalia,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/theo-kirwan-47373a310,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/thomas-smith-76342b134,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/timothy-meiris-69508a86?trk=public_profile_browsemap,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/trevor-bayley-3356776a,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://uk.linkedin.com/in/whiteheadnicholas,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/adam-chesnoff-315343313,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/ajey-kaushal,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/alan-hicks-2a4b3148,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/alexandraluce,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/alice-j-curtis-899ab992,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/alison-lauder,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/alvarotrullenque,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/andrew-latham-430505a2,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/andrewjleahy,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/andrewkey,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/angela-bryant-cfcs-89b48197,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/anjanippatel,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/annalouisewilliams,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/annesimpsonft,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/anthony-jackson-6b0b2110b,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/anthony-lawson-a2b924163,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/aryn-sands-1220b14a,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/ashleigh-swayze-50a90028,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/aviram-nahum-450600243,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/barryfrancis,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/barryporter74,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/benjaminpricenm,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/bhavini-chauhan,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/brendan-webb-530588130,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/brianwildercfp,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/bridget-patterson-24160842,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/calder-sutton,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/carl-noakes-45b84925,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/carla-cox-4a9737290,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/catherinebauer5,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/cbrogan,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/chandrews,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/charles-dodd-59b043139,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/charles-lyon-46773465,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/chriserblich,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/christiannin,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/christina-phillips-52793b12a,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/christopher-peters-cfa-9630aa18,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/cody-branson-cpa-abv-59574833,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/cody-faust-cpcu-asli-au-3156ab67,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/colin-horton,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/craig-mitchell-876521b,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/craig-stephen-7202896,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/daniel-r-evans,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/david-lang-6821b720b,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/david-lynch-3597692,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/david-o-connor-a29410b2,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/denise-hooker-08,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/dennis-m-zaslavsky-760aa53b,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/desaree-tatum-53a202132,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/dinesh-c-patel,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/edith-scheiner-2787085,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/eileen-fry-bowers-phd-jd-aprn-faan-0030a3129,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/ellen-thomas-b94833149,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/farrington-megan,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/frank-vellucci-5700967,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/garrettgunn,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/geoffhillier,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/gloria-bowen-4739631a,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/graham-anderson-9924873,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/greg-kessler-91221510,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/helen-leon-3b22b5294,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/hobart-moore,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/howard-gershon-b82976,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/hundal-g-singh-89a71693,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/ian-mcdowell-03b94b74,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/ianpelliott,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/jacqueline-knowles-ba83a341,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/james-burton-aa1904291,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/james-guppy-a7211a30,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/james-shepard-39088085,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/jamesgreen,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/jane-herman-1935aa77,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/jeff-wade-3647586,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/jeffrey-jay-m-d-m-b-a-6069a67,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/jennifer-winters-mba-63b6028a,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/joanne-anderson-69b421a6,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/john-cook-78785751,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/john-h-briggs,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/john-margetts-86611139,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/john-nelson-60607a60,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/johnhenry-ward,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/johnkeelanjr,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/johnmccarthy71,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/joseph-halpern-27608b1,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/joshuatbarnett,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/juddrebecca,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/judith-baker-7882ba13,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/julie-carter-887927120,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/june-carroll-3a868bba,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/karen-richards-432564106,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/karthik-murali-7b67bb15,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/kathryn-lloyd-545a6783,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/kaylyn-melia-acevedo-9b69a5101,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/kristina-sherman-a4180214,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/leon-moran-78694139,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/lewislangford,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/linda-blass-myers-05a31719,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/lindsayilizaliturri,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/lisa-stone-aa3255163,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/lisaparis22,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/manoj-tandon-ab5baa12,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/margaretjwallace,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/marycatherinewalsh,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/matthew-david-johnson,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/matthew-edward-williamson,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/matthewlparsons,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/melissa-mcculloch-3872769a,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/michael-holt-8b2687a1,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/michaeltmoorejr,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/michelle-eldridge-leader,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/mr-marian-stupka-569286b,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/mshah2,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/nelson-king-5129139,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/nicholasmancini15,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/patrick-cross-51203025,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/patrick-sexton-5143332,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/paulcsday,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/pauljburton,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/peter-dobson-96a3b318,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/peter-gordon-a3b0a7bb,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/peter-judge-cfa-b55897b,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/petermay,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/petrazunt,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/preston-murray-pe-39a6a911,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/rachel-byrne-374a2b5a,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/rachel-grant-0baa75364,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/richard-geller-548b253,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/robert-patterson-0014746b,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/robert-stimpson-a21a7985,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/robert-west-2766aa169,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/robin-cottam-14b3a4101,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/ryan-scott-21b426102,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/sheikh-anisur-rahman-075b891a8,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/simonappaharam,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/susan-oliver-5ab1b9ba,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/swailes-robin-47284042,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/thomasjrichardson,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/tim-madigan-2700613,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/tu-nguyen-dinh-02678a100,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/wfblake,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/williamsonelizabeth,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.linkedin.com/in/yvonnekbennett,serper/linkedin-profile-verification,3,429,true,"LinkedIn 429: rate limit or bot wall, not a dead profile; not checkable from a script"
+https://www.sec.gov/Archives/edgar/data/1683689/000168368921000004/xslForm13F_X01/primary_doc.xml,CIK1683689,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000887762&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001134621&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001281446&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001290162&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001325447&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001345471&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001347769&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001373442&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001511137&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001536411&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001562668&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001568303&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001602716&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001604873&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001683689&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001687509&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001697367&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001706220&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001730145&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001741129&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001777371&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001913482&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:ALLIE FAMILY OFFICE&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:ALPHA FAMILY&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:AMERICAN FAMILY INSURANCE MUTUAL HOLDING&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:AMERICAN FAMILY INVESTMENTS HOLDINGS&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:AMERICAN FAMILY INVESTMENTS&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:AMERICAN FAMILY MUTUAL INSURANCE S I&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:ARROWROOT FAMILY OFFICE&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:ATLANTIC FAMILY WEALTH&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:AURELIUS FAMILY OFFICE&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:AVANTRA FAMILY WEALTH&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:BILTMORE FAMILY OFFICE&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:BMO FAMILY OFFICE&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:BOSTON FAMILY OFFICE&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:BRADY FAMILY WEALTH&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:CALLAN FAMILY OFFICE&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:CAPITOL FAMILY OFFICE&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:COLLECTIVE FAMILY OFFICE&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:COLONY FAMILY OFFICES&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:CORUS FAMILY WEALTH ADVISORS&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:CUSTOS FAMILY OFFICE&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:CVA FAMILY OFFICE&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:DEUTSCHE OPPENHEIM FAMILY OFFICE AG&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:FAMILY CAPITAL MANAGEMENT&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:FAMILY CAPITAL&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:FAMILY CFO&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:FAMILY INVESTMENT CENTER&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:FAMILY LEGACY FINANCIAL SOLUTIONS&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:FAMILY LEGACY&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:FAMILY MANAGEMENT&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:FAMILY OFFICE RESEARCH&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:FAMILY WEALTH PARTNERS&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:FIDUCIARY FAMILY OFFICE&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:FORTHRIGHT FAMILY WEALTH ADVISORY&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:FORTITUDE FAMILY OFFICE&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:FRG FAMILY WEALTH ADVISORS&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:FUSION FAMILY WEALTH&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:GEORGE KAISER FAMILY FOUNDATION&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:HERITAGE FAMILY OFFICES&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:HORIZON FAMILY WEALTH&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:INDEPENDENT FAMILY OFFICE&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:INTREPID FAMILY OFFICE&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:LBJ FAMILY WEALTH ADVISORS&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:LCC FAMILY&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:MICHELS FAMILY FINANCIAL&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:MORTON BROWN FAMILY WEALTH&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:MOSAIC FAMILY WEALTH PARTNERS&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:NOBLE FAMILY WEALTH&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:OAK FAMILY ADVISORS&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:OMNIA FAMILY WEALTH&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:ONEASCENT FAMILY OFFICE&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:PETROS FAMILY WEALTH&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:PINNACLE FAMILY ADVISORS&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:QTR FAMILY WEALTH&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:RAINIER FAMILY WEALTH&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:RDZ FAMILY&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:RIVERGLADES FAMILY OFFICES&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:RPG FAMILY WEALTH ADVISORY&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:SEG FAMILY&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:STANDARD FAMILY OFFICE&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:STENGER FAMILY OFFICE&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:STOKES FAMILY OFFICE&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:STRATEGIC FAMILY WEALTH COUNSELORS&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:STRENGTHENING FAMILIES COMMUNITIES&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:TARBOX FAMILY OFFICE&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:TIMONIER FAMILY OFFICE&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:TLT FAMILY HOLDCO ULC&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:TRED AVON FAMILY WEALTH&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=name:WALTER SCOTT FAMILY FOUNDATION&type=13F,sec.gov/form-13f/2025q3,1,200,true,resolves

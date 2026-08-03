@@ -143,7 +143,7 @@ section { margin: 2.2rem 0; }
 section h2 { font-size: 1.05rem; margin: 0 0 .5rem; letter-spacing: .01em; }
 
 .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: .75rem; margin: .75rem 0; }
-.stat { border: 1px solid var(--line, #2a2a2a); border-radius: 6px; padding: .7rem .8rem; }
+.stat { border: 1px solid var(--border-strong); border-radius: 6px; padding: .7rem .8rem; }
 .statValue { font-size: 1.6rem; font-variant-numeric: tabular-nums; line-height: 1.1; }
 .statLabel { font-size: .78rem; opacity: .75; margin-top: .15rem; }
 .statNote { font-size: .7rem; opacity: .5; margin-top: .2rem; }
@@ -151,6 +151,144 @@ section h2 { font-size: 1.05rem; margin: 0 0 .5rem; letter-spacing: .01em; }
 .note { font-size: .82rem; opacity: .72; line-height: 1.55; margin: .5rem 0; }
 
 table { width: 100%; border-collapse: collapse; font-size: .8rem; margin-top: .6rem; display: block; overflow-x: auto; }
-thead th { text-align: left; font-weight: 500; opacity: .6; padding: .35rem .5rem; border-bottom: 1px solid var(--line, #2a2a2a); white-space: nowrap; }
+thead th { text-align: left; font-weight: 500; opacity: .6; padding: .35rem .5rem; border-bottom: 1px solid var(--border-strong); white-space: nowrap; }
 tbody td { padding: .35rem .5rem; border-bottom: 1px solid rgba(128,128,128,.14); vertical-align: top; }
 .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .74rem; }
+
+
+/* ---- navigation -------------------------------------------------------
+   There was none: pages were reachable only by typing the URL. Sticky, because
+   the evidence and shortlist pages are long and a reader part-way down one
+   should be able to move without scrolling back up. */
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: saturate(180%) blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  min-height: 54px;
+}
+
+.nav-brand {
+  font-weight: 640;
+  font-size: 15.5px;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.nav-links {
+  display: flex;
+  gap: 4px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;              /* narrow screens scroll rather than wrap */
+  scrollbar-width: none;
+}
+.nav-links::-webkit-scrollbar { display: none; }
+
+.nav-link {
+  display: block;
+  padding: 7px 11px;
+  border-radius: 7px;
+  font-size: 14.5px;
+  color: var(--ink-soft);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 120ms ease, color 120ms ease;
+}
+.nav-link:hover { background: var(--accent-soft); color: var(--ink); }
+
+/* The current page is marked by weight and colour, not by colour alone --
+   colour on its own fails for a reader who cannot distinguish it. */
+.nav-link.is-active {
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.nav-link:focus-visible,
+.nav-brand:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* The header sat right under the top of the page; with a sticky bar above it
+   needs room to breathe. */
+.wrap { padding-top: 34px; }
+
+@media (max-width: 560px) {
+  .nav-inner { gap: 14px; min-height: 50px; }
+  .nav-link { padding: 6px 9px; font-size: 14px; }
+  .wrap { padding-top: 26px; }
+}
+
+
+/* ---- filter chips -----------------------------------------------------
+   These were bare <a> elements with an inline margin, so they rendered as
+   default browser-blue underlined links -- unreadable on the dark theme and the
+   single most dated thing on the page. They are controls, so they look like
+   controls, and the active one is marked by fill and weight rather than colour
+   alone. */
+
+.filter-link {
+  display: inline-block;
+  font-size: 13px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+  color: var(--ink-soft);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 120ms ease, color 120ms ease, border-color 120ms ease;
+}
+.filter-link:hover { border-color: var(--accent); color: var(--ink); }
+.filter-link.is-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  font-weight: 560;
+}
+.filter-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+@media (prefers-color-scheme: dark) {
+  .filter-link.is-active { color: #10201a; }
+}
+
+/* Give the chip row room; it sits directly under a heading. */
+.filters { margin: 12px 0 20px; }
+
+
+/* A disabled submit should look disabled; it previously stayed full-accent
+   while a question was in flight, so a second click felt ignored. */
+button[disabled] { opacity: .55; cursor: progress; }
+
+
+/* The raw trace. Wide by nature, so it scrolls inside its own box rather than
+   pushing the page sideways. */
+.trace {
+  overflow-x: auto;
+  font-size: 12px;
+  line-height: 1.55;
+  padding: 12px 14px;
+  margin: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  max-height: 460px;
+  overflow-y: auto;
+}

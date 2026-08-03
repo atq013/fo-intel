@@ -41,11 +41,14 @@ export default async function Operations() {
           <Stat label="held" value={stats.held} note="a gate was skipped, so not proven" />
         </div>
         <p className="note">
-          Reachability is reported as two separate figures and never merged into one
-          (ADR-11): <strong>{stats.strictReachable}</strong> strict, excluding personal
-          profiles, and <strong>{stats.profileAssistedReachable}</strong> profile-assisted,
-          counting verified personal profiles under assumption A1. A reviewer who rejects
-          A1 should read the first number.
+          Reachability is reported as three separate figures and never merged into one
+          (ADR-11, ADR-12). <strong>{stats.strictReachable}</strong> strict — a phone or
+          personal email, profiles excluded. <strong>{stats.profileAssistedReachable}</strong>{' '}
+          profile-assisted — the above plus a verified personal profile, under assumption A1.{' '}
+          <strong>{stats.postalReachable}</strong> postal — an adjudicated statutory service
+          address that is neither the company&rsquo;s registered office nor shared with another
+          director. A reviewer who rejects A1 should read the first number; one who does not
+          accept a postal address as a route to a person should ignore the third.
         </p>
       </section>
 

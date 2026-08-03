@@ -46,20 +46,26 @@ export default async function Shortlist({
 
       <section>
         <h2>Filters</h2>
-        <p className="note">
-          {[
-            ['all qualifying', href({ strict: undefined, assisted: undefined, fields: undefined, freshDays: undefined, tier: undefined })],
-            ['reachable — strict', href({ strict: '1', assisted: undefined })],
-            ['reachable — incl. profiles', href({ assisted: '1', strict: undefined })],
-            ['has a principal phone', href({ fields: 'principal.phone' })],
-            ['statutory sources only', href({ tier: '1' })],
-            ['observed in last 1d', href({ freshDays: '1' })],
-          ].map(([label, url]) => (
-            <a key={label} href={url as string} style={{ marginRight: '1rem', whiteSpace: 'nowrap' }}>
+        <div className="filters">
+          {([
+            ['all qualifying', href({ strict: undefined, assisted: undefined, fields: undefined, freshDays: undefined, tier: undefined }),
+              !sp.strict && !sp.assisted && !sp.fields && !sp.tier && !sp.freshDays],
+            ['reachable — strict', href({ strict: '1', assisted: undefined }), sp.strict === '1'],
+            ['reachable — incl. profiles', href({ assisted: '1', strict: undefined }), sp.assisted === '1'],
+            ['has a principal phone', href({ fields: 'principal.phone' }), sp.fields === 'principal.phone'],
+            ['statutory sources only', href({ tier: '1' }), sp.tier === '1'],
+            ['observed in last 1d', href({ freshDays: '1' }), sp.freshDays === '1'],
+          ] as Array<[string, string, boolean]>).map(([label, url, active]) => (
+            <a
+              key={label}
+              href={url}
+              className={active ? 'filter-link is-active' : 'filter-link'}
+              aria-current={active ? 'true' : undefined}
+            >
               {label}
             </a>
           ))}
-        </p>
+        </div>
         <p className="note">
           <strong>Scope.</strong> {res.scope.searched} entities searched ·{' '}
           {res.scope.matched} matched · {res.scope.returned} shown
@@ -85,7 +91,7 @@ export default async function Shortlist({
           <div key={r.entityId} className="stat" style={{ marginBottom: '.7rem' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap' }}>
               <strong>{r.name}</strong>
-              <span className="mono">score {r.score.toFixed(3)}</span>
+              <span className="mono" title="Ranks how well this record matches the filters applied. Not a confidence value.">relevance {r.score.toFixed(3)}</span>
             </div>
 
             <div className="statNote" style={{ marginTop: '.35rem' }}>

@@ -28,16 +28,27 @@ export async function recentRuns(limit = 20): Promise<RunRow[]> {
 export interface ContractStats {
   entities: number; qualifying: number;
   claims: number; released: number; quarantined: number; held: number;
-  strictReachable: number; profileAssistedReachable: number;
+  strictReachable: number; profileAssistedReachable: number; postalReachable: number;
   scheduledRuns: number; windowHours: number | null;
 }
 
 export async function contractStats(): Promise<ContractStats> {
+  // Reachability is counted over QUALIFYING, unmerged entities only.
+  //
+  // It used to count every row with the flag set, so a withheld record or a
+  // merged duplicate carrying a route inflated the figure: the page showed 68
+  // strict and 369 profile-assisted against a file holding 67 and 368. Small,
+  // and exactly the kind of number a reviewer recomputes from the export and
+  // finds does not match the product.
   const [e] = (await db()`
-    SELECT count(*)::int total,
-           count(*) FILTER (WHERE commercial_state = 'qualifying')::int qualifying,
-           count(*) FILTER (WHERE strict_reachable)::int strict,
-           count(*) FILTER (WHERE profile_assisted_reachable)::int assisted
+    SELECT count(*) FILTER (WHERE merged_into_id IS NULL)::int total,
+           count(*) FILTER (WHERE merged_into_id IS NULL AND commercial_state = 'qualifying')::int qualifying,
+           count(*) FILTER (WHERE merged_into_id IS NULL AND commercial_state = 'qualifying'
+                              AND strict_reachable)::int strict,
+           count(*) FILTER (WHERE merged_into_id IS NULL AND commercial_state = 'qualifying'
+                              AND profile_assisted_reachable)::int assisted,
+           count(*) FILTER (WHERE merged_into_id IS NULL AND commercial_state = 'qualifying'
+                              AND postal_reachable)::int postal
     FROM s2_entity`) as unknown as Array<Record<string, number>>;
 
   const [c] = (await db()`
@@ -58,12 +69,13 @@ export async function contractStats(): Promise<ContractStats> {
   return {
     entities: e?.total ?? 0,
     qualifying: e?.qualifying ?? 0,
+    strictReachable: e?.strict ?? 0,
+    profileAssistedReachable: e?.assisted ?? 0,
+    postalReachable: e?.postal ?? 0,
     claims: c?.total ?? 0,
     released: c?.released ?? 0,
     quarantined: c?.quarantined ?? 0,
     held: c?.held ?? 0,
-    strictReachable: e?.strict ?? 0,
-    profileAssistedReachable: e?.assisted ?? 0,
     scheduledRuns: w?.n ?? 0,
     windowHours: w?.hours != null ? Math.round(Number(w.hours) * 10) / 10 : null,
   };
