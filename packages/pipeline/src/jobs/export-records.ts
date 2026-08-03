@@ -223,6 +223,26 @@ const dataset = {
     },
   },
 
+  sourceMix: {
+    note:
+      'Which source tiers stand behind the values in each record. A record counted under ' +
+      '`tier1Only` has every value from a statutory or self-published source. A record under ' +
+      '`mixedTier1And3` additionally holds a verified personal profile (tier 3), which is what ' +
+      'carries profile-assisted reachability under assumption A1. Reporting only the best tier ' +
+      'per record would let half the file read as fully statutory when it is not.',
+    tier1Only: qualifying.filter((r) =>
+      r.values.every((v) => v.evidence.sourceTier === 1)).length,
+    mixedTier1And3: qualifying.filter((r) =>
+      r.values.some((v) => v.evidence.sourceTier === 3)).length,
+    bySource: Object.fromEntries(
+      [...qualifying.reduce((m, r) => {
+        for (const src of new Set(r.values.map((v) => v.evidence.source))) {
+          m.set(src, (m.get(src) ?? 0) + 1);
+        }
+        return m;
+      }, new Map<string, number>())].sort((a, b) => b[1] - a[1])),
+  },
+
   inclusionStandard:
     'A record qualifies only with a named individual, a legal name, an address, and every ' +
     'value released by the gates. A contact route counts only if it reaches the named ' +
@@ -235,36 +255,99 @@ const dataset = {
 
 writeFileSync(OUT + 'records.json', JSON.stringify(dataset, null, 1));
 
-// One row per qualifying record, for opening and counting.
+/**
+ * One row per qualifying record.
+ *
+ * Stage 1 shipped 33 columns and this shipped 21, which reads as a thinner
+ * record and mostly is not. Six of Stage 1's columns were `_basis` fields --
+ * its way of carrying evidence -- and Stage 2 carries evidence far more
+ * strongly, with a span, URL, source tier, content hash, six gate outcomes and
+ * the policy version behind every single value. All of that is in the JSON and
+ * none of it was in this file, so the CSV understated the record it describes.
+ *
+ * The basis columns below restore that at CSV granularity: for each value, the
+ * source it came from and the tier of that source. `rules_matched` and
+ * `discovery_channel` were likewise derivable from what is already stored.
+ *
+ * What is still absent is absent for real: description, website, corporate
+ * LinkedIn, principal email and principal location all needed the web discovery
+ * channel, which measured 2-4% true precision and was rejected. Those columns
+ * are not emitted rather than emitted empty, because a column of blanks invites
+ * the reader to assume it was attempted and failed per row.
+ */
 const esc = (v: unknown) => {
   const s = v === null || v === undefined ? '' : String(v);
   return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
 };
-const pick = (r: ReturnType<typeof buildRecord>, field: string) =>
-  r.values.find((v) => v.field === field)?.value ?? '';
+const val = (r: ReturnType<typeof buildRecord>, field: string) =>
+  r.values.find((v) => v.field === field);
+const pick = (r: ReturnType<typeof buildRecord>, field: string) => val(r, field)?.value ?? '';
+
+/** Where a value came from, at the granularity a spreadsheet can hold. */
+const basis = (r: ReturnType<typeof buildRecord>, field: string) => {
+  const v = val(r, field);
+  if (!v) return '';
+  return `${v.evidence.source} (tier ${v.evidence.sourceTier}) ${v.evidence.url}`;
+};
+
+/** Every named person on the record, so a second principal is not lost. */
+const people = (r: ReturnType<typeof buildRecord>) =>
+  r.values.filter((v) => v.field.endsWith('fullName')).map((v) => String(v.value));
 
 const header = [
-  'entityId', 'name', 'entityType', 'classification', 'commercialState',
+  'entityId', 'name', 'entityType', 'classification', 'classification_basis', 'commercialState',
   'strictReachable', 'profileAssistedReachable', 'postalReachable',
-  'principalName', 'principalTitle', 'principalPhone', 'principalProfile',
-  'officerName', 'officerPostalAddress',
-  'legalName', 'country', 'city', 'postcode',
+  'principalName', 'principalTitle', 'principalPhone', 'principalPhone_basis', 'principalProfile',
+  'secondPrincipalName', 'thirdPrincipalName',
+  'officerPostalAddress', 'controllerEntityName',
+  'legalName', 'legalName_basis', 'street', 'city', 'region', 'postcode', 'country', 'address_basis',
+  'companyNumber', 'companyStatus', 'incorporatedOn', 'cik', 'crd',
+  'latestObservedFilingDate',
+  'sources', 'sourceTiers', 'weakestSourceTier', 'rules_matched',
   'releasedValues', 'bestSourceTier', 'newestObservation', 'quarantinedValues',
 ];
 
-const rows = qualifying.map((r) => [
-  r.entityId, r.name, r.entityType, pick(r, 'entityClassification'), r.commercialState,
-  r.reachability.strict, r.reachability.profileAssisted, r.reachability.postal,
-  pick(r, 'principal.fullName') || pick(r, 'officer.fullName'),
-  pick(r, 'principal.title'), pick(r, 'principal.phone'), pick(r, 'principal.linkedinUrl'),
-  pick(r, 'officer.fullName'), pick(r, 'officer.postalAddress'),
-  pick(r, 'legalName'), pick(r, 'country'), pick(r, 'city'), pick(r, 'postcode'),
-  r.values.length,
-  r.values.length ? Math.min(...r.values.map((v) => v.evidence.sourceTier ?? 9)) : '',
-  r.freshness.newestObservation,
-  r.withheld.quarantined,
-].map(esc).join(','));
+const rows = qualifying.map((r) => {
+  const named = people(r);
+  // Which checks actually ran and passed for this record, deduplicated. The
+  // Stage 1 column of the same name listed rubric rules; this lists the gates
+  // that produced the record, which is the same question asked of real outcomes.
+  const passed = [...new Set(r.values.flatMap((v) =>
+    v.gates.filter((g) => g.outcome === 'passed').map((g) => g.gate)))].sort();
+  const cls = val(r, 'entityClassification');
 
+  return [
+    r.entityId, r.name, r.entityType, cls?.value ?? '', cls ? cls.evidence.span : '', r.commercialState,
+    r.reachability.strict, r.reachability.profileAssisted, r.reachability.postal,
+    named[0] ?? '', pick(r, 'principal.title'), pick(r, 'principal.phone'),
+    basis(r, 'principal.phone'), pick(r, 'principal.linkedinUrl'),
+    named[1] ?? '', named[2] ?? '',
+    pick(r, 'officer.postalAddress'), pick(r, 'controller.entityName'),
+    pick(r, 'legalName'), basis(r, 'legalName'),
+    pick(r, 'street'), pick(r, 'city'), pick(r, 'region'), pick(r, 'postcode'), pick(r, 'country'),
+    basis(r, 'street') || basis(r, 'officer.postalAddress'),
+    pick(r, 'companyNumber'), pick(r, 'companyStatus'), pick(r, 'incorporatedOn'),
+    pick(r, 'cik'), pick(r, 'crd'),
+    pick(r, 'latestObservedFilingDate'),
+    // Every source behind the record, not just the first.
+    //
+    // This column named one source and `bestSourceTier` named the best tier, and
+    // together they said "statutory" for 302 of 614 records that also hold
+    // tier-3 evidence -- a LinkedIn profile carrying the profile-assisted route.
+    // Neither field was false and the pair was misleading, which is the failure
+    // the brief tests for: a value labelled more strongly than its evidence
+    // supports. The weakest tier is now stated alongside the best, so a row
+    // cannot read as fully statutory when half of it is not.
+    [...new Set(r.values.map((v) => v.evidence.source))].sort().join('; '),
+    [...new Set(r.values.map((v) => v.evidence.sourceTier))].sort().join('+'),
+    r.values.length ? Math.max(...r.values.map((v) => v.evidence.sourceTier ?? 0)) : '',
+    passed.join(' '),
+    r.values.length,
+    r.values.length ? Math.min(...r.values.map((v) => v.evidence.sourceTier ?? 9)) : '',
+    r.freshness.newestObservation,
+    r.withheld.quarantined,
+  ].map(esc).join(',');
+});
 writeFileSync(OUT + 'records.csv', [header.join(','), ...rows].join('\n') + '\n');
 
 console.log(`qualifying            : ${dataset.counts.qualifying}`);

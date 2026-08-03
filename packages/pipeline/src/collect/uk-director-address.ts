@@ -11,7 +11,7 @@ import { readFileSync } from 'node:fs';
  * The test is the same one that made the SEC phone channel credible: an
  * identifier used by more than one party belongs to none of them.
  *
- *   - equal to the registered office        -> the company's address, not theirs
+ *   - the same BUILDING as the registered office -> the company's address, not theirs
  *   - used by more than one company         -> a formation agent or accountant
  *   - shared by two directors at the firm   -> belongs to neither individually
  *
@@ -19,6 +19,20 @@ import { readFileSync } from 'node:fs';
  * 206 to an individual. The rejection rate is the point: an unadjudicated
  * "director address" figure would be more than three times larger and mean
  * nothing.
+ *
+ * **The registered-office test compares buildings, not strings.** It used to
+ * require exact equality of the normalised address, and the same building filed
+ * two ways walked straight through it:
+ *
+ *     registered office : 41 Devonshire Street | London | W1G 7AJ
+ *     service address   : Devonshire Street | Ground Floor | London | W1G 7AJ
+ *
+ * An audit of every route found 132 of 276 in that shape -- close to half the
+ * postal metric resting on addresses that are the company's own premises. A UK
+ * postcode identifies a building or a small group of them, so postcode equality
+ * plus an agreeing street name is the right unit of comparison. Tightening it
+ * takes postal reachability from 207 to roughly 91, and 91 that survive scrutiny
+ * is worth more than 207 a reviewer can take apart.
  *
  * **Known limit, stated rather than hidden.** The cross-company index is built
  * from the candidate file we already hold, exactly as the SEC index is built
@@ -31,6 +45,50 @@ export interface AddressAdjudication {
   ownership: 'individual' | 'company' | 'unknown';
   reason: string;
   normalised: string;
+}
+
+/** UK postcode, whitespace removed. It identifies a building or a few. */
+export function postcodeOf(address: string): string {
+  return (address.toUpperCase().match(/\b[A-Z]{1,2}\d[A-Z\d]?\s*\d[A-Z]{2}\b/) ?? [''])[0]
+    .replace(/\s+/g, '');
+}
+
+/** Street words, with the generic ones dropped so "Street" alone never matches. */
+const GENERIC_ADDRESS_WORD = new Set([
+  'road', 'street', 'lane', 'close', 'house', 'floor', 'ground', 'suite', 'unit',
+  'avenue', 'drive', 'court', 'place', 'square', 'park', 'building', 'buildings',
+  'the', 'and', 'first', 'second', 'third', 'north', 'south', 'east', 'west',
+]);
+
+/**
+ * Words from the STREET part only.
+ *
+ * `normaliseAddress` emits `line1|line2|locality|postcode`, so the locality has
+ * to come off before comparing: without that, two unrelated addresses matched on
+ * the town -- "12 Albert Road, London" and "41 Devonshire Street, London" share
+ * "london" and nothing else, and a shared town is not a shared building.
+ */
+function streetWords(address: string): Set<string> {
+  const parts = address.split('|').map((x) => x.trim()).filter(Boolean);
+  // Drop the postcode, then the locality, leaving the street lines.
+  const street = parts.length >= 3 ? parts.slice(0, -2) : parts.slice(0, 1);
+  return new Set(
+    street.join(' ').toLowerCase().replace(/[^a-z ]/g, ' ').split(/\s+/)
+      .filter((w) => w.length > 3 && !GENERIC_ADDRESS_WORD.has(w)),
+  );
+}
+
+/**
+ * Two addresses describing one building.
+ *
+ * Postcode equality alone is close but not enough -- a large postcode can cover
+ * a terrace -- so a shared distinctive street word is required with it.
+ */
+export function sameBuilding(a: string, b: string): boolean {
+  const pa = postcodeOf(a);
+  if (!pa || pa !== postcodeOf(b)) return false;
+  const wb = streetWords(b);
+  return [...streetWords(a)].some((w) => wb.has(w));
 }
 
 export function normaliseAddress(a: Record<string, unknown> | null | undefined): string {
@@ -87,6 +145,15 @@ export function adjudicateDirectorAddress(opts: {
     return {
       ownership: 'company',
       reason: 'service address is the registered office, so it is the company address rather than the individual\'s',
+      normalised,
+    };
+  }
+  if (reg && sameBuilding(normalised, reg)) {
+    return {
+      ownership: 'company',
+      reason:
+        'service address is the same building as the registered office (same postcode and street), ' +
+        'so it is the company address rather than the individual\'s',
       normalised,
     };
   }

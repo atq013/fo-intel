@@ -1,15 +1,26 @@
 {
- "generatedAt": "2026-08-01T19:39:10.012Z",
+ "generatedAt": "2026-08-03T09:13:22.275Z",
  "policyNote": "Records as held at export time. Nothing here was edited by hand: every value was written by the pipeline and every value carries the evidence that established it.",
  "counts": {
   "qualifying": 614,
-  "notQualifying": 50,
+  "notQualifying": 49,
   "reachable": {
    "strict": 67,
    "profileAssisted": 368,
-   "postal": 207,
-   "anyRoute": 468,
+   "postal": 98,
+   "anyRoute": 413,
    "note": "Reported separately and never merged. `anyRoute` is given for completeness and is not the headline figure: it depends on accepting both assumption A1 (a verified personal profile is a route) and ADR-12 (an adjudicated service address is a route), and a reviewer may reasonably reject either. Recompute any of these from `contactRoutes` on each record."
+  }
+ },
+ "sourceMix": {
+  "note": "Which source tiers stand behind the values in each record. A record counted under `tier1Only` has every value from a statutory or self-published source. A record under `mixedTier1And3` additionally holds a verified personal profile (tier 3), which is what carries profile-assisted reachability under assumption A1. Reporting only the best tier per record would let half the file read as fully statutory when it is not.",
+  "tier1Only": 312,
+  "mixedTier1And3": 302,
+  "bySource": {
+   "gov.uk/companies-house": 505,
+   "serper/linkedin-profile-verification": 302,
+   "sec.gov/form-13f/2025q3": 85,
+   "sec.gov/form-adv-archive/20111105-20241231": 24
   }
  },
  "inclusionStandard": "A record qualifies only with a named individual, a legal name, an address, and every value released by the gates. A contact route counts only if it reaches the named individual: shared inboxes, contact forms, switchboards and pattern-generated addresses are excluded by the data model, not by convention.",
@@ -24927,20 +24938,20 @@
     },
     {
      "channel": "postal",
-     "value": "10 WESTERN AVENUE, LONDON, NW11 9HH",
+     "value": "8 WESTERN AVENUE, LONDON, NW11 9HH",
      "reaches": "individual",
      "verificationMethod": "route appears in evidence naming the individual",
-     "verifiedAt": "2026-07-31T08:55:51.213Z",
+     "verifiedAt": "2026-07-31T08:55:51.507Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
      "countsPostal": true
     },
     {
      "channel": "postal",
-     "value": "8 WESTERN AVENUE, LONDON, NW11 9HH",
+     "value": "10 WESTERN AVENUE, LONDON, NW11 9HH",
      "reaches": "individual",
      "verificationMethod": "route appears in evidence naming the individual",
-     "verifiedAt": "2026-07-31T08:55:51.507Z",
+     "verifiedAt": "2026-07-31T08:55:51.213Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
      "countsPostal": true
@@ -33363,7 +33374,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -33385,12 +33396,12 @@
      "verifiedAt": "2026-08-01T12:09:03.487Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T12:08:56.082Z",
-    "lastUpdatedAt": "2026-08-01T12:31:14.541Z",
+    "lastUpdatedAt": "2026-08-03T09:11:35.221Z",
     "oldestObservation": "2026-08-01T12:08:54.929Z",
     "newestObservation": "2026-08-01T12:31:08.728Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -34136,6 +34147,16 @@
     },
     {
      "channel": "postal",
+     "value": "78 CANNON STREET, LONDON, EC4N 6HL",
+     "reaches": "individual",
+     "verificationMethod": "route appears in evidence naming the individual",
+     "verifiedAt": "2026-07-31T08:55:39.484Z",
+     "countsStrict": false,
+     "countsProfileAssisted": false,
+     "countsPostal": false
+    },
+    {
+     "channel": "postal",
      "value": "3 BILLINGHAM CLOSE, SOLIHULL, B91 3UQ",
      "reaches": "individual",
      "verificationMethod": "route appears in evidence naming the individual",
@@ -34143,21 +34164,11 @@
      "countsStrict": false,
      "countsProfileAssisted": false,
      "countsPostal": true
-    },
-    {
-     "channel": "postal",
-     "value": "78 CANNON STREET, LONDON, EC4N 6HL",
-     "reaches": "individual",
-     "verificationMethod": "route appears in evidence naming the individual",
-     "verifiedAt": "2026-07-31T08:55:39.484Z",
-     "countsStrict": false,
-     "countsProfileAssisted": false,
-     "countsPostal": true
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-07-30T21:08:31.627Z",
-    "lastUpdatedAt": "2026-08-01T05:25:23.312Z",
+    "lastUpdatedAt": "2026-08-03T09:11:35.715Z",
     "oldestObservation": "2026-07-31T08:55:30.054Z",
     "newestObservation": "2026-07-31T08:55:30.054Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -38347,7 +38358,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -38359,12 +38370,12 @@
      "verifiedAt": "2026-08-01T11:21:30.196Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:21:23.866Z",
-    "lastUpdatedAt": "2026-08-01T11:21:31.920Z",
+    "lastUpdatedAt": "2026-08-03T09:11:38.000Z",
     "oldestObservation": "2026-08-01T11:21:22.704Z",
     "newestObservation": "2026-08-01T11:21:22.704Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -47786,20 +47797,20 @@
     },
     {
      "channel": "postal",
-     "value": "LUCERNE STREET, LIVERPOOL, L17 8XT",
+     "value": "ERROL STREET, LIVERPOOL, L17 7DH",
      "reaches": "individual",
      "verificationMethod": "route appears in evidence naming the individual",
-     "verifiedAt": "2026-07-31T08:52:50.987Z",
+     "verifiedAt": "2026-07-31T08:52:51.297Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
      "countsPostal": true
     },
     {
      "channel": "postal",
-     "value": "ERROL STREET, LIVERPOOL, L17 7DH",
+     "value": "LUCERNE STREET, LIVERPOOL, L17 8XT",
      "reaches": "individual",
      "verificationMethod": "route appears in evidence naming the individual",
-     "verifiedAt": "2026-07-31T08:52:51.297Z",
+     "verifiedAt": "2026-07-31T08:52:50.987Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
      "countsPostal": true
@@ -51416,7 +51427,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -51438,12 +51449,12 @@
      "verifiedAt": "2026-07-31T08:50:37.865Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-07-30T21:05:38.553Z",
-    "lastUpdatedAt": "2026-08-01T05:25:22.450Z",
+    "lastUpdatedAt": "2026-08-03T09:11:39.522Z",
     "oldestObservation": "2026-07-31T08:50:29.202Z",
     "newestObservation": "2026-07-31T13:30:21.001Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -53113,6 +53124,16 @@
     },
     {
      "channel": "postal",
+     "value": "PENRHOS MANOR, OAK DRIVE, COLWYN BAY, LL29 7YW",
+     "reaches": "individual",
+     "verificationMethod": "route appears in evidence naming the individual",
+     "verifiedAt": "2026-07-31T08:44:21.952Z",
+     "countsStrict": false,
+     "countsProfileAssisted": false,
+     "countsPostal": false
+    },
+    {
+     "channel": "postal",
      "value": "PENRHOS MANOR, OAK DRIVE, COLWYN BAY, L29 7YW",
      "reaches": "individual",
      "verificationMethod": "route appears in evidence naming the individual",
@@ -53120,21 +53141,11 @@
      "countsStrict": false,
      "countsProfileAssisted": false,
      "countsPostal": true
-    },
-    {
-     "channel": "postal",
-     "value": "PENRHOS MANOR, OAK DRIVE, COLWYN BAY, LL29 7YW",
-     "reaches": "individual",
-     "verificationMethod": "route appears in evidence naming the individual",
-     "verifiedAt": "2026-07-31T08:44:21.952Z",
-     "countsStrict": false,
-     "countsProfileAssisted": false,
-     "countsPostal": true
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-07-30T16:17:38.261Z",
-    "lastUpdatedAt": "2026-07-31T21:02:33.786Z",
+    "lastUpdatedAt": "2026-08-03T09:11:40.573Z",
     "oldestObservation": "2026-07-31T08:44:13.007Z",
     "newestObservation": "2026-07-31T13:30:31.603Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -59692,7 +59703,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -59714,12 +59725,12 @@
      "verifiedAt": "2026-08-01T11:42:15.450Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:42:08.019Z",
-    "lastUpdatedAt": "2026-08-01T12:35:51.018Z",
+    "lastUpdatedAt": "2026-08-03T09:11:41.063Z",
     "oldestObservation": "2026-08-01T11:42:06.940Z",
     "newestObservation": "2026-08-01T12:35:46.910Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -61383,7 +61394,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -61405,12 +61416,12 @@
      "verifiedAt": "2026-08-01T10:57:08.139Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T10:57:01.598Z",
-    "lastUpdatedAt": "2026-08-01T12:36:01.820Z",
+    "lastUpdatedAt": "2026-08-03T09:11:41.555Z",
     "oldestObservation": "2026-08-01T10:57:00.322Z",
     "newestObservation": "2026-08-01T12:35:58.013Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -69133,16 +69144,6 @@
     },
     {
      "channel": "postal",
-     "value": "OLDFIELD LANE NORTH, GREENFORD, UB6 0FX",
-     "reaches": "individual",
-     "verificationMethod": "route appears in evidence naming the individual",
-     "verifiedAt": "2026-07-31T08:47:29.577Z",
-     "countsStrict": false,
-     "countsProfileAssisted": false,
-     "countsPostal": true
-    },
-    {
-     "channel": "postal",
      "value": "56/60 ST. JOHN STREET, LONDON, EC1M 4DT",
      "reaches": "individual",
      "verificationMethod": "route appears in evidence naming the individual",
@@ -69150,11 +69151,21 @@
      "countsStrict": false,
      "countsProfileAssisted": false,
      "countsPostal": true
+    },
+    {
+     "channel": "postal",
+     "value": "OLDFIELD LANE NORTH, GREENFORD, UB6 0FX",
+     "reaches": "individual",
+     "verificationMethod": "route appears in evidence naming the individual",
+     "verifiedAt": "2026-07-31T08:47:29.577Z",
+     "countsStrict": false,
+     "countsProfileAssisted": false,
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-07-30T16:18:28.062Z",
-    "lastUpdatedAt": "2026-07-31T21:02:34.300Z",
+    "lastUpdatedAt": "2026-08-03T09:11:42.136Z",
     "oldestObservation": "2026-07-31T08:47:18.903Z",
     "newestObservation": "2026-07-31T13:30:44.716Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -72370,7 +72381,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -72392,12 +72403,12 @@
      "verifiedAt": "2026-07-31T08:23:09.466Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-07-30T16:15:40.728Z",
-    "lastUpdatedAt": "2026-08-01T07:32:14.904Z",
+    "lastUpdatedAt": "2026-08-03T09:11:42.626Z",
     "oldestObservation": "2026-07-31T08:22:59.951Z",
     "newestObservation": "2026-07-31T13:11:10.093Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -73363,7 +73374,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -73385,12 +73396,12 @@
      "verifiedAt": "2026-08-01T10:52:36.046Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T10:52:29.891Z",
-    "lastUpdatedAt": "2026-08-01T12:36:37.052Z",
+    "lastUpdatedAt": "2026-08-03T09:11:43.119Z",
     "oldestObservation": "2026-08-01T10:52:28.635Z",
     "newestObservation": "2026-08-01T12:36:33.243Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -75946,7 +75957,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -75958,12 +75969,12 @@
      "verifiedAt": "2026-08-01T10:56:47.078Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T10:56:40.469Z",
-    "lastUpdatedAt": "2026-08-01T10:56:48.949Z",
+    "lastUpdatedAt": "2026-08-03T09:11:43.630Z",
     "oldestObservation": "2026-08-01T10:56:38.558Z",
     "newestObservation": "2026-08-01T10:56:38.558Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -76693,7 +76704,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -76715,12 +76726,12 @@
      "verifiedAt": "2026-08-01T11:59:06.121Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:58:58.731Z",
-    "lastUpdatedAt": "2026-08-01T12:36:47.607Z",
+    "lastUpdatedAt": "2026-08-03T09:11:44.122Z",
     "oldestObservation": "2026-08-01T11:58:57.615Z",
     "newestObservation": "2026-08-01T12:36:42.940Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -78492,7 +78503,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -78504,12 +78515,12 @@
      "verifiedAt": "2026-08-01T11:04:53.607Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:04:46.208Z",
-    "lastUpdatedAt": "2026-08-01T11:04:55.341Z",
+    "lastUpdatedAt": "2026-08-03T09:11:44.618Z",
     "oldestObservation": "2026-08-01T11:04:44.975Z",
     "newestObservation": "2026-08-01T11:04:44.975Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -79314,20 +79325,20 @@
     },
     {
      "channel": "postal",
-     "value": "FLOOR 6,, 4 THOMAS MORE SQUARE, LONDON, E1W 1YW",
+     "value": "25 OLD BURLINGTON STREET, LONDON, W1S 3AN",
      "reaches": "individual",
      "verificationMethod": "route appears in evidence naming the individual",
-     "verifiedAt": "2026-08-01T11:17:43.157Z",
+     "verifiedAt": "2026-08-01T11:17:42.850Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
      "countsPostal": true
     },
     {
      "channel": "postal",
-     "value": "25 OLD BURLINGTON STREET, LONDON, W1S 3AN",
+     "value": "FLOOR 6,, 4 THOMAS MORE SQUARE, LONDON, E1W 1YW",
      "reaches": "individual",
      "verificationMethod": "route appears in evidence naming the individual",
-     "verifiedAt": "2026-08-01T11:17:42.850Z",
+     "verifiedAt": "2026-08-01T11:17:43.157Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
      "countsPostal": true
@@ -85688,7 +85699,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -85710,12 +85721,12 @@
      "verifiedAt": "2026-07-31T08:43:50.298Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-07-30T16:17:27.755Z",
-    "lastUpdatedAt": "2026-08-01T10:47:44.265Z",
+    "lastUpdatedAt": "2026-08-03T09:11:45.679Z",
     "oldestObservation": "2026-07-31T08:43:42.967Z",
     "newestObservation": "2026-08-01T10:47:33.932Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -87153,7 +87164,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -87175,12 +87186,12 @@
      "verifiedAt": "2026-08-01T10:56:57.420Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T10:56:51.100Z",
-    "lastUpdatedAt": "2026-08-01T12:37:23.200Z",
+    "lastUpdatedAt": "2026-08-03T09:11:46.170Z",
     "oldestObservation": "2026-08-01T10:56:49.826Z",
     "newestObservation": "2026-08-01T12:37:19.275Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -92862,7 +92873,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -92874,12 +92885,12 @@
      "verifiedAt": "2026-08-01T11:39:10.136Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:39:03.151Z",
-    "lastUpdatedAt": "2026-08-01T11:39:11.867Z",
+    "lastUpdatedAt": "2026-08-03T09:11:46.660Z",
     "oldestObservation": "2026-08-01T11:39:02.035Z",
     "newestObservation": "2026-08-01T11:39:02.035Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -93668,7 +93679,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -93680,12 +93691,12 @@
      "verifiedAt": "2026-08-01T12:25:38.153Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T12:25:22.589Z",
-    "lastUpdatedAt": "2026-08-01T12:25:40.274Z",
+    "lastUpdatedAt": "2026-08-03T09:11:47.150Z",
     "oldestObservation": "2026-08-01T12:25:21.383Z",
     "newestObservation": "2026-08-01T12:25:21.383Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -94474,7 +94485,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -94486,12 +94497,12 @@
      "verifiedAt": "2026-08-01T12:17:24.912Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T12:17:18.270Z",
-    "lastUpdatedAt": "2026-08-01T12:17:26.694Z",
+    "lastUpdatedAt": "2026-08-03T09:11:47.641Z",
     "oldestObservation": "2026-08-01T12:17:17.065Z",
     "newestObservation": "2026-08-01T12:17:17.065Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -104370,7 +104381,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -104392,12 +104403,12 @@
      "verifiedAt": "2026-08-01T11:21:40.539Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:21:34.309Z",
-    "lastUpdatedAt": "2026-08-01T12:38:46.264Z",
+    "lastUpdatedAt": "2026-08-03T09:11:48.132Z",
     "oldestObservation": "2026-08-01T11:21:33.152Z",
     "newestObservation": "2026-08-01T12:38:42.122Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -106110,7 +106121,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -106132,12 +106143,12 @@
      "verifiedAt": "2026-08-01T11:56:33.284Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:56:26.734Z",
-    "lastUpdatedAt": "2026-08-01T12:38:57.190Z",
+    "lastUpdatedAt": "2026-08-03T09:11:48.635Z",
     "oldestObservation": "2026-08-01T11:56:25.550Z",
     "newestObservation": "2026-08-01T12:38:52.828Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -114886,7 +114897,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -114908,12 +114919,12 @@
      "verifiedAt": "2026-08-01T11:31:49.271Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:31:42.951Z",
-    "lastUpdatedAt": "2026-08-01T12:39:41.320Z",
+    "lastUpdatedAt": "2026-08-03T09:11:49.128Z",
     "oldestObservation": "2026-08-01T11:31:41.829Z",
     "newestObservation": "2026-08-01T12:39:37.444Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -124308,7 +124319,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -124330,12 +124341,12 @@
      "verifiedAt": "2026-07-31T08:23:19.179Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-07-30T16:15:42.751Z",
-    "lastUpdatedAt": "2026-08-01T07:32:15.089Z",
+    "lastUpdatedAt": "2026-08-03T09:11:49.619Z",
     "oldestObservation": "2026-07-31T08:23:11.936Z",
     "newestObservation": "2026-07-31T13:11:33.189Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -129250,7 +129261,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -129272,12 +129283,12 @@
      "verifiedAt": "2026-07-31T08:54:04.472Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-07-30T21:07:31.109Z",
-    "lastUpdatedAt": "2026-08-01T07:32:15.150Z",
+    "lastUpdatedAt": "2026-08-03T09:11:50.114Z",
     "oldestObservation": "2026-07-31T08:53:56.593Z",
     "newestObservation": "2026-07-31T13:11:38.107Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -133455,7 +133466,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -133477,12 +133488,12 @@
      "verifiedAt": "2026-08-01T11:54:24.948Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:54:18.505Z",
-    "lastUpdatedAt": "2026-08-01T12:41:01.001Z",
+    "lastUpdatedAt": "2026-08-03T09:11:50.697Z",
     "oldestObservation": "2026-08-01T11:54:17.313Z",
     "newestObservation": "2026-08-01T12:40:57.145Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -136001,7 +136012,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -136023,12 +136034,12 @@
      "verifiedAt": "2026-07-31T08:49:42.121Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-07-30T21:05:17.963Z",
-    "lastUpdatedAt": "2026-08-01T10:48:40.928Z",
+    "lastUpdatedAt": "2026-08-03T09:11:51.188Z",
     "oldestObservation": "2026-07-31T08:49:34.814Z",
     "newestObservation": "2026-08-01T10:48:30.971Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -141033,7 +141044,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -141045,12 +141056,12 @@
      "verifiedAt": "2026-08-01T11:56:22.912Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:56:15.416Z",
-    "lastUpdatedAt": "2026-08-01T11:56:24.539Z",
+    "lastUpdatedAt": "2026-08-03T09:11:51.680Z",
     "oldestObservation": "2026-08-01T11:56:14.252Z",
     "newestObservation": "2026-08-01T11:56:14.252Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -147275,7 +147286,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -147297,12 +147308,12 @@
      "verifiedAt": "2026-08-01T12:13:08.100Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T12:13:01.415Z",
-    "lastUpdatedAt": "2026-08-01T12:41:58.656Z",
+    "lastUpdatedAt": "2026-08-03T09:11:52.175Z",
     "oldestObservation": "2026-08-01T12:13:00.200Z",
     "newestObservation": "2026-08-01T12:41:54.792Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -148833,20 +148844,20 @@
    "contactRoutes": [
     {
      "channel": "postal",
-     "value": "HILLWOOD ROAD, FOUR OAKS, SUTTON COLDFIELD, B75 5QP",
+     "value": "TIMBERTREE ROAD, CRADLEY HEATH, WARLEY, B64 7LF",
      "reaches": "individual",
      "verificationMethod": "route appears in evidence naming the individual",
-     "verifiedAt": "2026-08-01T11:33:36.961Z",
+     "verifiedAt": "2026-08-01T11:33:36.706Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
      "countsPostal": true
     },
     {
      "channel": "postal",
-     "value": "TIMBERTREE ROAD, CRADLEY HEATH, WARLEY, B64 7LF",
+     "value": "HILLWOOD ROAD, FOUR OAKS, SUTTON COLDFIELD, B75 5QP",
      "reaches": "individual",
      "verificationMethod": "route appears in evidence naming the individual",
-     "verifiedAt": "2026-08-01T11:33:36.706Z",
+     "verifiedAt": "2026-08-01T11:33:36.961Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
      "countsPostal": true
@@ -152275,7 +152286,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -152297,12 +152308,12 @@
      "verifiedAt": "2026-08-01T11:38:17.028Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:38:10.704Z",
-    "lastUpdatedAt": "2026-08-01T12:42:14.923Z",
+    "lastUpdatedAt": "2026-08-03T09:11:52.673Z",
     "oldestObservation": "2026-08-01T11:38:09.580Z",
     "newestObservation": "2026-08-01T12:42:11.015Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -153838,7 +153849,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -153850,12 +153861,12 @@
      "verifiedAt": "2026-08-01T12:05:50.047Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T12:05:43.518Z",
-    "lastUpdatedAt": "2026-08-01T12:05:51.658Z",
+    "lastUpdatedAt": "2026-08-03T09:11:53.196Z",
     "oldestObservation": "2026-08-01T12:05:42.318Z",
     "newestObservation": "2026-08-01T12:05:42.318Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -154526,7 +154537,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -154538,12 +154549,12 @@
      "verifiedAt": "2026-08-01T12:16:27.440Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T12:16:20.540Z",
-    "lastUpdatedAt": "2026-08-01T12:16:29.391Z",
+    "lastUpdatedAt": "2026-08-03T09:11:53.692Z",
     "oldestObservation": "2026-08-01T12:16:19.317Z",
     "newestObservation": "2026-08-01T12:16:19.317Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -156138,7 +156149,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -156150,12 +156161,12 @@
      "verifiedAt": "2026-08-01T11:22:12.181Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:22:05.702Z",
-    "lastUpdatedAt": "2026-08-01T11:22:13.901Z",
+    "lastUpdatedAt": "2026-08-03T09:11:54.192Z",
     "oldestObservation": "2026-08-01T11:22:04.523Z",
     "newestObservation": "2026-08-01T11:22:04.523Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -156826,7 +156837,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -156848,12 +156859,12 @@
      "verifiedAt": "2026-08-01T12:13:33.051Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T12:13:24.434Z",
-    "lastUpdatedAt": "2026-08-01T12:42:30.955Z",
+    "lastUpdatedAt": "2026-08-03T09:11:54.683Z",
     "oldestObservation": "2026-08-01T12:13:23.103Z",
     "newestObservation": "2026-08-01T12:42:26.905Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -158507,7 +158518,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -158519,12 +158530,12 @@
      "verifiedAt": "2026-08-01T11:52:08.445Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:52:02.174Z",
-    "lastUpdatedAt": "2026-08-01T11:52:10.028Z",
+    "lastUpdatedAt": "2026-08-03T09:11:55.176Z",
     "oldestObservation": "2026-08-01T11:52:01.101Z",
     "newestObservation": "2026-08-01T11:52:01.101Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -161054,12 +161065,12 @@
      "verifiedAt": "2026-08-01T11:15:04.171Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:14:54.303Z",
-    "lastUpdatedAt": "2026-08-01T11:15:06.051Z",
+    "lastUpdatedAt": "2026-08-03T09:11:55.817Z",
     "oldestObservation": "2026-08-01T11:14:52.978Z",
     "newestObservation": "2026-08-01T11:14:52.978Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -161966,7 +161977,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -161988,12 +161999,12 @@
      "verifiedAt": "2026-07-31T08:52:07.696Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-07-30T21:06:45.329Z",
-    "lastUpdatedAt": "2026-08-01T07:32:15.272Z",
+    "lastUpdatedAt": "2026-08-03T09:11:56.307Z",
     "oldestObservation": "2026-07-31T08:52:00.474Z",
     "newestObservation": "2026-07-31T13:11:55.044Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -162723,7 +162734,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -162745,12 +162756,12 @@
      "verifiedAt": "2026-08-01T11:51:02.598Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:50:56.028Z",
-    "lastUpdatedAt": "2026-08-01T12:42:51.020Z",
+    "lastUpdatedAt": "2026-08-03T09:11:56.800Z",
     "oldestObservation": "2026-08-01T11:50:54.946Z",
     "newestObservation": "2026-08-01T12:42:45.758Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -163539,7 +163550,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -163561,12 +163572,12 @@
      "verifiedAt": "2026-08-01T12:08:05.630Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T12:07:59.052Z",
-    "lastUpdatedAt": "2026-08-01T12:42:58.110Z",
+    "lastUpdatedAt": "2026-08-03T09:11:57.293Z",
     "oldestObservation": "2026-08-01T12:07:57.855Z",
     "newestObservation": "2026-08-01T12:42:52.354Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -171569,7 +171580,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -171591,12 +171602,12 @@
      "verifiedAt": "2026-08-01T12:13:50.869Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T12:13:40.428Z",
-    "lastUpdatedAt": "2026-08-01T12:43:33.557Z",
+    "lastUpdatedAt": "2026-08-03T09:11:57.783Z",
     "oldestObservation": "2026-08-01T12:13:38.160Z",
     "newestObservation": "2026-08-01T12:43:27.170Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -175791,16 +175802,6 @@
     },
     {
      "channel": "postal",
-     "value": "MUCKLOW OFFICE PARK, MUCKLOW HILL, HALESOWEN, B62 8DY",
-     "reaches": "individual",
-     "verificationMethod": "route appears in evidence naming the individual",
-     "verifiedAt": "2026-08-01T12:13:20.376Z",
-     "countsStrict": false,
-     "countsProfileAssisted": false,
-     "countsPostal": true
-    },
-    {
-     "channel": "postal",
      "value": "SHELAH ROAD, HALESOWEN, B63 3XL",
      "reaches": "individual",
      "verificationMethod": "route appears in evidence naming the individual",
@@ -175808,11 +175809,21 @@
      "countsStrict": false,
      "countsProfileAssisted": false,
      "countsPostal": true
+    },
+    {
+     "channel": "postal",
+     "value": "MUCKLOW OFFICE PARK, MUCKLOW HILL, HALESOWEN, B62 8DY",
+     "reaches": "individual",
+     "verificationMethod": "route appears in evidence naming the individual",
+     "verifiedAt": "2026-08-01T12:13:20.376Z",
+     "countsStrict": false,
+     "countsProfileAssisted": false,
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T12:13:12.326Z",
-    "lastUpdatedAt": "2026-08-01T12:45:58.109Z",
+    "lastUpdatedAt": "2026-08-03T09:11:58.273Z",
     "oldestObservation": "2026-08-01T12:13:11.120Z",
     "newestObservation": "2026-08-01T12:45:54.183Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -183756,7 +183767,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -183778,12 +183789,12 @@
      "verifiedAt": "2026-08-01T11:55:38.232Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:55:31.738Z",
-    "lastUpdatedAt": "2026-08-01T12:46:21.166Z",
+    "lastUpdatedAt": "2026-08-03T09:11:58.787Z",
     "oldestObservation": "2026-08-01T11:55:30.583Z",
     "newestObservation": "2026-08-01T12:46:17.308Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -185496,7 +185507,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -185508,12 +185519,12 @@
      "verifiedAt": "2026-08-01T12:14:02.440Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T12:13:55.213Z",
-    "lastUpdatedAt": "2026-08-01T12:14:04.390Z",
+    "lastUpdatedAt": "2026-08-03T09:11:59.401Z",
     "oldestObservation": "2026-08-01T12:13:53.997Z",
     "newestObservation": "2026-08-01T12:13:53.997Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -187108,7 +187119,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -187120,12 +187131,12 @@
      "verifiedAt": "2026-08-01T12:26:32.184Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T12:26:24.397Z",
-    "lastUpdatedAt": "2026-08-01T12:26:33.937Z",
+    "lastUpdatedAt": "2026-08-03T09:11:59.893Z",
     "oldestObservation": "2026-08-01T12:26:23.139Z",
     "newestObservation": "2026-08-01T12:26:23.139Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -187914,7 +187925,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -187926,12 +187937,12 @@
      "verifiedAt": "2026-08-01T11:41:42.744Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:41:35.830Z",
-    "lastUpdatedAt": "2026-08-01T11:41:44.327Z",
+    "lastUpdatedAt": "2026-08-03T09:12:00.528Z",
     "oldestObservation": "2026-08-01T11:41:34.743Z",
     "newestObservation": "2026-08-01T11:41:34.743Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -192121,7 +192132,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -192133,12 +192144,12 @@
      "verifiedAt": "2026-08-01T12:00:29.986Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T12:00:23.437Z",
-    "lastUpdatedAt": "2026-08-01T12:00:31.730Z",
+    "lastUpdatedAt": "2026-08-03T09:12:01.019Z",
     "oldestObservation": "2026-08-01T12:00:22.271Z",
     "newestObservation": "2026-08-01T12:00:22.271Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -199041,7 +199052,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -199063,12 +199074,12 @@
      "verifiedAt": "2026-08-01T12:05:27.518Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T12:05:20.809Z",
-    "lastUpdatedAt": "2026-08-01T12:47:25.824Z",
+    "lastUpdatedAt": "2026-08-03T09:12:01.551Z",
     "oldestObservation": "2026-08-01T12:05:19.490Z",
     "newestObservation": "2026-08-01T12:47:21.894Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -201597,7 +201608,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -201619,12 +201630,12 @@
      "verifiedAt": "2026-08-01T11:33:57.935Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:33:51.678Z",
-    "lastUpdatedAt": "2026-08-01T12:47:37.591Z",
+    "lastUpdatedAt": "2026-08-03T09:12:02.042Z",
     "oldestObservation": "2026-08-01T11:33:50.537Z",
     "newestObservation": "2026-08-01T12:47:33.355Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -205507,7 +205518,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -205529,12 +205540,12 @@
      "verifiedAt": "2026-08-01T11:34:30.434Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:34:23.915Z",
-    "lastUpdatedAt": "2026-08-01T12:47:57.233Z",
+    "lastUpdatedAt": "2026-08-03T09:12:02.577Z",
     "oldestObservation": "2026-08-01T11:34:22.780Z",
     "newestObservation": "2026-08-01T12:47:52.523Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -206323,7 +206334,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -206345,12 +206356,12 @@
      "verifiedAt": "2026-08-01T11:34:41.010Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:34:34.521Z",
-    "lastUpdatedAt": "2026-08-01T12:48:02.657Z",
+    "lastUpdatedAt": "2026-08-03T09:12:03.081Z",
     "oldestObservation": "2026-08-01T11:34:33.389Z",
     "newestObservation": "2026-08-01T12:47:58.611Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -211383,7 +211394,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -211405,12 +211416,12 @@
      "verifiedAt": "2026-08-01T11:08:12.680Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:08:04.402Z",
-    "lastUpdatedAt": "2026-08-01T12:48:26.865Z",
+    "lastUpdatedAt": "2026-08-03T09:12:03.640Z",
     "oldestObservation": "2026-08-01T11:08:03.071Z",
     "newestObservation": "2026-08-01T12:48:22.963Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -213064,7 +213075,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -213086,12 +213097,12 @@
      "verifiedAt": "2026-08-01T11:45:56.820Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:45:49.136Z",
-    "lastUpdatedAt": "2026-08-01T12:48:41.179Z",
+    "lastUpdatedAt": "2026-08-03T09:12:04.214Z",
     "oldestObservation": "2026-08-01T11:45:47.904Z",
     "newestObservation": "2026-08-01T12:48:36.823Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -215679,7 +215690,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -215691,12 +215702,12 @@
      "verifiedAt": "2026-08-01T12:15:25.386Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T12:15:17.978Z",
-    "lastUpdatedAt": "2026-08-01T12:15:27.296Z",
+    "lastUpdatedAt": "2026-08-03T09:12:04.802Z",
     "oldestObservation": "2026-08-01T12:15:16.773Z",
     "newestObservation": "2026-08-01T12:15:16.773Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -217119,20 +217130,20 @@
     },
     {
      "channel": "postal",
-     "value": "APARTMENT W142, LONDON, N17 9QW",
+     "value": "PENTONVILLE ROAD, LONDON, N1 9LG",
      "reaches": "individual",
      "verificationMethod": "route appears in evidence naming the individual",
-     "verifiedAt": "2026-08-01T11:11:53.407Z",
+     "verifiedAt": "2026-08-01T11:11:53.149Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
      "countsPostal": true
     },
     {
      "channel": "postal",
-     "value": "PENTONVILLE ROAD, LONDON, N1 9LG",
+     "value": "APARTMENT W142, LONDON, N17 9QW",
      "reaches": "individual",
      "verificationMethod": "route appears in evidence naming the individual",
-     "verifiedAt": "2026-08-01T11:11:53.149Z",
+     "verifiedAt": "2026-08-01T11:11:53.407Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
      "countsPostal": true
@@ -232973,7 +232984,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -232995,12 +233006,12 @@
      "verifiedAt": "2026-08-01T11:31:39.208Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:31:33.080Z",
-    "lastUpdatedAt": "2026-08-01T12:50:06.082Z",
+    "lastUpdatedAt": "2026-08-03T09:12:05.381Z",
     "oldestObservation": "2026-08-01T11:31:31.948Z",
     "newestObservation": "2026-08-01T12:50:02.192Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -234664,7 +234675,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -234686,12 +234697,12 @@
      "verifiedAt": "2026-08-01T12:01:48.643Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T12:01:42.504Z",
-    "lastUpdatedAt": "2026-08-01T12:50:12.246Z",
+    "lastUpdatedAt": "2026-08-03T09:12:05.891Z",
     "oldestObservation": "2026-08-01T12:01:41.393Z",
     "newestObservation": "2026-08-01T12:50:08.332Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -238123,20 +238134,10 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
-    {
-     "channel": "postal",
-     "value": "OLD CHRISTCHURCH ROAD, BOURNEMOUTH, BH1 1JU",
-     "reaches": "individual",
-     "verificationMethod": "route appears in evidence naming the individual",
-     "verifiedAt": "2026-08-01T10:51:12.482Z",
-     "countsStrict": false,
-     "countsProfileAssisted": false,
-     "countsPostal": true
-    },
     {
      "channel": "postal",
      "value": "161 OLD CHRISTCHURCH ROAD, BOURNEMOUTH, BH1 1JU",
@@ -238145,12 +238146,22 @@
      "verifiedAt": "2026-08-01T10:51:12.230Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
+    },
+    {
+     "channel": "postal",
+     "value": "OLD CHRISTCHURCH ROAD, BOURNEMOUTH, BH1 1JU",
+     "reaches": "individual",
+     "verificationMethod": "route appears in evidence naming the individual",
+     "verifiedAt": "2026-08-01T10:51:12.482Z",
+     "countsStrict": false,
+     "countsProfileAssisted": false,
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T10:51:04.167Z",
-    "lastUpdatedAt": "2026-08-01T10:51:14.419Z",
+    "lastUpdatedAt": "2026-08-03T09:12:06.463Z",
     "oldestObservation": "2026-08-01T10:51:02.911Z",
     "newestObservation": "2026-08-01T10:51:02.911Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -240561,7 +240572,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -240583,12 +240594,12 @@
      "verifiedAt": "2026-08-01T11:54:46.543Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:54:39.335Z",
-    "lastUpdatedAt": "2026-08-01T12:50:31.490Z",
+    "lastUpdatedAt": "2026-08-03T09:12:07.023Z",
     "oldestObservation": "2026-08-01T11:54:38.269Z",
     "newestObservation": "2026-08-01T12:50:27.400Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -244815,7 +244826,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -244831,28 +244842,28 @@
     },
     {
      "channel": "postal",
-     "value": "VICARAGE HILL, LOXWOOD, BILLINGSHURST, RH14 0RQ",
-     "reaches": "individual",
-     "verificationMethod": "route appears in evidence naming the individual",
-     "verifiedAt": "2026-07-31T08:42:17.816Z",
-     "countsStrict": false,
-     "countsProfileAssisted": false,
-     "countsPostal": true
-    },
-    {
-     "channel": "postal",
      "value": "VICARAGE HILL, LOXWOOD, WEST SUSSEX, RH14 0RQ",
      "reaches": "individual",
      "verificationMethod": "route appears in evidence naming the individual",
      "verifiedAt": "2026-07-31T08:42:17.562Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
+    },
+    {
+     "channel": "postal",
+     "value": "VICARAGE HILL, LOXWOOD, BILLINGSHURST, RH14 0RQ",
+     "reaches": "individual",
+     "verificationMethod": "route appears in evidence naming the individual",
+     "verifiedAt": "2026-07-31T08:42:17.816Z",
+     "countsStrict": false,
+     "countsProfileAssisted": false,
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-07-30T16:16:59.711Z",
-    "lastUpdatedAt": "2026-08-01T10:44:12.678Z",
+    "lastUpdatedAt": "2026-08-03T09:12:07.592Z",
     "oldestObservation": "2026-07-31T08:42:08.499Z",
     "newestObservation": "2026-08-01T10:44:00.741Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -246607,7 +246618,7 @@
      "verifiedAt": "2026-08-01T11:42:04.055Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     },
     {
      "channel": "postal",
@@ -246622,7 +246633,7 @@
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:41:56.691Z",
-    "lastUpdatedAt": "2026-08-01T12:50:39.208Z",
+    "lastUpdatedAt": "2026-08-03T09:12:08.208Z",
     "oldestObservation": "2026-08-01T11:41:55.611Z",
     "newestObservation": "2026-08-01T12:50:34.993Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -249200,7 +249211,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -249212,12 +249223,12 @@
      "verifiedAt": "2026-08-01T12:15:47.717Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T12:15:40.868Z",
-    "lastUpdatedAt": "2026-08-01T12:15:49.579Z",
+    "lastUpdatedAt": "2026-08-03T09:12:08.719Z",
     "oldestObservation": "2026-08-01T12:15:39.563Z",
     "newestObservation": "2026-08-01T12:15:39.563Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -251548,7 +251559,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -251570,12 +251581,12 @@
      "verifiedAt": "2026-08-01T11:39:21.105Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:39:13.970Z",
-    "lastUpdatedAt": "2026-08-01T12:51:04.924Z",
+    "lastUpdatedAt": "2026-08-03T09:12:09.211Z",
     "oldestObservation": "2026-08-01T11:39:12.874Z",
     "newestObservation": "2026-08-01T12:51:00.882Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -252423,7 +252434,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -252445,12 +252456,12 @@
      "verifiedAt": "2026-08-01T12:20:15.437Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T12:20:08.808Z",
-    "lastUpdatedAt": "2026-08-01T12:51:10.685Z",
+    "lastUpdatedAt": "2026-08-03T09:12:09.742Z",
     "oldestObservation": "2026-08-01T12:20:07.603Z",
     "newestObservation": "2026-08-01T12:51:06.765Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -254055,7 +254066,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -254067,12 +254078,12 @@
      "verifiedAt": "2026-08-01T11:15:49.610Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:15:43.296Z",
-    "lastUpdatedAt": "2026-08-01T13:28:42.518Z",
+    "lastUpdatedAt": "2026-08-03T09:12:10.256Z",
     "oldestObservation": "2026-08-01T11:15:42.068Z",
     "newestObservation": "2026-08-01T13:27:43.728Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -255392,7 +255403,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -255414,12 +255425,12 @@
      "verifiedAt": "2026-08-01T11:04:41.847Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:04:34.075Z",
-    "lastUpdatedAt": "2026-08-01T12:53:18.271Z",
+    "lastUpdatedAt": "2026-08-03T09:12:10.819Z",
     "oldestObservation": "2026-08-01T11:04:32.854Z",
     "newestObservation": "2026-08-01T12:53:14.417Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -257948,7 +257959,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -257960,12 +257971,12 @@
      "verifiedAt": "2026-08-01T11:38:27.858Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:38:21.041Z",
-    "lastUpdatedAt": "2026-08-01T11:38:29.473Z",
+    "lastUpdatedAt": "2026-08-03T09:12:11.311Z",
     "oldestObservation": "2026-08-01T11:38:19.851Z",
     "newestObservation": "2026-08-01T11:38:19.851Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -259431,7 +259442,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -259453,12 +259464,12 @@
      "verifiedAt": "2026-08-01T11:57:19.576Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:57:11.352Z",
-    "lastUpdatedAt": "2026-08-01T12:53:32.919Z",
+    "lastUpdatedAt": "2026-08-03T09:12:11.896Z",
     "oldestObservation": "2026-08-01T11:57:10.209Z",
     "newestObservation": "2026-08-01T12:53:28.751Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -262960,7 +262971,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -262982,12 +262993,12 @@
      "verifiedAt": "2026-08-01T12:15:13.813Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T12:15:06.998Z",
-    "lastUpdatedAt": "2026-08-01T12:53:55.090Z",
+    "lastUpdatedAt": "2026-08-03T09:12:12.390Z",
     "oldestObservation": "2026-08-01T12:15:05.791Z",
     "newestObservation": "2026-08-01T12:53:51.318Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -265929,7 +265940,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -265951,12 +265962,12 @@
      "verifiedAt": "2026-08-01T11:16:33.401Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:16:26.902Z",
-    "lastUpdatedAt": "2026-08-01T12:54:06.320Z",
+    "lastUpdatedAt": "2026-08-03T09:12:12.882Z",
     "oldestObservation": "2026-08-01T11:16:25.679Z",
     "newestObservation": "2026-08-01T12:54:02.375Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -268426,7 +268437,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -268448,12 +268459,12 @@
      "verifiedAt": "2026-08-01T12:00:41.722Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T12:00:34.904Z",
-    "lastUpdatedAt": "2026-08-01T12:54:22.052Z",
+    "lastUpdatedAt": "2026-08-03T09:12:13.373Z",
     "oldestObservation": "2026-08-01T12:00:33.766Z",
     "newestObservation": "2026-08-01T12:54:18.065Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -274766,7 +274777,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -274788,12 +274799,12 @@
      "verifiedAt": "2026-08-01T10:54:17.334Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T10:54:11.769Z",
-    "lastUpdatedAt": "2026-08-01T12:54:51.212Z",
+    "lastUpdatedAt": "2026-08-03T09:12:13.879Z",
     "oldestObservation": "2026-08-01T10:54:10.510Z",
     "newestObservation": "2026-08-01T12:54:47.295Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -275464,7 +275475,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -275486,12 +275497,12 @@
      "verifiedAt": "2026-08-01T11:55:27.660Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:55:21.044Z",
-    "lastUpdatedAt": "2026-08-01T12:54:56.887Z",
+    "lastUpdatedAt": "2026-08-03T09:12:14.456Z",
     "oldestObservation": "2026-08-01T11:55:19.930Z",
     "newestObservation": "2026-08-01T12:54:52.958Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -283789,7 +283800,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -283811,12 +283822,12 @@
      "verifiedAt": "2026-08-01T11:52:40.509Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:52:33.741Z",
-    "lastUpdatedAt": "2026-08-01T12:55:40.419Z",
+    "lastUpdatedAt": "2026-08-03T09:12:14.950Z",
     "oldestObservation": "2026-08-01T11:52:32.582Z",
     "newestObservation": "2026-08-01T12:55:36.674Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -291986,7 +291997,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -292008,12 +292019,12 @@
      "verifiedAt": "2026-08-01T12:11:33.964Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T12:11:26.609Z",
-    "lastUpdatedAt": "2026-08-01T12:56:22.677Z",
+    "lastUpdatedAt": "2026-08-03T09:12:15.520Z",
     "oldestObservation": "2026-08-01T12:11:25.376Z",
     "newestObservation": "2026-08-01T12:56:18.655Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -297841,7 +297852,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -297863,12 +297874,12 @@
      "verifiedAt": "2026-07-31T08:47:06.624Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-07-30T16:18:24.438Z",
-    "lastUpdatedAt": "2026-08-01T07:32:15.762Z",
+    "lastUpdatedAt": "2026-08-03T09:12:16.097Z",
     "oldestObservation": "2026-07-31T08:46:58.201Z",
     "newestObservation": "2026-07-31T13:13:01.813Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -299640,7 +299651,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -299662,12 +299673,12 @@
      "verifiedAt": "2026-08-01T12:22:12.341Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T12:22:00.157Z",
-    "lastUpdatedAt": "2026-08-01T12:56:54.338Z",
+    "lastUpdatedAt": "2026-08-03T09:12:16.600Z",
     "oldestObservation": "2026-08-01T12:21:58.761Z",
     "newestObservation": "2026-08-01T12:56:50.299Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -303217,7 +303228,7 @@
      "verifiedAt": "2026-08-01T12:02:54.428Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     },
     {
      "channel": "postal",
@@ -303232,7 +303243,7 @@
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T12:02:45.826Z",
-    "lastUpdatedAt": "2026-08-01T12:57:02.636Z",
+    "lastUpdatedAt": "2026-08-03T09:12:17.159Z",
     "oldestObservation": "2026-08-01T12:02:44.602Z",
     "newestObservation": "2026-08-01T12:56:58.694Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -304198,7 +304209,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -304220,12 +304231,12 @@
      "verifiedAt": "2026-07-31T08:44:00.374Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-07-30T16:17:29.303Z",
-    "lastUpdatedAt": "2026-07-31T21:02:33.723Z",
+    "lastUpdatedAt": "2026-08-03T09:12:17.654Z",
     "oldestObservation": "2026-07-31T08:43:52.681Z",
     "newestObservation": "2026-07-31T13:31:38.783Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -311045,7 +311056,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -311067,12 +311078,12 @@
      "verifiedAt": "2026-07-31T08:47:50.664Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-07-30T16:18:32.194Z",
-    "lastUpdatedAt": "2026-08-01T07:32:15.884Z",
+    "lastUpdatedAt": "2026-08-03T09:12:18.152Z",
     "oldestObservation": "2026-07-31T08:47:43.460Z",
     "newestObservation": "2026-07-31T13:13:22.475Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -313473,7 +313484,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -313485,12 +313496,12 @@
      "verifiedAt": "2026-08-01T11:40:57.121Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:40:49.962Z",
-    "lastUpdatedAt": "2026-08-01T11:40:58.717Z",
+    "lastUpdatedAt": "2026-08-03T09:12:18.648Z",
     "oldestObservation": "2026-08-01T11:40:48.882Z",
     "newestObservation": "2026-08-01T11:40:48.882Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -315015,7 +315026,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -315027,12 +315038,12 @@
      "verifiedAt": "2026-08-01T11:14:38.214Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:14:32.092Z",
-    "lastUpdatedAt": "2026-08-01T11:14:39.982Z",
+    "lastUpdatedAt": "2026-08-03T09:12:19.142Z",
     "oldestObservation": "2026-08-01T11:14:30.808Z",
     "newestObservation": "2026-08-01T11:14:30.808Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -318040,7 +318051,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -318052,12 +318063,12 @@
      "verifiedAt": "2026-08-01T12:24:44.154Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T12:24:35.997Z",
-    "lastUpdatedAt": "2026-08-01T12:24:46.239Z",
+    "lastUpdatedAt": "2026-08-03T09:12:19.719Z",
     "oldestObservation": "2026-08-01T12:24:33.230Z",
     "newestObservation": "2026-08-01T12:24:33.230Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -318787,7 +318798,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -318809,12 +318820,12 @@
      "verifiedAt": "2026-07-31T13:21:07.746Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-07-31T13:20:57.823Z",
-    "lastUpdatedAt": "2026-07-31T13:35:13.473Z",
+    "lastUpdatedAt": "2026-08-03T09:12:20.211Z",
     "oldestObservation": "2026-07-31T13:20:56.749Z",
     "newestObservation": "2026-07-31T13:31:56.368Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -323901,20 +323912,20 @@
    "contactRoutes": [
     {
      "channel": "postal",
-     "value": "NORTH CAVE, HU15 2LW",
+     "value": "NORTH CAVE, BROUGH, HU15 2LW",
      "reaches": "individual",
      "verificationMethod": "route appears in evidence naming the individual",
-     "verifiedAt": "2026-08-01T11:45:12.230Z",
+     "verifiedAt": "2026-08-01T11:45:11.980Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
      "countsPostal": true
     },
     {
      "channel": "postal",
-     "value": "NORTH CAVE, BROUGH, HU15 2LW",
+     "value": "NORTH CAVE, HU15 2LW",
      "reaches": "individual",
      "verificationMethod": "route appears in evidence naming the individual",
-     "verifiedAt": "2026-08-01T11:45:11.980Z",
+     "verifiedAt": "2026-08-01T11:45:12.230Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
      "countsPostal": true
@@ -325742,7 +325753,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -325754,12 +325765,12 @@
      "verifiedAt": "2026-08-01T11:12:46.044Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:12:39.054Z",
-    "lastUpdatedAt": "2026-08-01T11:12:47.831Z",
+    "lastUpdatedAt": "2026-08-03T09:12:20.702Z",
     "oldestObservation": "2026-08-01T11:12:37.826Z",
     "newestObservation": "2026-08-01T11:12:37.826Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -329025,7 +329036,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -329037,12 +329048,12 @@
      "verifiedAt": "2026-08-01T12:06:37.260Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T12:06:30.696Z",
-    "lastUpdatedAt": "2026-08-01T12:06:38.966Z",
+    "lastUpdatedAt": "2026-08-03T09:12:21.195Z",
     "oldestObservation": "2026-08-01T12:06:29.589Z",
     "newestObservation": "2026-08-01T12:06:29.589Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -333162,7 +333173,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -333174,12 +333185,12 @@
      "verifiedAt": "2026-08-01T11:09:07.406Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:08:57.300Z",
-    "lastUpdatedAt": "2026-08-01T11:09:09.169Z",
+    "lastUpdatedAt": "2026-08-03T09:12:21.768Z",
     "oldestObservation": "2026-08-01T11:08:56.054Z",
     "newestObservation": "2026-08-01T11:08:56.054Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -336547,20 +336558,20 @@
    "contactRoutes": [
     {
      "channel": "postal",
-     "value": "NORTH COMMONS, CARLINGFORD",
+     "value": "SARNAU, LLANYMYNECH, SY22 6QJ",
      "reaches": "individual",
      "verificationMethod": "route appears in evidence naming the individual",
-     "verifiedAt": "2026-07-31T08:45:34.567Z",
+     "verifiedAt": "2026-07-31T08:45:34.813Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
      "countsPostal": true
     },
     {
      "channel": "postal",
-     "value": "SARNAU, LLANYMYNECH, SY22 6QJ",
+     "value": "NORTH COMMONS, CARLINGFORD",
      "reaches": "individual",
      "verificationMethod": "route appears in evidence naming the individual",
-     "verifiedAt": "2026-07-31T08:45:34.813Z",
+     "verifiedAt": "2026-07-31T08:45:34.567Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
      "countsPostal": true
@@ -340117,7 +340128,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -340129,12 +340140,12 @@
      "verifiedAt": "2026-08-01T10:54:28.033Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T10:54:21.284Z",
-    "lastUpdatedAt": "2026-08-01T10:54:29.798Z",
+    "lastUpdatedAt": "2026-08-03T09:12:22.263Z",
     "oldestObservation": "2026-08-01T10:54:20.012Z",
     "newestObservation": "2026-08-01T10:54:20.012Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -340864,7 +340875,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -340886,12 +340897,12 @@
      "verifiedAt": "2026-07-31T08:51:29.581Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-07-30T21:06:25.661Z",
-    "lastUpdatedAt": "2026-08-01T07:32:16.070Z",
+    "lastUpdatedAt": "2026-08-03T09:12:22.779Z",
     "oldestObservation": "2026-07-31T08:51:22.194Z",
     "newestObservation": "2026-07-31T13:14:05.606Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -344678,7 +344689,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -344690,12 +344701,12 @@
      "verifiedAt": "2026-08-01T10:58:55.854Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T10:58:49.599Z",
-    "lastUpdatedAt": "2026-08-01T10:58:57.623Z",
+    "lastUpdatedAt": "2026-08-03T09:12:23.270Z",
     "oldestObservation": "2026-08-01T10:58:48.346Z",
     "newestObservation": "2026-08-01T10:58:48.346Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -347703,7 +347714,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -347725,12 +347736,12 @@
      "verifiedAt": "2026-07-31T08:46:55.824Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-07-30T16:18:22.429Z",
-    "lastUpdatedAt": "2026-08-01T07:32:16.192Z",
+    "lastUpdatedAt": "2026-08-03T09:12:23.761Z",
     "oldestObservation": "2026-07-31T08:46:48.105Z",
     "newestObservation": "2026-07-31T13:14:22.421Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -352505,7 +352516,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -352517,12 +352528,12 @@
      "verifiedAt": "2026-08-01T11:46:40.386Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:46:33.852Z",
-    "lastUpdatedAt": "2026-08-01T11:46:41.982Z",
+    "lastUpdatedAt": "2026-08-03T09:12:24.286Z",
     "oldestObservation": "2026-08-01T11:46:32.777Z",
     "newestObservation": "2026-08-01T11:46:32.777Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -354794,7 +354805,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -354806,12 +354817,12 @@
      "verifiedAt": "2026-08-01T11:38:48.822Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:38:42.533Z",
-    "lastUpdatedAt": "2026-08-01T11:38:50.670Z",
+    "lastUpdatedAt": "2026-08-03T09:12:24.799Z",
     "oldestObservation": "2026-08-01T11:38:41.370Z",
     "newestObservation": "2026-08-01T11:38:41.370Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -357142,7 +357153,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -357154,12 +357165,12 @@
      "verifiedAt": "2026-08-01T12:00:18.622Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T12:00:11.611Z",
-    "lastUpdatedAt": "2026-08-01T12:00:20.362Z",
+    "lastUpdatedAt": "2026-08-03T09:12:25.308Z",
     "oldestObservation": "2026-08-01T12:00:10.421Z",
     "newestObservation": "2026-08-01T12:00:10.421Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -359962,7 +359973,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -359974,12 +359985,12 @@
      "verifiedAt": "2026-08-01T12:04:03.557Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T12:03:53.529Z",
-    "lastUpdatedAt": "2026-08-01T12:04:05.262Z",
+    "lastUpdatedAt": "2026-08-03T09:12:25.924Z",
     "oldestObservation": "2026-08-01T12:03:52.393Z",
     "newestObservation": "2026-08-01T12:03:52.393Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -360650,7 +360661,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -360662,12 +360673,12 @@
      "verifiedAt": "2026-08-01T11:22:32.352Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:22:26.046Z",
-    "lastUpdatedAt": "2026-08-01T11:22:34.233Z",
+    "lastUpdatedAt": "2026-08-03T09:12:26.420Z",
     "oldestObservation": "2026-08-01T11:22:24.889Z",
     "newestObservation": "2026-08-01T11:22:24.889Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -362251,7 +362262,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -362263,12 +362274,12 @@
      "verifiedAt": "2026-07-31T08:51:48.963Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-07-30T21:06:42.265Z",
-    "lastUpdatedAt": "2026-08-01T05:25:22.681Z",
+    "lastUpdatedAt": "2026-08-03T09:12:27.045Z",
     "oldestObservation": "2026-07-31T08:51:41.836Z",
     "newestObservation": "2026-07-31T08:51:41.836Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -365501,7 +365512,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -365513,12 +365524,12 @@
      "verifiedAt": "2026-08-01T12:07:54.463Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T12:07:48.038Z",
-    "lastUpdatedAt": "2026-08-01T12:07:56.372Z",
+    "lastUpdatedAt": "2026-08-03T09:12:27.602Z",
     "oldestObservation": "2026-08-01T12:07:46.602Z",
     "newestObservation": "2026-08-01T12:07:46.602Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -369332,7 +369343,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -369344,12 +369355,12 @@
      "verifiedAt": "2026-08-01T12:11:02.483Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T12:10:54.963Z",
-    "lastUpdatedAt": "2026-08-01T12:11:04.236Z",
+    "lastUpdatedAt": "2026-08-03T09:12:28.116Z",
     "oldestObservation": "2026-08-01T12:10:53.641Z",
     "newestObservation": "2026-08-01T12:10:53.641Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -371750,7 +371761,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -371762,12 +371773,12 @@
      "verifiedAt": "2026-07-31T08:41:35.343Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-07-30T16:16:25.857Z",
-    "lastUpdatedAt": "2026-07-31T18:18:38.816Z",
+    "lastUpdatedAt": "2026-08-03T09:12:29.162Z",
     "oldestObservation": "2026-07-31T08:41:27.927Z",
     "newestObservation": "2026-07-31T08:41:27.927Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -375188,7 +375199,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -375200,12 +375211,12 @@
      "verifiedAt": "2026-08-01T10:58:21.704Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T10:58:15.587Z",
-    "lastUpdatedAt": "2026-08-01T10:58:23.477Z",
+    "lastUpdatedAt": "2026-08-03T09:12:29.814Z",
     "oldestObservation": "2026-08-01T10:58:14.333Z",
     "newestObservation": "2026-08-01T10:58:14.333Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -381661,7 +381672,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -381673,12 +381684,12 @@
      "verifiedAt": "2026-08-01T11:12:22.180Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:12:11.357Z",
-    "lastUpdatedAt": "2026-08-01T11:12:23.990Z",
+    "lastUpdatedAt": "2026-08-03T09:12:30.428Z",
     "oldestObservation": "2026-08-01T11:12:10.135Z",
     "newestObservation": "2026-08-01T11:12:10.135Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -383225,12 +383236,12 @@
      "verifiedAt": "2026-08-01T11:40:34.805Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:40:26.920Z",
-    "lastUpdatedAt": "2026-08-01T11:40:36.420Z",
+    "lastUpdatedAt": "2026-08-03T09:12:30.981Z",
     "oldestObservation": "2026-08-01T11:40:25.842Z",
     "newestObservation": "2026-08-01T11:40:25.842Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -384084,16 +384095,6 @@
    "contactRoutes": [
     {
      "channel": "postal",
-     "value": "HURN ROAD, HOLBEACH, SPALDING, PE12 8JD",
-     "reaches": "individual",
-     "verificationMethod": "route appears in evidence naming the individual",
-     "verifiedAt": "2026-08-01T11:43:53.174Z",
-     "countsStrict": false,
-     "countsProfileAssisted": false,
-     "countsPostal": true
-    },
-    {
-     "channel": "postal",
      "value": "HOLBEACH, SPALDING, PE12 8JD",
      "reaches": "individual",
      "verificationMethod": "route appears in evidence naming the individual",
@@ -384101,11 +384102,21 @@
      "countsStrict": false,
      "countsProfileAssisted": false,
      "countsPostal": true
+    },
+    {
+     "channel": "postal",
+     "value": "HURN ROAD, HOLBEACH, SPALDING, PE12 8JD",
+     "reaches": "individual",
+     "verificationMethod": "route appears in evidence naming the individual",
+     "verifiedAt": "2026-08-01T11:43:53.174Z",
+     "countsStrict": false,
+     "countsProfileAssisted": false,
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:43:42.471Z",
-    "lastUpdatedAt": "2026-08-01T11:43:54.859Z",
+    "lastUpdatedAt": "2026-08-03T09:12:31.472Z",
     "oldestObservation": "2026-08-01T11:43:41.325Z",
     "newestObservation": "2026-08-01T11:43:41.325Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -385130,7 +385141,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -385142,12 +385153,12 @@
      "verifiedAt": "2026-08-01T10:52:25.807Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T10:52:17.206Z",
-    "lastUpdatedAt": "2026-08-01T10:52:27.575Z",
+    "lastUpdatedAt": "2026-08-03T09:12:31.964Z",
     "oldestObservation": "2026-08-01T10:52:15.949Z",
     "newestObservation": "2026-08-01T10:52:15.949Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -387349,7 +387360,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -387361,12 +387372,12 @@
      "verifiedAt": "2026-08-01T11:53:52.586Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:53:45.775Z",
-    "lastUpdatedAt": "2026-08-01T11:53:54.245Z",
+    "lastUpdatedAt": "2026-08-03T09:12:32.454Z",
     "oldestObservation": "2026-08-01T11:53:44.704Z",
     "newestObservation": "2026-08-01T11:53:44.704Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -390374,7 +390385,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -390386,12 +390397,12 @@
      "verifiedAt": "2026-08-01T11:14:49.140Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:14:42.181Z",
-    "lastUpdatedAt": "2026-08-01T11:14:50.915Z",
+    "lastUpdatedAt": "2026-08-03T09:12:32.989Z",
     "oldestObservation": "2026-08-01T11:14:40.888Z",
     "newestObservation": "2026-08-01T11:14:40.888Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -393410,7 +393421,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -393422,12 +393433,12 @@
      "verifiedAt": "2026-08-01T12:27:38.166Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T12:27:29.895Z",
-    "lastUpdatedAt": "2026-08-01T12:27:40.324Z",
+    "lastUpdatedAt": "2026-08-03T09:12:33.482Z",
     "oldestObservation": "2026-08-01T12:27:27.676Z",
     "newestObservation": "2026-08-01T12:27:27.676Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -395081,7 +395092,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -395093,7 +395104,7 @@
      "verifiedAt": "2026-08-01T12:25:53.514Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     },
     {
      "channel": "postal",
@@ -395103,12 +395114,12 @@
      "verifiedAt": "2026-08-01T12:25:53.788Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T12:25:43.755Z",
-    "lastUpdatedAt": "2026-08-01T12:25:55.634Z",
+    "lastUpdatedAt": "2026-08-03T09:12:33.972Z",
     "oldestObservation": "2026-08-01T12:25:42.500Z",
     "newestObservation": "2026-08-01T12:25:42.500Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -396762,7 +396773,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -396784,12 +396795,12 @@
      "verifiedAt": "2026-07-31T08:44:32.289Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-07-30T16:17:40.276Z",
-    "lastUpdatedAt": "2026-08-01T07:32:16.439Z",
+    "lastUpdatedAt": "2026-08-03T09:12:34.465Z",
     "oldestObservation": "2026-07-31T08:44:24.955Z",
     "newestObservation": "2026-07-31T13:15:06.320Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -399168,7 +399179,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -399180,12 +399191,12 @@
      "verifiedAt": "2026-08-01T11:44:15.165Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:44:08.171Z",
-    "lastUpdatedAt": "2026-08-01T11:44:16.754Z",
+    "lastUpdatedAt": "2026-08-03T09:12:34.977Z",
     "oldestObservation": "2026-08-01T11:44:07.082Z",
     "newestObservation": "2026-08-01T11:44:07.082Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -408037,7 +408048,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -408049,12 +408060,12 @@
      "verifiedAt": "2026-08-01T11:54:04.285Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:53:56.796Z",
-    "lastUpdatedAt": "2026-08-01T11:54:05.852Z",
+    "lastUpdatedAt": "2026-08-03T09:12:35.475Z",
     "oldestObservation": "2026-08-01T11:53:55.724Z",
     "newestObservation": "2026-08-01T11:53:55.724Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -414382,7 +414393,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -414394,12 +414405,12 @@
      "verifiedAt": "2026-08-01T11:19:34.282Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:19:27.788Z",
-    "lastUpdatedAt": "2026-08-01T11:19:36.158Z",
+    "lastUpdatedAt": "2026-08-03T09:12:35.970Z",
     "oldestObservation": "2026-08-01T11:19:26.618Z",
     "newestObservation": "2026-08-01T11:19:26.618Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -417525,7 +417536,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -417537,12 +417548,12 @@
      "verifiedAt": "2026-07-31T08:53:54.153Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-07-30T21:07:29.519Z",
-    "lastUpdatedAt": "2026-08-01T05:25:23.028Z",
+    "lastUpdatedAt": "2026-08-03T09:12:36.572Z",
     "oldestObservation": "2026-07-31T08:53:45.276Z",
     "newestObservation": "2026-07-31T08:53:45.276Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -419067,7 +419078,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": true,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -419089,12 +419100,12 @@
      "verifiedAt": "2026-07-31T08:49:32.349Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-07-30T21:05:16.442Z",
-    "lastUpdatedAt": "2026-08-01T07:32:16.500Z",
+    "lastUpdatedAt": "2026-08-03T09:12:37.124Z",
     "oldestObservation": "2026-07-31T08:49:24.589Z",
     "newestObservation": "2026-07-31T13:15:17.006Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -420678,7 +420689,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -420690,12 +420701,12 @@
      "verifiedAt": "2026-08-01T11:59:43.404Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:59:36.931Z",
-    "lastUpdatedAt": "2026-08-01T11:59:45.158Z",
+    "lastUpdatedAt": "2026-08-03T09:12:37.617Z",
     "oldestObservation": "2026-08-01T11:59:35.766Z",
     "newestObservation": "2026-08-01T11:59:35.766Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -429729,7 +429740,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -429741,12 +429752,12 @@
      "verifiedAt": "2026-08-01T11:12:07.237Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:11:58.079Z",
-    "lastUpdatedAt": "2026-08-01T11:12:09.003Z",
+    "lastUpdatedAt": "2026-08-03T09:12:38.109Z",
     "oldestObservation": "2026-08-01T11:11:56.839Z",
     "newestObservation": "2026-08-01T11:11:56.839Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -436681,7 +436692,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -436693,12 +436704,12 @@
      "verifiedAt": "2026-08-01T11:02:39.670Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:02:33.584Z",
-    "lastUpdatedAt": "2026-08-01T11:02:41.413Z",
+    "lastUpdatedAt": "2026-08-03T09:12:38.619Z",
     "oldestObservation": "2026-08-01T11:02:32.316Z",
     "newestObservation": "2026-08-01T11:02:32.316Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -437428,7 +437439,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -437440,12 +437451,12 @@
      "verifiedAt": "2026-08-01T11:02:29.396Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:02:22.191Z",
-    "lastUpdatedAt": "2026-08-01T11:02:31.149Z",
+    "lastUpdatedAt": "2026-08-03T09:12:39.235Z",
     "oldestObservation": "2026-08-01T11:02:20.959Z",
     "newestObservation": "2026-08-01T11:02:20.959Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -438293,7 +438304,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -438305,12 +438316,12 @@
      "verifiedAt": "2026-07-31T08:46:45.698Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-07-30T16:18:07.320Z",
-    "lastUpdatedAt": "2026-07-31T21:02:34.170Z",
+    "lastUpdatedAt": "2026-08-03T09:12:39.792Z",
     "oldestObservation": "2026-07-31T08:46:37.948Z",
     "newestObservation": "2026-07-31T08:46:37.948Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -439835,7 +439846,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -439847,12 +439858,12 @@
      "verifiedAt": "2026-08-01T11:17:06.119Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:16:59.994Z",
-    "lastUpdatedAt": "2026-08-01T11:17:07.882Z",
+    "lastUpdatedAt": "2026-08-03T09:12:40.301Z",
     "oldestObservation": "2026-08-01T11:16:58.771Z",
     "newestObservation": "2026-08-01T11:16:58.771Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -441398,7 +441409,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -441410,12 +441421,12 @@
      "verifiedAt": "2026-08-01T11:47:24.818Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:47:18.056Z",
-    "lastUpdatedAt": "2026-08-01T11:47:26.668Z",
+    "lastUpdatedAt": "2026-08-03T09:12:40.814Z",
     "oldestObservation": "2026-08-01T11:47:16.955Z",
     "newestObservation": "2026-08-01T11:47:16.955Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -443021,12 +443032,12 @@
      "verifiedAt": "2026-08-01T11:57:38.442Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:57:30.309Z",
-    "lastUpdatedAt": "2026-08-01T11:57:40.052Z",
+    "lastUpdatedAt": "2026-08-03T09:12:41.306Z",
     "oldestObservation": "2026-08-01T11:57:29.201Z",
     "newestObservation": "2026-08-01T11:57:29.201Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -500119,20 +500130,20 @@
    "contactRoutes": [
     {
      "channel": "postal",
-     "value": "86 FILEY AVENUE, LONDON, N16 6JJ",
+     "value": "51 CHARDMORE ROAD, LONDON, N16 6JA",
      "reaches": "individual",
      "verificationMethod": "route appears in evidence naming the individual",
-     "verifiedAt": "2026-08-01T11:48:27.462Z",
+     "verifiedAt": "2026-08-01T11:48:27.715Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
      "countsPostal": true
     },
     {
      "channel": "postal",
-     "value": "51 CHARDMORE ROAD, LONDON, N16 6JA",
+     "value": "86 FILEY AVENUE, LONDON, N16 6JJ",
      "reaches": "individual",
      "verificationMethod": "route appears in evidence naming the individual",
-     "verifiedAt": "2026-08-01T11:48:27.715Z",
+     "verifiedAt": "2026-08-01T11:48:27.462Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
      "countsPostal": true
@@ -500994,10 +501005,10 @@
    "contactRoutes": [
     {
      "channel": "postal",
-     "value": "RAYNERS ROAD, LONDON, SW15 2AY",
+     "value": "WOMANBY STREET, CARDIFF, CF10 1BR",
      "reaches": "individual",
      "verificationMethod": "route appears in evidence naming the individual",
-     "verifiedAt": "2026-07-31T08:54:36.630Z",
+     "verifiedAt": "2026-07-31T08:54:35.083Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
      "countsPostal": true
@@ -501010,44 +501021,24 @@
      "verifiedAt": "2026-07-31T08:54:34.836Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     },
     {
      "channel": "postal",
-     "value": "WOMANBY STREET, CARDIFF, CF10 1BR",
+     "value": "RAYNERS ROAD, LONDON, SW15 2AY",
      "reaches": "individual",
      "verificationMethod": "route appears in evidence naming the individual",
-     "verifiedAt": "2026-07-31T08:54:35.083Z",
+     "verifiedAt": "2026-07-31T08:54:36.630Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
      "countsPostal": true
     },
     {
      "channel": "postal",
-     "value": "NORTHCOTT AVENUE, LONDON, N22 7DB",
+     "value": "CROSSWAYS, BERKHAMSTED, HP4 3NH",
      "reaches": "individual",
      "verificationMethod": "route appears in evidence naming the individual",
-     "verifiedAt": "2026-07-31T08:54:35.347Z",
-     "countsStrict": false,
-     "countsProfileAssisted": false,
-     "countsPostal": true
-    },
-    {
-     "channel": "postal",
-     "value": "RICHMOND ROAD, LYTHAM ST. ANNES, FY8 1PE",
-     "reaches": "individual",
-     "verificationMethod": "route appears in evidence naming the individual",
-     "verifiedAt": "2026-07-31T08:54:35.595Z",
-     "countsStrict": false,
-     "countsProfileAssisted": false,
-     "countsPostal": true
-    },
-    {
-     "channel": "postal",
-     "value": "ST. ALDATES, OXFORD, OX1 1DP",
-     "reaches": "individual",
-     "verificationMethod": "route appears in evidence naming the individual",
-     "verifiedAt": "2026-07-31T08:54:35.860Z",
+     "verifiedAt": "2026-07-31T08:54:36.382Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
      "countsPostal": true
@@ -501064,10 +501055,30 @@
     },
     {
      "channel": "postal",
-     "value": "CROSSWAYS, BERKHAMSTED, HP4 3NH",
+     "value": "ST. ALDATES, OXFORD, OX1 1DP",
      "reaches": "individual",
      "verificationMethod": "route appears in evidence naming the individual",
-     "verifiedAt": "2026-07-31T08:54:36.382Z",
+     "verifiedAt": "2026-07-31T08:54:35.860Z",
+     "countsStrict": false,
+     "countsProfileAssisted": false,
+     "countsPostal": true
+    },
+    {
+     "channel": "postal",
+     "value": "RICHMOND ROAD, LYTHAM ST. ANNES, FY8 1PE",
+     "reaches": "individual",
+     "verificationMethod": "route appears in evidence naming the individual",
+     "verifiedAt": "2026-07-31T08:54:35.595Z",
+     "countsStrict": false,
+     "countsProfileAssisted": false,
+     "countsPostal": true
+    },
+    {
+     "channel": "postal",
+     "value": "NORTHCOTT AVENUE, LONDON, N22 7DB",
+     "reaches": "individual",
+     "verificationMethod": "route appears in evidence naming the individual",
+     "verifiedAt": "2026-07-31T08:54:35.347Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
      "countsPostal": true
@@ -501075,7 +501086,7 @@
    ],
    "freshness": {
     "firstSeenAt": "2026-07-30T21:07:59.454Z",
-    "lastUpdatedAt": "2026-08-01T05:25:23.122Z",
+    "lastUpdatedAt": "2026-08-03T09:11:34.229Z",
     "oldestObservation": "2026-07-31T08:54:16.875Z",
     "newestObservation": "2026-07-31T08:54:16.875Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -503668,6 +503679,16 @@
    "contactRoutes": [
     {
      "channel": "postal",
+     "value": "VICTORIA ROAD SOUTH, SOUTHSEA, PO5 2DA",
+     "reaches": "individual",
+     "verificationMethod": "route appears in evidence naming the individual",
+     "verifiedAt": "2026-08-01T11:49:09.422Z",
+     "countsStrict": false,
+     "countsProfileAssisted": false,
+     "countsPostal": false
+    },
+    {
+     "channel": "postal",
      "value": "NOBBS LANE, PORTSMOUTH, PO1 2EY",
      "reaches": "individual",
      "verificationMethod": "route appears in evidence naming the individual",
@@ -503685,21 +503706,11 @@
      "countsStrict": false,
      "countsProfileAssisted": false,
      "countsPostal": true
-    },
-    {
-     "channel": "postal",
-     "value": "VICTORIA ROAD SOUTH, SOUTHSEA, PO5 2DA",
-     "reaches": "individual",
-     "verificationMethod": "route appears in evidence naming the individual",
-     "verifiedAt": "2026-08-01T11:49:09.422Z",
-     "countsStrict": false,
-     "countsProfileAssisted": false,
-     "countsPostal": true
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:48:58.874Z",
-    "lastUpdatedAt": "2026-08-01T11:49:11.003Z",
+    "lastUpdatedAt": "2026-08-03T09:11:34.723Z",
     "oldestObservation": "2026-08-01T11:48:57.771Z",
     "newestObservation": "2026-08-01T11:48:57.771Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -507275,16 +507286,6 @@
    "contactRoutes": [
     {
      "channel": "postal",
-     "value": "435 MANCHESTER ROAD, ASTLEY TYLDESLEY, MANCHESTER, M29 7BR",
-     "reaches": "individual",
-     "verificationMethod": "route appears in evidence naming the individual",
-     "verifiedAt": "2026-07-31T08:53:42.772Z",
-     "countsStrict": false,
-     "countsProfileAssisted": false,
-     "countsPostal": true
-    },
-    {
-     "channel": "postal",
      "value": "HELEN STREET, GOLBORNE, WARRINGTON, WA3 3QR",
      "reaches": "individual",
      "verificationMethod": "route appears in evidence naming the individual",
@@ -507299,6 +507300,16 @@
      "reaches": "individual",
      "verificationMethod": "route appears in evidence naming the individual",
      "verifiedAt": "2026-07-31T08:53:42.506Z",
+     "countsStrict": false,
+     "countsProfileAssisted": false,
+     "countsPostal": true
+    },
+    {
+     "channel": "postal",
+     "value": "435 MANCHESTER ROAD, ASTLEY TYLDESLEY, MANCHESTER, M29 7BR",
+     "reaches": "individual",
+     "verificationMethod": "route appears in evidence naming the individual",
+     "verifiedAt": "2026-07-31T08:53:42.772Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
      "countsPostal": true
@@ -510404,7 +510415,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -510416,12 +510427,12 @@
      "verifiedAt": "2026-08-01T10:55:25.418Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T10:55:19.020Z",
-    "lastUpdatedAt": "2026-08-01T10:55:28.142Z",
+    "lastUpdatedAt": "2026-08-03T09:11:36.299Z",
     "oldestObservation": "2026-08-01T10:55:17.678Z",
     "newestObservation": "2026-08-01T10:55:17.678Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -511033,7 +511044,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -511045,12 +511056,12 @@
      "verifiedAt": "2026-08-01T10:58:44.232Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T10:58:36.627Z",
-    "lastUpdatedAt": "2026-08-01T10:58:46.251Z",
+    "lastUpdatedAt": "2026-08-03T09:11:36.873Z",
     "oldestObservation": "2026-08-01T10:58:35.373Z",
     "newestObservation": "2026-08-01T10:58:35.373Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -512715,12 +512726,12 @@
      "verifiedAt": "2026-07-31T13:21:41.030Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-07-31T13:21:30.218Z",
-    "lastUpdatedAt": "2026-07-31T13:21:42.677Z",
+    "lastUpdatedAt": "2026-08-03T09:11:37.426Z",
     "oldestObservation": "2026-07-31T13:21:29.133Z",
     "newestObservation": "2026-07-31T13:21:29.133Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -516200,7 +516211,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -516212,12 +516223,12 @@
      "verifiedAt": "2026-07-31T13:23:20.201Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-07-31T13:23:11.529Z",
-    "lastUpdatedAt": "2026-07-31T13:23:21.728Z",
+    "lastUpdatedAt": "2026-08-03T09:11:38.492Z",
     "oldestObservation": "2026-07-31T13:23:10.455Z",
     "newestObservation": "2026-07-31T13:23:10.455Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -519697,7 +519708,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -519709,12 +519720,12 @@
      "verifiedAt": "2026-08-01T11:40:22.816Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:40:14.354Z",
-    "lastUpdatedAt": "2026-08-01T11:40:24.393Z",
+    "lastUpdatedAt": "2026-08-03T09:11:39.023Z",
     "oldestObservation": "2026-08-01T11:40:13.276Z",
     "newestObservation": "2026-08-01T11:40:13.276Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -524473,7 +524484,7 @@
    "reachability": {
     "strict": false,
     "profileAssisted": false,
-    "postal": true,
+    "postal": false,
     "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
    },
    "contactRoutes": [
@@ -524485,12 +524496,12 @@
      "verifiedAt": "2026-08-01T11:13:33.311Z",
      "countsStrict": false,
      "countsProfileAssisted": false,
-     "countsPostal": true
+     "countsPostal": false
     }
    ],
    "freshness": {
     "firstSeenAt": "2026-08-01T11:13:25.261Z",
-    "lastUpdatedAt": "2026-08-01T11:13:35.103Z",
+    "lastUpdatedAt": "2026-08-03T09:11:45.110Z",
     "oldestObservation": "2026-08-01T11:13:23.934Z",
     "newestObservation": "2026-08-01T11:13:23.934Z",
     "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
@@ -532707,152 +532718,6 @@
    ],
    "withheld": {
     "quarantined": 0,
-    "held": 0,
-    "note": "Counted, never shown. A withheld value is not a value the firm lacks."
-   }
-  },
-  {
-   "entityId": "ent_m1_kopp",
-   "name": "Kopp Family Office, LLC",
-   "entityType": "family_office",
-   "commercialState": "withheld",
-   "trustState": "active",
-   "reachability": {
-    "strict": false,
-    "profileAssisted": false,
-    "postal": false,
-    "note": "Separate metrics by design (ADR-11, ADR-12). strict = phone or personal email. profileAssisted additionally counts a verified personal profile under assumption A1. postal = an adjudicated statutory service address. They are never summed into one figure."
-   },
-   "contactRoutes": [],
-   "freshness": {
-    "firstSeenAt": "2026-07-30T14:13:10.660Z",
-    "lastUpdatedAt": "2026-07-31T09:44:45.733Z",
-    "oldestObservation": "2026-07-30T14:13:06.661Z",
-    "newestObservation": "2026-07-30T14:13:06.661Z",
-    "note": "Staleness is decided by re-reading the source and comparing content hashes, not by an elapsed-time expiry. Each value carries the hash it was read from."
-   },
-   "values": [
-    {
-     "field": "city",
-     "value": "BLOOMINGTON",
-     "valueType": "string",
-     "confidence": 0.8,
-     "refreshPolicy": "statutory",
-     "establishedAt": "2026-07-30T14:13:06.897Z",
-     "expiresAt": null,
-     "evidence": {
-      "span": "the firm itself or a statutory registry states: \"Institutional Investment Manager Filing this Report: Name: Kopp Family Office, LLC Address: 8400 NORMANDALE LAKE BOULEVARD SUITE 1450 BLOOMINGTON , MN 55437\"",
-      "spanStart": null,
-      "spanEnd": null,
-      "method": "the firm itself or a statutory registry states: \"Institutional Investment Manager Filing this Report: Name: Kopp Family Office, LLC Address: 8400 NORMANDALE LAKE BOULEVARD SUITE 1450 BLOOMINGTON , MN 55437\"",
-      "url": "https://www.sec.gov/Archives/edgar/data/1683689/000168368921000004/xslForm13F_X01/primary_doc.xml",
-      "source": "CIK1683689",
-      "sourceKind": "sec_13f",
-      "sourceTier": 1,
-      "observedAt": "2026-07-30T14:13:06.661Z",
-      "contentHash": "sha256:m1demo"
-     },
-     "gates": [
-      {
-       "gate": "attribution",
-       "outcome": "passed",
-       "detail": "span contains the value (1/1 content tokens, all 0 hard tokens)",
-       "policyVersion": "2025-07-31.2"
-      },
-      {
-       "gate": "coherence",
-       "outcome": "passed",
-       "detail": "sole component of address",
-       "policyVersion": "2025-07-31.2"
-      },
-      {
-       "gate": "contact_ownership",
-       "outcome": "skipped",
-       "detail": "not a contact claim",
-       "policyVersion": "2025-07-31.2"
-      },
-      {
-       "gate": "identity",
-       "outcome": "skipped",
-       "detail": "not a profile claim",
-       "policyVersion": "2025-07-31.2"
-      },
-      {
-       "gate": "schema",
-       "outcome": "passed",
-       "detail": "shape and types valid",
-       "policyVersion": "2025-07-31.2"
-      },
-      {
-       "gate": "value_type",
-       "outcome": "skipped",
-       "detail": "no checker registered for value type \"string\"",
-       "policyVersion": "2025-07-31.2"
-      }
-     ]
-    },
-    {
-     "field": "legalName",
-     "value": "Kopp Family Office, LLC",
-     "valueType": "string",
-     "confidence": 0.8,
-     "refreshPolicy": "statutory",
-     "establishedAt": "2026-07-30T14:13:06.897Z",
-     "expiresAt": null,
-     "evidence": {
-      "span": "the firm itself or a statutory registry states: \"Institutional Investment Manager Filing this Report: Name: Kopp Family Office, LLC Address: 8400 NORMANDALE LAKE BOULEVARD SUITE 1450 BLOOMINGTON , MN 55437\"",
-      "spanStart": null,
-      "spanEnd": null,
-      "method": "the firm itself or a statutory registry states: \"Institutional Investment Manager Filing this Report: Name: Kopp Family Office, LLC Address: 8400 NORMANDALE LAKE BOULEVARD SUITE 1450 BLOOMINGTON , MN 55437\"",
-      "url": "https://www.sec.gov/Archives/edgar/data/1683689/000168368921000004/xslForm13F_X01/primary_doc.xml",
-      "source": "CIK1683689",
-      "sourceKind": "sec_13f",
-      "sourceTier": 1,
-      "observedAt": "2026-07-30T14:13:06.661Z",
-      "contentHash": "sha256:m1demo"
-     },
-     "gates": [
-      {
-       "gate": "attribution",
-       "outcome": "passed",
-       "detail": "span contains the value (3/3 content tokens, all 0 hard tokens)",
-       "policyVersion": "2025-07-31.2"
-      },
-      {
-       "gate": "coherence",
-       "outcome": "skipped",
-       "detail": "not part of a composite value",
-       "policyVersion": "2025-07-31.2"
-      },
-      {
-       "gate": "contact_ownership",
-       "outcome": "skipped",
-       "detail": "not a contact claim",
-       "policyVersion": "2025-07-31.2"
-      },
-      {
-       "gate": "identity",
-       "outcome": "skipped",
-       "detail": "not a profile claim",
-       "policyVersion": "2025-07-31.2"
-      },
-      {
-       "gate": "schema",
-       "outcome": "passed",
-       "detail": "shape and types valid",
-       "policyVersion": "2025-07-31.2"
-      },
-      {
-       "gate": "value_type",
-       "outcome": "skipped",
-       "detail": "no checker registered for value type \"string\"",
-       "policyVersion": "2025-07-31.2"
-      }
-     ]
-    }
-   ],
-   "withheld": {
-    "quarantined": 5,
     "held": 0,
     "note": "Counted, never shown. A withheld value is not a value the firm lacks."
    }
