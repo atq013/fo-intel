@@ -312,7 +312,7 @@ const people = (r: ReturnType<typeof buildRecord>) =>
   r.values.filter((v) => v.field.endsWith('fullName')).map((v) => String(v.value));
 
 const header = [
-  'entityId', 'name', 'entityType', 'evidenceTier', 'classification', 'classification_basis', 'commercialState',
+  'entityId', 'name', 'secRegisteredAdviser', 'evidenceTier', 'classification', 'classification_basis', 'commercialState',
   'strictReachable', 'profileAssistedReachable', 'postalReachable',
   'principalName', 'principalTitle', 'principalPhone', 'principalPhone_basis', 'principalProfile',
   'secondPrincipalName', 'thirdPrincipalName',
@@ -334,7 +334,14 @@ const rows = qualifying.map((r) => {
   const cls = val(r, 'entityClassification');
 
   return [
-    r.entityId, r.name, r.entityType,
+    // `entityType` was in this column and read badly: it says "unconfirmed" on
+    // 96% of rows, because no dedicated type-establishment step runs -- type
+    // evidence is carried by evidenceTier and classification instead. A reviewer
+    // opening the file saw a column of "unconfirmed" next to the tier columns
+    // and could reasonably read it as "we do not know what any of these are".
+    // The one real signal it held is whether the firm is an SEC-registered
+    // adviser, which is kept. The raw field remains in records.json.
+    r.entityId, r.name, r.entityType === 'unconfirmed_registered_adviser' ? 'yes' : 'no',
     cls ? 'A - statutory control register names a matching surname'
         : /\bfamily\s+offices?\b/i.test(r.name) ? 'B - registered name says "family office"'
         : 'C - registered family wealth vehicle, control not evidenced',
