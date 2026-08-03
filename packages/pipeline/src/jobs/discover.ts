@@ -47,7 +47,12 @@ function loadCandidates(): string[] {
   const seen = new Set([...inStage1, ...rest]);
   const extra: string[] = [];
 
-  for (const file of ['data/candidates-uk-narrow.json', 'data/candidates-uk-expanded.json']) {
+  // Newest candidate file first. Each later file was collected because the one
+  // before it was exhausted, so the unseen candidates are at the end of the
+  // list -- and a cleared cursor then spends a thousand cheap-but-slow
+  // short-circuits re-reading known records before reaching anything new.
+  for (const file of ['data/candidates-uk-wide.json', 'data/candidates-uk-narrow.json',
+                      'data/candidates-uk-expanded.json']) {
     try {
       const n = JSON.parse(readFileSync(root + file, 'utf8')) as {
         companies: Array<{ companyNumber: string; matchedTerm?: string }>;

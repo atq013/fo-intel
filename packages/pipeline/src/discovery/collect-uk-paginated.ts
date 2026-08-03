@@ -33,6 +33,23 @@ import { fetchJson, sleep } from '../lib/http.js';
 
 const BASE = 'https://api.company-information.service.gov.uk';
 
+/**
+ * Search terms, widened after a qualification review.
+ *
+ * The first pass used three family-wealth words and reached 546 collected
+ * entities, of which only 383 could be evidenced as family offices. Reaching 500
+ * with evidence needs a bigger candidate pool, not a looser standard.
+ *
+ * Every term here names a WEALTH VEHICLE. `family group`, `family estates` and
+ * `private office` were measured (178, 69 and 175 active companies) and left
+ * out: a family group is usually a trading business and a family estate is
+ * usually property, and the previous pass already proved what happens when the
+ * pool admits those -- a bakery, a funeral home and a golf club qualified.
+ *
+ * The name still establishes nothing on its own. Classification requires a
+ * statutory control register to name an individual whose surname is in the
+ * company name; everything here only decides which firms get looked at.
+ */
 const TERMS = [
   // unambiguous self-description
   'single family office',
@@ -40,10 +57,16 @@ const TERMS = [
   'multi-family office',
   'private family office',
   'family office',
-  // Family Investment Company: a recognised UK family-wealth structure
+  // recognised UK family-wealth structures
   'family investment',
-  // weaker tail -- many are property vehicles; the floor decides
   'family holdings',
+  'family capital',
+  'family wealth',
+  'family partners',
+  'family trust',
+  'family trustees',
+  'family assets',
+  'family ventures',
 ] as const;
 
 const PAGE = 100;
@@ -67,7 +90,7 @@ const root = fileURLToPath(new URL('../../../../', import.meta.url));
 
 /** Everything already known, so the report separates new from re-found. */
 const known = new Set<string>();
-for (const f of ['data/candidates-uk.json', 'data/candidates-uk-narrow.json']) {
+for (const f of ['data/candidates-uk.json', 'data/candidates-uk-narrow.json', 'data/candidates-uk-expanded.json']) {
   if (!existsSync(root + f)) continue;
   for (const c of (JSON.parse(readFileSync(root + f, 'utf8')).companies as Array<{ companyNumber: string }>)) {
     known.add(c.companyNumber);
@@ -115,7 +138,7 @@ for (const term of TERMS) {
 const all = [...found.values()];
 const fresh = all.filter((c) => !known.has(c.company_number));
 
-writeFileSync(root + 'data/candidates-uk-expanded.json', JSON.stringify({
+writeFileSync(root + 'data/candidates-uk-wide.json', JSON.stringify({
   generatedAt: new Date().toISOString(),
   method: 'Companies House advanced-search, explicit family-office terminology, PAGINATED, no SIC filter',
   terms: TERMS,
@@ -145,6 +168,6 @@ console.log(`  already known           : ${all.length - fresh.length}`);
 console.log(`  NEW candidates          : ${fresh.length}`);
 console.log(`api calls                 : ${calls}`);
 console.log(`wall time                 : ${secs.toFixed(0)}s`);
-console.log(`written                   : data/candidates-uk-expanded.json`);
+console.log(`written                   : data/candidates-uk-wide.json`);
 console.log(`\nNOTE: these are CANDIDATES. None is a record until it passes the shell`);
 console.log(`filter, every gate, and the commercial floor.`);

@@ -18,3 +18,8 @@ data/cache/
 *.graph.json
 
 .claude/
+
+# SEC adviser roster: a 40 MB raw source dump, regenerable from a documented URL.
+# Three records were imported from it; the file itself is not a deliverable and
+# doubles the clone. See docs/DEPLOY.md for how to fetch it.
+data/adv/ia-firm-roster-*.csv

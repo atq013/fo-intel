@@ -4,15 +4,15 @@
   "submittedPrompt": "I am about to contact BOSTON FAMILY OFFICE LLC. What does the system hold on them, what evidence backs the contact route, and what did the validation gates refuse to publish about them and why?",
   "productionUrl": "https://fo-intel-web.vercel.app/api/agent",
   "agentUiUrl": "https://fo-intel-web.vercel.app/agent",
-  "submittedAtUtc": "2026-08-02T10:53:25.603Z",
-  "latencyMs": 14824,
+  "submittedAtUtc": "2026-08-03T18:26:54.709Z",
+  "latencyMs": 7929,
   "httpStatus": 200,
   "whyThisGoal": "A one-time export cannot tell a buyer what was refused and why. The gate outcomes and the evidence span behind each value are the paid-tier product; the record itself is the free part.",
   "manualRetrievalEquivalent": {
     "url": "https://fo-intel-web.vercel.app/api/shortlist?q=Boston%20Family%20Office&limit=5",
     "httpStatus": 200,
     "scope": {
-      "searched": 664,
+      "searched": 740,
       "matched": 1,
       "returned": 1,
       "offset": 0,
@@ -20,11 +20,11 @@
       "excluded": [
         {
           "reason": "name did not match the query text",
-          "count": 613
+          "count": 580
         },
         {
           "reason": "below the commercial floor",
-          "count": 50
+          "count": 159
         }
       ],
       "appliedFilters": [
@@ -42,7 +42,7 @@
       {
         "entityId": "ent_sec_n_boston_family_office",
         "name": "BOSTON FAMILY OFFICE LLC",
-        "score": 0.9956,
+        "score": 0.9934,
         "contact": {
           "channel": "phone",
           "value": "617-624-0800",
@@ -52,21 +52,18 @@
         "matched": [
           "a route that reaches a named individual, profiles excluded",
           "every value traced to a statutory source or the firm itself",
-          "source re-observed 2d ago",
+          "source re-observed 3d ago",
           "9 released claims, each with establishing evidence"
         ],
         "missing": []
       }
     ]
   },
-  "agentAnswer": "I could not honor the requireProfileAssisted=true constraint or the freshWithinDays=0 constraint. Instead, I used the data returned by the search_firms and get_firm calls. The search examined 664 firms and found 1 match. The system holds a contact route for BOSTON FAMILY OFFICE LLC that reaches an individual via phone 617-624-0800. The evidence for this route comes from the signature block in Form 13F accession 0001039807-25-000013, which lists the principal’s name, title, and phone number. Validation gates: all 26 gates that were run passed, and 28 gates were skipped because the claims were not applicable to those checks. No gates failed, so no data was refused or withheld. The system therefore does not refuse to publish any information about BOSTON FAMILY OFFICE LLC.",
+  "agentAnswer": "The system holds 9 claims about BOSTON FAMILY OFFICE LLC. Evidence backs the contact route, which is a phone number, 617-624-0800, that reaches a named individual, George Beal. The validation gates passed 26 checks and skipped 28 checks. Nothing was refused for this firm, and the dataset does not hold fields like mandate, sector, allocation, cheque size, AUM, or LP appetite for any firm.",
   "blocked": false,
   "blockReason": null,
-  "unhonouredConstraints": [
-    "require verified personal profiles — requireProfileAssisted=true is not honourable as it requires semantic similarity",
-    "fresh evidence within 0 days — freshWithinDays=0 is not honourable as it requires a specific date"
-  ],
-  "abstained": true,
+  "unhonouredConstraints": [],
+  "abstained": false,
   "nameCorrections": [],
   "relevanceAsConfidence": [],
   "toolInternalsLeaked": [],
@@ -76,52 +73,34 @@
   "cost": {
     "models": [
       {
-        "model": "llama-3.1-8b-instant",
-        "calls": 4,
-        "promptTokens": 619,
-        "completionTokens": 518,
-        "failures": 3
-      },
-      {
         "model": "llama-3.3-70b-versatile",
-        "calls": 3,
-        "promptTokens": 0,
-        "completionTokens": 0,
-        "failures": 3
-      },
-      {
-        "model": "openai/gpt-oss-20b",
-        "calls": 1,
-        "promptTokens": 3994,
-        "completionTokens": 1230,
-        "failures": 0
+        "calls": 4,
+        "promptTokens": 4421,
+        "completionTokens": 518,
+        "failures": 2
       }
     ],
     "hosts": [],
     "totals": {
-      "modelCalls": 8,
-      "promptTokens": 4613,
-      "completionTokens": 1748,
+      "modelCalls": 4,
+      "promptTokens": 4421,
+      "completionTokens": 518,
       "externalCalls": 0,
       "externalMs": 0
     },
     "estimatedUsd": {
-      "model": 0.001087,
+      "model": 0.003018,
       "external": 0,
-      "total": 0.001087,
+      "total": 0.003018,
       "rateCard": "published rates as of 2026-08-01",
       "note": "Tokens and call counts are measured. Money is derived from the rate card and is an estimate: re-price the same tokens if the rates have moved. External cost is 0 because every source used is free at this volume -- Companies House and SEC EDGAR are free, Neon and Vercel are free tier, Serper stays inside its free allowance. Call counts are recorded anyway, since those are what rate limits bind on and what would carry a price at 5,000 records."
     },
-    "wallMs": 14204
+    "wallMs": 7626
   },
   "countsResolvedFromToolOutput": [
     {
-      "token": "search_firms.searched",
-      "value": 664
-    },
-    {
-      "token": "search_firms.matched",
-      "value": 1
+      "token": "get_firm.releasedClaims",
+      "value": 9
     },
     {
       "token": "check_evidence.gatesPassed",
@@ -142,14 +121,11 @@
   "scopePerTool": [
     {
       "tool": "search_firms",
-      "searched": 664,
+      "searched": 740,
       "matched": 1,
       "returned": 1,
       "appliedFilters": [
-        "name contains \"BOSTON FAMILY OFFICE LLC\"",
-        "strict reachability (profiles excluded)",
-        "holds principal.fullName, principal.phone",
-        "source tier <= 1"
+        "name contains \"BOSTON FAMILY OFFICE LLC\""
       ],
       "relevanceScoreMeaning": "relevanceScore ranks how well a record matches the FILTERS APPLIED. It is not a confidence, probability, certainty, likelihood or evidence-strength value, and must never be presented as one. Confidence in any specific question comes from whether the fields that question needs are present -- see each result's `missing` list.",
       "countNote": "1 firms matched; the data array holds only the top 1. Report 1 as the count, never the array length."
@@ -162,13 +138,13 @@
     {
       "tool": "check_evidence",
       "entityId": "ent_sec_n_boston_family_office",
-      "field": "contact route",
+      "field": "contactRoute",
       "validationError": true
     },
     {
       "tool": "check_evidence",
       "entityId": "ent_sec_n_boston_family_office",
-      "field": "validation gates' refused publication",
+      "field": "validationGates",
       "validationError": true
     },
     {
@@ -191,84 +167,66 @@
       "detail": {
         "constraints": [
           {
-            "constraint": "substring match on firm name",
+            "constraint": "firm name is BOSTON FAMILY OFFICE LLC",
             "honourable": true,
-            "why": "exact match on firm name"
+            "why": "exact substring match on firm name is supported"
           },
           {
-            "constraint": "require a route reaching a named individual",
+            "constraint": "contact route evidence",
             "honourable": true,
-            "why": "requireStrictReachable=true"
+            "why": "evidence for each claim can be retrieved"
           },
           {
-            "constraint": "require verified personal profiles",
-            "honourable": false,
-            "why": "requireProfileAssisted=true is not honourable as it requires semantic similarity"
-          },
-          {
-            "constraint": "require fields: principal.fullName, principal.phone",
+            "constraint": "validation gates refusal reasons",
             "honourable": true,
-            "why": "requiredFields=[\"principal.fullName\",\"principal.phone\"]"
+            "why": "gate outcomes and evidence for one claim can be checked"
           },
           {
-            "constraint": "fresh evidence within 0 days",
-            "honourable": false,
-            "why": "freshWithinDays=0 is not honourable as it requires a specific date"
-          },
-          {
-            "constraint": "max source tier: 1 (statutory/self)",
+            "constraint": "firm-specific data",
             "honourable": true,
-            "why": "maxSourceTier=1"
-          },
-          {
-            "constraint": "exact count of matching firms",
-            "honourable": true,
-            "why": "count_matching tool"
+            "why": "one firm's released claims can be retrieved"
           }
         ],
         "calls": [
-          {
-            "tool": "search_firms",
-            "input": {
-              "q": "BOSTON FAMILY OFFICE LLC",
-              "requireStrictReachable": true,
-              "requireProfileAssisted": false,
-              "requiredFields": [
-                "principal.fullName",
-                "principal.phone"
-              ],
-              "freshWithinDays": 0,
-              "maxSourceTier": 1,
-              "limit": 10
-            },
-            "because": "initial search for firm information"
-          },
           {
             "tool": "get_firm",
             "input": {
               "entityId": "BOSTON FAMILY OFFICE LLC"
             },
-            "because": "retrieve firm's released claims"
+            "because": "to retrieve the firm's released claims"
           },
           {
             "tool": "check_evidence",
             "input": {
               "entityId": "BOSTON FAMILY OFFICE LLC",
-              "field": "contact route"
+              "field": "contactRoute"
             },
-            "because": "validate gates' outcomes and evidence for contact route"
+            "because": "to check the evidence for the contact route"
           },
           {
             "tool": "check_evidence",
             "input": {
               "entityId": "BOSTON FAMILY OFFICE LLC",
-              "field": "validation gates' refused publication"
+              "field": "validationGates"
             },
-            "because": "validate gates' outcomes and evidence for refused publication"
+            "because": "to check the validation gates refusal reasons"
+          },
+          {
+            "tool": "search_firms",
+            "input": {
+              "q": "BOSTON FAMILY OFFICE LLC",
+              "requireStrictReachable": false,
+              "requireProfileAssisted": false,
+              "requiredFields": [],
+              "freshWithinDays": 0,
+              "maxSourceTier": 0,
+              "limit": 1
+            },
+            "because": "to verify the firm's existence and retrieve its data"
           }
         ]
       },
-      "at": "2026-08-02T10:53:32.725Z"
+      "at": "2026-08-03T18:26:56.131Z"
     },
     {
       "step": 2,
@@ -277,25 +235,19 @@
         "tool": "search_firms",
         "input": {
           "q": "BOSTON FAMILY OFFICE LLC",
-          "requireStrictReachable": true,
+          "requireStrictReachable": false,
           "requireProfileAssisted": false,
-          "requiredFields": [
-            "principal.fullName",
-            "principal.phone"
-          ],
+          "requiredFields": [],
           "freshWithinDays": 0,
-          "maxSourceTier": 1,
-          "limit": 10
+          "maxSourceTier": 0,
+          "limit": 1
         },
         "scope": {
-          "searched": 664,
+          "searched": 740,
           "matched": 1,
           "returned": 1,
           "appliedFilters": [
-            "name contains \"BOSTON FAMILY OFFICE LLC\"",
-            "strict reachability (profiles excluded)",
-            "holds principal.fullName, principal.phone",
-            "source tier <= 1"
+            "name contains \"BOSTON FAMILY OFFICE LLC\""
           ],
           "relevanceScoreMeaning": "relevanceScore ranks how well a record matches the FILTERS APPLIED. It is not a confidence, probability, certainty, likelihood or evidence-strength value, and must never be presented as one. Confidence in any specific question comes from whether the fields that question needs are present -- see each result's `missing` list.",
           "countNote": "1 firms matched; the data array holds only the top 1. Report 1 as the count, never the array length."
@@ -303,16 +255,16 @@
         "excluded": [
           {
             "reason": "name did not match the query text",
-            "count": 613
+            "count": 580
           },
           {
             "reason": "below the commercial floor",
-            "count": 50
+            "count": 159
           }
         ],
         "rows": 1
       },
-      "at": "2026-08-02T10:53:32.928Z"
+      "at": "2026-08-03T18:26:56.284Z"
     },
     {
       "step": 3,
@@ -325,7 +277,7 @@
         },
         "why": "planner supplied a placeholder or unknown id"
       },
-      "at": "2026-08-02T10:53:32.928Z"
+      "at": "2026-08-03T18:26:56.284Z"
     },
     {
       "step": 4,
@@ -342,7 +294,7 @@
         "excluded": [],
         "rows": 1
       },
-      "at": "2026-08-02T10:53:33.027Z"
+      "at": "2026-08-03T18:26:56.349Z"
     },
     {
       "step": 5,
@@ -355,7 +307,7 @@
         },
         "why": "planner supplied a placeholder or unknown id"
       },
-      "at": "2026-08-02T10:53:33.028Z"
+      "at": "2026-08-03T18:26:56.349Z"
     },
     {
       "step": 6,
@@ -364,17 +316,17 @@
         "tool": "check_evidence",
         "input": {
           "entityId": "ent_sec_n_boston_family_office",
-          "field": "contact route"
+          "field": "contactRoute"
         },
         "scope": {
           "entityId": "ent_sec_n_boston_family_office",
-          "field": "contact route",
+          "field": "contactRoute",
           "validationError": true
         },
         "excluded": [],
         "rows": 1
       },
-      "at": "2026-08-02T10:53:33.028Z"
+      "at": "2026-08-03T18:26:56.349Z"
     },
     {
       "step": 7,
@@ -387,7 +339,7 @@
         },
         "why": "planner supplied a placeholder or unknown id"
       },
-      "at": "2026-08-02T10:53:33.028Z"
+      "at": "2026-08-03T18:26:56.349Z"
     },
     {
       "step": 8,
@@ -396,17 +348,17 @@
         "tool": "check_evidence",
         "input": {
           "entityId": "ent_sec_n_boston_family_office",
-          "field": "validation gates' refused publication"
+          "field": "validationGates"
         },
         "scope": {
           "entityId": "ent_sec_n_boston_family_office",
-          "field": "validation gates' refused publication",
+          "field": "validationGates",
           "validationError": true
         },
         "excluded": [],
         "rows": 1
       },
-      "at": "2026-08-02T10:53:33.028Z"
+      "at": "2026-08-03T18:26:56.349Z"
     },
     {
       "step": 9,
@@ -414,12 +366,12 @@
       "detail": {
         "tool": "check_evidence",
         "repaired": {
-          "from": "contact route",
+          "from": "contactRoute",
           "to": "(all fields)"
         },
         "why": "the requested field does not exist, so nothing was checked; re-running the supported form"
       },
-      "at": "2026-08-02T10:53:33.028Z"
+      "at": "2026-08-03T18:26:56.350Z"
     },
     {
       "step": 10,
@@ -440,7 +392,7 @@
         "excluded": [],
         "rows": 54
       },
-      "at": "2026-08-02T10:53:33.049Z"
+      "at": "2026-08-03T18:26:56.371Z"
     },
     {
       "step": 11,
@@ -449,15 +401,15 @@
         "withdrewSupersededResults": 2,
         "why": "a failed check that was repaired is not a finding; it stays in the trace, not in the answer"
       },
-      "at": "2026-08-02T10:53:33.049Z"
+      "at": "2026-08-03T18:26:56.371Z"
     },
     {
       "step": 12,
       "kind": "compose",
       "detail": {
-        "answer": "I could not honor the requireProfileAssisted=true constraint or the freshWithinDays=0 constraint. Instead, I used the data returned by the search_firms and get_firm calls. The search examined [[count:search_firms.searched]] firms and found [[count:search_firms.matched]] match. The system holds a contact route for [[ent_sec_n_boston_family_office]] that reaches an individual via phone 617-624-0800. The evidence for this route comes from the signature block in Form 13F accession 0001039807-25-000013, which lists the principal’s name, title, and phone number. Validation gates: all [[count:check_evidence.gatesPassed]] gates that were run passed, and [[count:check_evidence.gatesSkipped]] gates were skipped because the claims were not applicable to those checks. No gates failed, so no data was refused or withheld. The system therefore does not refuse to publish any information about [[ent_sec_n_boston_family_office]]."
+        "answer": "The system holds [[count:get_firm.releasedClaims]] claims about [[ent_sec_n_boston_family_office]]. Evidence backs the contact route, which is a phone number, 617-624-0800, that reaches a named individual, George Beal. The validation gates passed [[count:check_evidence.gatesPassed]] checks and skipped [[count:check_evidence.gatesSkipped]] checks. Nothing was refused for this firm, and the dataset does not hold fields like mandate, sector, allocation, cheque size, AUM, or LP appetite for any firm."
       },
-      "at": "2026-08-02T10:53:40.484Z"
+      "at": "2026-08-03T18:27:02.689Z"
     }
   ],
   "error": null

@@ -6,17 +6,35 @@ queryable in plain English.
 
 **Live system:** https://fo-intel-web.vercel.app
 
-Built for the PolarityIQ Differentiator, Stage 1. See [`SUBMISSION.md`](SUBMISSION.md)
-for the index of deliverables.
+Built for the PolarityIQ Differentiator. **Stage 2 is the current state**; see
+[`docs/ACCEPTANCE_M3.md`](docs/ACCEPTANCE_M3.md) for the requirement-to-evidence
+matrix and the deliverable index, and [`SUBMISSION.md`](SUBMISSION.md) for the
+Stage 1 one, kept as history.
+
+| surface | what it is |
+|---|---|
+| [`/`](https://fo-intel-web.vercel.app/) | plain-English search over the original Stage 1 corpus of 50 records |
+| [`/shortlist`](https://fo-intel-web.vercel.app/shortlist) | the Stage 2 retrieval extension — filters, evidence grading, pagination over all 581 records |
+| [`/agent`](https://fo-intel-web.vercel.app/agent) | the agent, using retrieval as a tool |
+| [`/operations`](https://fo-intel-web.vercel.app/operations) | what ran, what it refused, and why |
+
+Stage 2 documents: [architecture notes](docs/ARCHITECTURE_NOTES.md) ·
+[inclusion standard](docs/INCLUSION_RUBRIC.md) ·
+[build summary](docs/BUILD_SESSION_SUMMARY.md) ·
+[AI working-session record](docs/ai-session/) ·
+[exports](exports/)
 
 ---
 
 ## What it does
 
 The pipeline finds candidate firms across four independent source classes, proves
-what each firm actually is, enriches the ones that qualify, and writes 50 records
-where **every value carries its basis** — where it came from and how it was
-confirmed. The product reads those records and answers questions about them
+what each firm actually is, enriches the ones that qualify, and writes records
+where **every value carries its basis** — the exact evidence span it was read
+from, the URL and tier of that source, the content hash at the time, and the
+outcome of six validation gates under a named policy version. Stage 1 delivered
+50 such records; Stage 2 operates the same contract at scale, unattended, on a
+schedule. The product reads those records and answers questions about them
 without being able to claim anything the records do not support.
 
 The two halves share nothing but the database. The pipeline writes; the app reads.

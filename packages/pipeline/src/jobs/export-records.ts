@@ -243,11 +243,28 @@ const dataset = {
       }, new Map<string, number>())].sort((a, b) => b[1] - a[1])),
   },
 
+  evidenceTiers: {
+    note:
+      'Every qualifying record carries affirmative evidence that the firm is a family office, ' +
+      'at one of three tiers. Tier C is the weakest and is included deliberately with its ' +
+      'weakness stated: a family-named wealth vehicle whose control register does not name a ' +
+      'matching individual. Tier C records are never given an entityClassification, so they can ' +
+      'be separated in one pass. See docs/INCLUSION_RUBRIC.md.',
+    tierA_statutoryControl: qualifying.filter((r) =>
+      r.values.some((v) => v.field === 'entityClassification')).length,
+    tierB_registeredNameSaysFamilyOffice: qualifying.filter((r) =>
+      !r.values.some((v) => v.field === 'entityClassification') && /\bfamily\s+offices?\b/i.test(r.name)).length,
+    tierC_familyWealthVehicleOnly: qualifying.filter((r) =>
+      !r.values.some((v) => v.field === 'entityClassification') && !/\bfamily\s+offices?\b/i.test(r.name)).length,
+  },
+
   inclusionStandard:
-    'A record qualifies only with a named individual, a legal name, an address, and every ' +
-    'value released by the gates. A contact route counts only if it reaches the named ' +
-    'individual: shared inboxes, contact forms, switchboards and pattern-generated addresses ' +
-    'are excluded by the data model, not by convention.',
+    'A record qualifies only with a legal name, a country, a NAMED INDIVIDUAL and a city or ' +
+    'website, every value released by the six gates, AND affirmative evidence that the firm is ' +
+    'a family office at one of the three tiers above. A named individual is mandatory rather ' +
+    'than optional: the floor is a contact route reaching a named person. A contact route counts ' +
+    'only if it reaches that individual — shared inboxes, contact forms, switchboards and ' +
+    'pattern-generated addresses are excluded by the data model, not by convention.',
 
   qualifying,
   notQualifying,
@@ -295,7 +312,7 @@ const people = (r: ReturnType<typeof buildRecord>) =>
   r.values.filter((v) => v.field.endsWith('fullName')).map((v) => String(v.value));
 
 const header = [
-  'entityId', 'name', 'entityType', 'classification', 'classification_basis', 'commercialState',
+  'entityId', 'name', 'entityType', 'evidenceTier', 'classification', 'classification_basis', 'commercialState',
   'strictReachable', 'profileAssistedReachable', 'postalReachable',
   'principalName', 'principalTitle', 'principalPhone', 'principalPhone_basis', 'principalProfile',
   'secondPrincipalName', 'thirdPrincipalName',
@@ -317,7 +334,11 @@ const rows = qualifying.map((r) => {
   const cls = val(r, 'entityClassification');
 
   return [
-    r.entityId, r.name, r.entityType, cls?.value ?? '', cls ? cls.evidence.span : '', r.commercialState,
+    r.entityId, r.name, r.entityType,
+    cls ? 'A - statutory control register names a matching surname'
+        : /\bfamily\s+offices?\b/i.test(r.name) ? 'B - registered name says "family office"'
+        : 'C - registered family wealth vehicle, control not evidenced',
+    cls?.value ?? '', cls ? cls.evidence.span : '', r.commercialState,
     r.reachability.strict, r.reachability.profileAssisted, r.reachability.postal,
     named[0] ?? '', pick(r, 'principal.title'), pick(r, 'principal.phone'),
     basis(r, 'principal.phone'), pick(r, 'principal.linkedinUrl'),

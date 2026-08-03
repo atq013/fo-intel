@@ -1,0 +1,2018 @@
+{
+ "generatedAt": "2026-08-03T14:16:34.412Z",
+ "method": "Companies House advanced-search, explicit family-office terminology, PAGINATED, no SIC filter",
+ "terms": [
+  "single family office",
+  "multi family office",
+  "multi-family office",
+  "private family office",
+  "family office",
+  "family investment",
+  "family holdings",
+  "family capital",
+  "family wealth",
+  "family partners",
+  "family trust",
+  "family trustees",
+  "family assets",
+  "family ventures"
+ ],
+ "note": "The SIC filter was removed because it was a guess about which codes family offices use, not an inclusion standard. Measured: \"family office\" filtered to SIC 64205 returns 11 hits, unfiltered 286. Name selection is unchanged; every gate, the shell filter and the commercial floor still apply downstream. A name establishes nothing on its own.",
+ "totalUnique": 1525,
+ "alreadyKnown": 1336,
+ "newCandidates": 189,
+ "perTerm": [
+  {
+   "term": "single family office",
+   "hits": 1,
+   "retrieved": 1,
+   "fresh": 0
+  },
+  {
+   "term": "multi family office",
+   "hits": 2,
+   "retrieved": 2,
+   "fresh": 0
+  },
+  {
+   "term": "multi-family office",
+   "hits": 2,
+   "retrieved": 2,
+   "fresh": 0
+  },
+  {
+   "term": "private family office",
+   "hits": 2,
+   "retrieved": 2,
+   "fresh": 0
+  },
+  {
+   "term": "family office",
+   "hits": 286,
+   "retrieved": 286,
+   "fresh": 0
+  },
+  {
+   "term": "family investment",
+   "hits": 348,
+   "retrieved": 348,
+   "fresh": 0
+  },
+  {
+   "term": "family holdings",
+   "hits": 702,
+   "retrieved": 702,
+   "fresh": 2
+  },
+  {
+   "term": "family capital",
+   "hits": 29,
+   "retrieved": 29,
+   "fresh": 20
+  },
+  {
+   "term": "family wealth",
+   "hits": 33,
+   "retrieved": 33,
+   "fresh": 32
+  },
+  {
+   "term": "family partners",
+   "hits": 26,
+   "retrieved": 26,
+   "fresh": 22
+  },
+  {
+   "term": "family trust",
+   "hits": 55,
+   "retrieved": 55,
+   "fresh": 51
+  },
+  {
+   "term": "family trustees",
+   "hits": 19,
+   "retrieved": 19,
+   "fresh": 16
+  },
+  {
+   "term": "family assets",
+   "hits": 16,
+   "retrieved": 16,
+   "fresh": 16
+  },
+  {
+   "term": "family ventures",
+   "hits": 30,
+   "retrieved": 30,
+   "fresh": 30
+  }
+ ],
+ "companies": [
+  {
+   "companyNumber": "17376683",
+   "name": "COX FAMILY HOLDINGS LTD",
+   "status": "active",
+   "incorporated": "2026-08-03",
+   "sicCodes": [
+    "64209"
+   ],
+   "matchedTerm": "family holdings"
+  },
+  {
+   "companyNumber": "17378016",
+   "name": "ADVANCE FAMILY SOLUTIONS HOLDINGS LIMITED",
+   "status": "active",
+   "incorporated": "2026-08-03",
+   "sicCodes": [
+    "64209"
+   ],
+   "matchedTerm": "family holdings"
+  },
+  {
+   "companyNumber": "14947612",
+   "name": "BRAGG FAMILY CAPITAL LTD",
+   "status": "active",
+   "incorporated": "2023-06-20",
+   "sicCodes": [
+    "45200"
+   ],
+   "matchedTerm": "family capital"
+  },
+  {
+   "companyNumber": "LP018949",
+   "name": "LYCEUM CAPITAL FUND IV FRIENDS AND FAMILY LIMITED PARTNERSHIP",
+   "status": "active",
+   "incorporated": "2017-11-29",
+   "sicCodes": [],
+   "matchedTerm": "family capital"
+  },
+  {
+   "companyNumber": "08848530",
+   "name": "CAPITAL FAMILY MEDIATION LIMITED",
+   "status": "active",
+   "incorporated": "2014-01-16",
+   "sicCodes": [
+    "69102"
+   ],
+   "matchedTerm": "family capital"
+  },
+  {
+   "companyNumber": "16126469",
+   "name": "HENRY FAMILY CAPITAL LTD",
+   "status": "active",
+   "incorporated": "2024-12-09",
+   "sicCodes": [
+    "64929"
+   ],
+   "matchedTerm": "family capital"
+  },
+  {
+   "companyNumber": "08962439",
+   "name": "GLOBAL FAMILY CAPITAL LIMITED",
+   "status": "active",
+   "incorporated": "2014-03-27",
+   "sicCodes": [
+    "64991",
+    "66120",
+    "70229"
+   ],
+   "matchedTerm": "family capital"
+  },
+  {
+   "companyNumber": "NI719385",
+   "name": "MCG FAMILY CAPITAL LIMITED",
+   "status": "active",
+   "incorporated": "2024-08-01",
+   "sicCodes": [
+    "64203"
+   ],
+   "matchedTerm": "family capital"
+  },
+  {
+   "companyNumber": "16298684",
+   "name": "STONE FAMILY CAPITAL LIMITED",
+   "status": "active",
+   "incorporated": "2025-03-06",
+   "sicCodes": [
+    "68100",
+    "68209",
+    "68320"
+   ],
+   "matchedTerm": "family capital"
+  },
+  {
+   "companyNumber": "16848423",
+   "name": "FRASER FAMILY CAPITAL LTD",
+   "status": "active",
+   "incorporated": "2025-11-11",
+   "sicCodes": [
+    "68209"
+   ],
+   "matchedTerm": "family capital"
+  },
+  {
+   "companyNumber": "LP015097",
+   "name": "HORIZON CAPITAL 2013 FRIENDS AND FAMILY LIMITED PARTNERSHIP",
+   "status": "active",
+   "incorporated": "2012-07-16",
+   "sicCodes": [],
+   "matchedTerm": "family capital"
+  },
+  {
+   "companyNumber": "12720569",
+   "name": "BROWNSCOMBE FAMILY CAPITAL (INVEST) LTD",
+   "status": "active",
+   "incorporated": "2020-07-05",
+   "sicCodes": [
+    "68209"
+   ],
+   "matchedTerm": "family capital"
+  },
+  {
+   "companyNumber": "15904386",
+   "name": "STERLING FAMILY CAPITAL LTD",
+   "status": "active",
+   "incorporated": "2024-08-19",
+   "sicCodes": [
+    "68100",
+    "68209"
+   ],
+   "matchedTerm": "family capital"
+  },
+  {
+   "companyNumber": "14400121",
+   "name": "GV4 FAMILY CAPITAL LIMITED",
+   "status": "active",
+   "incorporated": "2022-10-05",
+   "sicCodes": [
+    "64991",
+    "70229"
+   ],
+   "matchedTerm": "family capital"
+  },
+  {
+   "companyNumber": "13165676",
+   "name": "BROWNSCOMBE FAMILY CAPITAL (HOUSEHOLD) LIMITED",
+   "status": "active",
+   "incorporated": "2021-01-28",
+   "sicCodes": [
+    "97000"
+   ],
+   "matchedTerm": "family capital"
+  },
+  {
+   "companyNumber": "10457142",
+   "name": "FAMILY CAPITAL LIMITED",
+   "status": "active",
+   "incorporated": "2016-11-01",
+   "sicCodes": [
+    "66190"
+   ],
+   "matchedTerm": "family capital"
+  },
+  {
+   "companyNumber": "14751615",
+   "name": "TRIVEDI FAMILY CAPITAL LTD",
+   "status": "active",
+   "incorporated": "2023-03-23",
+   "sicCodes": [
+    "68100",
+    "68209"
+   ],
+   "matchedTerm": "family capital"
+  },
+  {
+   "companyNumber": "SC849558",
+   "name": "GR CAPITAL FAMILY LTD",
+   "status": "active",
+   "incorporated": "2025-05-22",
+   "sicCodes": [
+    "64304"
+   ],
+   "matchedTerm": "family capital"
+  },
+  {
+   "companyNumber": "16844023",
+   "name": "RMAC FAMILY CAPITAL LTD",
+   "status": "active",
+   "incorporated": "2025-11-10",
+   "sicCodes": [
+    "64991"
+   ],
+   "matchedTerm": "family capital"
+  },
+  {
+   "companyNumber": "16646132",
+   "name": "PLATINUM FAMILY CAPITAL LIMITED",
+   "status": "active",
+   "incorporated": "2025-08-12",
+   "sicCodes": [
+    "96090"
+   ],
+   "matchedTerm": "family capital"
+  },
+  {
+   "companyNumber": "LP016868",
+   "name": "LONSDALE CAPITAL PARTNERS (FRIENDS AND FAMILY) L.P.",
+   "status": "active",
+   "incorporated": "2015-09-23",
+   "sicCodes": [],
+   "matchedTerm": "family capital"
+  },
+  {
+   "companyNumber": "17114633",
+   "name": "VDLS FAMILY CAPITAL LTD",
+   "status": "active",
+   "incorporated": "2026-03-25",
+   "sicCodes": [
+    "68100",
+    "68209"
+   ],
+   "matchedTerm": "family capital"
+  },
+  {
+   "companyNumber": "SC619479",
+   "name": "FAMILY AND BUSINESS WEALTH MANAGEMENT LIMITED",
+   "status": "active",
+   "incorporated": "2019-01-28",
+   "sicCodes": [
+    "96090"
+   ],
+   "matchedTerm": "family wealth"
+  },
+  {
+   "companyNumber": "05904743",
+   "name": "FAMILY WEALTH PRESERVATION (SEVENOAKS) LTD",
+   "status": "active",
+   "incorporated": "2006-08-14",
+   "sicCodes": [
+    "96090"
+   ],
+   "matchedTerm": "family wealth"
+  },
+  {
+   "companyNumber": "05049941",
+   "name": "FAMILY WEALTH STRATEGY LIMITED",
+   "status": "active",
+   "incorporated": "2004-02-19",
+   "sicCodes": [
+    "74990"
+   ],
+   "matchedTerm": "family wealth"
+  },
+  {
+   "companyNumber": "14415309",
+   "name": "FAMILY WEALTH COMPANY LIMITED",
+   "status": "active",
+   "incorporated": "2022-10-12",
+   "sicCodes": [
+    "69109"
+   ],
+   "matchedTerm": "family wealth"
+  },
+  {
+   "companyNumber": "17134529",
+   "name": "PROSPERITY FAMILY WEALTH LIMITED",
+   "status": "active",
+   "incorporated": "2026-04-02",
+   "sicCodes": [
+    "99999"
+   ],
+   "matchedTerm": "family wealth"
+  },
+  {
+   "companyNumber": "17362152",
+   "name": "FAMILY WEALTH ADVISORY LIMITED",
+   "status": "active",
+   "incorporated": "2026-07-26",
+   "sicCodes": [
+    "66190"
+   ],
+   "matchedTerm": "family wealth"
+  },
+  {
+   "companyNumber": "08926661",
+   "name": "REDWOOD FINANCIAL FAMILY WEALTH & ESTATE PLANNERS LIMITED",
+   "status": "active",
+   "incorporated": "2014-03-06",
+   "sicCodes": [
+    "70221"
+   ],
+   "matchedTerm": "family wealth"
+  },
+  {
+   "companyNumber": "09642228",
+   "name": "MFW - MULTI FAMILY WEALTH LIMITED",
+   "status": "active",
+   "incorporated": "2015-06-16",
+   "sicCodes": [
+    "64301"
+   ],
+   "matchedTerm": "family wealth"
+  },
+  {
+   "companyNumber": "08299451",
+   "name": "UNIQ FAMILY WEALTH LIMITED",
+   "status": "active",
+   "incorporated": "2012-11-20",
+   "sicCodes": [
+    "66190"
+   ],
+   "matchedTerm": "family wealth"
+  },
+  {
+   "companyNumber": "10981927",
+   "name": "M A ANTHONY FAMILY WEALTH TRADING LIMITED",
+   "status": "active",
+   "incorporated": "2017-09-26",
+   "sicCodes": [
+    "74909"
+   ],
+   "matchedTerm": "family wealth"
+  },
+  {
+   "companyNumber": "11264213",
+   "name": "FAMILY MENTAL WEALTH LTD",
+   "status": "active",
+   "incorporated": "2018-03-20",
+   "sicCodes": [
+    "85600",
+    "86900"
+   ],
+   "matchedTerm": "family wealth"
+  },
+  {
+   "companyNumber": "10007975",
+   "name": "BERKELEY FAMILY WEALTH ASSET MANAGEMENT LIMITED",
+   "status": "active",
+   "incorporated": "2016-02-16",
+   "sicCodes": [
+    "99999"
+   ],
+   "matchedTerm": "family wealth"
+  },
+  {
+   "companyNumber": "14385843",
+   "name": "FAMILY WEALTH PLATFORM LIMITED",
+   "status": "active",
+   "incorporated": "2022-09-29",
+   "sicCodes": [
+    "64999"
+   ],
+   "matchedTerm": "family wealth"
+  },
+  {
+   "companyNumber": "NI707906",
+   "name": "BAMBRICK FAMILY WEALTH MANAGEMENT LIMITED",
+   "status": "active",
+   "incorporated": "2024-01-10",
+   "sicCodes": [
+    "68100",
+    "68209"
+   ],
+   "matchedTerm": "family wealth"
+  },
+  {
+   "companyNumber": "12421816",
+   "name": "FAMILY WEALTH 101 LIMITED",
+   "status": "active",
+   "incorporated": "2020-01-23",
+   "sicCodes": [
+    "70221"
+   ],
+   "matchedTerm": "family wealth"
+  },
+  {
+   "companyNumber": "16655311",
+   "name": "FAMILY WEALTH TRUSTEES LTD",
+   "status": "active",
+   "incorporated": "2025-08-18",
+   "sicCodes": [
+    "96090"
+   ],
+   "matchedTerm": "family wealth"
+  },
+  {
+   "companyNumber": "16614745",
+   "name": "SHERPA FAMILY WEALTH LTD",
+   "status": "active",
+   "incorporated": "2025-07-29",
+   "sicCodes": [
+    "64999"
+   ],
+   "matchedTerm": "family wealth"
+  },
+  {
+   "companyNumber": "16108824",
+   "name": "FAMILY WEALTH LEGACIES LTD",
+   "status": "active",
+   "incorporated": "2024-11-29",
+   "sicCodes": [
+    "69109",
+    "70221"
+   ],
+   "matchedTerm": "family wealth"
+  },
+  {
+   "companyNumber": "17134792",
+   "name": "PROSPERITY FAMILY WEALTH MANAGEMENT LIMITED",
+   "status": "active",
+   "incorporated": "2026-04-02",
+   "sicCodes": [
+    "99999"
+   ],
+   "matchedTerm": "family wealth"
+  },
+  {
+   "companyNumber": "12834817",
+   "name": "FAMILY TREE WEALTH MANAGEMENT LTD",
+   "status": "active",
+   "incorporated": "2020-08-25",
+   "sicCodes": [
+    "64999"
+   ],
+   "matchedTerm": "family wealth"
+  },
+  {
+   "companyNumber": "11515601",
+   "name": "WISLEY FAMILY WEALTH LIMITED",
+   "status": "active",
+   "incorporated": "2018-08-14",
+   "sicCodes": [
+    "64999"
+   ],
+   "matchedTerm": "family wealth"
+  },
+  {
+   "companyNumber": "15907643",
+   "name": "A & G FAMILY WEALTH LTD",
+   "status": "active",
+   "incorporated": "2024-08-20",
+   "sicCodes": [
+    "64301"
+   ],
+   "matchedTerm": "family wealth"
+  },
+  {
+   "companyNumber": "12541335",
+   "name": "SKEPPER FAMILY WEALTH MANAGEMENT LTD",
+   "status": "active",
+   "incorporated": "2020-03-31",
+   "sicCodes": [
+    "66300"
+   ],
+   "matchedTerm": "family wealth"
+  },
+  {
+   "companyNumber": "15804445",
+   "name": "BLUE SKY FAMILY WEALTH MANAGEMENT LTD",
+   "status": "active",
+   "incorporated": "2024-06-26",
+   "sicCodes": [
+    "66300"
+   ],
+   "matchedTerm": "family wealth"
+  },
+  {
+   "companyNumber": "03554632",
+   "name": "IFS FAMILY WEALTH ADVISERS LTD",
+   "status": "active",
+   "incorporated": "1998-04-29",
+   "sicCodes": [
+    "64999",
+    "65110"
+   ],
+   "matchedTerm": "family wealth"
+  },
+  {
+   "companyNumber": "05049944",
+   "name": "FAMILY WEALTH MANAGEMENT LIMITED",
+   "status": "active",
+   "incorporated": "2004-02-19",
+   "sicCodes": [
+    "74990"
+   ],
+   "matchedTerm": "family wealth"
+  },
+  {
+   "companyNumber": "16584484",
+   "name": "CLARKE & FAMILY WEALTH MANAGEMENT LTD",
+   "status": "active",
+   "incorporated": "2025-07-15",
+   "sicCodes": [
+    "70221"
+   ],
+   "matchedTerm": "family wealth"
+  },
+  {
+   "companyNumber": "13981946",
+   "name": "GRAHAM DAVIES FAMILY WEALTH LTD",
+   "status": "active",
+   "incorporated": "2022-03-16",
+   "sicCodes": [
+    "70229"
+   ],
+   "matchedTerm": "family wealth"
+  },
+  {
+   "companyNumber": "16954449",
+   "name": "HENRY FAMILY WEALTH LTD",
+   "status": "active",
+   "incorporated": "2026-01-10",
+   "sicCodes": [
+    "86900"
+   ],
+   "matchedTerm": "family wealth"
+  },
+  {
+   "companyNumber": "16368745",
+   "name": "FUTURE FAMILY WEALTH LTD",
+   "status": "active",
+   "incorporated": "2025-04-07",
+   "sicCodes": [
+    "70221"
+   ],
+   "matchedTerm": "family wealth"
+  },
+  {
+   "companyNumber": "17137186",
+   "name": "FAMILY WEALTH SAFEGUARD LTD",
+   "status": "active",
+   "incorporated": "2026-04-05",
+   "sicCodes": [
+    "47910"
+   ],
+   "matchedTerm": "family wealth"
+  },
+  {
+   "companyNumber": "16981676",
+   "name": "FAMILY WEALTH SERVICES LIMITED",
+   "status": "active",
+   "incorporated": "2026-01-22",
+   "sicCodes": [
+    "70229"
+   ],
+   "matchedTerm": "family wealth"
+  },
+  {
+   "companyNumber": "OC415584",
+   "name": "FAMILY PARTNERS LLP",
+   "status": "active",
+   "incorporated": "2017-01-24",
+   "sicCodes": [],
+   "matchedTerm": "family partners"
+  },
+  {
+   "companyNumber": "15967658",
+   "name": "FAMILY HEALTH PARTNERS LIMITED",
+   "status": "active",
+   "incorporated": "2024-09-19",
+   "sicCodes": [
+    "86900"
+   ],
+   "matchedTerm": "family partners"
+  },
+  {
+   "companyNumber": "06740715",
+   "name": "FAMILY HOUSING PARTNERS LIMITED",
+   "status": "active",
+   "incorporated": "2008-11-04",
+   "sicCodes": [
+    "68100"
+   ],
+   "matchedTerm": "family partners"
+  },
+  {
+   "companyNumber": "10581509",
+   "name": "MACTAGGART FAMILY & PARTNERS LIMITED",
+   "status": "active",
+   "incorporated": "2017-01-24",
+   "sicCodes": [
+    "66300"
+   ],
+   "matchedTerm": "family partners"
+  },
+  {
+   "companyNumber": "OC448560",
+   "name": "KNOWLES FAMILY PARTNERS LLP",
+   "status": "active",
+   "incorporated": "2023-08-08",
+   "sicCodes": [],
+   "matchedTerm": "family partners"
+  },
+  {
+   "companyNumber": "11901476",
+   "name": "CURTIS FAMILY PARTNERS LIMITED",
+   "status": "active",
+   "incorporated": "2019-03-23",
+   "sicCodes": [
+    "68100"
+   ],
+   "matchedTerm": "family partners"
+  },
+  {
+   "companyNumber": "10055156",
+   "name": "KLEINWORT FAMILY & PARTNERS LIMITED",
+   "status": "active",
+   "incorporated": "2016-03-10",
+   "sicCodes": [
+    "99999"
+   ],
+   "matchedTerm": "family partners"
+  },
+  {
+   "companyNumber": "OC436749",
+   "name": "WOOD FAMILY PARTNERS LLP",
+   "status": "active",
+   "incorporated": "2021-04-08",
+   "sicCodes": [],
+   "matchedTerm": "family partners"
+  },
+  {
+   "companyNumber": "07122930",
+   "name": "GENERATION THREE FAMILY PARTNERS ADVISORY LIMITED",
+   "status": "active",
+   "incorporated": "2010-01-12",
+   "sicCodes": [
+    "82990"
+   ],
+   "matchedTerm": "family partners"
+  },
+  {
+   "companyNumber": "15618649",
+   "name": "FAMILY PARTNERS SERVICES LTD",
+   "status": "active",
+   "incorporated": "2024-04-05",
+   "sicCodes": [
+    "47990"
+   ],
+   "matchedTerm": "family partners"
+  },
+  {
+   "companyNumber": "SC509149",
+   "name": "JACK FAMILY PARTNERS LIMITED",
+   "status": "active",
+   "incorporated": "2015-06-24",
+   "sicCodes": [
+    "64205"
+   ],
+   "matchedTerm": "family partners"
+  },
+  {
+   "companyNumber": "09357134",
+   "name": "LACULLE FAMILY & PARTNERS LIMITED",
+   "status": "active",
+   "incorporated": "2014-12-16",
+   "sicCodes": [
+    "56290"
+   ],
+   "matchedTerm": "family partners"
+  },
+  {
+   "companyNumber": "07483122",
+   "name": "FAMILY LAW PARTNERS (UK) LIMITED",
+   "status": "active",
+   "incorporated": "2011-01-05",
+   "sicCodes": [
+    "69102"
+   ],
+   "matchedTerm": "family partners"
+  },
+  {
+   "companyNumber": "OC431205",
+   "name": "HILTON FAMILY AND PARTNERS LLP",
+   "status": "active",
+   "incorporated": "2020-03-18",
+   "sicCodes": [],
+   "matchedTerm": "family partners"
+  },
+  {
+   "companyNumber": "LP021687",
+   "name": "ASCENDANCY FAMILY & PARTNERS L.P.",
+   "status": "active",
+   "incorporated": "2021-04-15",
+   "sicCodes": [],
+   "matchedTerm": "family partners"
+  },
+  {
+   "companyNumber": "09872181",
+   "name": "ATLAS FAMILY PARTNERS LIMITED",
+   "status": "active",
+   "incorporated": "2015-11-13",
+   "sicCodes": [
+    "64999"
+   ],
+   "matchedTerm": "family partners"
+  },
+  {
+   "companyNumber": "15029201",
+   "name": "ZAKHARIA FAMILY PARTNERS LIMITED",
+   "status": "active",
+   "incorporated": "2023-07-26",
+   "sicCodes": [
+    "70229"
+   ],
+   "matchedTerm": "family partners"
+  },
+  {
+   "companyNumber": "09443529",
+   "name": "FAMILY FOSTERING PARTNERS LIMITED",
+   "status": "active",
+   "incorporated": "2015-02-17",
+   "sicCodes": [
+    "88990"
+   ],
+   "matchedTerm": "family partners"
+  },
+  {
+   "companyNumber": "16658681",
+   "name": "ADELAJA & PARTNERS FAMILY INC LTD",
+   "status": "active",
+   "incorporated": "2025-08-19",
+   "sicCodes": [
+    "98000"
+   ],
+   "matchedTerm": "family partners"
+  },
+  {
+   "companyNumber": "16877133",
+   "name": "GENERATION THREE FAMILY PARTNERS MANAGEMENT LIMITED",
+   "status": "active",
+   "incorporated": "2025-11-27",
+   "sicCodes": [
+    "70229"
+   ],
+   "matchedTerm": "family partners"
+  },
+  {
+   "companyNumber": "16531408",
+   "name": "LSV FAMILY PARTNERS LTD",
+   "status": "active",
+   "incorporated": "2025-06-20",
+   "sicCodes": [
+    "41201",
+    "43390"
+   ],
+   "matchedTerm": "family partners"
+  },
+  {
+   "companyNumber": "17135703",
+   "name": "MUNROE FAMILY PARTNERS LTD",
+   "status": "active",
+   "incorporated": "2026-04-02",
+   "sicCodes": [
+    "64205"
+   ],
+   "matchedTerm": "family partners"
+  },
+  {
+   "companyNumber": "NI050431",
+   "name": "HOLYWOOD FAMILY TRUST",
+   "status": "active",
+   "incorporated": "2004-04-28",
+   "sicCodes": [
+    "96090"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "03503533",
+   "name": "FAMILY EDUCATION TRUST",
+   "status": "active",
+   "incorporated": "1998-02-03",
+   "sicCodes": [
+    "58190",
+    "85590",
+    "88990"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "00398875",
+   "name": "CHILDREN'S FAMILY TRUST(THE)",
+   "status": "active",
+   "incorporated": "1945-09-27",
+   "sicCodes": [
+    "88990"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "07568318",
+   "name": "THE WILF WARD FAMILY TRUST",
+   "status": "active",
+   "incorporated": "2011-03-17",
+   "sicCodes": [
+    "87200",
+    "87900",
+    "88990"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "00197026",
+   "name": "SINCLAIR FAMILY TRUST LIMITED(THE)",
+   "status": "active",
+   "incorporated": "1924-04-04",
+   "sicCodes": [
+    "41100"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "02519173",
+   "name": "FRANCIS HOUSE FAMILY TRUST",
+   "status": "active",
+   "incorporated": "1990-07-05",
+   "sicCodes": [
+    "96090"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "03959662",
+   "name": "R.A. HAWKINS FAMILY TRUST COMPANY LIMITED",
+   "status": "active",
+   "incorporated": "2000-03-24",
+   "sicCodes": [
+    "74990"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "13128264",
+   "name": "PET FAMILY WOODLAND TRUST LIMITED",
+   "status": "active",
+   "incorporated": "2021-01-12",
+   "sicCodes": [
+    "93290"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "02982937",
+   "name": "FAMILY CARE TRUST",
+   "status": "active",
+   "incorporated": "1994-10-25",
+   "sicCodes": [
+    "88100"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "07875308",
+   "name": "CHILD AND FAMILY LEARNING TRUST",
+   "status": "active",
+   "incorporated": "2011-12-08",
+   "sicCodes": [
+    "85600"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "02289977",
+   "name": "MARINO FAMILY TRUST COMPANY LIMITED",
+   "status": "active",
+   "incorporated": "1988-08-25",
+   "sicCodes": [
+    "68209"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "07118015",
+   "name": "THREE SPIRES FAMILY SUPPORT TRUST",
+   "status": "active",
+   "incorporated": "2010-01-06",
+   "sicCodes": [
+    "56102",
+    "88990"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "06003552",
+   "name": "CULLUM FAMILY TRUST",
+   "status": "active",
+   "incorporated": "2006-11-20",
+   "sicCodes": [
+    "74990"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "00739994",
+   "name": "THE PALMER FAMILY TRUST LIMITED",
+   "status": "active",
+   "incorporated": "1962-11-06",
+   "sicCodes": [
+    "41100",
+    "68209"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "03166627",
+   "name": "FAMILY FUND TRUST",
+   "status": "active",
+   "incorporated": "1996-03-01",
+   "sicCodes": [
+    "86900"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "SC658008",
+   "name": "GOROL FAMILY CHARITY TRUST",
+   "status": "active",
+   "incorporated": "2020-03-23",
+   "sicCodes": [
+    "88990"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "04421606",
+   "name": "THE STABLE FAMILY HOME TRUST",
+   "status": "active",
+   "incorporated": "2002-04-22",
+   "sicCodes": [
+    "85590"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "07430382",
+   "name": "THE FAMILY TRUST CORPORATION LIMITED",
+   "status": "active",
+   "incorporated": "2010-11-04",
+   "sicCodes": [
+    "82990"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "07434158",
+   "name": "REECE FAMILY TRUST",
+   "status": "active",
+   "incorporated": "2010-11-09",
+   "sicCodes": [
+    "74990"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "08269066",
+   "name": "HOLY FAMILY CATHOLIC MULTI ACADEMY TRUST",
+   "status": "active",
+   "incorporated": "2012-10-25",
+   "sicCodes": [
+    "85100",
+    "85200",
+    "85310"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "06517306",
+   "name": "THE NOYEN-MELENDEZ FAMILY TRUST LIMITED",
+   "status": "active",
+   "incorporated": "2008-02-28",
+   "sicCodes": [
+    "96090"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "08954620",
+   "name": "HOLY FAMILY ACADEMY TRUST",
+   "status": "active",
+   "incorporated": "2014-03-24",
+   "sicCodes": [
+    "85200"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "NI052123",
+   "name": "RICE FAMILY CHARITABLE TRUST",
+   "status": "active",
+   "incorporated": "2004-10-21",
+   "sicCodes": [
+    "82990"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "16290590",
+   "name": "DESHI FAMILY WELFARE TRUST UK",
+   "status": "active",
+   "incorporated": "2025-03-04",
+   "sicCodes": [
+    "88990",
+    "94990"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "07889443",
+   "name": "THE OSTACCHINI FAMILY CHARITABLE TRUST",
+   "status": "active",
+   "incorporated": "2011-12-21",
+   "sicCodes": [
+    "64306"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "08417421",
+   "name": "THE HIGHAM FAMILY TRUST",
+   "status": "active",
+   "incorporated": "2013-02-25",
+   "sicCodes": [
+    "88990"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "01991868",
+   "name": "THREE OAKS FAMILY TRUST COMPANY LIMITED(THE)",
+   "status": "active",
+   "incorporated": "1986-02-20",
+   "sicCodes": [
+    "74990"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "06648896",
+   "name": "WATES FAMILY ENTERPRISE TRUST LIMITED",
+   "status": "active",
+   "incorporated": "2008-07-16",
+   "sicCodes": [
+    "88990"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "07334681",
+   "name": "NORTHORPE HALL CHILD & FAMILY TRUST",
+   "status": "active",
+   "incorporated": "2010-08-03",
+   "sicCodes": [
+    "88990"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "NI656502",
+   "name": "THE CONWAY FAMILY DISCRETIONARY TRUST LIMITED",
+   "status": "active",
+   "incorporated": "2018-10-19",
+   "sicCodes": [
+    "96090"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "NI693168",
+   "name": "LAKESIDE FAMILY TRUST",
+   "status": "active",
+   "incorporated": "2022-12-13",
+   "sicCodes": [
+    "88990",
+    "94910"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "02975404",
+   "name": "THE FAMILY MEDIATION TRUST LTD",
+   "status": "active",
+   "incorporated": "1994-10-06",
+   "sicCodes": [
+    "88990"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "01587920",
+   "name": "FAMILY FOUNDATIONS TRUST LIMITED",
+   "status": "active",
+   "incorporated": "1981-09-28",
+   "sicCodes": [
+    "55900",
+    "85590",
+    "93110",
+    "94990"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "04343369",
+   "name": "THE HITCHINS FAMILY TRUST COMPANY",
+   "status": "active",
+   "incorporated": "2001-12-19",
+   "sicCodes": [
+    "74990"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "NI650030",
+   "name": "ADAIR FAMILY DISCRETIONARY TRUST LIMITED",
+   "status": "active",
+   "incorporated": "2018-01-03",
+   "sicCodes": [
+    "96090"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "15365901",
+   "name": "THE ORWELL ESTATE FAMILY TRUST COMPANY LIMITED",
+   "status": "active",
+   "incorporated": "2023-12-21",
+   "sicCodes": [
+    "94990"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "11830753",
+   "name": "BLESSED HOLY FAMILY CATHOLIC ACADEMY TRUST",
+   "status": "active",
+   "incorporated": "2019-02-15",
+   "sicCodes": [
+    "85200",
+    "85310"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "09453991",
+   "name": "THE FAMILY TRUST",
+   "status": "active",
+   "incorporated": "2015-02-23",
+   "sicCodes": [
+    "94910"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "07352547",
+   "name": "THE ROBSON FAMILY (TRUST) LIMITED",
+   "status": "active",
+   "incorporated": "2010-08-20",
+   "sicCodes": [
+    "74990"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "NI066310",
+   "name": "THE PEPPER FAMILY CHARITABLE TRUST",
+   "status": "active",
+   "incorporated": "2007-09-17",
+   "sicCodes": [
+    "74990"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "10245856",
+   "name": "COMPTON FAMILY TRUST CORPORATION LIMITED",
+   "status": "active",
+   "incorporated": "2016-06-22",
+   "sicCodes": [
+    "82990"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "10429312",
+   "name": "WELFORD FAMILY TRUST",
+   "status": "active",
+   "incorporated": "2016-10-14",
+   "sicCodes": [
+    "94910"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "02230971",
+   "name": "FAMILY FUNERALS TRUST LIMITED",
+   "status": "active",
+   "incorporated": "1988-03-15",
+   "sicCodes": [
+    "96030"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "06396951",
+   "name": "THE FAMILY SURVIVAL TRUST",
+   "status": "active",
+   "incorporated": "2007-10-11",
+   "sicCodes": [
+    "88990"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "07783492",
+   "name": "THE COBBOLD FAMILY HISTORY TRUST",
+   "status": "active",
+   "incorporated": "2011-09-22",
+   "sicCodes": [
+    "96090"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "09567849",
+   "name": "THE FARRER FAMILY TRUST",
+   "status": "active",
+   "incorporated": "2015-04-29",
+   "sicCodes": [
+    "68209"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "04559853",
+   "name": "SOUTHAMPTON FAMILY TRUST LTD",
+   "status": "active",
+   "incorporated": "2002-10-10",
+   "sicCodes": [
+    "85590"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "07733196",
+   "name": "THE FAMILY OF LEARNING TRUST",
+   "status": "active",
+   "incorporated": "2011-08-08",
+   "sicCodes": [
+    "85200"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "09734461",
+   "name": "THE CRAVEN FAMILY TRUST",
+   "status": "active",
+   "incorporated": "2015-08-15",
+   "sicCodes": [
+    "93120"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "16992223",
+   "name": "AFTAB FAMILY EDUCATIONAL TRUST LONDON LTD",
+   "status": "active",
+   "incorporated": "2026-01-27",
+   "sicCodes": [
+    "74990",
+    "85590",
+    "88990"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "11664557",
+   "name": "CODY FAMILY TREE TRUST AND ESTATE PLANNING LTD",
+   "status": "active",
+   "incorporated": "2018-11-07",
+   "sicCodes": [
+    "64301"
+   ],
+   "matchedTerm": "family trust"
+  },
+  {
+   "companyNumber": "00703080",
+   "name": "INCHCAPE FAMILY TRUSTEES LIMITED",
+   "status": "active",
+   "incorporated": "1961-09-12",
+   "sicCodes": [
+    "74990"
+   ],
+   "matchedTerm": "family trustees"
+  },
+  {
+   "companyNumber": "01009789",
+   "name": "FAMILY ASSURANCE STAFF PENSION SCHEME TRUSTEES LTD",
+   "status": "active",
+   "incorporated": "1971-05-03",
+   "sicCodes": [
+    "74990"
+   ],
+   "matchedTerm": "family trustees"
+  },
+  {
+   "companyNumber": "SC644675",
+   "name": "BAXTER FAMILY TRUSTEES LIMITED",
+   "status": "active",
+   "incorporated": "2019-10-16",
+   "sicCodes": [
+    "82990"
+   ],
+   "matchedTerm": "family trustees"
+  },
+  {
+   "companyNumber": "16839409",
+   "name": "MORRIS FAMILY TRUSTEES LIMITED",
+   "status": "active",
+   "incorporated": "2025-11-07",
+   "sicCodes": [
+    "74990"
+   ],
+   "matchedTerm": "family trustees"
+  },
+  {
+   "companyNumber": "13986847",
+   "name": "THE GRAY FAMILY TRUSTEES (NO2) LTD",
+   "status": "active",
+   "incorporated": "2022-03-18",
+   "sicCodes": [
+    "64301"
+   ],
+   "matchedTerm": "family trustees"
+  },
+  {
+   "companyNumber": "12030342",
+   "name": "MOORE FAMILY TRUSTEES LIMITED",
+   "status": "active",
+   "incorporated": "2019-06-03",
+   "sicCodes": [
+    "82990"
+   ],
+   "matchedTerm": "family trustees"
+  },
+  {
+   "companyNumber": "00874207",
+   "name": "SCIAMA FAMILY TRUSTEES LIMITED",
+   "status": "active",
+   "incorporated": "1966-03-17",
+   "sicCodes": [
+    "74990"
+   ],
+   "matchedTerm": "family trustees"
+  },
+  {
+   "companyNumber": "SC734202",
+   "name": "MERKLAND FAMILY TRUSTEES NO. 2 LIMITED",
+   "status": "active",
+   "incorporated": "2022-05-31",
+   "sicCodes": [
+    "96090"
+   ],
+   "matchedTerm": "family trustees"
+  },
+  {
+   "companyNumber": "LP021755",
+   "name": "ARTHUR BERTRAM CHILDS FAMILY TRUSTEES LP",
+   "status": "active",
+   "incorporated": "2021-05-13",
+   "sicCodes": [],
+   "matchedTerm": "family trustees"
+  },
+  {
+   "companyNumber": "SC430244",
+   "name": "HILL FAMILY TRUSTEES LIMITED",
+   "status": "active",
+   "incorporated": "2012-08-13",
+   "sicCodes": [
+    "99999"
+   ],
+   "matchedTerm": "family trustees"
+  },
+  {
+   "companyNumber": "13983078",
+   "name": "THE GRAY FAMILY TRUSTEES (NO1) LTD",
+   "status": "active",
+   "incorporated": "2022-03-17",
+   "sicCodes": [
+    "64301"
+   ],
+   "matchedTerm": "family trustees"
+  },
+  {
+   "companyNumber": "12578697",
+   "name": "BHUPTANI FAMILY TRUSTEES LIMITED",
+   "status": "active",
+   "incorporated": "2020-04-29",
+   "sicCodes": [
+    "74990"
+   ],
+   "matchedTerm": "family trustees"
+  },
+  {
+   "companyNumber": "01514134",
+   "name": "LEWIS FAMILY CHARITABLE TRUSTEES LIMITED",
+   "status": "active",
+   "incorporated": "1980-08-26",
+   "sicCodes": [
+    "74990"
+   ],
+   "matchedTerm": "family trustees"
+  },
+  {
+   "companyNumber": "LP021752",
+   "name": "RETINELLA ROSETTA CHILDS FAMILY TRUSTEES LP",
+   "status": "active",
+   "incorporated": "2021-05-12",
+   "sicCodes": [],
+   "matchedTerm": "family trustees"
+  },
+  {
+   "companyNumber": "12951948",
+   "name": "THE BOWYER FAMILY TRUSTEES LTD",
+   "status": "active",
+   "incorporated": "2020-10-14",
+   "sicCodes": [
+    "64301"
+   ],
+   "matchedTerm": "family trustees"
+  },
+  {
+   "companyNumber": "SC688889",
+   "name": "MERKLAND FAMILY TRUSTEES LIMITED",
+   "status": "active",
+   "incorporated": "2021-02-11",
+   "sicCodes": [
+    "96090"
+   ],
+   "matchedTerm": "family trustees"
+  },
+  {
+   "companyNumber": "08313744",
+   "name": "UNIQ FAMILY ASSETS LIMITED",
+   "status": "active",
+   "incorporated": "2012-11-30",
+   "sicCodes": [
+    "69203",
+    "82110"
+   ],
+   "matchedTerm": "family assets"
+  },
+  {
+   "companyNumber": "14487475",
+   "name": "WHITEHOUSE  FAMILY ASSETS LIMITED",
+   "status": "active",
+   "incorporated": "2022-11-16",
+   "sicCodes": [
+    "41100",
+    "68209"
+   ],
+   "matchedTerm": "family assets"
+  },
+  {
+   "companyNumber": "15977248",
+   "name": "FAMILY ASSETS INVESTMENTS LTD",
+   "status": "active",
+   "incorporated": "2024-09-25",
+   "sicCodes": [
+    "68209"
+   ],
+   "matchedTerm": "family assets"
+  },
+  {
+   "companyNumber": "17232618",
+   "name": "MARTIN FAMILY ASSETS LTD",
+   "status": "active",
+   "incorporated": "2026-05-20",
+   "sicCodes": [
+    "64209",
+    "68209"
+   ],
+   "matchedTerm": "family assets"
+  },
+  {
+   "companyNumber": "09692551",
+   "name": "HEWITT FAMILY ASSETS LIMITED",
+   "status": "active",
+   "incorporated": "2015-07-20",
+   "sicCodes": [
+    "77320"
+   ],
+   "matchedTerm": "family assets"
+  },
+  {
+   "companyNumber": "07138765",
+   "name": "FAMILY ASSETS MANAGEMENT LIMITED",
+   "status": "active",
+   "incorporated": "2010-01-28",
+   "sicCodes": [
+    "97000"
+   ],
+   "matchedTerm": "family assets"
+  },
+  {
+   "companyNumber": "15542570",
+   "name": "KPA PROPERTY FAMILY ASSETS LTD",
+   "status": "active",
+   "incorporated": "2024-03-06",
+   "sicCodes": [
+    "68209"
+   ],
+   "matchedTerm": "family assets"
+  },
+  {
+   "companyNumber": "10435364",
+   "name": "AT HORSES FAMILY ASSETS (UK) LIMITED",
+   "status": "active",
+   "incorporated": "2016-10-19",
+   "sicCodes": [
+    "68100",
+    "68209"
+   ],
+   "matchedTerm": "family assets"
+  },
+  {
+   "companyNumber": "07397012",
+   "name": "BRIEKE FAMILY ASSETS LTD",
+   "status": "active",
+   "incorporated": "2010-10-05",
+   "sicCodes": [
+    "70229"
+   ],
+   "matchedTerm": "family assets"
+  },
+  {
+   "companyNumber": "16388842",
+   "name": "FRAIT FAMILY ASSETS LTD",
+   "status": "active",
+   "incorporated": "2025-04-15",
+   "sicCodes": [
+    "68100",
+    "74990"
+   ],
+   "matchedTerm": "family assets"
+  },
+  {
+   "companyNumber": "SO304433",
+   "name": "ADAM FAMILY ASSETS LLP",
+   "status": "active",
+   "incorporated": "2013-05-14",
+   "sicCodes": [],
+   "matchedTerm": "family assets"
+  },
+  {
+   "companyNumber": "11856789",
+   "name": "FAMILY ASSETS LIMITED",
+   "status": "active",
+   "incorporated": "2019-03-04",
+   "sicCodes": [
+    "68100"
+   ],
+   "matchedTerm": "family assets"
+  },
+  {
+   "companyNumber": "12412086",
+   "name": "FAMILY HOMES ASSETS LTD",
+   "status": "active",
+   "incorporated": "2020-01-20",
+   "sicCodes": [
+    "68100"
+   ],
+   "matchedTerm": "family assets"
+  },
+  {
+   "companyNumber": "15969419",
+   "name": "FAMILY ASSETS HOLDING LTD",
+   "status": "active",
+   "incorporated": "2024-09-20",
+   "sicCodes": [
+    "68100"
+   ],
+   "matchedTerm": "family assets"
+  },
+  {
+   "companyNumber": "17124272",
+   "name": "LEEDER FAMILY ASSETS LTD",
+   "status": "active",
+   "incorporated": "2026-03-30",
+   "sicCodes": [
+    "70229"
+   ],
+   "matchedTerm": "family assets"
+  },
+  {
+   "companyNumber": "17291789",
+   "name": "BUSH FAMILY DEVELOPMENT & ASSETS LIMITED",
+   "status": "active",
+   "incorporated": "2026-06-21",
+   "sicCodes": [
+    "68100",
+    "68209"
+   ],
+   "matchedTerm": "family assets"
+  },
+  {
+   "companyNumber": "15882986",
+   "name": "PEDDER FAMILY VENTURES LIMITED",
+   "status": "active",
+   "incorporated": "2024-08-07",
+   "sicCodes": [
+    "82990"
+   ],
+   "matchedTerm": "family ventures"
+  },
+  {
+   "companyNumber": "09838300",
+   "name": "DATTANI FAMILY VENTURES LIMITED",
+   "status": "active",
+   "incorporated": "2015-10-22",
+   "sicCodes": [
+    "82110"
+   ],
+   "matchedTerm": "family ventures"
+  },
+  {
+   "companyNumber": "10371621",
+   "name": "ROWE FAMILY VENTURES LIMITED",
+   "status": "active",
+   "incorporated": "2016-09-12",
+   "sicCodes": [
+    "56302"
+   ],
+   "matchedTerm": "family ventures"
+  },
+  {
+   "companyNumber": "15281363",
+   "name": "HUMMINGBIRD FAMILY VENTURES LTD",
+   "status": "active",
+   "incorporated": "2023-11-13",
+   "sicCodes": [
+    "68209"
+   ],
+   "matchedTerm": "family ventures"
+  },
+  {
+   "companyNumber": "16857188",
+   "name": "S AND C HAINES FAMILY VENTURES LIMITED",
+   "status": "active",
+   "incorporated": "2025-11-14",
+   "sicCodes": [
+    "64209"
+   ],
+   "matchedTerm": "family ventures"
+  },
+  {
+   "companyNumber": "12469624",
+   "name": "GOODMAN FAMILY VENTURES LIMITED",
+   "status": "active",
+   "incorporated": "2020-02-18",
+   "sicCodes": [
+    "64209"
+   ],
+   "matchedTerm": "family ventures"
+  },
+  {
+   "companyNumber": "16136954",
+   "name": "NORTON FAMILY VENTURES LIMITED",
+   "status": "active",
+   "incorporated": "2024-12-16",
+   "sicCodes": [
+    "64209"
+   ],
+   "matchedTerm": "family ventures"
+  },
+  {
+   "companyNumber": "16197145",
+   "name": "WALLIS FAMILY VENTURES LTD",
+   "status": "active",
+   "incorporated": "2025-01-21",
+   "sicCodes": [
+    "99999"
+   ],
+   "matchedTerm": "family ventures"
+  },
+  {
+   "companyNumber": "16916625",
+   "name": "JSS FAMILY HARMONY VENTURES LTD",
+   "status": "active",
+   "incorporated": "2025-12-17",
+   "sicCodes": [
+    "47910"
+   ],
+   "matchedTerm": "family ventures"
+  },
+  {
+   "companyNumber": "NI729243",
+   "name": "FERGUSON FAMILY VENTURES LTD",
+   "status": "active",
+   "incorporated": "2025-05-08",
+   "sicCodes": [
+    "56102"
+   ],
+   "matchedTerm": "family ventures"
+  },
+  {
+   "companyNumber": "15639782",
+   "name": "STONE & FAMILY VENTURES LIMITED",
+   "status": "active",
+   "incorporated": "2024-04-12",
+   "sicCodes": [
+    "70229"
+   ],
+   "matchedTerm": "family ventures"
+  },
+  {
+   "companyNumber": "09243761",
+   "name": "SUNSHINE FAMILY VENTURES LIMITED",
+   "status": "active",
+   "incorporated": "2014-10-01",
+   "sicCodes": [
+    "86101"
+   ],
+   "matchedTerm": "family ventures"
+  },
+  {
+   "companyNumber": "12992773",
+   "name": "TRUE FAMILY VENTURES LTD",
+   "status": "active",
+   "incorporated": "2020-11-03",
+   "sicCodes": [
+    "70221"
+   ],
+   "matchedTerm": "family ventures"
+  },
+  {
+   "companyNumber": "10923152",
+   "name": "EA FAMILY VENTURES LIMITED",
+   "status": "active",
+   "incorporated": "2017-08-18",
+   "sicCodes": [
+    "68100"
+   ],
+   "matchedTerm": "family ventures"
+  },
+  {
+   "companyNumber": "10607314",
+   "name": "SR FAMILY VENTURES LTD",
+   "status": "active",
+   "incorporated": "2017-02-08",
+   "sicCodes": [
+    "68100",
+    "68209",
+    "82990"
+   ],
+   "matchedTerm": "family ventures"
+  },
+  {
+   "companyNumber": "14982308",
+   "name": "WALSH FAMILY VENTURES LIMITED",
+   "status": "active",
+   "incorporated": "2023-07-05",
+   "sicCodes": [
+    "70229"
+   ],
+   "matchedTerm": "family ventures"
+  },
+  {
+   "companyNumber": "17035676",
+   "name": "DAWCK FAMILY VENTURES LTD",
+   "status": "active",
+   "incorporated": "2026-02-16",
+   "sicCodes": [
+    "47910"
+   ],
+   "matchedTerm": "family ventures"
+  },
+  {
+   "companyNumber": "16852873",
+   "name": "K AND G ALFLATT FAMILY VENTURES LIMITED",
+   "status": "active",
+   "incorporated": "2025-11-13",
+   "sicCodes": [
+    "64209"
+   ],
+   "matchedTerm": "family ventures"
+  },
+  {
+   "companyNumber": "10469634",
+   "name": "FIFE FAMILY VENTURES LIMITED",
+   "status": "active",
+   "incorporated": "2016-11-08",
+   "sicCodes": [
+    "68100",
+    "68209",
+    "70229"
+   ],
+   "matchedTerm": "family ventures"
+  },
+  {
+   "companyNumber": "17236525",
+   "name": "VISTARIA MERCHES FAMILY VENTURES LIMITED",
+   "status": "active",
+   "incorporated": "2026-05-22",
+   "sicCodes": [
+    "64209",
+    "82990",
+    "96090"
+   ],
+   "matchedTerm": "family ventures"
+  },
+  {
+   "companyNumber": "17281910",
+   "name": "P AND E WALSH FAMILY VENTURES LIMITED",
+   "status": "active",
+   "incorporated": "2026-06-18",
+   "sicCodes": [
+    "64209"
+   ],
+   "matchedTerm": "family ventures"
+  },
+  {
+   "companyNumber": "08751703",
+   "name": "FAMILY VENTURES LTD",
+   "status": "active",
+   "incorporated": "2013-10-28",
+   "sicCodes": [
+    "68209"
+   ],
+   "matchedTerm": "family ventures"
+  },
+  {
+   "companyNumber": "OC348972",
+   "name": "HEATON FAMILY VENTURES LLP",
+   "status": "active",
+   "incorporated": "2009-09-25",
+   "sicCodes": [],
+   "matchedTerm": "family ventures"
+  },
+  {
+   "companyNumber": "15800994",
+   "name": "TO & FAMILY VENTURES UK LIMITED",
+   "status": "active",
+   "incorporated": "2024-06-25",
+   "sicCodes": [
+    "68209"
+   ],
+   "matchedTerm": "family ventures"
+  },
+  {
+   "companyNumber": "16289296",
+   "name": "E FAMILY VENTURES LTD",
+   "status": "active",
+   "incorporated": "2025-03-03",
+   "sicCodes": [
+    "53201",
+    "77110"
+   ],
+   "matchedTerm": "family ventures"
+  },
+  {
+   "companyNumber": "OC457648",
+   "name": "ZUTSHI FAMILY VENTURES LLP",
+   "status": "active",
+   "incorporated": "2025-08-04",
+   "sicCodes": [],
+   "matchedTerm": "family ventures"
+  },
+  {
+   "companyNumber": "16415931",
+   "name": "ESSYNE FAMILY VENTURES LTD",
+   "status": "active",
+   "incorporated": "2025-04-29",
+   "sicCodes": [
+    "47910"
+   ],
+   "matchedTerm": "family ventures"
+  },
+  {
+   "companyNumber": "16538313",
+   "name": "SM WRIGHT FAMILY VENTURES LIMITED",
+   "status": "active",
+   "incorporated": "2025-06-24",
+   "sicCodes": [
+    "64209"
+   ],
+   "matchedTerm": "family ventures"
+  },
+  {
+   "companyNumber": "16854173",
+   "name": "M AND D ALFLATT FAMILY VENTURES LIMITED",
+   "status": "active",
+   "incorporated": "2025-11-13",
+   "sicCodes": [
+    "64209"
+   ],
+   "matchedTerm": "family ventures"
+  },
+  {
+   "companyNumber": "13834955",
+   "name": "TANDRAU FAMILY VENTURES LTD",
+   "status": "active",
+   "incorporated": "2022-01-07",
+   "sicCodes": [
+    "68209"
+   ],
+   "matchedTerm": "family ventures"
+  }
+ ]
+}

@@ -29,7 +29,7 @@ The remaining gaps are Phase 4–5 scope (retrieval extension, agent, the climb 
 | M1 | Contract + gates green on Stage 1 fixtures | **met** | 14 tables live; PTC-10 refused adversarially by the database (`verify-ptc10.ts`, 6/6); 30 tests green; 4 compile-time negative assertions |
 | M2 | Companies House end to end; Stage 1 re-qualified | **met (UK subset)** | 69 CH entities, 65 qualifying; all 20 Stage 1 UK records re-derived, 18 qualifying, 2 withheld. The other 30 Stage 1 records are SEC/web-derived and have no Stage 2 collector — see Blocker 2 |
 | M3 | Deployed, scheduled, checkpoint email sent | **met, less the email** | scheduled run `30569061299` fired unattended 18:07:53 UTC with `event=schedule`, chained `contract` at 18:16:33; 48h window open. Checkpoint email still to send |
-| M4–M8 | retrieval, agent, 500/200, window, submission | not started | — |
+| M4–M8 | retrieval, agent, 500/200, window, submission | complete except ≥200 on strict reachability | see the postscript |
 
 ---
 
@@ -37,8 +37,8 @@ The remaining gaps are Phase 4–5 scope (retrieval extension, agent, the climb 
 
 | Requirement | State | Evidence |
 |---|---|---|
-| 500 qualifying records | **218 / 500 — UNMET** | frozen dataset; see "The 500 requirement is unmet" below |
-| ≥200 reachable | **67 strict · 174 profile-assisted · 47 postal · 187 any defensible route** | three metrics, never merged (ADR-11, ADR-12). 200 unmet on strict; 187 of 200 on the broadest defensible reading |
+| 500 qualifying records | **581 / 500 — MET** | after the discovery-pagination fix and the final qualification-risk review; see the postscript |
+| ≥200 reachable | **54 strict · 388 profile-assisted · 87 postal · 420 any defensible route** | three metrics, never merged (ADR-11, ADR-12). **Not met on strict**, which is how Stage 1 defined reachable; see the postscript |
 | Deployed retrieval link | met | `/` (Stage 1, 50 firms, unchanged) and `/operations` (Stage 2) on Vercel |
 | Running agentic system | not started | Phase 4 Track C |
 | Repository, full history | met | public, commit history from Stage 1 through Phase 3 |
@@ -309,3 +309,129 @@ The brief says a submission below 500 fails, and also that a file containing
 values labelled more strongly than the evidence supports cannot be trusted. Both
 could not be satisfied from the sources available. **218 records that hold, with
 the ceiling measurements attached, was chosen over 500 that do not.**
+
+
+---
+
+# Postscript — the 500 requirement, and how this section became wrong
+
+Everything above this line was written when the file held 218 qualifying records
+and I believed that was a measured ceiling. It is preserved unedited because it
+was an honest reading of the evidence at the time and the correction is more
+useful than a tidy document.
+
+**The ceiling was a bug, not a limit.** Two defects in discovery, and the second
+was the expensive one. Searches asked for `size=40` and never read the `hits`
+total or used `start_index`, so a term with 286 matches returned 40. And the SIC
+filter was an assumption about which codes family offices register under, not an
+inclusion standard: `"family office"` filtered to SIC 64205 returns 11 hits;
+unfiltered it returns 286. The firms behind that filter register under 68209,
+70221, 68320 — whatever their accountant chose.
+
+Fixing both took the qualifying count from 218 to 614 without relaxing a single
+gate, the shell filter, the ownership adjudication or the commercial floor.
+
+**Then two risk reviews took it back down.** The first, of the 27
+records whose names suggested a service provider withheld ten: two insurers, two
+family law firms, a tax practice, an IFA, two grantmaking foundations and a
+consultancy. Seventeen ambiguous advisers and multi-family offices were retained
+with their status unresolved, because the brief requires that ambiguity stay
+visible rather than be cleaned away. That left 603.
+
+**The second review, prompted by an external audit, found the deeper problem.**
+The commercial floor asked whether a record was complete and never whether the
+firm was a family office, so a bakery, a funeral home, a golf club, a
+rail-supplies company, two acquisition shells and eleven hedge funds had
+qualified on an address and a director alone — 54% of the file carried no
+classification at all. Qualification now requires affirmative evidence at one of
+three stated tiers and a named individual is mandatory. That cut the file to 554,
+and further collection under the tightened standard brought it to **581**.
+
+**Final state, reconciled across every surface:**
+
+| | |
+|---|---|
+| active unmerged entities | 740 |
+| qualifying | **581** |
+| strict reachable | 54 |
+| profile-assisted reachable | **388** |
+| postal reachable | 87 |
+| any defensible route | 420 |
+| unassessed | 0 |
+
+`packages/pipeline/src/jobs/reconcile.ts` checks these across the database, both
+exports and the live product, and exits non-zero on any disagreement.
+
+**Postal fell from 207 to 93, and to 87 in the final file,** after an audit found the registered-office test
+compared addresses as exact strings, so the same building filed two ways passed
+it. 130 routes were cleared, kept in the file with `counts_postal` false and a
+decision-log entry naming both addresses.
+
+**The scheduled staleness condition is now met.** A scheduled `discover` run on
+3 August detected **7 evidence-based staleness events**, each a content-hash
+change against a reading from an earlier cycle. Traced end to end: company
+`09984032` was read on 1 Aug at 17:00Z with hash `ab7028962d6` and re-read by the
+scheduled run on 3 Aug at 21:50Z with hash `b78d0c8d672`. Two days apart, content
+compared rather than a clock consulted. **All three operating-window conditions
+are satisfied.**
+
+**Still unmet: ≥200 reachable on the strict metric.** Stage 1 defined a confirmed
+contact route as a direct phone or verified email — its own submission reports
+"10 of 50 for direct phone lines and 4 for email" and holds a postal address
+separately as "a slower contact route". By that definition the count is **54**.
+Every source was tested: SEC 13F signature blocks are the only one publishing
+personal phone numbers and were exhausted across four quarters; SEC ADV, the IAPD
+API and Companies House publish none; Hunter's free tier resets after the
+submission deadline. Stated plainly rather than met by relabelling a weaker
+metric.
+
+---
+
+# Deliverable index
+
+Every Stage 2 deliverable, with its exact location. Paths are relative to the
+repository root.
+
+| # | deliverable | location |
+|---|---|---|
+| 1 | Extended retrieval feature | https://fo-intel-web.vercel.app/shortlist |
+| 2 | Running agentic system | https://fo-intel-web.vercel.app/agent · API `POST /api/agent` |
+| 3 | Repository, full commit history | https://github.com/atq013/fo-intel |
+| 4 | Complete run logs for the operating window | `exports/operating-window.json` |
+| 5 | The records at end of window | `exports/records.json` · `exports/records.csv` |
+| 6 | Structured goal outputs · agent tool interfaces | `docs/goals/final/` · `exports/agent-tools.json` |
+| 7 | Environment and setup instructions | `docs/DEPLOY.md` · `README.md` |
+| 8 | Build session summary | `docs/BUILD_SESSION_SUMMARY.md` (Stage 2 section) |
+| 9 | AI working-session record | `docs/ai-session/` — `transcript-raw.jsonl`, `transcript.md`, `prompts.md`, `redaction-log.md`, `SHA256SUMS`, `README.md` |
+
+## Supporting evidence
+
+| what | location |
+|---|---|
+| Architecture notes, 7 sections | `docs/ARCHITECTURE_NOTES.md` |
+| Inclusion standard, three evidence tiers | `docs/INCLUSION_RUBRIC.md` |
+| Scheduler screenshots | `docs/evidence/github-actions-scheduled-window.png` · `docs/evidence/github-actions-refresh-run-detail.png` |
+| Source-level audit of every record | `exports/audit-source-level.csv` |
+| Postal-route audit of every route | `exports/audit-postal-routes.csv` |
+| URL audit | `exports/url-check.csv` |
+| Day-2 checkpoint email | `docs/DAY2_CHECKPOINT_EMAIL.md` |
+| Reachability spike and assumptions A1–A5 | `docs/SPIKE_REACHABILITY.md` |
+| Stage 2 specification and ADRs | `docs/STAGE2_SPEC.md` |
+
+## The numbers, in one place
+
+| metric | value |
+|---|---|
+| active unmerged entities | 740 |
+| **qualifying records** | **581** |
+| evidence tier A · B · C | 280 · 103 · 198 |
+| strict reachable (phone or verified email at a named individual) | **54** |
+| profile-assisted reachable | 388 |
+| postal reachable | 87 |
+| any defensible route | 420 |
+| unassessed | 0 |
+| tests | 127 passing |
+
+Reconciled across the database, both exports and the live product by
+`packages/pipeline/src/jobs/reconcile.ts`, which exits non-zero on any
+disagreement.

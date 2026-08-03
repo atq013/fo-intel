@@ -1,0 +1,680 @@
+[
+ {
+  "firmId": "326761",
+  "name": "DYE FAMILY OFFICE",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"city\": \"CANFIELD\", \"state\": \"OH\", \"country\": \"United States\"}}"
+ },
+ {
+  "firmId": "125101",
+  "name": "JFG FAMILY OFFICE",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"1144 FIFTEENTH STREET\", \"street2\": \"SUITE 3950\", \"city\": \"DENVER\", \"state\": \"CO\", \"country\": \"United States\", \"postalCode\": \"80202\"}}"
+ },
+ {
+  "firmId": "109869",
+  "name": "WE FAMILY OFFICES",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"2811 PONCE DE LEON BLVD\", \"street2\": \"SUITE 840\", \"city\": \"CORAL GABLES\", \"state\": \"FL\", \"country\": \"United States\", \"postalCode\": \"33134\"}}"
+ },
+ {
+  "firmId": "110990",
+  "name": "LONG FAMILY OFFICE",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"5101 DUNLEA CT\", \"street2\": \"STE 204-C\", \"city\": \"WILMINGTON\", \"state\": \"NC\", \"country\": \"United States\", \"postalCode\": \"28405\"}}"
+ },
+ {
+  "firmId": "323358",
+  "name": "CRAIG FAMILY OFFICE",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"city\": \"SPOKANE\", \"state\": \"WA\", \"country\": \"United States\"}}"
+ },
+ {
+  "firmId": "305713",
+  "name": "BT FAMILY OFFICE, LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"3300 RIVERWOOD PARKWAY\", \"street2\": \"SUITE 700\", \"city\": \"ATLANTA\", \"state\": \"GA\", \"country\": \"United States\", \"postalCode\": \"30339\"}}"
+ },
+ {
+  "firmId": "298272",
+  "name": "VIRTUS FAMILY OFFICE",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"500 WEST OVERLAND\", \"street2\": \"SUITE 250-Q\", \"city\": \"EL PASO\", \"state\": \"TX\", \"country\": \"United States\", \"postalCode\": \"79901\"}}"
+ },
+ {
+  "firmId": "106806",
+  "name": "MATTER FAMILY OFFICE",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"8001 FORSYTH BLVD\", \"street2\": \"SUITE 950\", \"city\": \"ST LOUIS\", \"state\": \"MO\", \"country\": \"United States\", \"postalCode\": \"63105\"}}"
+ },
+ {
+  "firmId": "110264",
+  "name": "BMO FAMILY OFFICE, LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"320 SOUTH CANAL STREET\", \"street2\": \"FLOOR 12\", \"city\": \"CHICAGO\", \"state\": \"IL\", \"country\": \"United States\", \"postalCode\": \"60606\"}}"
+ },
+ {
+  "firmId": "322047",
+  "name": "DCA FAMILY OFFICE, LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"3721 DOUGLAS BLVD\", \"street2\": \"SUITE 350\", \"city\": \"ROSEVILLE\", \"state\": \"CA\", \"country\": \"United States\", \"postalCode\": \"95661\"}}"
+ },
+ {
+  "firmId": "339235",
+  "name": "PLH FAMILY OFFICE, LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"401 FRANKLIN AVENUE, SUITE 202-B\", \"city\": \"GARDEN CITY\", \"state\": \"NY\", \"country\": \"United States\", \"postalCode\": \"11530\"}}"
+ },
+ {
+  "firmId": "339082",
+  "name": "818 FAMILY OFFICE, LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"3711 S MOPAC EXPY, SUITE 150\", \"city\": \"AUSTIN\", \"state\": \"TX\", \"country\": \"United States\", \"postalCode\": \"78746\"}}"
+ },
+ {
+  "firmId": "312154",
+  "name": "PMG FAMILY OFFICE, LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"5700 WEST PLANO PKWY\", \"street2\": \"SUITE 2600\", \"city\": \"PLANO\", \"state\": \"TX\", \"country\": \"United States\", \"postalCode\": \"75093\"}}"
+ },
+ {
+  "firmId": "341470",
+  "name": "LMB FAMILY OFFICE, LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"city\": \"DALLAS\", \"state\": \"TX\", \"country\": \"United States\"}}"
+ },
+ {
+  "firmId": "315566",
+  "name": "WPA FAMILY OFFICE, LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"12240 INWOOD ROAD\", \"street2\": \"SUITE 230\", \"city\": \"DALLAS\", \"state\": \"TX\", \"country\": \"United States\", \"postalCode\": \"75244\"}}"
+ },
+ {
+  "firmId": "324211",
+  "name": "MFG FAMILY OFFICE LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"AVENIDA INSURGENTES SUR 1647, 14TH FLOOR, INT 1402\", \"street2\": \"COL SAN JOSE INSURGENTES, BENITO JUAREZ\", \"city\": \"CDMX\", \"country\": \"Mexico\", \"postalCode\": \"CP 03900\"}}"
+ },
+ {
+  "firmId": "338015",
+  "name": "DESTINY FAMILY OFFICE",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"2100 LAKE EUSTIS DR\", \"city\": \"TAVARES\", \"state\": \"FL\", \"country\": \"United States\", \"postalCode\": \"32778\"}}"
+ },
+ {
+  "firmId": "338266",
+  "name": "ANGELES FAMILY OFFICE",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"429 SANTA MONICA BLVD\", \"street2\": \"SUITE 650\", \"city\": \"SANTA MONICA\", \"state\": \"CA\", \"country\": \"United States\", \"postalCode\": \"90401\"}}"
+ },
+ {
+  "firmId": "290066",
+  "name": "GRIT FAMILY OFFICE, LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"427 1ST STREET SE\", \"street2\": \"SUITE 100\", \"city\": \"CEDAR RAPIDS\", \"state\": \"IA\", \"country\": \"United States\", \"postalCode\": \"52401\"}}"
+ },
+ {
+  "firmId": "315653",
+  "name": "FOUNDERS FAMILY OFFICE",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"98 SE 7TH ST\", \"street2\": \"SUITE 620\", \"city\": \"MIAMI\", \"state\": \"FL\", \"country\": \"United States\", \"postalCode\": \"33131\"}}"
+ },
+ {
+  "firmId": "338563",
+  "name": "POINTONE FAMILY OFFICE",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"919 MANHATTAN AVENUE\", \"street2\": \"SUITE 101\", \"city\": \"MANHATTAN BEACH\", \"state\": \"CA\", \"country\": \"United States\", \"postalCode\": \"90266\"}}"
+ },
+ {
+  "firmId": "335152",
+  "name": "SESTANTE FAMILY OFFICE",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"1330 ORANGE AVENUE\", \"street2\": \"SUITE 250\", \"city\": \"CORONADO\", \"state\": \"CA\", \"country\": \"United States\", \"postalCode\": \"92118\"}}"
+ },
+ {
+  "firmId": "331394",
+  "name": "STORYONE FAMILY OFFICE",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"7501 COLLEGE BLVD\", \"street2\": \"SUITE 120\", \"city\": \"OVERLAND PARK\", \"state\": \"KS\", \"country\": \"United States\", \"postalCode\": \"66210\"}}"
+ },
+ {
+  "firmId": "338122",
+  "name": "XCEPTION FAMILY OFFICE",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"5901 PEACHTREE DUNWOODY RD\", \"street2\": \"BUILDING C, SUITE 160\", \"city\": \"ATLANTA\", \"state\": \"GA\", \"country\": \"United States\", \"postalCode\": \"30328\"}}"
+ },
+ {
+  "firmId": "324336",
+  "name": "LONGWALL FAMILY OFFICE",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"8  WRIGHT ST\", \"street2\": \"SUITE 107\", \"city\": \"WESTPORT\", \"state\": \"CT\", \"country\": \"United States\", \"postalCode\": \"06880\"}}"
+ },
+ {
+  "firmId": "317000",
+  "name": "HONOR FAMILY OFFICE, LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"2166 MISSION RIDGE RD.\", \"city\": \"SANTA BARBARA\", \"state\": \"CA\", \"country\": \"United States\", \"postalCode\": \"93103\"}}"
+ },
+ {
+  "firmId": "307144",
+  "name": "ALLIE FAMILY OFFICE LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"1200 BRICKELL AVENUE\", \"street2\": \"SUITE 800\", \"city\": \"MIAMI\", \"state\": \"FL\", \"country\": \"United States\", \"postalCode\": \"33131\"}}"
+ },
+ {
+  "firmId": "281675",
+  "name": "EAGLE BAY FAMILY OFFICE",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"7 WORLD TRADE CENTER\", \"street2\": \"250 GREENWICH STREET, 46TH FLOOR\", \"city\": \"NEW YORK\", \"state\": \"NY\", \"country\": \"United States\", \"postalCode\": \"10007\"}}"
+ },
+ {
+  "firmId": "342516",
+  "name": "GRAND FAMILY OFFICE LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"2306 E 9TH ST UNIT B\", \"city\": \"CHEYENNE\", \"state\": \"WY\", \"country\": \"United States\", \"postalCode\": \"82001\"}}"
+ },
+ {
+  "firmId": "323432",
+  "name": "HAMPSHIRE FAMILY OFFICE",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"city\": \"BEDFORD\", \"state\": \"NH\", \"country\": \"United States\"}}"
+ },
+ {
+  "firmId": "317615",
+  "name": "FORTITUDE FAMILY OFFICE",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"7500 N DOBSON RD\", \"street2\": \"SUITE 151\", \"city\": \"SCOTTSDALE\", \"state\": \"AZ\", \"country\": \"United States\", \"postalCode\": \"85256\"}}"
+ },
+ {
+  "firmId": "131618",
+  "name": "SENESCHAL FAMILY OFFICE",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"2323 N. 30TH STREET\", \"street2\": \"SUITE 200\", \"city\": \"TACOMA\", \"state\": \"WA\", \"country\": \"United States\", \"postalCode\": \"98403\"}}"
+ },
+ {
+  "firmId": "291324",
+  "name": "ELYSEUM FAMILY OFFICE S.A.",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"7 RUE DES ALPES\", \"city\": \"GENEVA\", \"country\": \"Switzerland\", \"postalCode\": \"CH-1201\"}}"
+ },
+ {
+  "firmId": "107141",
+  "name": "BOSTON FAMILY OFFICE LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"20 CUSTOM HOUSE STREET\", \"street2\": \"SUITE 700\", \"city\": \"BOSTON\", \"state\": \"MA\", \"country\": \"United States\", \"postalCode\": \"02110\"}}"
+ },
+ {
+  "firmId": "319119",
+  "name": "FRENCH FAMILY OFFICE, LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"609 CASTLE RIDGE ROAD\", \"street2\": \"SUITE 445\", \"city\": \"AUSTIN\", \"state\": \"TX\", \"country\": \"United States\", \"postalCode\": \"78746\"}}"
+ },
+ {
+  "firmId": "147160",
+  "name": "LEGACY FAMILY OFFICE, LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"9990 COCONUT ROAD\", \"street2\": \"SUITE 225\", \"city\": \"BONITA SPRINGS\", \"state\": \"FL\", \"country\": \"United States\", \"postalCode\": \"34135\"}}"
+ },
+ {
+  "firmId": "337597",
+  "name": "ARAGON FAMILY OFFICE LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"3036 INDEPENDENCE DRIVE\", \"city\": \"HOMEWOOD\", \"state\": \"AL\", \"country\": \"United States\", \"postalCode\": \"35209\"}}"
+ },
+ {
+  "firmId": "106079",
+  "name": "TARBOX FAMILY OFFICE, INC.",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"500 NEWPORT CENTER DRIVE\", \"street2\": \"STE 500\", \"city\": \"NEWPORT BEACH\", \"state\": \"CA\", \"country\": \"United States\", \"postalCode\": \"92660\"}}"
+ },
+ {
+  "firmId": "317446",
+  "name": "CALLAN FAMILY OFFICE, LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"201 KING OF PRUSSIA ROAD\", \"street2\": \"SUITE 650\", \"city\": \"RADNOR\", \"state\": \"PA\", \"country\": \"United States\", \"postalCode\": \"19087\"}}"
+ },
+ {
+  "firmId": "294025",
+  "name": "CUSTOS FAMILY OFFICE LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"city\": \"AUSTIN\", \"state\": \"TX\", \"country\": \"United States\"}}"
+ },
+ {
+  "firmId": "324597",
+  "name": "HOLDEN FAMILY OFFICE, LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"city\": \"NORTH PALM BEACH\", \"state\": \"FL\", \"country\": \"United States\"}}"
+ },
+ {
+  "firmId": "300899",
+  "name": "STOKES FAMILY OFFICE LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"1100 POYDRAS ST\", \"street2\": \"STE. 2775\", \"city\": \"NEW ORLEANS\", \"state\": \"LA\", \"country\": \"United States\", \"postalCode\": \"70163\"}}"
+ },
+ {
+  "firmId": "337753",
+  "name": "ACTIV8 FAMILY OFFICE LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"1775 TYSON'S BLVD\", \"street2\": \"5TH FLOOR, SUITE 5175\", \"city\": \"MCLEAN\", \"state\": \"VA\", \"country\": \"United States\", \"postalCode\": \"22102\"}}"
+ },
+ {
+  "firmId": "143112",
+  "name": "WELLSPRING FAMILY OFFICE",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"5900 LANDERBROOK DRIVE\", \"street2\": \"SUITE 100\", \"city\": \"CLEVELAND\", \"state\": \"OH\", \"country\": \"United States\", \"postalCode\": \"44125\"}}"
+ },
+ {
+  "firmId": "339296",
+  "name": "FOUNDER360\u00b0 FAMILY OFFICE",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"city\": \"MEQUON\", \"state\": \"WI\", \"country\": \"United States\"}}"
+ },
+ {
+  "firmId": "326584",
+  "name": "MAXWELL FAMILY OFFICE, LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"city\": \"ROCK HALL\", \"state\": \"MD\", \"country\": \"United States\"}}"
+ },
+ {
+  "firmId": "312005",
+  "name": "CAPITOL FAMILY OFFICE, INC.",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"1500 NW BETHANY BLVD.\", \"street2\": \"SUITE 200\", \"city\": \"BEAVERTON\", \"state\": \"OR\", \"country\": \"United States\", \"postalCode\": \"97006\"}}"
+ },
+ {
+  "firmId": "286462",
+  "name": "DOCTORS FAMILY OFFICE LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"city\": \"OMAHA\", \"state\": \"NE\", \"country\": \"United States\"}}"
+ },
+ {
+  "firmId": "142856",
+  "name": "PIONEER FAMILY OFFICE, LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"3323 NE 163RD ST.\", \"street2\": \"SUITE 604\", \"city\": \"NORTH MIAMI BEACH\", \"state\": \"FL\", \"country\": \"United States\", \"postalCode\": \"33160\"}}"
+ },
+ {
+  "firmId": "310275",
+  "name": "FREEDOM FAMILY OFFICE, LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"city\": \"JUPITER\", \"state\": \"FL\", \"country\": \"United States\"}}"
+ },
+ {
+  "firmId": "338839",
+  "name": "PULLIAM FAMILY OFFICE, LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"426 BELLEVIEW AVE.\", \"street2\": \"SUITE 203\", \"city\": \"CRESTED BUTTE\", \"state\": \"CO\", \"country\": \"United States\", \"postalCode\": \"81224\"}}"
+ },
+ {
+  "firmId": "173846",
+  "name": "STEWARD FAMILY OFFICE, INC.",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"228 N BROADWAY\", \"city\": \"ESCONDIDO\", \"state\": \"CA\", \"country\": \"United States\", \"postalCode\": \"92025\"}}"
+ },
+ {
+  "firmId": "325089",
+  "name": "STENGER FAMILY OFFICE, LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"NAPERVILLE FINANCIAL CENTER, 400 EAST DIEHL ROAD\", \"street2\": \"SUITE 550\", \"city\": \"NAPERVILLE\", \"state\": \"IL\", \"country\": \"United States\", \"postalCode\": \"60563\"}}"
+ },
+ {
+  "firmId": "285035",
+  "name": "CLASS VI FAMILY OFFICE, LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"255 FILLMORE STREET\", \"street2\": \"SUITE 500\", \"city\": \"DENVER\", \"state\": \"CO\", \"country\": \"United States\", \"postalCode\": \"80206\"}}"
+ },
+ {
+  "firmId": "323305",
+  "name": "ONEASCENT FAMILY OFFICES",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"23 INVERNESS CENTER PARKWAY\", \"city\": \"BIRMINGHAM\", \"state\": \"AL\", \"country\": \"United States\", \"postalCode\": \"35242\"}}"
+ },
+ {
+  "firmId": "167017",
+  "name": "COLONY FAMILY OFFICES, LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"4250 CONGRESS STREET\", \"street2\": \"SUITE 175\", \"city\": \"CHARLOTTE\", \"state\": \"NC\", \"country\": \"United States\", \"postalCode\": \"28209\"}}"
+ },
+ {
+  "firmId": "282209",
+  "name": "NAJARIAN FAMILY OFFICE, LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"223 W JACKSON BLVD.\", \"street2\": \"SUITE 500\", \"city\": \"CHICAGO\", \"state\": \"IL\", \"country\": \"United States\", \"postalCode\": \"60606\"}}"
+ },
+ {
+  "firmId": "144136",
+  "name": "FAMILY OFFICE RESEARCH, LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"7910 WOODMONT AVE\", \"street2\": \"SUITE 1120\", \"city\": \"BETHESDA\", \"state\": \"MD\", \"country\": \"United States\", \"postalCode\": \"20814\"}}"
+ },
+ {
+  "firmId": "125939",
+  "name": "FAMILY OFFICE ADVISORS LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"35 WEST 31ST STREET\", \"street2\": \"STORE 1 #4054\", \"city\": \"NEW YORK\", \"state\": \"NY\", \"country\": \"United States\", \"postalCode\": \"10001\"}}"
+ },
+ {
+  "firmId": "120278",
+  "name": "WEALTHY & WISE FAMILY OFFICE",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"10320 LITTLE PATUXENT PKWY.\", \"street2\": \"SUITE 930\", \"city\": \"COLUMBIA\", \"state\": \"MD\", \"country\": \"United States\", \"postalCode\": \"21044\"}}"
+ },
+ {
+  "firmId": "122448",
+  "name": "FIFTH AVENUE FAMILY OFFICE",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"3003 TAMIAMI TRAIL NORTH\", \"street2\": \"SUITE 410\", \"city\": \"NAPLES\", \"state\": \"FL\", \"country\": \"United States\", \"postalCode\": \"34103\"}}"
+ },
+ {
+  "firmId": "305521",
+  "name": "WERKLUND FAMILY OFFICE INC.",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"4500, 400 3RD AVENUE SW\", \"city\": \"CALGARY, ALBERTA\", \"country\": \"Canada\", \"postalCode\": \"T2P 4H2\"}}"
+ },
+ {
+  "firmId": "339242",
+  "name": "PARKSIDE FAMILY OFFICE LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"city\": \"EDMONDS\", \"state\": \"WA\", \"country\": \"United States\"}}"
+ },
+ {
+  "firmId": "167174",
+  "name": "BILTMORE FAMILY OFFICE, LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"500 EAST BOULEVARD\", \"city\": \"CHARLOTTE\", \"state\": \"NC\", \"country\": \"United States\", \"postalCode\": \"28203\"}}"
+ },
+ {
+  "firmId": "159440",
+  "name": "TFO FAMILY OFFICE PARTNERS",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"5060 NORTH 40TH STREET\", \"street2\": \"SUITE 200\", \"city\": \"PHOENIX\", \"state\": \"AZ\", \"country\": \"United States\", \"postalCode\": \"85018\"}}"
+ },
+ {
+  "firmId": "335128",
+  "name": "CAMBIENT FAMILY OFFICE, LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"4690 E. FULTON STREET\", \"street2\": \"SUITE 203\", \"city\": \"ADA\", \"state\": \"MI\", \"country\": \"United States\", \"postalCode\": \"49301\"}}"
+ },
+ {
+  "firmId": "155003",
+  "name": "MARCUARD FAMILY OFFICE LTD",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"BELLERIVESTRASSE 36\", \"city\": \"ZURICH\", \"country\": \"Switzerland\", \"postalCode\": \"8008\"}}"
+ },
+ {
+  "firmId": "323016",
+  "name": "AURELIUS FAMILY OFFICE, LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"3 EXECUTIVE PARK DRIVE\", \"street2\": \"SUITE 261\", \"city\": \"BEDFORD\", \"state\": \"NH\", \"country\": \"United States\", \"postalCode\": \"03110\"}}"
+ },
+ {
+  "firmId": "301865",
+  "name": "STANDARD FAMILY OFFICE, LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"7036 SOUTH SANTA ROSA COURT\", \"street2\": \"SUITE 103\", \"city\": \"SIOUX FALLS\", \"state\": \"SD\", \"country\": \"United States\", \"postalCode\": \"57108\"}}"
+ },
+ {
+  "firmId": "337654",
+  "name": "LEGACY ROAD FAMILY OFFICES",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"city\": \"LOS ANGELES\", \"state\": \"CA\", \"country\": \"United States\"}}"
+ },
+ {
+  "firmId": "338805",
+  "name": "COMMONWEALTH FAMILY OFFICE",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"city\": \"NEWPORT BEACH\", \"state\": \"CA\", \"country\": \"United States\"}}"
+ },
+ {
+  "firmId": "337312",
+  "name": "CHARTWELL FAMILY OFFICE, LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"73061 EL PASEO\", \"street2\": \"SUITE 200\", \"city\": \"PALM DESERT\", \"state\": \"CA\", \"country\": \"United States\", \"postalCode\": \"92260\"}}"
+ },
+ {
+  "firmId": "326990",
+  "name": "FIDUCIARY FAMILY OFFICE, LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"150 EAST PALMETTO PARK ROAD\", \"street2\": \"SUITE 301\", \"city\": \"BOCA RATON\", \"state\": \"FL\", \"country\": \"United States\", \"postalCode\": \"33432\"}}"
+ },
+ {
+  "firmId": "158302",
+  "name": "MACI FAMILY OFFICE ADVISORS",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"110 EAST 42ND STREET\", \"street2\": \"SUITE 1508\", \"city\": \"NEW YORK\", \"state\": \"NY\", \"country\": \"United States\", \"postalCode\": \"10017\"}}"
+ },
+ {
+  "firmId": "168744",
+  "name": "ARROWROOT FAMILY OFFICE, LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"4553 GLENCOE AVENUE\", \"street2\": \"SUITE 200\", \"city\": \"MARINA DEL REY\", \"state\": \"CA\", \"country\": \"United States\", \"postalCode\": \"90292\"}}"
+ },
+ {
+  "firmId": "156310",
+  "name": "CHERRY CREEK FAMILY OFFICES",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"210 UNIVERSITY BLVD\", \"street2\": \"SUITE 650\", \"city\": \"DENVER\", \"state\": \"CO\", \"country\": \"United States\", \"postalCode\": \"80206\"}}"
+ },
+ {
+  "firmId": "323930",
+  "name": "HERITAGE FAMILY OFFICES, LLP",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"9841 E BELL RD\", \"street2\": \"SUITE 110\", \"city\": \"SCOTTSDALE\", \"state\": \"AZ\", \"country\": \"United States\", \"postalCode\": \"85260\"}}"
+ },
+ {
+  "firmId": "294879",
+  "name": "QP GLOBAL FAMILY OFFICES, LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"115 EAST PUTNAM AVENUE\", \"street2\": \"3RD FLOOR\", \"city\": \"GREENWICH\", \"state\": \"CT\", \"country\": \"United States\", \"postalCode\": \"06830\"}}"
+ },
+ {
+  "firmId": "298776",
+  "name": "COMPOUND FAMILY OFFICES, LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"2033 MAIN STREET\", \"street2\": \"SUITE 202\", \"city\": \"SARASOTA\", \"state\": \"FL\", \"country\": \"United States\", \"postalCode\": \"34237\"}}"
+ },
+ {
+  "firmId": "337412",
+  "name": "ARDEN GLOBAL FAMILY OFFICES",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"city\": \"PALO ALTO\", \"state\": \"CA\", \"country\": \"United States\"}}"
+ },
+ {
+  "firmId": "166010",
+  "name": "MERIWETHER FAMILY OFFICE, LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"2001 NW 19TH\", \"street2\": \"SUITE 103 B\", \"city\": \"PORTLAND\", \"state\": \"OR\", \"country\": \"United States\", \"postalCode\": \"97209\"}}"
+ },
+ {
+  "firmId": "313318",
+  "name": "AXIOM FOUNDERS FAMILY OFFICE",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"7373 E. DOUBLETREE RANCH ROAD\", \"street2\": \"SUITE 170\", \"city\": \"SCOTTSDALE\", \"state\": \"AZ\", \"country\": \"United States\", \"postalCode\": \"85258\"}}"
+ },
+ {
+  "firmId": "329496",
+  "name": "INNOVATIVE FAMILY OFFICE LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"361 ROUTE 202\", \"city\": \"SOMERS\", \"state\": \"NY\", \"country\": \"United States\", \"postalCode\": \"10589\"}}"
+ },
+ {
+  "firmId": "327848",
+  "name": "GENERATIVE FAMILY OFFICE LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"1640 SCHOOL STREET\", \"street2\": \"103A\", \"city\": \"MORAGA\", \"state\": \"CA\", \"country\": \"United States\", \"postalCode\": \"94556\"}}"
+ },
+ {
+  "firmId": "301274",
+  "name": "COLLECTIVE FAMILY OFFICE, LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"235 ST. CHARLES WAY\", \"street2\": \"SUITE 200\", \"city\": \"YORK\", \"state\": \"PA\", \"country\": \"United States\", \"postalCode\": \"17402\"}}"
+ },
+ {
+  "firmId": "338855",
+  "name": "NOBLEHOUSE FAMILY OFFICE, LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"5700 TENNYSON PKWY\", \"street2\": \"SUITE 300\", \"city\": \"PLANO\", \"state\": \"TX\", \"country\": \"United States\", \"postalCode\": \"75024\"}}"
+ },
+ {
+  "firmId": "282750",
+  "name": "ELEMENT POINTE FAMILY OFFICE",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"333 SE 2ND AVE\", \"street2\": \"SUITE 2520\", \"city\": \"MIAMI\", \"state\": \"FL\", \"country\": \"United States\", \"postalCode\": \"33131\"}}"
+ },
+ {
+  "firmId": "338005",
+  "name": "WHITE SANDS FAMILY OFFICE LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"city\": \"EL PASO\", \"state\": \"TX\", \"country\": \"United States\"}}"
+ },
+ {
+  "firmId": "301900",
+  "name": "INSCRIPTION FAMILY OFFICE, LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"2925 RICHMOND AVENUE\", \"street2\": \"SUITE 425\", \"city\": \"HOUSTON\", \"state\": \"TX\", \"country\": \"United States\", \"postalCode\": \"77098\"}}"
+ },
+ {
+  "firmId": "307727",
+  "name": "CONSCIENTIA FAMILY OFFICE, LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"1395 BRICKELL AVE. SUITE 690\", \"city\": \"MIAMI\", \"state\": \"FL\", \"country\": \"United States\", \"postalCode\": \"33131\"}}"
+ },
+ {
+  "firmId": "144811",
+  "name": "INDEPENDENT FAMILY OFFICE, LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"677 BROADWAY\", \"street2\": \"7TH FLOOR\", \"city\": \"ALBANY\", \"state\": \"NY\", \"country\": \"United States\", \"postalCode\": \"12207\"}}"
+ },
+ {
+  "firmId": "120053",
+  "name": "CORNERSTONE FAMILY OFFICE, LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"5900 LANDERBROOK DRIVE\", \"street2\": \"SUITE 200\", \"city\": \"MAYFIELD HEIGHTS\", \"state\": \"OH\", \"country\": \"United States\", \"postalCode\": \"44124\"}}"
+ },
+ {
+  "firmId": "340475",
+  "name": "DOW FAMILY OFFICE ADVISORY, LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"8205 NATURE'S WAY\", \"street2\": \"#219\", \"city\": \"LAKEWOOD RANCH\", \"state\": \"FL\", \"country\": \"United States\", \"postalCode\": \"34202\"}}"
+ },
+ {
+  "firmId": "156284",
+  "name": "BONNEVILLE MULTI-FAMILY OFFICE",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"city\": \"PROVO\", \"state\": \"UT\", \"country\": \"United States\"}}"
+ },
+ {
+  "firmId": "323249",
+  "name": "TAYLOR FRIGON FAMILY OFFICE, LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"18835 N. THOMPSON PEAK PKWY\", \"street2\": \"SUITE C-200\", \"city\": \"SCOTTSDALE\", \"state\": \"AZ\", \"country\": \"United States\", \"postalCode\": \"85255\"}}"
+ },
+ {
+  "firmId": "307521",
+  "name": "ALPHA CAPITAL FAMILY OFFICE, LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"5750 S. ULSTER CIRCLE EAST\", \"street2\": \"SUITE 300\", \"city\": \"GREENWOOD VILLAGE\", \"state\": \"CO\", \"country\": \"United States\", \"postalCode\": \"80111\"}}"
+ },
+ {
+  "firmId": "171584",
+  "name": "RIVERGLADES FAMILY OFFICES, LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"2640 GOLDEN GATE PKWY\", \"street2\": \"SUITE #105\", \"city\": \"NAPLES\", \"state\": \"FL\", \"country\": \"United States\", \"postalCode\": \"34105\"}}"
+ },
+ {
+  "firmId": "315523",
+  "name": "DOUBLE EAGLE FAMILY OFFICES, LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"3724 HULEN ST\", \"city\": \"FORT WORTH\", \"state\": \"TX\", \"country\": \"United States\", \"postalCode\": \"76107\"}}"
+ },
+ {
+  "firmId": "127918",
+  "name": "THOMAS JACKSON FAMILY OFFICE, INC.",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"6307 CENTER ST.\", \"street2\": \"SUITE 210\", \"city\": \"OMAHA\", \"state\": \"NE\", \"country\": \"United States\", \"postalCode\": \"68106\"}}"
+ },
+ {
+  "firmId": "338355",
+  "name": "KOIOS PRIVATE FAMILY OFFICES, LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"415 SW 8TH STREET\", \"city\": \"DES MOINES\", \"state\": \"IA\", \"country\": \"United States\", \"postalCode\": \"50309\"}}"
+ },
+ {
+  "firmId": "340444",
+  "name": "EXCEPTIONAL WEALTH & FAMILY OFFICE",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"422 EAST VERMIJO AVENUE, SUITE 200A\", \"city\": \"COLORADO SPRINGS\", \"state\": \"CO\", \"country\": \"United States\", \"postalCode\": \"80903\"}}"
+ },
+ {
+  "firmId": "306372",
+  "name": "FAMILY OFFICE VENTURE CAPITAL LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"500 WEST PUTNAM AVENUE\", \"street2\": \"SUITE 400\", \"city\": \"GREENWICH\", \"state\": \"CT\", \"country\": \"United States\", \"postalCode\": \"06830\"}}"
+ },
+ {
+  "firmId": "307166",
+  "name": "ECHELON VIRTUAL FAMILY OFFICE, LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"1990 MAIN STREET\", \"street2\": \"SUITE 750\", \"city\": \"SARASOTA\", \"state\": \"FL\", \"country\": \"United States\", \"postalCode\": \"34236\"}}"
+ },
+ {
+  "firmId": "171313",
+  "name": "SUMMIT FAMILY OFFICE SERVICES, LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"city\": \"BELLEVUE\", \"state\": \"WA\", \"country\": \"United States\"}}"
+ },
+ {
+  "firmId": "266787",
+  "name": "WEALTH DIMENSIONS FAMILY OFFICE, INC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"7870 E KEMPER ROAD\", \"street2\": \"SUITE 210\", \"city\": \"CINCINNATI\", \"state\": \"OH\", \"country\": \"United States\", \"postalCode\": \"45249\"}}"
+ },
+ {
+  "firmId": "285357",
+  "name": "EUROPEAN FAMILY OFFICE INSTITUTE LLC.",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"city\": \"BOCA RATON\", \"state\": \"FL\", \"country\": \"United States\"}}"
+ },
+ {
+  "firmId": "281862",
+  "name": "VESTED PARTNERS: A MULTI-FAMILY OFFICE",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"300 E. 2ND STREET\", \"city\": \"SALEM\", \"state\": \"VA\", \"country\": \"United States\", \"postalCode\": \"24153\"}}"
+ },
+ {
+  "firmId": "282261",
+  "name": "LEGACY BRIDGE PRIVATE FAMILY OFFICES",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"5810 GRAND AVE\", \"city\": \"WEST DES MOINES\", \"state\": \"IA\", \"country\": \"United States\", \"postalCode\": \"50266\"}}"
+ },
+ {
+  "firmId": "339607",
+  "name": "FAMILY OFFICE INVESTMENT ADVISORY LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"6991 E. CAMELBACK RD.,\", \"street2\": \"SUITE D-300\", \"city\": \"SCOTTSDALE\", \"state\": \"AZ\", \"country\": \"United States\", \"postalCode\": \"85251\"}}"
+ },
+ {
+  "firmId": "333989",
+  "name": "THE FAMILY OFFICES GLOBAL VENTURES INC.",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"100 BISCAYNE BLVD\", \"street2\": \"SUITE 1209\", \"city\": \"MIAMI\", \"state\": \"FL\", \"country\": \"United States\", \"postalCode\": \"33132\"}}"
+ },
+ {
+  "firmId": "332362",
+  "name": "OPEN FAMILY OFFICE (OFO) WEALTH MANAGEMENT LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"3424 WYNDHAM DR\", \"city\": \"FREMONT\", \"state\": \"CA\", \"country\": \"United States\", \"postalCode\": \"94536\"}}"
+ },
+ {
+  "firmId": "316024",
+  "name": "FINANCIAL GRAVITY FAMILY OFFICE SERVICES, LLC",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"2501 RANCH ROAD 620 S\", \"street2\": \"STE 110\", \"city\": \"LAKEWAY\", \"state\": \"TX\", \"country\": \"United States\", \"postalCode\": \"78734\"}}"
+ },
+ {
+  "firmId": "130711",
+  "name": "SUPERIOR PLANNING WEALTH MANAGEMENT & FAMILY OFFICE",
+  "active": true,
+  "addr": "{\"officeAddress\": {\"street1\": \"10085 CARROLL CANYON ROAD\", \"street2\": \"SUITE 150\", \"city\": \"SAN DIEGO\", \"state\": \"CA\", \"country\": \"United States\", \"postalCode\": \"92131\"}}"
+ }
+]

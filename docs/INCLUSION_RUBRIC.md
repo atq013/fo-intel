@@ -124,3 +124,64 @@ class, the method by which it was confirmed, and the date observed. Firm-level
 classification additionally carries the rule ids that fired and the full set of
 source claims — **including claims that lost reconciliation**, so a disagreement
 between sources is visible in the record rather than hidden by it.
+
+
+---
+
+# Stage 2 inclusion standard — the three evidence tiers
+
+The brief requires a defined minimum inclusion standard. This is it, stated so a
+reviewer can grade each record against it rather than take a count on trust.
+
+**Every qualifying record must carry all of:** a legal name, a country, **a named
+individual**, and at least one of a city or a website — each value released by the
+six gates with its own evidence span. A named individual is mandatory, not one of
+several optional fields, because the brief's floor is a contact route reaching a
+named person and a record without one cannot satisfy it.
+
+**And it must carry affirmative evidence that the firm is a family office**, at one
+of three tiers. The tier is visible per record in `exports/records.csv`
+(`classification`, `classificationBasis`) and countable from
+`exports/records.json`.
+
+### Tier A — statutory control evidence
+
+A statutory control register names an individual whose surname appears as a whole
+token in the company name, and the name identifies a family wealth vehicle. The
+gate re-runs the rule at validation time (`family_surname_control`), so a label it
+cannot reproduce does not release. **This is the strongest tier available and it
+is a legal filing about who controls the entity, not an inference.**
+
+### Tier B — the firm's own registered name
+
+The legal name on a statutory register says "family office". A firm's registered
+name is its own description of itself, recorded by a regulator. For SEC
+registrants this additionally implies a *multi*-family office or adviser, because
+Rule 202(a)(11)(G)-1 excludes single family offices from registration.
+
+### Tier C — a registered family wealth vehicle, control not evidenced
+
+The registered name identifies a family wealth vehicle — family investment,
+capital, wealth, partners, trust, trustees, assets or ventures — but no control
+register names an individual whose surname matches.
+
+**This is the weakest tier and it is included deliberately, with its weakness
+stated.** A family-named holding company is not proof of a family office, and
+Stage 1 was criticised for exactly that inference. These records are therefore
+**never given an `entityClassification`**: they appear in the file as qualifying
+and visibly unclassified, so anyone recomputing can separate them in one pass.
+Of the 581 qualifying records, **280 carry a tier-A classification and 301 do not** — 103 at tier B and 198 at tier C.
+
+### Excluded outright
+
+- **No family-wealth-vehicle name and no classification.** This removed a bakery,
+  a funeral home, a golf club, a rail-supplies company, two acquisition shells and
+  several hedge funds — all of which had previously qualified on an address and a
+  director alone.
+- **Institutions that are not family offices whatever their name says**: insurers,
+  banks, family law firms, tax practices, IFAs, consultancies and grantmaking
+  foundations.
+
+The vehicle words must sit **adjacent** to "family": `FAMILY LEISURE HOLDINGS` and
+`HUGHES (FAMILY BAKERS) HOLDINGS` both contain "family" and "holdings" and neither
+is a family wealth vehicle.

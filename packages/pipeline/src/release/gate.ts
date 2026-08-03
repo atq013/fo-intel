@@ -99,17 +99,83 @@ export function excludedInstitution(name: string): string | null {
   return m ? m[0].toLowerCase() : null;
 }
 
+/**
+ * A family-wealth vehicle, by the firm's own registered name.
+ *
+ * The inclusion standard has three tiers of evidence and this is the floor of
+ * the weakest one. A qualification review found the file had no such floor at
+ * all: a bakery, a funeral home, a golf club, a rail-supplies company and
+ * several hedge funds qualified on nothing more than an address and a director,
+ * because the commercial floor asked for completeness and never for evidence
+ * that the firm was a family office.
+ *
+ * These words denote a wealth structure. `group`, `estates`, `bakers`,
+ * `funerals` and the rest do not, and their absence is what removes the records
+ * that should never have counted.
+ *
+ * `advisors`/`advisers` is included because a firm registered as "X FAMILY
+ * ADVISORS" is a multi-family office, and the brief is explicit that MFOs belong
+ * in the dataset with their status visible. Tested against every withheld record
+ * carrying a phone: it recovers OAK FAMILY ADVISORS and Pinnacle Family Advisors
+ * and leaves all ten hedge funds, the VC, the PE firm and the foundation out.
+ * It is narrow because it must sit adjacent to "family" -- HERITAGE INDEPENDENT
+ * FINANCIAL ADVISERS is a retail IFA and stays excluded by name.
+ *
+ * `management`, `legacy` and `financial` were added last, for the same reason
+ * and with the same test. They recover Family Management Corp (a New York
+ * multi-family office), Family Legacy Inc, Family Legacy Financial Solutions and
+ * Michels Family Financial. Checked against every withheld record carrying a
+ * phone: fourteen stay out, including QVT, Voss, Rubric, Tarsadia, RBF,
+ * Greenhaven, JS Capital, Kimmeridge, Column Group, Barington and Mariner.
+ *
+ * That last check is the point of this rule. Those fourteen are hedge funds, PE,
+ * VC and a large RIA, and they hold 13F phone numbers -- which is exactly why
+ * admitting them would raise the reachability count. Reachability is not a
+ * reason to call something a family office.
+ */
+const FAMILY_WEALTH_VEHICLE =
+  /\bfamily\s+(offices?|investments?|holdings?|capital|wealth|partners|trust|trustees|assets|ventures|advisors?|advisers?|office\s+services|management|legacy|financial)\b/i;
+
+export function isFamilyWealthVehicleName(name: string): boolean {
+  return FAMILY_WEALTH_VEHICLE.test(name);
+}
+
 export function assessEntity(
   entity: Entity,
   released: Claim[],
   policyVersion = POLICY_VERSION,
 ): CommercialDecision {
   const has = (f: string) => released.some((c) => c.field === f || c.field.endsWith('.' + f));
-  const required = ['legalName', 'country'];
-  const commercial = ['fullName', 'website', 'city'];
+  // `fullName` moves from optional to required. The brief's floor is a contact
+  // route that reaches a NAMED individual, so a record with no named person
+  // cannot satisfy it however many other fields it carries -- and ADV and IAPD
+  // publish firm identity with no individuals at all, which would have imported
+  // exactly that.
+  const required = ['legalName', 'country', 'fullName'];
+  const commercial = ['website', 'city'];
 
   const missing = [...required.filter((f) => !has(f)), ...commercial.filter((f) => !has(f))];
-  const meetsFloor = required.every(has) && commercial.filter(has).length >= 2;
+  const meetsFloor = required.every(has) && commercial.filter(has).length >= 1;
+
+  // A record must carry SOME affirmative sign that the firm is a family office.
+  // Completeness is not evidence: without this, any company with an address and
+  // a director qualified as long as its name contained "family" or "heritage"
+  // somewhere. The strongest tier is a derived `entityClassification`; the
+  // weakest is the firm's own registered name naming a family wealth vehicle.
+  // Records resting only on the latter are counted and are visibly unclassified
+  // in the export -- the standard is stated, not hidden.
+  const classified = released.some((c) => c.field === 'entityClassification');
+  if (!classified && !isFamilyWealthVehicleName(entity.canonicalName)) {
+    return {
+      entityId: entity.id,
+      commercialState: 'withheld',
+      reason:
+        'no affirmative family-office evidence: neither a derived classification nor a ' +
+        'registered name identifying a family wealth vehicle',
+      missing,
+      policyVersion,
+    };
+  }
 
   // An excluded institution fails regardless of how complete its record is.
   // Completeness is not the question here -- an insurance company with every

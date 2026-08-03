@@ -1,5 +1,10 @@
 # Stage 1 submission — Muhammad Attique Ur Rehman
 
+> **This is the Stage 1 index, kept as history.** The current submission is Stage 2 —
+> see [`docs/ACCEPTANCE_M3.md`](docs/ACCEPTANCE_M3.md) for the requirement-to-evidence
+> matrix and the deliverable index. Counts below are Stage 1's 50 records and are
+> not the current dataset.
+
 ## Deliverables
 
 | Required | Where |
