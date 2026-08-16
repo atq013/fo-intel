@@ -1,3 +1,4 @@
+import type React from 'react';
 import {
   contractStats, gateOutcomes, recentRuns, recentDecisions, recentQuarantines,
 } from '@fo/db';
@@ -62,7 +63,7 @@ export default async function Operations() {
         </p>
         <table>
           <thead>
-            <tr><th>run</th><th>job</th><th>trigger</th><th>status</th><th>touched</th><th>released</th><th>quarantined</th><th>started</th></tr>
+            <tr><th>run</th><th>job</th><th>trigger</th><th>status</th><th>touched</th><th>released</th><th>quarantined</th><th>started</th><th>ended</th></tr>
           </thead>
           <tbody>
             {runs.map((r) => (
@@ -71,10 +72,17 @@ export default async function Operations() {
                 <td>{r.job}</td>
                 <td>{r.trigger === 'schedule' ? <strong>schedule</strong> : r.trigger}</td>
                 <td>{r.status}</td>
-                <td>{r.records_touched}</td>
-                <td>{r.claims_released}</td>
-                <td>{r.claims_quarantined}</td>
+                {/*
+                  A null counter is not a zero. It means the run was killed
+                  before that number was written, and rendering it as an empty
+                  cell would put the reader back where the defect started --
+                  unable to tell "did nothing" from "never got to say".
+                */}
+                <td>{count(r.records_touched)}</td>
+                <td>{count(r.claims_released)}</td>
+                <td>{count(r.claims_quarantined)}</td>
                 <td className="mono">{new Date(r.started_at).toISOString().slice(0, 16).replace('T', ' ')}</td>
+                <td className="mono" title={r.close_reason ?? undefined}>{outcome(r)}</td>
               </tr>
             ))}
           </tbody>
@@ -149,6 +157,39 @@ export default async function Operations() {
       </footer>
     </div>
   );
+}
+
+/**
+ * An unwritten counter, in words rather than as a blank.
+ *
+ * The whole point of making these columns nullable is that "we never found out"
+ * stops being indistinguishable from "zero". That distinction has to survive the
+ * render, or the database is honest and the page is not.
+ */
+function count(n: number | null): React.ReactNode {
+  if (n === null || n === undefined) {
+    return <span className="statNote" title="the run was killed before this number was written">not recorded</span>;
+  }
+  return n;
+}
+
+/**
+ * When the run stopped, and on whose authority.
+ *
+ * `ended_at` is the run reporting its own end. `closed_at` is the row being
+ * closed for a run that never reported one -- a different fact, shown as a
+ * different thing, with the reason on hover.
+ */
+function outcome(r: { ended_at: string | null; closed_at: string | null }): React.ReactNode {
+  if (r.ended_at) return new Date(r.ended_at).toISOString().slice(0, 16).replace('T', ' ');
+  if (r.closed_at) {
+    return (
+      <span className="statNote">
+        closed {new Date(r.closed_at).toISOString().slice(0, 16).replace('T', ' ')} · end unknown
+      </span>
+    );
+  }
+  return <span className="statNote">still running</span>;
 }
 
 function Stat({ label, value, note }: { label: string; value: number; note?: string }) {

@@ -146,6 +146,9 @@ await withRun('contract', 'manual', async (run) => {
       }
     }
     run.counts.touched++;
+    // Same reason as `contract`: this loop commits per entity and may never log
+    // or checkpoint, so without this the partial counts die with the process.
+    await run.flushCounts({ throttled: true });
   }
 
   await run.log('info', 'backfill_finished', { classified, quarantined });

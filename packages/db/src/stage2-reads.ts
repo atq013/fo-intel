@@ -12,17 +12,49 @@ import { db } from './index.js';
 
 export interface RunRow {
   id: string; job: string; trigger: string; status: string;
-  started_at: string; ended_at: string | null;
-  records_touched: number; claims_created: number;
-  claims_released: number; claims_quarantined: number;
+  started_at: string;
+  /** when the run reported its own end; null for one closed out of band */
+  ended_at: string | null;
+  /** when the row was closed for a run that never reported an end */
+  closed_at: string | null;
+  close_reason: string | null;
+  /**
+   * Nullable since `007_run_closure.sql`.
+   *
+   * `null` means the run was killed before that number was written -- not that
+   * it did nothing. The UI must render the two differently or it reintroduces
+   * the confusion the migration removed.
+   */
+  records_touched: number | null; claims_created: number | null;
+  claims_released: number | null; claims_quarantined: number | null;
   git_sha: string | null;
 }
 
+/**
+ * Reads the closure columns without requiring them to exist yet.
+ *
+ * `closed_at` and `close_reason` arrive with `007_run_closure.sql`. Naming them
+ * directly makes this page depend on migration order: deploy the app before the
+ * migration runs and `/operations` returns a 500 for every visitor, because
+ * Postgres rejects the whole SELECT for an unknown column. That was reproduced
+ * locally against a database without 007 -- `column "closed_at" does not exist`,
+ * the page dead while the rest of the product was fine.
+ *
+ * `to_jsonb(r) ->> 'name'` asks the row for a key instead of the table for a
+ * column: present, it returns the value; absent, it returns NULL, which is
+ * exactly what a pre-migration row means. The page already renders NULL as
+ * "not recorded", so it degrades to the old behaviour on its own.
+ *
+ * The cast back to timestamptz keeps the type identical to a direct select.
+ */
 export async function recentRuns(limit = 20): Promise<RunRow[]> {
   return (await db()`
-    SELECT id, job, trigger, status, started_at, ended_at, records_touched,
-           claims_created, claims_released, claims_quarantined, git_sha
-    FROM s2_run ORDER BY started_at DESC LIMIT ${limit}`) as unknown as RunRow[];
+    SELECT r.id, r.job, r.trigger, r.status, r.started_at, r.ended_at,
+           (to_jsonb(r) ->> 'closed_at')::timestamptz AS closed_at,
+           (to_jsonb(r) ->> 'close_reason')          AS close_reason,
+           r.records_touched, r.claims_created, r.claims_released,
+           r.claims_quarantined, r.git_sha
+    FROM s2_run r ORDER BY r.started_at DESC LIMIT ${limit}`) as unknown as RunRow[];
 }
 
 export interface ContractStats {

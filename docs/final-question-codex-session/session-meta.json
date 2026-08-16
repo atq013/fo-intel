@@ -1,0 +1,26 @@
+{
+  "generatedAt": "2026-08-15T21:12:34.547Z",
+  "sourceFile": "rollout-2026-08-02T18-30-04-019fc2aa-d813-7363-a24e-918033465335.jsonl",
+  "sourceBytes": 124831918,
+  "sourceSha256AtExport": "8fc29bea3304ea66c827eb6023bb10f8131e3f28fa042eea6989aff86f773725",
+  "startInclusive": "2026-08-13T08:55:10.049Z",
+  "endInclusive": null,
+  "firstVisibleRecord": "2026-08-13T08:55:10.049Z",
+  "lastVisibleRecord": "2026-08-15T21:12:32.371Z",
+  "visibleRecordCount": 1303,
+  "typeCounts": {
+    "user": 128,
+    "assistant": 243,
+    "tool_call": 466,
+    "tool_output": 465,
+    "event": 1
+  },
+  "promptCount": 128,
+  "modelTurnCounts": {
+    "gpt-5.6-sol": 134
+  },
+  "reasoningEffortTurnCounts": {
+    "xhigh": 134
+  },
+  "redactionCount": 9
+}

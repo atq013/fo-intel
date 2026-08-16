@@ -3,6 +3,8 @@ import { withRun } from '../run/runner.js';
 import { connect } from '../../../db/src/connect.js';
 import { contractWriter } from '../../../db/src/contract-writer.js';
 import { GATES } from '../gates/index.js';
+import { auditRunLifecycle } from '../run/audit-run-lifecycle.js';
+import { summarise } from '../run/run-lifecycle.js';
 import { assessEntity, releaseDecision, POLICY_VERSION } from '../release/gate.js';
 import type { Claim, Entity, Evidence, GateResult } from '@fo/core/contract/index.js';
 
@@ -114,6 +116,11 @@ await withRun('contract', process.env.GITHUB_EVENT_NAME === 'schedule' ? 'schedu
       byEntity.set(claim.entityId, list);
     }
     run.counts.touched++;
+    // This loop can run through hundreds of claims without logging or
+    // checkpointing, so nothing else here would persist the counters. Throttled:
+    // a forced write per claim would be a statement per record, and the point is
+    // only to bound what a kill can erase.
+    await run.flushCounts({ throttled: true });
   }
 
   // Commercial sufficiency is a question about the WHOLE record, so it must be
@@ -159,9 +166,42 @@ await withRun('contract', process.env.GITHUB_EVENT_NAME === 'schedule' ? 'schedu
     releasedWithoutDecision: orphans.length, sample: orphans.map((o) => o.id),
   });
 
+  // The operating record, held to the same standard as the claims.
+  //
+  // PTC-1 above asks whether every released claim has a decision row behind it.
+  // This asks the equivalent of the run log: whether every run row says only
+  // what the system actually observed. Until this branch, `s2_run` was the one
+  // table nothing checked -- and it is the table the product invites a buyer to
+  // inspect.
+  const lifecycle = await auditRunLifecycle();
+  await run.log(lifecycle.blocking.length ? 'error' : 'info', 'run_lifecycle_audit', {
+    runsAudited: lifecycle.runsAudited,
+    blocking: lifecycle.blocking.length,
+    // Reported every execution rather than suppressed. These are the pre-fix
+    // rows: real defects, preserved because they are submitted evidence and
+    // correcting them would mean rewriting the record. Visible, not excused.
+    legacy: lifecycle.legacy.length,
+    legacyRuns: lifecycle.legacyRunIds.length,
+    warnings: lifecycle.warnings.length,
+    byRule: summarise([...lifecycle.blocking, ...lifecycle.legacy, ...lifecycle.warnings]),
+    blockingDetail: lifecycle.blocking.slice(0, 10),
+  });
+
   await run.log('info', 'contract_summary', { evaluated: claims.length, demoted, admitted });
+
   if (orphans.length) {
     run.failures.push({ ptc: 'PTC-1', releasedWithoutDecision: orphans.length });
     throw new Error(`PTC-1 violated: ${orphans.length} released claim(s) with no release_decision row`);
+  }
+
+  // Only rows written under the fix can fail the job. A permanently red check is
+  // a check nobody reads, and the historical rows cannot be repaired without
+  // altering submitted evidence.
+  if (lifecycle.blocking.length) {
+    run.failures.push({ check: 'run_lifecycle', blocking: lifecycle.blocking.length });
+    throw new Error(
+      `run lifecycle violated on ${lifecycle.blocking.length} run row(s) written after ` +
+      `the fix: ${lifecycle.blocking.slice(0, 3).map((v) => `${v.runId}/${v.rule}`).join(', ')}`,
+    );
   }
 });

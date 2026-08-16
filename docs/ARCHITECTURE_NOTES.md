@@ -132,9 +132,53 @@ qualifying records to `unassessed` on every re-touch.
 
 **Not implemented.** There is no run-level transaction: a run interrupted mid-unit
 leaves that unit partially applied at claim granularity. The checkpoint means it
-is re-done rather than skipped — correct, but re-done, not rolled back. A
-`SIGKILL` also leaves the run row in `running`; `withRun` closes on normal
-failure, not on `SIGKILL`. Two such rows are in the exported log, not hidden.
+is re-done rather than skipped — correct, but re-done, not rolled back.
+
+**Corrected — the sentence that used to end this paragraph was false.** It read
+*"A `SIGKILL` also leaves the run row in `running`; `withRun` closes on normal
+failure, not on `SIGKILL`. Two such rows are in the exported log, not hidden."*
+The first half is true. The second is not: `exports/operating-window.json`
+contains **zero** rows in `running` — 118 runs, 109 completed, 7 aborted, 2
+failed. The export's own header repeated the claim.
+
+What actually happened is that the orphans were closed by hand. Three statements
+in the submitted session record did it, twice with no reason recorded:
+
+```
+UPDATE s2_run SET status='aborted', ended_at=now() WHERE status='running'
+```
+
+`ended_at` means "the run stopped here", and it was given the time of the
+cleanup. All seven carry an end time written that way: `finish()` writes the end
+time and the counters in one statement, and all seven still hold the schema
+default of 0, so it never ran on any of them. Three also show extreme spans —
+**43.9h, 50.1h and 74.0h** against a 40-minute maximum across the 108 completed
+runs carrying log lines (109 completed rows in all; `run_m1_demo` logs nothing
+and lasted 0.1 min, so it does not move the maximum) — while the rest are closer
+to their last activity only because the cleanup was run sooner. `run_20260730191237_40bd4888`
+holds 43 log lines and 42 decisions including a quarantine, above a row reporting
+`claimsQuarantined: 0`. `aborted` is a status no code path writes, which is how
+each of these rows can be identified without inference.
+
+**What the branch changes.** `007_run_closure.sql` adds `closed_at` and
+`close_reason`, makes the four counters nullable so an unwritten one is not a
+zero, and adds a per-status CHECK (`NOT VALID`, so the historical rows survive as
+submitted) under which an `aborted` row may never carry an `ended_at`.
+`closeOrphanedRuns()` replaces the hand-written statement — dry run by default,
+never writing `ended_at`, recording silence rather than guessing a cause, and
+rechecking liveness inside the same UPDATE. The counters are now written as work
+commits, and a checkpoint and its counter flush move in one statement or neither
+moves. `contract` audits every run row on every execution.
+
+The seven historical rows are **not repaired**: correcting them would mean
+rewriting evidence that has already been submitted. They are reported as legacy
+violations on every audit and are excluded from blocking the job; any row written
+after the fix blocks normally.
+
+**Also disclosed, and not repaired here.** Two runs that *completed* normally
+report `recordsTouched: 0` while holding decisions, one of them 130 — those jobs
+never incremented the counter. It is a real gap and a different one from the
+sweep; it is reported as a warning rather than folded into the above.
 
 ---
 

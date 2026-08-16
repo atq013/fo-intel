@@ -24,7 +24,8 @@ mkdirSync(OUT, { recursive: true });
 const sql = connect();
 
 const runs = (await sql`
-  SELECT id, job, trigger, status, started_at, ended_at, git_sha, policy_version,
+  SELECT id, job, trigger, status, started_at, ended_at, closed_at, close_reason,
+         git_sha, policy_version,
          records_touched, claims_created, claims_released, claims_quarantined,
          failures_json, cost_json
   FROM s2_run ORDER BY started_at`) as unknown as Array<Record<string, any>>;
@@ -99,23 +100,47 @@ const windowConditions = {
   },
 };
 
-writeFileSync(OUT + 'operating-window.json', JSON.stringify({
+/**
+ * Written beside the submitted file, never over it.
+ *
+ * `exports/operating-window.json` is submitted evidence. Regenerating in place
+ * would silently replace the artifact whose defects this branch describes, and a
+ * corrected copy that cannot be diffed against the original proves nothing. The
+ * two files side by side ARE the proof.
+ */
+const FILENAME = process.env.OPERATING_WINDOW_OUT ?? 'operating-window.corrected.json';
+
+writeFileSync(OUT + FILENAME, JSON.stringify({
   generatedAt: new Date().toISOString(),
+  // The previous wording claimed this file contained rows left `running` by a
+  // SIGKILL. It never did: those rows were closed by hand before the export ran,
+  // so the export asserted something about its own contents that was false. It
+  // now describes what is actually here.
   note:
-    'Every run, log line, decision and failure, in time order. Unfiltered: failed runs, ' +
-    'aborted runs and rows left `running` by a SIGKILL are all present, because they are ' +
-    'part of what the system did.',
+    'Every run, log line, decision and failure, in time order. Unfiltered: failed runs and ' +
+    'administratively closed runs are all present, because they are part of what the system ' +
+    'did. A run closed out of band carries `closedAt` and `closeReason` and no `endedAt`: ' +
+    'the moment its row was closed is recorded, the moment it stopped is not known and is ' +
+    'not invented. A `null` counter means the run was killed before that number was written, ' +
+    'which is different from a counted zero.',
   windowConditions,
   runCount: runs.length,
   logLineCount: logs.length,
   decisionCount: decisions.length,
   runs: runs.map((r) => ({
     runId: r.id, job: r.job, trigger: r.trigger, status: r.status,
-    startedAt: r.started_at, endedAt: r.ended_at,
+    startedAt: r.started_at,
+    // Three separate facts, never collapsed. `endedAt` is an observation;
+    // `closedAt` is when the row was closed for a run that never reported one.
+    endedAt: r.ended_at,
+    closedAt: r.closed_at ?? null,
+    closeReason: r.close_reason ?? null,
     gitSha: r.git_sha, policyVersion: r.policy_version,
     counts: {
-      recordsTouched: r.records_touched, claimsCreated: r.claims_created,
-      claimsReleased: r.claims_released, claimsQuarantined: r.claims_quarantined,
+      // `?? null` and not `?? 0`: an unwritten counter must stay distinguishable
+      // from a counted zero all the way out to the file.
+      recordsTouched: r.records_touched ?? null, claimsCreated: r.claims_created ?? null,
+      claimsReleased: r.claims_released ?? null, claimsQuarantined: r.claims_quarantined ?? null,
     },
     failures: r.failures_json,
     cost: r.cost_json,
@@ -150,4 +175,8 @@ console.log(`window · 2 scheduled runs across 48h : ${windowConditions.twoSched
 console.log(`window · real dependency failure     : ${windowConditions.realDependencyFailure.met ? 'MET' : 'NOT MET'} (${failures.length})`);
 console.log(`window · staleness across runs       : ${windowConditions.stalenessAcrossRuns.met ? 'MET' : 'NOT MET'} (${staleAcrossRuns.length} events, ${staleFromScheduled.length} from scheduled runs)`);
 console.log('');
-console.log('written        : exports/operating-window.json, exports/agent-tools.json');
+// Prints the name it actually wrote. It used to print `operating-window.json`
+// unconditionally, which was true only until the output became configurable --
+// and a script that misreports its own output is precisely the class of defect
+// this branch exists to fix.
+console.log(`written        : exports/${FILENAME}, exports/agent-tools.json`);

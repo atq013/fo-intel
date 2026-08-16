@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import { createHash } from 'node:crypto';
-import { readFileSync, writeFileSync, mkdirSync, statSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, statSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
 /**
@@ -55,7 +55,21 @@ const STAGE2_START = process.env.STAGE2_START ?? '2026-07-30T09:09:51.000Z';
 
 const SRC = process.env.AI_TRANSCRIPT
   ?? '/Users/atq/.claude/projects/-Users-atq-Drive-E/8e1764f2-b871-4b16-9b02-2caf3f619340.jsonl';
-const OUT = fileURLToPath(new URL('../../../../docs/ai-session/', import.meta.url));
+/**
+ * Where the export lands.
+ *
+ * This used to be hardcoded to `docs/ai-session/`, which is Stage 2 deliverable
+ * 9. Re-running the script for any later session -- a review pass, a follow-up
+ * task -- would therefore overwrite a submitted artifact in place, silently, and
+ * the original would exist nowhere. That is a footgun on a script whose entire
+ * purpose is preserving a record faithfully.
+ *
+ * `AI_SESSION_OUT` overrides the directory, so a later session exports beside
+ * the submitted one instead of over it. The default is unchanged, so the
+ * original command still reproduces the original deliverable.
+ */
+const OUT_DIR = process.env.AI_SESSION_OUT ?? '../../../../docs/ai-session/';
+const OUT = fileURLToPath(new URL(OUT_DIR.endsWith('/') ? OUT_DIR : `${OUT_DIR}/`, import.meta.url));
 mkdirSync(OUT, { recursive: true });
 
 /**
@@ -214,7 +228,26 @@ const sums = files.map((f) => {
 writeFileSync(OUT + 'SHA256SUMS', sums.join('\n') + '\n');
 
 const size = (f: string) => `${(statSync(OUT + f).size / 1048576).toFixed(2)} MB`;
-writeFileSync(OUT + 'README.md', `# AI working-session record
+/**
+ * Never clobber a README someone has corrected by hand.
+ *
+ * This file is templated for deliverable 9, so for any other session it is wrong
+ * on its own terms -- it announces itself as that deliverable and describes a
+ * Stage 1 / Stage 2 boundary that does not exist elsewhere. The
+ * `docs/final-question-session/` copy was therefore rewritten by hand, and a
+ * re-run of this script would have silently overwritten that correction with the
+ * false version again.
+ *
+ * So: write `README.md` only when absent. If one already exists, the generated
+ * text goes to `README.generated.md` beside it and the difference is announced,
+ * leaving the human-authored file to win by default. `SHA256SUMS` covers the
+ * four data files and not the README, so neither path affects verification.
+ */
+const readmePath = existsSync(OUT + 'README.md') ? 'README.generated.md' : 'README.md';
+if (readmePath !== 'README.md') {
+  console.log(`  README.md exists and was left alone; generated copy written to ${readmePath}`);
+}
+writeFileSync(OUT + readmePath, `# AI working-session record
 
 Deliverable 9. The complete record of AI use on this assessment.
 
@@ -288,4 +321,4 @@ console.log(`instructions     : ${prompts.length}`);
 console.log(`redactions       : ${total}`);
 for (const [n, c] of [...counts].sort((a, b) => b[1] - a[1])) console.log(`  ${n}: ${c}`);
 console.log('');
-for (const f of [...files, 'SHA256SUMS', 'README.md']) console.log(`  docs/ai-session/${f}  ${size(f)}`);
+for (const f of [...files, 'SHA256SUMS', readmePath]) console.log(`  ${OUT}${f}  ${size(f)}`);
